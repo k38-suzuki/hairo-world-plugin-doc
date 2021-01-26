@@ -6,6 +6,8 @@
 HAIROWorldPluginマニュアル
 ==========================
 
+　このサイトでは、日本原子力研究開発機構が開発したChoreonoidの拡張機能「HAIROWorldPlugin」の使い方を説明します。
+
 .. toctree::
    :maxdepth: 2
 
@@ -14,7 +16,15 @@ HAIROWorldPluginマニュアル
    simulation/index
    utility/index
 
+対応プラットフォーム
+====================
 
+　HAIROWorldPluginは、Choreonoid開発版上で動作することを確認しており、今後もChoreonoidの最新のバージョンに対応していく予定です。対応OSはUbuntu18.4-LTSです。他のOS、ディストリビューション、バージョン、アーキテクチャについては、公式にはサポートしておりません。Ubuntuベースの他のディストリビューションでは、ビルドをうまく通せば動作する可能性もありますが、保証はできません。また、VMWare・VirtualBox等の仮想マシンでの使用についても動作を保証できませんので、予めご了承ください。
+
+免責事項
+========
+
+　HAIROWorldPluginの使用に伴うトラブルやその他の損失・損害について当機構では一切の責任を負いません。予めご了承ください。
 
 .. Indices and tables
 .. ==================
