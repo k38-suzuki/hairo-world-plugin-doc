@@ -15,6 +15,7 @@ HAIROWorldPluginマニュアル
    install/index
    simulation/index
    utility/index
+   paper/index
 
 対応プラットフォーム
 ====================
