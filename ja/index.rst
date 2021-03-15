@@ -7,6 +7,7 @@ HAIROWorldPluginマニュアル
 ==========================
 
 　このサイトでは、日本原子力研究開発機構が開発したChoreonoidの拡張機能「HAIROWorldPlugin」の使い方を説明します。
+詳しく知りたい方は `こちら <https://jopss.jaea.go.jp/search/servlet/search?5070343>`_ をクリックしてください。
 
 .. toctree::
    :maxdepth: 2
