@@ -5,8 +5,8 @@
 .. toctree::
    :maxdepth: 2
 
-   fluiddynamics
-   imageeffect
-   tc
-   motioncapture
+   fluid
+   image
+   traffic
+   motion
 

@@ -5,8 +5,8 @@
 .. toctree::
    :maxdepth: 2
 
-   bodyedit
-   joystickstart
-   crawlerrobotbuilder
-   boxterrainbuilder
+   explorer
+   joystick
+   crawler
+   terrain
 
