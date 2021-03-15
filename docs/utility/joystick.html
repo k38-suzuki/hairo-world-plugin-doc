@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>ユーティリティ機能 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>シミュレーションの操作 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ボディアイテムのファイル表示" href="explorer.html" />
-    <link rel="prev" title="ロボットの移動経路の記録・表示" href="../simulation/motion.html" /> 
+    <link rel="next" title="クローラロボットの生成" href="crawler.html" />
+    <link rel="prev" title="ボディアイテムのファイル表示" href="explorer.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -34,12 +34,13 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="explorer.html" title="ボディアイテムのファイル表示"
+          <a href="crawler.html" title="クローラロボットの生成"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../simulation/motion.html" title="ロボットの移動経路の記録・表示"
+          <a href="explorer.html" title="ボディアイテムのファイル表示"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">ユーティリティ機能</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -49,30 +50,39 @@
           <div class="body" role="main">
             
   <div class="section" id="id1">
-<h1>ユーティリティ機能<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="explorer.html">ボディアイテムのファイル表示</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="explorer.html#id2">ファイルとディレクトリの開き方</a></li>
+<h1>シミュレーションの操作<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、ジョイスティックスタート機能を使ったシミュレーションの開始・停止・一時停止・再開の仕方を説明します。</p>
+<div class="section" id="id2">
+<h2>ジョイスティックスタート機能の有効化<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>以下の手順でジョイスティックスタート機能を有効化します。</p>
+<ol class="arabic simple">
+<li>メニューの「オプション」-「ジョイスティックスタート」を開く。</li>
+<li>「スタートボタンでシミュレーションを開始」及び「ロゴボタンでプロジェクトファイルを読み込む」を選択する。</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="last line-block">
+<div class="line">ジョイスティックスタート機能では、ゲームパッドの「Shareボタン」・「Optionボタン」・「Logoボタン」を使用します。（DualShock4の場合）</div>
+<div class="line">他の用途にこれらのボタンを使用する場合は、ジョイスティックスタート機能を無効化してください。</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>ジョイスティックスタート機能によるシミュレーションの開始・停止・一時停止・再開<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>ジョイスティックスタート機能によるシミュレーションの開始・停止・一時停止・再開は次のように割り当てられています。</p>
+<ul class="simple">
+<li>初期位置からシミュレーションを開始　・・・　停止状態のときにOptionボタンを１回押す</li>
+<li>現在位置からシミュレーションを開始　・・・　停止状態のときにShareボタンを１回押す</li>
+<li>停止　・・・　一時停止状態またはシミュレーション中にShareボタンを１回押す</li>
+<li>一時停止 ・・・　シミュレーション中にOptionボタンを１回押す</li>
+<li>現在位置からシミュレーションを再開 ・・・　一時停止状態のときにOptionボタンを１回押す</li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="joystick.html">シミュレーションの操作</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html#id2">ジョイスティックスタート機能の有効化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html#id3">ジョイスティックスタート機能によるシミュレーションの開始・停止・一時停止・再開</a></li>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html#id4">ジョイスティックスタート機能によるプロジェクトファイルの読み込み</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="crawler.html">クローラロボットの生成</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="crawler.html#id2">クローラロボットの構造</a></li>
-<li class="toctree-l2"><a class="reference internal" href="crawler.html#id3">クローラロボットの作成</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="terrain.html">ボックステレインの生成</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="terrain.html#id2">入力ファイルの作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="terrain.html#id3">ボックステレインの作成</a></li>
-</ul>
-</li>
-</ul>
+<p>ジョイスティックスタート機能は下図のように状態が遷移します。</p>
+<img alt="../_images/joystick_0.png" src="../_images/joystick_0.png" />
+</div>
+<div class="section" id="id4">
+<h2>ジョイスティックスタート機能によるプロジェクトファイルの読み込み<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>ゲームパッドのロゴボタンを押すとプロジェクトファイルを選択するダイアログを開きます。</p>
 </div>
 </div>
 
@@ -87,9 +97,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../simulation/index.html">シミュレーション機能</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ユーティリティ機能</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ユーティリティ機能</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="explorer.html">ボディアイテムのファイル表示</a></li>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">シミュレーションの操作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="crawler.html">クローラロボットの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="terrain.html">ボックステレインの生成</a></li>
 </ul>
@@ -141,12 +151,13 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="explorer.html" title="ボディアイテムのファイル表示"
+          <a href="crawler.html" title="クローラロボットの生成"
              >next</a> |</li>
         <li class="right" >
-          <a href="../simulation/motion.html" title="ロボットの移動経路の記録・表示"
+          <a href="explorer.html" title="ボディアイテムのファイル表示"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >ユーティリティ機能</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>関連論文 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>クローラロボットの生成 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,7 +23,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="ボックステレインの生成" href="../utility/terrain.html" /> 
+    <link rel="next" title="ボックステレインの生成" href="terrain.html" />
+    <link rel="prev" title="シミュレーションの操作" href="joystick.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -33,9 +34,13 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../utility/terrain.html" title="ボックステレインの生成"
+          <a href="terrain.html" title="ボックステレインの生成"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="joystick.html" title="シミュレーションの操作"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">ユーティリティ機能</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -45,11 +50,27 @@
           <div class="body" role="main">
             
   <div class="section" id="id1">
-<h1>関連論文<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li>Kenta Suzuki, Kuniaki Kawabata, “Development of a Robot Simulator for Decommissioning Tasks Utilizing Remotely Operated Robots”, Journal of Robotics and Mechatronics, Vol.32, No.6, pp.1292-1300, doi: 10.20965/jrm.2020.p1292, 2020 (<a class="reference external" href="https://www.fujipress.jp/jrm/rb/robot003200061292/">https://www.fujipress.jp/jrm/rb/robot003200061292/</a>)</li>
-<li>Kenta Suzuki, Fumiaki Abe, Hiroshi Yashiro, Kuniaki Kawabata, “HAIROWorldPlugin operation manual”, JAEA-Testing 2020-009, doi: 10.11484/jaea-testing-2020-009, 2021 (<a class="reference external" href="https://jopss.jaea.go.jp/search/servlet/search?5070343">https://jopss.jaea.go.jp/search/servlet/search?5070343</a>)</li>
-</ul>
+<h1>クローラロボットの生成<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、クローラロボットビルダを使ったクローラロボットのモデルファイルの生成の仕方を説明します。</p>
+<div class="section" id="id2">
+<h2>クローラロボットの構造<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>クローラロボットビルダでは、下図の構造のクローラロボットのモデルファイルを生成します。</p>
+<img alt="../_images/crawler_0.png" src="../_images/crawler_0.png" />
+</div>
+<div class="section" id="id3">
+<h2>クローラロボットの作成<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>以下の手順で、クローラロボットのモデルファイルを作成します。</p>
+<ol class="arabic simple">
+<li>「メニュー」 - 「ツール」から「クローラロボットビルダ」を選択する。</li>
+<li>ダイアログ上の「新規」を押す。</li>
+<li>ダイアログ上の各項目の数値を入力する。</li>
+<li>ダイアログ上の「ボディを保存」押す。</li>
+<li>モデルファイルの名前を入力し、保存場所を指定する。</li>
+</ol>
+<p>下図は、クローラロボットビルダのダイアログです。</p>
+<img alt="../_images/crawler_1.png" src="../_images/crawler_1.png" />
+<p>各項目に入力した数値を保存する場合は、ダイアログ上の「YAMLを保存」を押し、YAMLファイルを出力します。出力したYAMLファイルをダイアログ上の「YAMLを読み込み」から読み込むことで、各項目に入力した数値が復元されます。</p>
+</div>
 </div>
 
 
@@ -63,8 +84,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../simulation/index.html">シミュレーション機能</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../utility/index.html">ユーティリティ機能</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">関連論文</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ユーティリティ機能</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="explorer.html">ボディアイテムのファイル表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">クローラロボットの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terrain.html">ボックステレインの生成</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
 </ul>
 
 
@@ -111,9 +138,13 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../utility/terrain.html" title="ボックステレインの生成"
+          <a href="terrain.html" title="ボックステレインの生成"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="joystick.html" title="シミュレーションの操作"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >ユーティリティ機能</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
