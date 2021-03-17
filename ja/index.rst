@@ -18,6 +18,11 @@ HAIROWorldPluginマニュアル
    utility/index
    paper/index
 
+以下の画像をクリックすると紹介動画が再生されます。
+
+.. image:: images/title.png
+   :target: https://naraha.jaea.go.jp/information/files/2020/1211/movie/hairoworld2.mp4
+
 対応プラットフォーム
 ====================
 
