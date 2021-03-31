@@ -9,4 +9,9 @@
    joystick
    crawler
    terrain
-
+   bookmark
+   history
+   inertia
+   status
+   object
+   review

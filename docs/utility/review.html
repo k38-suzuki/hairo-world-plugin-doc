@@ -1,0 +1,230 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>接触状態の可視化・記録 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="関連論文" href="../paper/index.html" />
+    <link rel="prev" title="パイプモデルの生成" href="object.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../paper/index.html" title="関連論文"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="object.html" title="パイプモデルの生成"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">ユーティリティ機能</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>接触状態の可視化・記録<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、シミュレーションに使用している動的モデルの接触状態の表示と記録の仕方を説明します。この機能では、動的モデルのリンク毎の接触状態を可視化するためのものです。リンクが他の物体に接触している場合は、そのリンクの干渉モデルの色が赤色に、接触していない場合は白色に変更されます。また、この機能では、動的モデルのリンク毎の接触状態を時系列データとして記録し、ファイル出力することができます。</p>
+<div class="section" id="id2">
+<h2>接触状態の可視化の設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>接触状態の可視化を行うコリジョンビジュアライザアイテムを生成します。
+ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「コリジョンビジュアライザ」を選択して生成してください。生成したコリジョンビジュアライザは、AISTシミュレータアイテムの小アイテムとして配置します。</p>
+<img alt="../_images/review_0.png" src="../_images/review_0.png" />
+<p>また、コリジョンビジュアライザでは以下の設定ができます。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="7%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>対象ボティ</td>
+<td></td>
+<td>-</td>
+<td>接触状態を可視化するボディを指定します。指定がない場合は、全てのボティが対象になります。複数選択する場合は、スペース区切りで指定します。</td>
+</tr>
+</tbody>
+</table>
+<p>次に、「干渉チェック用モデルを表示」または「表示するモデルタイプの切り替え」を押し、干渉モデルを表示します。</p>
+</div>
+<div class="section" id="id3">
+<h2>接触状態の記録の設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>接触状態の記録を行うオペレーションレビューコレクタを生成します。
+ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「オペレーションレビューコレクタ」を選択して生成してください。生成したオペレーションレビューコレクタは、AISTシミュレータアイテムの小アイテムとして配置します。</p>
+<img alt="../_images/review_1.png" src="../_images/review_1.png" />
+<p>また、オペレーションレビューコレクタでは以下の設定ができます。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="7%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ジョイスティック状態の記録</td>
+<td>false</td>
+<td>-</td>
+<td>trueの場合にジョイスティックの入力状態を時系列データとして記録します。</td>
+</tr>
+<tr class="row-odd"><td>接触状態の記録</td>
+<td>false</td>
+<td>-</td>
+<td>trueの場合に接触状態を時系列データとして記録します。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h2>シミュレーションの実行<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると接触が検知されたリンクの干渉モデルが赤色に表示されます。また、接触状態を記録している場合は、ボディの接触状態を記録したアイテム「Collision States」がオペレーションレビューコレクタの小アイテムとして自動生成されます。</p>
+<img alt="../_images/review_2.png" src="../_images/review_2.png" />
+</div>
+<div class="section" id="id5">
+<h2>接触状態のファイル出力<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>以下の手順で記録した接触状態をファイル出力します。</p>
+<ol class="arabic simple">
+<li>シミュレーション実行後に自動生成されたアイテム「Collision States」を選択する。</li>
+<li>「メニュー」-「ファイル」から「選択したアイテムのエクスポート」を選択する。</li>
+<li>表示されるダイアログにファイル名を入力し、「保存」ボタンを押す。</li>
+</ol>
+</div>
+<div class="section" id="id6">
+<h2>接触状態のグラフ表示<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>以下の手順で記録した接触状態をグラフ表示できます。</p>
+<ol class="arabic simple">
+<li>「メニュー」-「表示」-「ビューの表示」から「Multi Value Seq」を選択する。</li>
+<li>グラフ表示を行うアイテム「Collision States」を選択する。</li>
+<li>Multi Value Seqビューの左側に表示されている数字（jointId）を選択する。</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation/index.html">シミュレーション機能</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ユーティリティ機能</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="explorer.html">ボディアイテムのファイル表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crawler.html">クローラロボットの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terrain.html">ボックステレインの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bookmark.html">プロジェクトのブックマーク登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html">プロジェクトの履歴表示・読み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inertia.html">慣性モーメントの計算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="status.html">ジョイスティックの入力状態表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object.html">パイプモデルの生成</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">接触状態の可視化・記録</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history/index.html">更新履歴</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../paper/index.html" title="関連論文"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="object.html" title="パイプモデルの生成"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >ユーティリティ機能</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

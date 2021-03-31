@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>シミュレーションの操作 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>パイプモデルの生成 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="クローラロボットの生成" href="crawler.html" />
-    <link rel="prev" title="ボディアイテムのファイル表示" href="explorer.html" /> 
+    <link rel="next" title="接触状態の可視化・記録" href="review.html" />
+    <link rel="prev" title="ジョイスティックの入力状態表示" href="status.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -34,10 +34,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="crawler.html" title="クローラロボットの生成"
+          <a href="review.html" title="接触状態の可視化・記録"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="explorer.html" title="ボディアイテムのファイル表示"
+          <a href="status.html" title="ジョイスティックの入力状態表示"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">ユーティリティ機能</a> &#187;</li> 
@@ -50,39 +50,23 @@
           <div class="body" role="main">
             
   <div class="section" id="id1">
-<h1>シミュレーションの操作<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>ここでは、ジョイスティックスタート機能を使ったシミュレーションの開始・停止・一時停止・再開の仕方を説明します。</p>
+<h1>パイプモデルの生成<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、オブジェクトビルダを使ったパイプモデルの生成の仕方を説明します。</p>
 <div class="section" id="id2">
-<h2>ジョイスティックスタート機能の有効化<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>以下の手順でジョイスティックスタート機能を有効化します。</p>
-<ol class="arabic simple">
-<li>メニューの「オプション」-「ジョイスティックスタート」を開く。</li>
-<li>「スタートボタンでシミュレーションを開始」及び「ロゴボタンでプロジェクトファイルを読み込む」を選択する。</li>
-</ol>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<div class="last line-block">
-<div class="line">ジョイスティックスタート機能では、ゲームパッドの「Shareボタン」・「Optionボタン」・「Logoボタン」を使用します。（DualShock4の場合）</div>
-<div class="line">他の用途にこれらのボタンを使用する場合は、ジョイスティックスタート機能を無効化してください。</div>
-</div>
-</div>
+<h2>パイプモデルの構造とパラメータ<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>下図は、パイプモデルの構造です。</p>
+<img alt="../_images/object_0.png" src="../_images/object_0.png" />
 </div>
 <div class="section" id="id3">
-<h2>ジョイスティックスタート機能によるシミュレーションの開始・停止・一時停止・再開<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>ジョイスティックスタート機能によるシミュレーションの開始・停止・一時停止・再開は次のように割り当てられています。</p>
-<ul class="simple">
-<li>初期位置からシミュレーションを開始　・・・　停止状態のときにOptionボタンを１回押す</li>
-<li>現在位置からシミュレーションを開始　・・・　停止状態のときにShareボタンを１回押す</li>
-<li>停止　・・・　一時停止状態またはシミュレーション中にShareボタンを１回押す</li>
-<li>一時停止 ・・・　シミュレーション中にOptionボタンを１回押す</li>
-<li>現在位置からシミュレーションを再開 ・・・　一時停止状態のときにOptionボタンを１回押す</li>
-</ul>
-<p>ジョイスティックスタート機能は下図のように状態が遷移します。</p>
-<img alt="../_images/joystick_0.png" src="../_images/joystick_0.png" />
-</div>
-<div class="section" id="id4">
-<h2>ジョイスティックスタート機能によるプロジェクトファイルの読み込み<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>ゲームパッドのロゴボタンを押すとプロジェクトファイルを選択するダイアログを開きます。</p>
+<h2>パイプモデルの作成<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>以下の手順でパイプモデルを作成します。</p>
+<ol class="arabic simple">
+<li>「メニュー」-「ツール」から「オブジェクトビルダ」を選択する。</li>
+<li>ダイアログ上の「形状」から「パイプ」を選択する。</li>
+<li>「設定」の各パラメータを入力し、「生成」を押す。上書きの場合は、「上書き保存」を押す。</li>
+</ol>
+<p>下図は、ブックマークマネージャのビューです。</p>
+<img alt="../_images/object_1.png" src="../_images/object_1.png" />
 </div>
 </div>
 
@@ -99,14 +83,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../simulation/index.html">シミュレーション機能</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">ユーティリティ機能</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="explorer.html">ボディアイテムのファイル表示</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">シミュレーションの操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="crawler.html">クローラロボットの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="terrain.html">ボックステレインの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bookmark.html">プロジェクトのブックマーク登録</a></li>
 <li class="toctree-l2"><a class="reference internal" href="history.html">プロジェクトの履歴表示・読み込み</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inertia.html">慣性モーメントの計算</a></li>
 <li class="toctree-l2"><a class="reference internal" href="status.html">ジョイスティックの入力状態表示</a></li>
-<li class="toctree-l2"><a class="reference internal" href="object.html">パイプモデルの生成</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">パイプモデルの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="review.html">接触状態の可視化・記録</a></li>
 </ul>
 </li>
@@ -158,10 +142,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="crawler.html" title="クローラロボットの生成"
+          <a href="review.html" title="接触状態の可視化・記録"
              >next</a> |</li>
         <li class="right" >
-          <a href="explorer.html" title="ボディアイテムのファイル表示"
+          <a href="status.html" title="ジョイスティックの入力状態表示"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >ユーティリティ機能</a> &#187;</li> 
