@@ -17,6 +17,7 @@ HAIROWorldPluginマニュアル
    simulation/index
    utility/index
    paper/index
+   history/index
 
 以下の画像をクリックすると紹介動画が再生されます。
 
