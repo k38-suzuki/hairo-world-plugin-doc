@@ -13,5 +13,6 @@
    history
    inertia
    status
-   object
+   pipe
+   grating
    review
