@@ -12,8 +12,8 @@
    bookmark
    history
    inertia
-   status
    pipe
    grating
    review
+   status
    input
