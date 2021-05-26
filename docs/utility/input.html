@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>ボディアイテムのファイル表示 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>ジョイスティックの入力状態の記録 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="シミュレーションの操作" href="joystick.html" />
-    <link rel="prev" title="ユーティリティ機能" href="index.html" /> 
+    <link rel="next" title="関連論文" href="../paper/index.html" />
+    <link rel="prev" title="接触状態の可視化・記録" href="review.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -34,10 +34,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="joystick.html" title="シミュレーションの操作"
+          <a href="../paper/index.html" title="関連論文"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="ユーティリティ機能"
+          <a href="review.html" title="接触状態の可視化・記録"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">ユーティリティ機能</a> &#187;</li> 
@@ -50,18 +50,72 @@
           <div class="body" role="main">
             
   <div class="section" id="id1">
-<h1>ボディアイテムのファイル表示<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>ここでは、ボディアイテムのファイルとファイルのあるディレクトリの開き方を説明します。</p>
+<h1>ジョイスティックの入力状態の記録<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、ジョイスティックの入力状態の記録の仕方を説明します。この機能は、接続されているジョイスティック（/dev/input/js0のみ対応）のスティックとボタンの入力状態を記録するものです。ジョイスティックが接続されていない場合は、「仮想ジョイスティック」からの入力を記録できます。</p>
 <div class="section" id="id2">
-<h2>ファイルとディレクトリの開き方<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>以下の手順でファイル及びディレクトリを開きます。</p>
+<h2>ジョイスティックの入力状態の記録の設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>ジョイスティックの入力状態の記録を行うオペレーションレビューコレクタを生成します。
+ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「オペレーションレビューコレクタ」を選択して生成してください。生成したオペレーションレビューコレクタは、AISTシミュレータアイテムの小アイテムとして配置します。</p>
+<img alt="../_images/review_1.png" src="../_images/review_1.png" />
+<p>また、オペレーションレビューコレクタでは以下の設定ができます。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="7%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ジョイスティック状態の記録</td>
+<td>false</td>
+<td>-</td>
+<td>trueの場合にジョイスティックの入力状態を時系列データとして記録します。</td>
+</tr>
+<tr class="row-odd"><td>接触状態の記録</td>
+<td>false</td>
+<td>-</td>
+<td>trueの場合に接触状態を時系列データとして記録します。</td>
+</tr>
+</tbody>
+</table>
+<p>以下の手順でオペレーションレビューコレクタの設定を変更してください。</p>
 <ol class="arabic simple">
-<li>アイテムツリービュー上でボディアイテムを選択する。（複数選択可）</li>
-<li>選択したボディアイテム上で右クリックして、ポップアップメニューを表示する。</li>
-<li>ポップアップメニューの「開く」を選択する。</li>
-<li>ファイルを開く場合は「ファイル」、ディレクトリを開く場合は「ディレクトリ」を選択する。</li>
+<li>アイテムツリービュー上で「OperationReviewCollector」を選択する。</li>
+<li>プロパティビュー上で「ジョイスティック状態の記録」の設定を「true」に変更する。</li>
 </ol>
-<img alt="../_images/explorer_0.png" src="../_images/explorer_0.png" />
+</div>
+<div class="section" id="id3">
+<h2>シミュレーションの実行<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると、ジョイスティックの入力状態を記録したアイテム「Joystick States」がオペレーションレビューコレクタの小アイテムとして自動生成されます。</p>
+</div>
+<div class="section" id="id4">
+<h2>ジョイスティックの入力状態のファイル出力<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>以下の手順で記録したジョイスティックの入力状態をファイル出力します。</p>
+<ol class="arabic simple">
+<li>シミュレーション実行後に自動生成されたアイテム「Joystick States」を選択する。</li>
+<li>「メニュー」-「ファイル」から「選択したアイテムのエクスポート」を選択する。</li>
+<li>表示されるダイアログにファイル名を入力し、「保存」ボタンを押す。</li>
+</ol>
+<p>なお、出力したファイルには、ジョイスティックの入力状態が全スティック-全ボタンの順番で記録されます。
+（例えば、スティック（Axis）が8入力、ボタン(Button)が13入力のジョイスティックを使用している場合は、Axis-0, Axis-1, …, Axis-7, Button-0, Button-1, …, Button-12の順番で記録されます。）</p>
+</div>
+<div class="section" id="id5">
+<h2>ジョイスティックの入力状態のグラフ表示<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>以下の手順で記録したジョイスティックの入力状態をグラフ表示できます。</p>
+<ol class="arabic simple">
+<li>「メニュー」-「表示」-「ビューの表示」から「Multi Value Seq」を選択する。</li>
+<li>グラフ表示を行うアイテム「Joystick States」を選択する。</li>
+<li>Multi Value Seqビューの左側に表示されている数字を選択する。</li>
+</ol>
+<p>Multi Value Seqビューの左側に表示されている数字は、全スティック-全ボタンの順番で割り当てられています。
+（例えば、スティック（Axis）が8入力、ボタン(Button)が13入力のジョイスティックを使用している場合は、Axis-0, Axis-1, …, Axis-7, Button-0, Button-1, …, Button-12の順番で数字が割り当てられ、0から7はスティック、8から20はボタンを表します。）</p>
 </div>
 </div>
 
@@ -77,7 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../simulation/index.html">シミュレーション機能</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">ユーティリティ機能</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ボディアイテムのファイル表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explorer.html">ボディアイテムのファイル表示</a></li>
 <li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="crawler.html">クローラロボットの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="terrain.html">ボックステレインの生成</a></li>
@@ -88,7 +142,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pipe.html">パイプモデルの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="grating.html">グレーチングモデルの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="review.html">接触状態の可視化・記録</a></li>
-<li class="toctree-l2"><a class="reference internal" href="input.html">ジョイスティックの入力状態の記録</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ジョイスティックの入力状態の記録</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
@@ -139,10 +193,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="joystick.html" title="シミュレーションの操作"
+          <a href="../paper/index.html" title="関連論文"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="ユーティリティ機能"
+          <a href="review.html" title="接触状態の可視化・記録"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >ユーティリティ機能</a> &#187;</li> 
