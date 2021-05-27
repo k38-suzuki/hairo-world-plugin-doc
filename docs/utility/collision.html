@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>接触状態の可視化・記録 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>干渉の可視化・記録 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ジョイスティックの入力状態の表示" href="status.html" />
+    <link rel="next" title="ジョイスティック状態の表示" href="status.html" />
     <link rel="prev" title="グレーチングモデルの生成" href="grating.html" /> 
   </head>
   <body>
@@ -34,7 +34,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="status.html" title="ジョイスティックの入力状態の表示"
+          <a href="status.html" title="ジョイスティック状態の表示"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="grating.html" title="グレーチングモデルの生成"
@@ -50,14 +50,14 @@
           <div class="body" role="main">
             
   <div class="section" id="id1">
-<h1>接触状態の可視化・記録<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>ここでは、シミュレーションに使用している動的モデルの接触状態の表示と記録の仕方を説明します。この機能では、動的モデルのリンク毎の接触状態を可視化するためのものです。リンクが他の物体に接触している場合は、そのリンクの干渉モデルの色が赤色に、接触していない場合は白色に変更されます。また、この機能では、動的モデルのリンク毎の接触状態を時系列データとして記録し、ファイル出力することができます。</p>
+<h1>干渉の可視化・記録<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、シミュレーションに使用している動的モデルの干渉の表示と記録の仕方を説明します。この機能では、動的モデルのリンク毎の干渉を可視化するためのものです。リンクが他の物体に干渉している場合は、そのリンクの干渉モデルの色が赤色に、干渉していない場合は白色に変更されます。また、この機能では、動的モデルのリンク毎の干渉を記録し、ファイル出力することができます。</p>
 <div class="section" id="id2">
-<h2>接触状態の可視化の設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>接触状態の可視化を行うコリジョンビジュアライザアイテムを生成します。
-ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「コリジョンビジュアライザ」を選択して生成してください。生成したコリジョンビジュアライザは、AISTシミュレータアイテムの小アイテムとして配置します。</p>
-<img alt="../_images/review_0.png" src="../_images/review_0.png" />
-<p>また、コリジョンビジュアライザでは以下の設定ができます。</p>
+<h2>干渉の可視化・記録の設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>干渉の可視化・記録を行うCollisionVisualizerを生成します。
+ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「干渉可視化」を選択して「CollisionVisualizer」生成してください。生成したCollisionVisualizerは、AISTシミュレータアイテムの小アイテムとして配置します。</p>
+<img alt="../_images/collision_0.png" src="../_images/collision_0.png" />
+<p>また、CollisionVisualizerでは以下の設定ができます。</p>
 <table border="1" class="colwidths-given docutils">
 <colgroup>
 <col width="17%" />
@@ -76,68 +76,39 @@
 <tr class="row-even"><td>対象ボティ</td>
 <td></td>
 <td>-</td>
-<td>接触状態を可視化するボディを指定します。指定がない場合は、全てのボティが対象になります。複数選択する場合は、スペース区切りで指定します。</td>
+<td>干渉を可視化するボディを指定します。指定がない場合は、全てのボティが対象になります。複数選択する場合は、スペース区切りで指定します。</td>
+</tr>
+<tr class="row-odd"><td>干渉の記録</td>
+<td>false</td>
+<td>-</td>
+<td>trueの場合に干渉を記録します。</td>
 </tr>
 </tbody>
 </table>
-<p>次に、ツールバーに表示されている「干渉チェック用モデルを表示」または「表示するモデルタイプの切り替え」のアイコンを押し、干渉モデルを表示します。</p>
-</div>
-<div class="section" id="id3">
-<h2>接触状態の記録の設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>接触状態の記録を行うオペレーションレビューコレクタを生成します。
-ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「オペレーションレビューコレクタ」を選択して生成してください。生成したオペレーションレビューコレクタは、AISTシミュレータアイテムの小アイテムとして配置します。</p>
-<p>次に、以下の手順でオペレーションレビューコレクタの設定を変更してください。</p>
+<p>次に、ツールバーに表示されている「干渉チェック用モデルを表示」または「表示するモデルタイプの切り替え」のアイコンを押し、干渉モデルを表示します。
+また、干渉を記録するときは、以下の手順でCollisionVisualizerの設定を変更します。</p>
 <ol class="arabic simple">
 <li>アイテムツリービュー上で「OperationReviewCollector」を選択する。</li>
-<li>プロパティビュー上で「接触状態の記録」の設定を「true」に変更する。</li>
+<li>プロパティビュー上で「干渉の記録」の設定を「true」に変更する。</li>
 </ol>
-<img alt="../_images/review_1.png" src="../_images/review_1.png" />
-<p>オペレーションレビューコレクタの設定の詳細は以下のとおりです。</p>
-<table border="1" class="colwidths-given docutils">
-<colgroup>
-<col width="17%" />
-<col width="10%" />
-<col width="7%" />
-<col width="65%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">パラメータ</th>
-<th class="head">デフォルト値</th>
-<th class="head">単位</th>
-<th class="head">意味</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>ジョイスティック状態の記録</td>
-<td>false</td>
-<td>-</td>
-<td>trueの場合にジョイスティックの入力状態を時系列データとして記録します。</td>
-</tr>
-<tr class="row-odd"><td>接触状態の記録</td>
-<td>false</td>
-<td>-</td>
-<td>trueの場合に接触状態を時系列データとして記録します。</td>
-</tr>
-</tbody>
-</table>
+</div>
+<div class="section" id="id3">
+<h2>シミュレーションの実行<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると干渉が検知されたリンクの干渉モデルが赤色に表示されます。また、干渉を記録している場合は、ボディの干渉を記録したアイテム「Collision States」がCollisionVisualizerの小アイテムとして自動生成されます。</p>
+<img alt="../_images/collision_1.png" src="../_images/collision_1.png" />
 </div>
 <div class="section" id="id4">
-<h2>シミュレーションの実行<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると接触が検知されたリンクの干渉モデルが赤色に表示されます。また、接触状態を記録している場合は、ボディの接触状態を記録したアイテム「Collision States」がオペレーションレビューコレクタの小アイテムとして自動生成されます。</p>
-<img alt="../_images/review_2.png" src="../_images/review_2.png" />
-</div>
-<div class="section" id="id5">
-<h2>接触状態のファイル出力<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>以下の手順で記録した接触状態をファイル出力します。</p>
+<h2>干渉のファイル出力<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>以下の手順で記録した干渉をファイル出力します。</p>
 <ol class="arabic simple">
 <li>シミュレーション実行後に自動生成されたアイテム「Collision States」を選択する。</li>
 <li>「メニュー」-「ファイル」から「選択したアイテムのエクスポート」を選択する。</li>
 <li>表示されるダイアログにファイル名を入力し、「保存」ボタンを押す。</li>
 </ol>
 </div>
-<div class="section" id="id6">
-<h2>接触状態のグラフ表示<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<p>以下の手順で記録した接触状態をグラフ表示できます。</p>
+<div class="section" id="id5">
+<h2>干渉のグラフ表示<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>以下の手順で記録した干渉をグラフ表示できます。</p>
 <ol class="arabic simple">
 <li>「メニュー」-「表示」-「ビューの表示」から「Multi Value Seq」を選択する。</li>
 <li>グラフ表示を行うアイテム「Collision States」を選択する。</li>
@@ -167,9 +138,9 @@
 <li class="toctree-l2"><a class="reference internal" href="inertia.html">慣性モーメントの計算</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pipe.html">パイプモデルの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="grating.html">グレーチングモデルの生成</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">接触状態の可視化・記録</a></li>
-<li class="toctree-l2"><a class="reference internal" href="status.html">ジョイスティックの入力状態の表示</a></li>
-<li class="toctree-l2"><a class="reference internal" href="input.html">ジョイスティックの入力状態の記録</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">干渉の可視化・記録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="status.html">ジョイスティック状態の表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">ジョイスティック状態の記録</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
@@ -220,7 +191,7 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="status.html" title="ジョイスティックの入力状態の表示"
+          <a href="status.html" title="ジョイスティック状態の表示"
              >next</a> |</li>
         <li class="right" >
           <a href="grating.html" title="グレーチングモデルの生成"
