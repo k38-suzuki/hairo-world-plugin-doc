@@ -14,6 +14,7 @@
    inertia
    pipe
    grating
+   slope
    collision
    status
    logger
