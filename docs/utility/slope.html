@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>ボックステレインの生成 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>スロープモデルの生成 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="プロジェクトのブックマーク登録" href="bookmark.html" />
-    <link rel="prev" title="クローラロボットの生成" href="crawler.html" /> 
+    <link rel="next" title="干渉の可視化・記録" href="collision.html" />
+    <link rel="prev" title="グレーチングモデルの生成" href="grating.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -34,10 +34,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="bookmark.html" title="プロジェクトのブックマーク登録"
+          <a href="collision.html" title="干渉の可視化・記録"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="crawler.html" title="クローラロボットの生成"
+          <a href="grating.html" title="グレーチングモデルの生成"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">ユーティリティ機能</a> &#187;</li> 
@@ -50,44 +50,23 @@
           <div class="body" role="main">
             
   <div class="section" id="id1">
-<h1>ボックステレインの生成<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>ここでは、ボックステレインのモデルファイルを生成するための、入力ファイルの記述の仕方とモデルファイルの生成の仕方を説明します。</p>
+<h1>スロープモデルの生成<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、オブジェクトビルダを使ったスロープモデルの生成の仕方を説明します。</p>
 <div class="section" id="id2">
-<h2>入力ファイルの作成<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>ボックステレインビルダでは入力ファイルとしてCSVファイルを使用します。
-入力ファイルを作成するときは、任意のテキストエディタまたはExcel・Calc等の表計算ソフトウェアを使用してください。
-ここでは、Calcを使用して入力ファイルを作成しています。</p>
-<p>ボックステレインビルダでは、表計算ソフトウェアの各セルをボックステレインの１つのブロックと見なします。
-１つのブロックは縦10cm・横10cm・高さ10cmです。入力ファイルの各要素には、このブロックをZ軸方向から見て何個積み上げるかを記述します。
-行数・列数に制限はありませんが、全ての行の要素数は同じ数にしてください。</p>
-<img alt="../_images/terrain_0.png" src="../_images/terrain_0.png" />
-<p>下図の例の場合、入力ファイルには次のように記述します。</p>
-<img alt="../_images/terrain_1.png" src="../_images/terrain_1.png" />
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span>
-<span class="mi">2</span><span class="p">,</span><span class="mi">1</span>
-</pre></div>
-</div>
-<p>ここで１行はX軸方向、１列はY軸方向に対応します。</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<div class="last line-block">
-<div class="line">各要素に０以下の数値は入力できません。</div>
-</div>
-</div>
+<h2>スロープモデルの構造とパラメータ<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>下図は、スロープモデルの構造です。</p>
+<img alt="../_images/slope_0.png" src="../_images/slope_0.png" />
 </div>
 <div class="section" id="id3">
-<h2>ボックステレインの作成<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>以下の手順でボックステレインのモデルファイルを作成します。</p>
+<h2>スロープモデルの作成<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>以下の手順でスロープモデルを作成します。</p>
 <ol class="arabic simple">
-<li>「メニュー」 - 「ツール」から「ボックステレインビルダ」を選択する。</li>
-<li>必要に応じてダイアログ上の「スケール」の値を変更する。</li>
-<li>「読み込み」ボタンを押し、表示されるダイアログから入力ファイルを選択する。</li>
-<li>「保存」ボタンを押し、表示されるダイアログで保存先を指定する。</li>
-<li>ダイアログでファイル名を入力し、「保存」を押す。</li>
+<li>「メニュー」-「ツール」から「オブジェクトビルダ」を選択する。</li>
+<li>ダイアログ上の「形状」から「スロープ」を選択する。</li>
+<li>「設定」の各パラメータを入力し、「生成」を押す。上書きの場合は、「上書き保存」を押す。</li>
 </ol>
-<img alt="../_images/terrain_2.png" src="../_images/terrain_2.png" />
-<p>上記の例の入力ファイルを使用した場合、下図のモデルファイルが生成されます。</p>
-<img alt="../_images/terrain_3.png" src="../_images/terrain_3.png" />
+<p>下図は、オブジェクトビルダのダイアログです。</p>
+<img alt="../_images/slope_1.png" src="../_images/slope_1.png" />
 </div>
 </div>
 
@@ -106,13 +85,13 @@
 <li class="toctree-l2"><a class="reference internal" href="explorer.html">ボディアイテムのファイル表示</a></li>
 <li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="crawler.html">クローラロボットの生成</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ボックステレインの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terrain.html">ボックステレインの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bookmark.html">プロジェクトのブックマーク登録</a></li>
 <li class="toctree-l2"><a class="reference internal" href="history.html">プロジェクトの履歴表示・読み込み</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inertia.html">慣性モーメントの計算</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pipe.html">パイプモデルの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="grating.html">グレーチングモデルの生成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slope.html">スロープモデルの生成</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">スロープモデルの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collision.html">干渉の可視化・記録</a></li>
 <li class="toctree-l2"><a class="reference internal" href="status.html">ジョイスティック状態の表示</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logger.html">ジョイスティック状態の記録</a></li>
@@ -166,10 +145,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="bookmark.html" title="プロジェクトのブックマーク登録"
+          <a href="collision.html" title="干渉の可視化・記録"
              >next</a> |</li>
         <li class="right" >
-          <a href="crawler.html" title="クローラロボットの生成"
+          <a href="grating.html" title="グレーチングモデルの生成"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >ユーティリティ機能</a> &#187;</li> 
