@@ -8,7 +8,7 @@
 開発版
 ~~~~~~
 
-HairoWorldPluginはgitリポジトリとして管理されており、githubの以下のアドレスにて公開されています。
+HAIROWorldPluginはgitリポジトリとして管理されており、githubの以下のアドレスにて公開されています。
 
 - https://github.com/k38-suzuki/hairo-world-plugin
 
