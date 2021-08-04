@@ -85,20 +85,55 @@
 </tr>
 </tbody>
 </table>
-<p>次に、ツールバーに表示されている「干渉チェック用モデルを表示」または「表示するモデルタイプの切り替え」のアイコンを押し、干渉モデルを表示します。
-また、干渉を記録するときは、以下の手順でCollisionVisualizerの設定を変更します。</p>
+<p>干渉を記録するときは、以下の手順でCollisionVisualizerの設定を変更します。可視化のみ場合は、設定の変更は不要です。</p>
 <ol class="arabic simple">
-<li>アイテムツリービュー上で「OperationReviewCollector」を選択する。</li>
+<li>アイテムツリービュー上で「CollisionVisualizer」を選択する。</li>
 <li>プロパティビュー上で「干渉の記録」の設定を「true」に変更する。</li>
 </ol>
 </div>
 <div class="section" id="id3">
-<h2>シミュレーションの実行<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると干渉が検知されたリンクの干渉モデルが赤色に表示されます。また、干渉を記録している場合は、ボディの干渉を記録したアイテム「Collision States」がCollisionVisualizerの小アイテムとして自動生成されます。</p>
-<img alt="../_images/collision_1.png" src="../_images/collision_1.png" />
+<h2>コリジョンセンサの設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>CollisionVisualizerでは、リンクの干渉を可視化するためにコリジョンセンサを使用します。</p>
+<p>コリジョンセンサは、カメラやライト等と同様に任意のリンクのelements以下に記述します。</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">CollisionSensor</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">CollisionSensor</span>
+  <span class="l l-Scalar l-Scalar-Plain">translation</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span> <span class="nv">0.0</span> <span class="p p-Indicator">]</span>
+  <span class="l l-Scalar l-Scalar-Plain">rotation</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="nv">0</span><span class="p p-Indicator">,</span> <span class="nv">1</span><span class="p p-Indicator">,</span> <span class="nv">0</span><span class="p p-Indicator">,</span> <span class="nv">0</span> <span class="p p-Indicator">]</span>
+  <span class="l l-Scalar l-Scalar-Plain">color</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="nv">1.0</span><span class="p p-Indicator">,</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span> <span class="nv">0.0</span> <span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>各キーの詳細は以下の通りです。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="7%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>color</td>
+<td>1.0, 0.0, 0.0</td>
+<td>-, -, -</td>
+<td>干渉しているときのリンクの色を指定します。</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="id4">
-<h2>干渉のファイル出力<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>シミュレーションの実行<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると、コリジョンセンサが取り付けられているリンクが、他のオブジェクトと干渉しているときにリンクの色がコリジョンセンサのパラメータで指定した色に変更されます。また、干渉を記録している場合は、ボディの干渉を記録したアイテム「Collision States」がCollisionVisualizerの小アイテムとして自動生成されます。</p>
+<img alt="../_images/collision_1.png" src="../_images/collision_1.png" />
+</div>
+<div class="section" id="id5">
+<h2>干渉のファイル出力<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>以下の手順で記録した干渉をファイル出力します。</p>
 <ol class="arabic simple">
 <li>シミュレーション実行後に自動生成されたアイテム「Collision States」を選択する。</li>
@@ -106,8 +141,8 @@
 <li>表示されるダイアログにファイル名を入力し、「保存」ボタンを押す。</li>
 </ol>
 </div>
-<div class="section" id="id5">
-<h2>干渉のグラフ表示<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>干渉のグラフ表示<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>以下の手順で記録した干渉をグラフ表示できます。</p>
 <ol class="arabic simple">
 <li>「メニュー」-「表示」-「ビューの表示」から「Multi Value Seq」を選択する。</li>
