@@ -13,7 +13,7 @@ HAIROWorldPluginはgitリポジトリとして管理されており、githubの�
 - https://github.com/k38-suzuki/hairo-world-plugin
 
 Choreonoidのソースディレクトリ直下にあるextディレクトリに移動して、
-以下のコマンドでHairoWorldPluginを取得します。 ::
+以下のコマンドでHAIROWorldPluginを取得します。 ::
 
  git clone https://github.com/k38-suzuki/hairo-world-plugin.git
 
@@ -50,7 +50,7 @@ CMake によるビルド設定
 
 を実行すると、必要なライブラリをチェックしMakefileを更新します。(cmakeコマンドのあとのピリオドに注意してください。）
 
-次にHairoWorldPluginを有効にします。Choreonoidのビルドディレクトリ上でccmakeコマンドを ::
+次にHAIROWorldPluginを有効にします。Choreonoidのビルドディレクトリ上でccmakeコマンドを ::
 
  ccmake ..
 
