@@ -9,7 +9,7 @@
    joystick
    crawler
    terrain
-   bookmark
+   bookmark2
    history
    inertia
    pipe
