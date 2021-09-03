@@ -14,8 +14,7 @@ HAIROWorldPluginマニュアル
 
    about/index
    install/index
-   simulation/index
-   utility/index
+   function/index
    paper/index
    history/index
 
