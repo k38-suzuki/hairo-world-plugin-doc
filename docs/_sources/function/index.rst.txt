@@ -14,7 +14,7 @@
    logger
    joystick
    explorer
-   bookmark2
+   bookmark
    history
    pipe
    grating
