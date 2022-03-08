@@ -22,4 +22,5 @@
    terrain
    crawler
    inertia
+   kiosk
 
