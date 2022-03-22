@@ -3,6 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+お知らせ
+========
+
+2022年3月22日の更新で、一部プラグイン名を変更しました。
+（旧）FluidDynamicsPlugin　→　（新）CFDPlugin
+（旧）TCPlugin　→　（新）NetEmPlugin
+
+これに伴い、更新前のバージョンで作成されたプロジェクト（*.cnoid）の読み込みができなくなります。
+つきましては、各機能のページ上部のお知らせを確認してください。
+
 HAIROWorldPluginマニュアル
 ==========================
 
