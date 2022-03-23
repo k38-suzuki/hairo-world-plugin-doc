@@ -51,50 +51,15 @@
             
   <div class="section" id="id1">
 <h1>ロボットの移動経路の記録・表示<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>ここでは、モーションキャプチャシミュレータを使ったロボットの移動経路の記録・表示の仕方を説明します。</p>
+<p>ここでは、モーションキャプチャを使ったロボットの移動経路の記録・表示の仕方を説明します。</p>
 <div class="section" id="id2">
-<h2>モーションキャプチャシミュレータアイテムの作成と設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>シミュレーションの実行主体となるモーションキャプチャシミュレータアイテムを生成します。</p>
-<p>ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「モーションキャプチャシミュレータ」を選択して生成してください。生成したモーションキャプチャシミュレータは、AISTシミュレータアイテムの小アイテムとして配置します。</p>
-<img alt="../_images/motion_0.png" src="../_images/motion_0.png" />
-<p>また、モーションキャプチャシミュレータでは以下の設定ができます。</p>
-<table border="1" class="colwidths-given docutils">
-<colgroup>
-<col width="17%" />
-<col width="10%" />
-<col width="7%" />
-<col width="65%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">パラメータ</th>
-<th class="head">デフォルト値</th>
-<th class="head">単位</th>
-<th class="head">意味</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>記録</td>
-<td>true</td>
-<td>-</td>
-<td>シミュレーション中の移動経路を表示・記録します。</td>
-</tr>
-<tr class="row-odd"><td>記録間隔</td>
-<td>0.10</td>
-<td>s</td>
-<td>移動経路の記録する時間間隔を指定します。</td>
-</tr>
-<tr class="row-even"><td>CSV出力</td>
-<td>false</td>
-<td>-</td>
-<td>VICON社製NEXUSが出力するCSV形式で移動経路をファイル出力します。</td>
-</tr>
-</tbody>
-</table>
+<h2>モーションキャプチャアイテムの作成と設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>シミュレーションの実行主体となるモーションキャプチャアイテムを生成します。</p>
+<p>ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「モーションキャプチャ」を選択して生成してください。生成したモーションキャプチャは、AISTシミュレータアイテムの子アイテムとして配置します。</p>
 </div>
 <div class="section" id="id3">
 <h2>パッシブマーカの設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>モーションキャプチャシミュレータでは、ロボットの移動経路の代表点としてパッシブマーカを使用します。このパッシブマーカの移動経路がモーションキャプチャシミュレータアイテムのプロパティで指定した記録間隔ごとにシーンビュー内に打点されます。</p>
-<p>パッシブマーカは、カメラやライト等と同様に任意のリンクのelements以下に記述します。</p>
+<p>モーションキャプチャでは、ロボットの移動経路の代表点としてパッシブマーカを使用します。パッシブマーカは、カメラやライト等と同様に任意のリンクのelements以下に記述します。</p>
 <div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>
   <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">PassiveMarker</span>
   <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">RedMarker</span>
@@ -146,7 +111,7 @@
 </div>
 <div class="section" id="id4">
 <h2>シミュレーションの実行<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功するとシーンビュー内にパッシブマーカの移動経路が表示されます。また、記録した移動経路はマーカポイントアイテムとしてアイテムツリービューに登録されます。マーカポイントアイテムのチェックボタンを押すことで、移動経路の表示・非表示を切り替えることができます。</p>
+<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに終了するとシーンビュー内にパッシブマーカの移動経路が表示されます。また、移動経路はポイントセットアイテムとして記録され、モーションキャプチャアイテムの子アイテムとしてアイテムツリービューに登録されます。ポイントセットアイテムのチェックボタンを押すことで、移動経路の表示・非表示を切り替えることができます。記録した移動経路は、パッシブマーカ毎にChoreonoidのビルドディレクトリのshare/choreonoid-x.x/capture以下に格納されています。</p>
 <img alt="../_images/motion_1.png" src="../_images/motion_1.png" />
 </div>
 </div>
