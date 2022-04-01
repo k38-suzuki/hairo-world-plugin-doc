@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>ジョイスティック状態の記録 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>経路の生成 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="シミュレーションの操作" href="joystick.html" />
-    <link rel="prev" title="ジョイスティック状態の表示" href="status.html" /> 
+    <link rel="next" title="関連論文" href="../paper/index.html" />
+    <link rel="prev" title="全画面モードの操作" href="kiosk.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -34,10 +34,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="joystick.html" title="シミュレーションの操作"
+          <a href="../paper/index.html" title="関連論文"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="status.html" title="ジョイスティック状態の表示"
+          <a href="kiosk.html" title="全画面モードの操作"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">拡張機能</a> &#187;</li> 
@@ -50,25 +50,39 @@
           <div class="body" role="main">
             
   <div class="section" id="id1">
-<h1>ジョイスティック状態の記録<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>ここでは、ジョイスティック状態の記録の仕方を説明します。この機能は、接続されているジョイスティック（/dev/input/js0のみ対応）のスティックとボタンの状態を記録するものです。ジョイスティックが接続されていない場合は、「仮想ジョイスティック」の状態を記録できます。</p>
+<h1>経路の生成<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、IKプランナを使った経路の生成の仕方を説明します。</p>
 <div class="section" id="id2">
-<h2>ジョイスティック状態の記録の設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>ジョイスティック状態の記録を行うジョイスティックロガーを生成します。
-ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「ジョイスティックロガー」を選択して「JoystickLogger」生成してください。生成したJoystickLoggerは、AISTシミュレータアイテムの小アイテムとして配置します。</p>
-<p>次に、以下の手順でJoystickLoggerの設定を変更してください。</p>
-<ol class="arabic simple">
-<li>アイテムツリービュー上で「JoystickLogger」を選択する。</li>
-<li>プロパティビュー上で「ジョイスティック状態の記録」の設定を「true」に変更する。</li>
-</ol>
-<img alt="../_images/logger_0.png" src="../_images/logger_0.png" />
-<p>JoystickLoggerの設定の詳細は以下のとおりです。</p>
+<h2>依存パッケージのインストール<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Ubuntuの場合、”hairo-world-plugin/misc/script” 以下にある “install-ompl.sh” というスクリプトを用いることにより、OMPL（<a class="reference external" href="https://ompl.kavrakilab.org/">https://ompl.kavrakilab.org/</a>）を簡単にインストールすることができます。例えば Ubuntu 18.04 であれば</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">misc</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">ompl</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>を実行すると、sudoのパスワードが求められるので入力してください。すると、OMPLが自動でインストールされます。</p>
+</div>
+<div class="section" id="cmake">
+<h2>CMake によるビルド設定<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h2>
+<p>まず、cmakeコマンドを使ってMakefileを更新します。Choreonoidのビルドディレクトリ上で</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">..</span>
+</pre></div>
+</div>
+<p>を実行すると、必要なライブラリをチェックしMakefileを更新します。(cmakeコマンドのあとのピリオドに注意してください。）</p>
+<p>次にOMPLPluginとIKPlannerPluginを有効にします。Choreonoidのビルドディレクトリ上でccmakeコマンドを</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ccmake</span> <span class="o">..</span>
+</pre></div>
+</div>
+<p>と実行し、 <strong>BUILD_OMPL_PLUGIN</strong> と <strong>BUILD_IKPLANNER_PLUGIN</strong> を “ON” にします。</p>
+</div>
+<div class="section" id="ik">
+<h2>IKプランナアイテムの作成と設定<a class="headerlink" href="#ik" title="Permalink to this headline">¶</a></h2>
+<p>メインメニューの「ファイル」-「新規」-「IKプランナ」を選択して生成してください。生成したIKプランナアイテムは、任意のボディアイテムの子アイテムとして配置します。アイテムツリービューで、生成したIKプランナアイテムにチェックを入れると、経路の候補点を生成する範囲（バウンディングボックス）を表示できます。</p>
+<p>IKプランナアイテムのパラメータは以下の通りです。</p>
 <table border="1" class="colwidths-given docutils">
 <colgroup>
 <col width="17%" />
 <col width="10%" />
-<col width="7%" />
-<col width="65%" />
+<col width="10%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">パラメータ</th>
@@ -78,39 +92,70 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>ジョイスティック状態の記録</td>
-<td>false</td>
+<tr class="row-even"><td>幾何学プランナ</td>
+<td>RRT</td>
 <td>-</td>
-<td>trueの場合にジョイスティック状態を記録します。</td>
+<td>幾何学プランナを指定します。</td>
+</tr>
+<tr class="row-odd"><td>BB下限</td>
+<td>-5 -5 -5</td>
+<td>m m m</td>
+<td>経路の候補点を生成する範囲の下限をx, y, zの順で指定します。</td>
+</tr>
+<tr class="row-even"><td>BB上限</td>
+<td>5 5 5</td>
+<td>m m m</td>
+<td>経路の候補点を生成する範囲の上限をx, y, zの順で指定します。</td>
+</tr>
+<tr class="row-odd"><td>始点</td>
+<td>0 0 0</td>
+<td>m m m</td>
+<td>経路の始点を指定します。</td>
+</tr>
+<tr class="row-even"><td>終点</td>
+<td>0 0 0</td>
+<td>m m m</td>
+<td>経路の終点を指定します。</td>
+</tr>
+<tr class="row-odd"><td>計算時間</td>
+<td>1.0</td>
+<td>s</td>
+<td>経路を生成するための計算時間を指定します。</td>
+</tr>
+<tr class="row-even"><td>ベースリンク</td>
+<td>-</td>
+<td>-</td>
+<td>IK（逆運動学）計算の基点リンクを指定します。</td>
+</tr>
+<tr class="row-odd"><td>エンドリンク</td>
+<td>-</td>
+<td>-</td>
+<td>IK計算の終端リンクを指定します。</td>
+</tr>
+<tr class="row-even"><td>時間長</td>
+<td>1.0</td>
+<td>s</td>
+<td>アニメーションの時間長を指定します。</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="id3">
-<h2>シミュレーションの実行<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると、ジョイスティック状態を記録したアイテム「Joystick States」がジョイスティックロガーの小アイテムとして自動生成されます。</p>
-</div>
+<h2>始点・終点の設定と経路の生成<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id4">
-<h2>ジョイスティック状態のファイル出力<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>以下の手順で記録したジョイスティック状態をファイル出力します。</p>
-<ol class="arabic simple">
-<li>シミュレーション実行後に自動生成されたアイテム「Joystick States」を選択する。</li>
-<li>「メニュー」-「ファイル」から「選択したアイテムのエクスポート」を選択する。</li>
-<li>表示されるダイアログにファイル名を入力し、「保存」ボタンを押す。</li>
-</ol>
-<p>なお、出力したファイルには、ジョイスティック状態が全スティック-全ボタンの順番で記録されます。
-（例えば、スティック（Axis）が8入力、ボタン(Button)が13入力のジョイスティックを使用している場合は、Axis-0, Axis-1, …, Axis-7, Button-0, Button-1, …, Button-12の順番で記録されます。）</p>
+<h3>始点と終点の設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>アイテムツリーで任意のIKプランナアイテムを選択し、ポップアップメニューから「IKプランナ」-「始点を設定」または「終点を設定」を選択してください。選択すると、プロパティで指定した終端リンクの座標が、始点または終点に設定されます。</p>
 </div>
 <div class="section" id="id5">
-<h2>ジョイスティック状態のグラフ表示<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>以下の手順で記録したジョイスティック状態をグラフ表示できます。</p>
-<ol class="arabic simple">
-<li>「メニュー」-「表示」-「ビューの表示」から「Multi Value Seq」を選択する。</li>
-<li>グラフ表示を行うアイテム「Joystick States」を選択する。</li>
-<li>Multi Value Seqビューの左側に表示されている数字を選択する。</li>
-</ol>
-<p>Multi Value Seqビューの左側に表示されている数字は、ジョイスティックの各スティック・ボタンに対応しており、全スティック-全ボタンの順番で割り当てられています。
-（例えば、スティック（Axis）が8入力、ボタン(Button)が13入力のジョイスティックを使用している場合は、Axis-0, Axis-1, …, Axis-7, Button-0, Button-1, …, Button-12の順番で数字が割り当てられ、0から7はスティック、8から20はボタンを表します。）</p>
+<h3>経路の生成<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>アイテムツリーで任意のIKプランナアイテムを選択し、ポップアップメニューから「IKプランナ」-「経路を生成」を選択してください。選択すると、経路の生成を試行します。結果は、メッセージビューに表示されます。</p>
+<p>経路が生成されると、IKプランナアイテムの子アイテムとして、経路の候補点を記録した「StatePointSet」と、経路を記録した「SolvedPointSet」が生成されます。アイテムツリービューで、各子アイテムにチェックを入れると、それぞれのアイテムに記録された点が表示されます。</p>
+</div>
+<div class="section" id="id6">
+<h3>アニメーションの再生<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>経路の生成が成功すると、アニメーションとして動作を確認できます。タイムバーの「再生開始」を押すと、アニメーションが再生されます。</p>
+<p>※このIKプランナは試験的に実装したものです。経路の生成は、ランダムな点を生成して計算されるため、計算毎に結果が異なります。</p>
+</div>
 </div>
 </div>
 
@@ -131,7 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="motion.html">ロボットの移動経路の記録・表示</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collision.html">干渉の可視化・記録</a></li>
 <li class="toctree-l2"><a class="reference internal" href="status.html">ジョイスティック状態の表示</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ジョイスティック状態の記録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">ジョイスティック状態の記録</a></li>
 <li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
 <li class="toctree-l2"><a class="reference internal" href="explorer.html">ボディアイテムのファイル表示</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bookmark.html">プロジェクトのブックマーク登録</a></li>
@@ -143,7 +188,7 @@
 <li class="toctree-l2"><a class="reference internal" href="crawler.html">クローラロボットモデルの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inertia.html">慣性モーメントの計算</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kiosk.html">全画面モードの操作</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ikplanner.html">経路の生成</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">経路の生成</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
@@ -194,10 +239,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="joystick.html" title="シミュレーションの操作"
+          <a href="../paper/index.html" title="関連論文"
              >next</a> |</li>
         <li class="right" >
-          <a href="status.html" title="ジョイスティック状態の表示"
+          <a href="kiosk.html" title="全画面モードの操作"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >拡張機能</a> &#187;</li> 

@@ -23,4 +23,5 @@
    crawler
    inertia
    kiosk
+   ikplanner
 
