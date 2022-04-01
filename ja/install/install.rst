@@ -54,7 +54,7 @@ CMake によるビルド設定
 
  ccmake ..
 
-と実行し、**BUILD_HAIRO_WORLD_PLUGIN** を "ON" にします。
+と実行し、 **BUILD_HAIRO_WORLD_PLUGIN** を "ON" にします。
 
 Choreonoidのビルドとインストール
 --------------------------------
