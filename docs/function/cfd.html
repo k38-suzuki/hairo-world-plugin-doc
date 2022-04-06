@@ -56,13 +56,15 @@
 <h2>お知らせ<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>2022年3月22日の更新で、プラグイン名を変更しました。
 （旧）FluidDynamicsPlugin　→　（新）CFDPlugin</p>
-<p>これに伴い、更新前のバージョンで作成されたプロジェクト（<a href="#id2"><span class="problematic" id="id3">*</span></a>.cnoid）の読み込みができなくなります。
-つきましては、下記のとおりファイルを修正してください。</p>
+<p>これに伴い、更新前のバージョンで作成されたプロジェクト（<a href="#id2"><span class="problematic" id="id3">*</span></a>.cnoid）と、スラスタ・ロータを使用したコントローラの読み込みができなくなります。つきましては、下記のとおりファイルを修正してください。</p>
 <p>流体力学シミュレータの修正）</p>
 <p>plugin: FluidDynamics →　plugin: CFD</p>
 <p>class: FluidDynamicsSimulatorItem →　class: CFDSimulatorItem</p>
 <p>流体領域アイテムの修正）</p>
 <p>plugin: FluidDynamics →　plugin: CFD</p>
+<p>CMakeLists.txtの修正</p>
+<p>target_link_libraries(&lt;任意のコントローラ名&gt; CnoidFluidDynamicsPlugin)
+　→　target_link_libraries(&lt;任意のコントローラ名&gt; CnoidCFDPlugin)</p>
 </div>
 <div class="section" id="id4">
 <h2>流体力学シミュレータの作成と設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>

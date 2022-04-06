@@ -10,8 +10,7 @@ ROV／UAVのシミュレーション
 2022年3月22日の更新で、プラグイン名を変更しました。
 （旧）FluidDynamicsPlugin　→　（新）CFDPlugin
 
-これに伴い、更新前のバージョンで作成されたプロジェクト（*.cnoid）の読み込みができなくなります。
-つきましては、下記のとおりファイルを修正してください。
+これに伴い、更新前のバージョンで作成されたプロジェクト（*.cnoid）と、スラスタ・ロータを使用したコントローラの読み込みができなくなります。つきましては、下記のとおりファイルを修正してください。
 
 流体力学シミュレータの修正）
 
@@ -22,6 +21,11 @@ class: FluidDynamicsSimulatorItem →　class: CFDSimulatorItem
 流体領域アイテムの修正）
 
 plugin: FluidDynamics →　plugin: CFD
+
+CMakeLists.txtの修正
+
+target_link_libraries(<任意のコントローラ名> CnoidFluidDynamicsPlugin)
+　→　target_link_libraries(<任意のコントローラ名> CnoidCFDPlugin)
 
 流体力学シミュレータの作成と設定
 --------------------------------
