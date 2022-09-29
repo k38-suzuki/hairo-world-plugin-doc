@@ -24,4 +24,5 @@
    inertia
    kiosk
    ikplanner
+   phits
 
