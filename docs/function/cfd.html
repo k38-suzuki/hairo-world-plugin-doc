@@ -4,29 +4,21 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>ROV／UAVのシミュレーション &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="通信障害効果の設定" href="netem.html" />
     <link rel="prev" title="拡張機能" href="index.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -56,7 +48,7 @@
 <h2>お知らせ<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>2022年3月22日の更新で、プラグイン名を変更しました。
 （旧）FluidDynamicsPlugin　→　（新）CFDPlugin</p>
-<p>これに伴い、更新前のバージョンで作成されたプロジェクト（<a href="#id2"><span class="problematic" id="id3">*</span></a>.cnoid）と、スラスタ・ロータを使用したコントローラの読み込みができなくなります。つきましては、下記のとおりファイルを修正してください。</p>
+<p>これに伴い、更新前のバージョンで作成されたプロジェクト（<code class="docutils literal notranslate"><span class="pre">*.cnoid</span></code>）と、スラスタ・ロータを使用したコントローラの読み込みができなくなります。つきましては、下記のとおりファイルを修正してください。</p>
 <p>流体力学シミュレータの修正）</p>
 <p>plugin: FluidDynamics →　plugin: CFD</p>
 <p>class: FluidDynamicsSimulatorItem →　class: CFDSimulatorItem</p>
@@ -66,13 +58,13 @@
 <p>target_link_libraries(&lt;任意のコントローラ名&gt; CnoidFluidDynamicsPlugin)
 　→　target_link_libraries(&lt;任意のコントローラ名&gt; CnoidCFDPlugin)</p>
 </div>
-<div class="section" id="id4">
-<h2>流体力学シミュレータの作成と設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2>流体力学シミュレータの作成と設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>ここではChoreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「流体力学シミュレータ」を選択して生成してください。生成した流体力学シミュレータは、AISTシミュレータアイテムの子アイテムとして配置します。</p>
 <img alt="../_images/fluid_0.png" src="../_images/fluid_0.png" />
 </div>
-<div class="section" id="id5">
-<h2>流体領域アイテムの作成と設定<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>流体領域アイテムの作成と設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>流体領域アイテムは、Choreonoidのワールド内に水・空気等が存在する領域を仮想的に定義するためのアイテムです。メインメニューの「ファイル」-「新規」-「流体領域」を選択して生成してください。生成した流体領域アイテムは、ワールドアイテムの子アイテムとして配置します。以下の例では、流体領域アイテムを「Water0」〜「Water2」として3つ生成しています。このように複数の流体領域アイテムを生成することで、Choreonoidのワールド内により詳細な流体領域を設定することができます。</p>
 <img alt="../_images/fluid_1.png" src="../_images/fluid_1.png" />
 <div class="admonition note">
@@ -156,16 +148,16 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="id6">
-<h2>ボディアイテムの設定<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>ボディアイテムの設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>流体力学シミュレータでは、ロボットの各リンクに作用する浮力・抵抗力を計算し、シミュレーションに反映します。</p>
 <p>浮力・抵抗力の計算させるには、以下の設定をリンク毎に追記します。</p>
-<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">density</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1000.0</span>
-<span class="l l-Scalar l-Scalar-Plain">centerOfBuoyancy</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span> <span class="nv">0.0</span> <span class="p p-Indicator">]</span>
-<span class="l l-Scalar l-Scalar-Plain">cdw</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
-<span class="l l-Scalar l-Scalar-Plain">cda</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
-<span class="l l-Scalar l-Scalar-Plain">cw</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.2</span>
-<span class="l l-Scalar l-Scalar-Plain">surface</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span> <span class="p p-Indicator">]</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">density</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1000.0</span>
+<span class="nt">centerOfBuoyancy</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span> <span class="nv">0.0</span> <span class="p p-Indicator">]</span>
+<span class="nt">cdw</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="nt">cda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="nt">cw</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.2</span>
+<span class="nt">surface</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span> <span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>各キーの詳細は以下の通りです。</p>
@@ -222,15 +214,15 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="id7">
-<h2>スラスタの設定<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>スラスタの設定<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>流体力学シミュレータは、ROVの動力源となるスラスタを提供します。このスラスタを通じてROVに推力とトルクを与えることができます。なおスラスタは、ボディアイテムのローカル座標系のX軸+方向を初期方向としています。</p>
 <p>スラスタは、カメラやライト等と同様に任意のリンクのelements以下に記述します。</p>
-<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>
-  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Thruster</span>
-  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Thruster</span>
-  <span class="l l-Scalar l-Scalar-Plain">forceOffset</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
-  <span class="l l-Scalar l-Scalar-Plain">torqueOffset</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Thruster</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Thruster</span>
+  <span class="nt">forceOffset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+  <span class="nt">torqueOffset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1</span>
 </pre></div>
 </div>
 <p>各キーの詳細は以下の通りです。</p>
@@ -277,15 +269,15 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="id8">
-<h2>ロータの設定<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>ロータの設定<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>流体力学シミュレータは、UAVの動力源となるロータを提供します。このロータを通じてUAVに推力とトルクを与えることができます。なおロータは、ボディアイテムのローカル座標系のZ軸+方向を初期方向としています。</p>
 <p>ロータは、カメラやライト等と同様に任意のリンクのelements以下に記述します。</p>
-<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>
-  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Rotor</span>
-  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Rotor</span>
-  <span class="l l-Scalar l-Scalar-Plain">forceOffset</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
-  <span class="l l-Scalar l-Scalar-Plain">torqueOffset</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Rotor</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Rotor</span>
+  <span class="nt">forceOffset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+  <span class="nt">torqueOffset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1</span>
 </pre></div>
 </div>
 <p>各キーの詳細は以下の通りです。</p>
@@ -332,8 +324,8 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="id9">
-<h2>シミュレーションの実行<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h2>シミュレーションの実行<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると流体領域アイテムの設定に基づいた浮力・抵抗力等がシミュレーション中のロボットに反映されます。</p>
 </div>
 </div>
@@ -400,12 +392,14 @@
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -430,7 +424,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>
