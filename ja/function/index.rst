@@ -22,7 +22,6 @@
    terrain
    crawler
    inertia
-   kiosk
    ikplanner
    phits
 
