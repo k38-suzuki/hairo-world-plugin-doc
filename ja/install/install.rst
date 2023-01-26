@@ -39,7 +39,7 @@ Ubuntuの場合、"hairo-world-plugin/misc/script" 以下にある "install-requ
  <username>    ALL=NOPASSWD: /sbin/tc
  <username>    ALL=NOPASSWD: /sbin/rmmod
 
-<username>は、使用しているユーザ名です。これは、TCプラグイン内で利用しているルート権限を要するコマンド(modprobe, ip等)をパスワードなしで実行するための設定です。これにより、シミュレーション実行時にパスワードの入力が求められ、シミュレーションが停止しないようにしています。
+<username>は、使用しているユーザ名です。これは、NetEmプラグイン内で利用しているルート権限を要するコマンド(modprobe, ip等)をパスワードなしで実行するための設定です。これにより、シミュレーション実行時にパスワードの入力が求められ、シミュレーションが停止しないようにしています。
 
 CMake によるビルド設定
 ----------------------

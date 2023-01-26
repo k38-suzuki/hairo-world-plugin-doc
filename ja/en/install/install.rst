@@ -16,7 +16,7 @@ You need to run git commands to use this repository. In Ubuntu, you can install 
 
  sudo apt-get install git
 
-You can check out the HAIROWorldPlugin repository by executing the following command. ::
+You can check out the HAIROWorldPlugin repository by executing the following command in the "ext" directory on the Choreonoid source directory. ::
 
  git clone https://github.com/k38-suzuki/hairo-world-plugin.git
 
@@ -28,6 +28,25 @@ to update to the source code to the latest available version.
 
 For details on how to use git, see the git manual and explanatory articles.
 
+Installing dependent packages
+-----------------------------
+
+In Ubuntu, you can easily install most of the software above by running the script “install-requisites-ubuntu-x.x.sh” under “misc/script.” x.x should be your version of Ubuntu. For example, if you have Ubuntu 18.04, execute ::
+
+ misc/script/install-requisites-ubuntu-18.04.sh
+
+You will be prompted to enter your sudo password. After you do so, the necessary packages will be automatically installed via the package management system. (The latest version of HAIROWorldPlugin does not have any dependent packages.)
+
+As for Qt, version 5 is supported. Qt version 4 was supported up to Choreonoid 1.7, but the latest version does not support it.
+
+Also, following commands are automatically written. ::
+
+ <username>    ALL=NOPASSWD: /sbin/modprobe
+ <username>    ALL=NOPASSWD: /sbin/ip
+ <username>    ALL=NOPASSWD: /sbin/tc
+ <username>    ALL=NOPASSWD: /sbin/rmmod
+
+<username> means the name of your user account. This is a setting for NetEmPlugin to execute commands (modprobe, ip and etc.) which require root privileges without a password.
 
 CMake build settings
 --------------------
