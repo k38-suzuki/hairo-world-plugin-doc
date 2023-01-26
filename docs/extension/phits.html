@@ -1,0 +1,544 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>放射線挙動のシミュレーション &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="関連論文" href="../paper/index.html" />
+    <link rel="prev" title="経路の生成" href="ikplanner.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../paper/index.html" title="関連論文"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ikplanner.html" title="経路の生成"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">拡張機能</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>放射線挙動のシミュレーション<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>　ここでは、PHITSプラグインを使った放射線挙動の計算・可視化の仕方を説明します。なお、PHITSプラグインを使用する際は、事前に「PHITSコード」の入手・インストールが必要です。入手方法については <a class="reference external" href="https://phits.jaea.go.jp/getj.html">PHITSコード（実行形式，ソースプログラム，マニュアルなど含む）の入手方法</a> を参照してください。</p>
+<div class="section" id="cmake">
+<h2>CMakeによるビルド設定<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h2>
+<p>　まず、cmakeコマンドを使ってMakefileを更新します。Choreonoidのビルドディレクトリ上で</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">..</span>
+</pre></div>
+</div>
+<p>を実行すると、必要なライブラリをチェックしMakefileを更新します。(cmakeコマンドのあとのピリオドに注意してください。）</p>
+<p>次にPHITSプラグインを有効にします。Choreonoidのビルドディレクトリ上でccmakeコマンドを</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccmake</span> <span class="o">..</span>
+</pre></div>
+</div>
+<p>と実行し、<strong>BUILD_PHITS_PLUGIN</strong> を “ON” にします。</p>
+</div>
+<div class="section" id="choreonoid">
+<h2>Choreonoidのビルドとインストール<a class="headerlink" href="#choreonoid" title="Permalink to this headline">¶</a></h2>
+<p>CMakeによりMakefileの生成が成功すれば、makeコマンドでChoreonoidをビルドします。Choreonoidのビルドとインストールについては <a class="reference external" href="https://choreonoid.org/ja/manuals/latest/install/build-ubuntu.html">Choreonoidのビルド</a> 以降を参照してください。</p>
+</div>
+<div class="section" id="id3">
+<h2>線量率分布の計算<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>　線量率分布の計算には、ボディアイテム（動的モデル）と「線量分布アイテム」を使用します。まず、「線源」または「遮蔽材」を設定します。本機能では、リンク毎に「線源」または「遮蔽材」の属性を追記することで、そのリンクを「線源」または「遮蔽材」のオブジェクトとして扱います。「線源」および「遮蔽材」の属性を追記するためのパラメータは以下のとおりです。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="16%" />
+<col width="13%" />
+<col width="10%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>nuclide</td>
+<td>-, -</td>
+<td>-, Bq/cm3</td>
+<td>核種（Cs-134, Cs-137, Co-60）を指定します。核種は、nuclides.yamlを編集することで追加することができます。</td>
+</tr>
+<tr class="row-odd"><td>objectType</td>
+<td>0.0, 0.0, 0.0</td>
+<td>m, m, m</td>
+<td>オブジェクトの種類（線源：SRC_BOX, SRC_CYLINDER, SRC_SPHERE, 遮蔽材：OBS_BOX, OBS_CYLINDER, OBS_SPHERE）を指定します。</td>
+</tr>
+<tr class="row-even"><td>material</td>
+<td>-</td>
+<td>-</td>
+<td>オブジェクトの物質組成（Air, Water, Concrete, Tungsten, Lead, Iron, Soil, GAGG）を指定します。オブジェクトの物質組成は、elements.yamlを編集することで追加することができます。</td>
+</tr>
+<tr class="row-odd"><td>sourceDivision</td>
+<td>-, -, -</td>
+<td>-, -, -</td>
+<td>線源の分割数（BOX[x, y, z], CYLINDER[r, phi, z], SPEHRE[r, phi, theta]）を指定します。※QADのみ</td>
+</tr>
+<tr class="row-even"><td>buildupFactor</td>
+<td>-</td>
+<td>-</td>
+<td>ビルドアップファクタ（BERY, BORO, CARB, NITR, OXYG, SODI, MAGN, ALUM, SILIL, PHOS, SULP, ARGO, POTA, CALC, IRON, COPP, MOLY, TIN, LANT, GADO, TUNG, LEAD, URAN, WATE, CONC, AIR）を指定します。※QADのみ</td>
+</tr>
+</tbody>
+</table>
+<p>　次に、「線源」または「遮蔽材」をワールドに配置します。メインメニューの「ファイル」-「読み込み」-「ボディ」を選択して、「線源」または「遮蔽材」の属性が追記されているボディアイテムを読み込みます。続けて、読み込んだボディアイテムの座標を「配置」ビュー等で編集し、初期位置を設定してください。</p>
+<img alt="../_images/phits_0.png" src="../_images/phits_0.png" />
+<p>　次に、線量率分布を計算します。メインメニューの「ファイル」-「新規」-「線量分布」を選択して生成してください。生成した線量分布アイテムは、任意のアイテムの子アイテムとして配置します。</p>
+<img alt="../_images/phits_1.png" src="../_images/phits_1.png" />
+<p>続けて、アイテムツリーで生成した線量分布アイテムを右クリックしてください。右クリックをして表示されたポップアップメニューから、「PHITSの設定」を選択すると以下のダイアログが表示されます。</p>
+<img alt="../_images/phits_2.png" src="../_images/phits_2.png" />
+<p>設定が終了したら、ダイアログを閉じ、アイテムツリーで生成した線量分布アイテムを右クリックしてください。右クリックをして表示されたポップアップメニューから、「PHITS」-「開始」を選択するとダイアログで設定したパラメータに基づいてPHITS/QADが実行されます。演算が完了すると線量分布アイテムの状態が更新され、線量率分布がワールドに表示されます。なお、アイテムツリーの線量分布アイテムのチェックを外すと非表示になります。</p>
+<img alt="../_images/phits_3.png" src="../_images/phits_3.png" />
+<p>ダイアログのパラメータの詳細は以下のとおりです。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="16%" />
+<col width="13%" />
+<col width="10%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>X</td>
+<td>3, -1.0, 1.0</td>
+<td>-, m, m</td>
+<td>X軸方向の線量分布の範囲（分割数, 最小, 最大）を指定します。</td>
+</tr>
+<tr class="row-odd"><td>Y</td>
+<td>3, -1.0, 1.0</td>
+<td>-, m, m</td>
+<td>Y軸方向の線量分布の範囲（分割数, 最小, 最大）を指定します。</td>
+</tr>
+<tr class="row-even"><td>Z</td>
+<td>3, -1.0, 1.0</td>
+<td>-, m, m</td>
+<td>Z軸方向の線量分布の範囲（分割数, 最小, 最大）を指定します。</td>
+</tr>
+<tr class="row-odd"><td>Energy</td>
+<td>1, 0.0, 10.0</td>
+<td>-, ?, ?</td>
+<td>エネルギの範囲（分割数, 最小, 最大）を指定します。</td>
+</tr>
+<tr class="row-even"><td>ヒストリ</td>
+<td>1000</td>
+<td>-</td>
+<td>PHITSまたはQADの演算の統計精度を指定します。</td>
+</tr>
+<tr class="row-odd"><td>バッチ</td>
+<td>2</td>
+<td>-</td>
+<td>PHITSまたはQADの演算の試行回数を指定します。</td>
+</tr>
+<tr class="row-even"><td>コード</td>
+<td>PHITS</td>
+<td>-</td>
+<td>演算に使用する計算コードを指定します。（PHITS／QAD）</td>
+</tr>
+<tr class="row-odd"><td>メッセージの出力</td>
+<td>checked</td>
+<td>-</td>
+<td>メッセージの出力／非出力を指定します。</td>
+</tr>
+<tr class="row-even"><td>リセット</td>
+<td>-</td>
+<td>-</td>
+<td>PHITSまたはQADの入力ファイルのパスをクリアします。</td>
+</tr>
+<tr class="row-odd"><td>平面</td>
+<td>XY, 0.000</td>
+<td>-, m</td>
+<td>線量分布アイテムの平面の向き（XY, YZ, ZX）と代表座標を指定します。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h2>累積線量の取得<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>　累積線量の取得には、「線量シミュレータアイテム」と「ガンマ線検出器(DoseMeter)」デバイスを使用します。DoseMeterは、カメラやライト等と同様に任意のリンクのelements以下に記述します。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DoseMeter</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DoseMeter</span>
+  <span class="nt">material</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">LEAD</span>
+  <span class="nt">thickness</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+  <span class="nt">offsetDose</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3.0</span>
+</pre></div>
+</div>
+<p>各キーの詳細は以下の通りです。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="7%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>type</td>
+<td>-</td>
+<td>-</td>
+<td>デバイスの種類を指定します。</td>
+</tr>
+<tr class="row-odd"><td>name</td>
+<td>-</td>
+<td>-</td>
+<td>デバイスの名前を指定します。</td>
+</tr>
+<tr class="row-even"><td>material</td>
+<td>-</td>
+<td>-</td>
+<td>遮蔽体物質（LEAD, IRON, CONCRETE）を指定します。遮蔽体物質は、shields.yamlを編集することで追加することができます。</td>
+</tr>
+<tr class="row-odd"><td>thickness</td>
+<td>-</td>
+<td>-</td>
+<td>遮蔽体物質の厚さを指定します。</td>
+</tr>
+<tr class="row-even"><td>offsetDose</td>
+<td>-</td>
+<td>uSv</td>
+<td>累積線量の初期値を指定します。</td>
+</tr>
+</tbody>
+</table>
+<p>　次に、線量シミュレータアイテムを設定します。メインメニューの「ファイル」-「新規」-「線量シミュレータ」を選択して生成してください。生成した線量シミュレータは、AISTシミュレータアイテムの子アイテムとして配置します。</p>
+<p>　次に、累積線量の計算に使用する線量分布アイテムを線量シミュレータの子アイテムに設定してください。複数の線量分布アイテムが子アイテムに設定されている場合は、先頭のアイテムが計算に使用されます。</p>
+<img alt="../_images/phits_5.png" src="../_images/phits_5.png" />
+<p>　シミュレーションバーから通常通りシミュレーションを実行すると、累積線量が計算され、DoseMeterの状態が更新されます。計算された累積線量はDoseMeterクラスのintegralDose()から取得できます。</p>
+</div>
+<div class="section" id="id5">
+<h2>ピンホールカメラ／コンプトンカメラ画像の生成<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>　ピンホールカメラ／コンプトンカメラ画像の生成には、「ガンマイメージャアイテム」と「ピンホールカメラ(PinholeCamera)」／「コンプトンカメラ(ComptonCamera)」デバイスを使用します。PinholeCamera／ComptonCameraは、カメラやライト等と同様に任意のリンクのelements以下に記述します。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PinholeCamera</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PinholeCamera</span>
+  <span class="nt">rotation</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="p p-Indicator">[</span> <span class="nv">1</span><span class="p p-Indicator">,</span> <span class="nv">0</span><span class="p p-Indicator">,</span> <span class="nv">0</span><span class="p p-Indicator">,</span> <span class="nv">90</span> <span class="p p-Indicator">],</span> <span class="p p-Indicator">[</span> <span class="nv">0</span><span class="p p-Indicator">,</span> <span class="nv">1</span><span class="p p-Indicator">,</span> <span class="nv">0</span><span class="p p-Indicator">,</span> <span class="nv">-90</span> <span class="p p-Indicator">]</span> <span class="p p-Indicator">]</span>
+  <span class="nt">format</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">COLOR</span>
+  <span class="nt">fieldOfView</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">62</span>
+  <span class="nt">width</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">240</span>
+  <span class="nt">height</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">240</span>
+  <span class="nt">frameRate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
+  <span class="nt">on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">resolution</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">10</span><span class="p p-Indicator">,</span> <span class="nv">10</span> <span class="p p-Indicator">]</span>
+  <span class="nt">material</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Tungsten</span>
+  <span class="nt">thickness</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3.0</span>
+  <span class="nt">pinholeOpening</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.5</span>
+</pre></div>
+</div>
+<p>各キーの詳細は以下の通りです。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="7%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>type</td>
+<td>-</td>
+<td>-</td>
+<td>デバイスの種類を指定します。</td>
+</tr>
+<tr class="row-odd"><td>name</td>
+<td>-</td>
+<td>-</td>
+<td>デバイスの名前を指定します。</td>
+</tr>
+<tr class="row-even"><td>resolution</td>
+<td>8, 8</td>
+<td>-, -</td>
+<td>解像度を指定します。</td>
+</tr>
+<tr class="row-odd"><td>material</td>
+<td>-</td>
+<td>-</td>
+<td>遮蔽材の物質組成（Air, Water, Concrete, Tungsten, Lead, Iron, Soil, GAGG）を指定します。</td>
+</tr>
+<tr class="row-even"><td>thickness</td>
+<td>0.1</td>
+<td>cm</td>
+<td>遮蔽材の厚さを指定します。</td>
+</tr>
+<tr class="row-odd"><td>pinholeOpening</td>
+<td>0.01</td>
+<td>cm</td>
+<td>コリメータの開口径を指定します。</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ComptonCamera</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ComptonCamera</span>
+  <span class="nt">rotation</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="p p-Indicator">[</span> <span class="nv">1</span><span class="p p-Indicator">,</span> <span class="nv">0</span><span class="p p-Indicator">,</span> <span class="nv">0</span><span class="p p-Indicator">,</span> <span class="nv">90</span> <span class="p p-Indicator">],</span> <span class="p p-Indicator">[</span> <span class="nv">0</span><span class="p p-Indicator">,</span> <span class="nv">1</span><span class="p p-Indicator">,</span> <span class="nv">0</span><span class="p p-Indicator">,</span> <span class="nv">-90</span> <span class="p p-Indicator">]</span> <span class="p p-Indicator">]</span>
+  <span class="nt">format</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">COLOR</span>
+  <span class="nt">fieldOfView</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">62</span>
+  <span class="nt">width</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">240</span>
+  <span class="nt">height</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">240</span>
+  <span class="nt">frameRate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
+  <span class="nt">on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">resolution</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">8</span><span class="p p-Indicator">,</span> <span class="nv">8</span> <span class="p p-Indicator">]</span>
+  <span class="nt">material</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GAGG</span>
+  <span class="nt">elementWidth</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.5</span>
+  <span class="nt">scattererThickness</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.5</span>
+  <span class="nt">absorberThickness</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.5</span>
+  <span class="nt">distance</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0</span>
+  <span class="nt">arm</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0</span>
+</pre></div>
+</div>
+<p>各キーの詳細は以下の通りです。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="7%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>type</td>
+<td>-</td>
+<td>-</td>
+<td>デバイスの種類を指定します。</td>
+</tr>
+<tr class="row-odd"><td>name</td>
+<td>-</td>
+<td>-</td>
+<td>デバイスの名前を指定します。</td>
+</tr>
+<tr class="row-even"><td>resolution</td>
+<td>8, 8</td>
+<td>-, -</td>
+<td>解像度を指定します。</td>
+</tr>
+<tr class="row-odd"><td>material</td>
+<td>-</td>
+<td>-</td>
+<td>遮蔽材の物質組成（GAGG）を指定します。</td>
+</tr>
+<tr class="row-even"><td>elementWidth</td>
+<td>0.1</td>
+<td>cm</td>
+<td>シンチレータの幅（0.1 - 1.0）を指定します。</td>
+</tr>
+<tr class="row-odd"><td>scattererThickness</td>
+<td>0.1</td>
+<td>cm</td>
+<td>散乱体シンチレータの厚さ（0.1 - 1.0）を指定します。</td>
+</tr>
+<tr class="row-even"><td>absorberThickness</td>
+<td>0.1</td>
+<td>cm</td>
+<td>吸収体シンチレータの厚さ（0.1 - 1.0）を指定します。</td>
+</tr>
+<tr class="row-odd"><td>distance</td>
+<td>1 - 10</td>
+<td>cm</td>
+<td>散乱体と吸収体の距離を指定します。</td>
+</tr>
+<tr class="row-even"><td>arm</td>
+<td>1 - 10</td>
+<td>deg</td>
+<td>コンプトンコーンの幅を指定します。</td>
+</tr>
+</tbody>
+</table>
+<p>　次に、画像ビューを生成します。ガンマイメージャによって生成されたカメラ画像は、「画像ビュー」に表示されます。 メインメニューの「表示」-「ビューの表示」-「画像」から画像ビューを生成してください。</p>
+<img alt="../_images/image_0.png" src="../_images/image_0.png" />
+<p>　続けて、画像ビューバーを表示します。シミュレートするカメラの選択とカメラ画像に付与する効果の設定には、画像ビューバーを使用します。メインメニュー「表示」-「ツールバーの表示」-「画像ビューバー」から画像ビューバーを表示してください。</p>
+<img alt="../_images/image_1.png" src="../_images/image_1.png" />
+<p>　次に、ガンマイメージャアイテムを設定します。ピンホールカメラまたはコンプトンカメラが設定されているボディをアイテムツリーで選択し、メインメニューの「ファイル」-「新規」-「ガンマイメージャ」を選択して生成してください。ガンマイメージャアイテムを生成すると、ピンホールカメラまたはコンプトンカメラに対応する子アイテムが自動的に生成されます。子アイテムのチェックを入れると画像生成の対象になります。</p>
+<img alt="../_images/phits_6.png" src="../_images/phits_6.png" />
+<p>続けて、メインメニューの「ファイル」-「新規」-「GLビジョンシミュレータ」を選択して生成してください。GLビジョンシミュレータはAISTシミュレータアイテムの子アイテムとして配置します。</p>
+<p>　次に、シミュレーションバーから通常通りシミュレーションを実行してください。任意の画像ビューを選択し、画像ビューバーのコンボボックスからカメラを選択するとカメラ画像が表示されます。</p>
+<p>　最後に、ピンホールカメラまたはコンプトンカメラ画像を生成します。生成されたピンホールカメラまたはコンプトンカメラの子アイテムを右クリックしてください。右クリックをして表示されたポップアップメニューから、「PHITSの設定」を選択すると以下のダイアログが表示されます。</p>
+<img alt="../_images/phits_7.png" src="../_images/phits_7.png" />
+<p>ダイアログのパラメータの詳細は以下のとおりです。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="16%" />
+<col width="13%" />
+<col width="10%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ヒストリ</td>
+<td>1000</td>
+<td>-</td>
+<td>PHITSの演算の統計精度を指定します。</td>
+</tr>
+<tr class="row-odd"><td>バッチ</td>
+<td>2</td>
+<td>-</td>
+<td>PHITSの演算の試行回数を指定します。</td>
+</tr>
+<tr class="row-even"><td>メッセージの出力</td>
+<td>checked</td>
+<td>-</td>
+<td>メッセージの出力／非出力を指定します。</td>
+</tr>
+<tr class="row-odd"><td>リセット</td>
+<td>-</td>
+<td>-</td>
+<td>PHITSまたはQADの入力ファイルのパスをクリアします。</td>
+</tr>
+</tbody>
+</table>
+<p>設定が終了したら、ダイアログを閉じ、アイテムツリーでピンホールカメラまたはコンプトンカメラの子アイテムを右クリックしてください。右クリックをして表示されたポップアップメニューから、「PHITS」-「開始」を選択するとダイアログで設定したパラメータに基づいてPHITS/QADが実行されます。演算が完了するとカメラ画像が更新され、ピンホールカメラまたはコンプトンカメラの画像が表示されます。</p>
+<img alt="../_images/phits_8.png" src="../_images/phits_8.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">拡張機能</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cfd.html">ROV／UAVのシミュレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netem.html">通信障害効果の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image.html">カメラ画像のシミュレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motion.html">ロボットの移動経路の記録・表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision.html">干渉の可視化・記録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="status.html">ジョイスティック状態の表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">ジョイスティック状態の記録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explorer.html">ボディアイテムのファイル表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bookmark.html">プロジェクトのブックマーク登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html">プロジェクトの履歴表示・読み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipe.html">パイプモデルの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grating.html">グレーチングモデルの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slope.html">スロープモデルの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terrain.html">ボックステレインモデルの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crawler.html">クローラロボットモデルの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inertia.html">慣性モーメントの計算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ikplanner.html">経路の生成</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">放射線挙動のシミュレーション</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../paper/index.html" title="関連論文"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ikplanner.html" title="経路の生成"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >拡張機能</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

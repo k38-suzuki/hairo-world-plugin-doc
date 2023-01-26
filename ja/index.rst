@@ -10,7 +10,7 @@
 （旧）FluidDynamicsPlugin　→　（新）CFDPlugin
 （旧）TCPlugin　→　（新）NetEmPlugin
 
-これに伴い、更新前のバージョンで作成されたプロジェクト（*.cnoid）の読み込みができなくなります。
+これに伴い、更新前のバージョンで作成されたプロジェクト ``（*.cnoid）`` の読み込みができなくなります。
 つきましては、各機能のページ上部のお知らせを確認してください。
 
 HAIROWorldPluginマニュアル
@@ -24,9 +24,10 @@ HAIROWorldPluginマニュアル
 
    about/index
    install/index
-   function/index
+   extension/index
    paper/index
-   history/index
+   update/index
+   en/index
 
 以下の画像をクリックすると紹介動画が再生されます。
 

@@ -1,0 +1,163 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>クローラロボットモデルの生成 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="慣性モーメントの計算" href="inertia.html" />
+    <link rel="prev" title="ボックステレインモデルの生成" href="terrain.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="inertia.html" title="慣性モーメントの計算"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="terrain.html" title="ボックステレインモデルの生成"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">拡張機能</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>クローラロボットモデルの生成<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、クローラロボットビルダを使ったクローラロボットモデルの生成の仕方を説明します。</p>
+<div class="section" id="id2">
+<h2>クローラロボットモデルの構造<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>クローラロボットビルダでは、下図の構造のクローラロボットモデルを生成します。</p>
+<img alt="../_images/crawler_0.png" src="../_images/crawler_0.png" />
+</div>
+<div class="section" id="id3">
+<h2>クローラロボットモデルの作成<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>以下の手順で、クローラロボットモデルを作成します。</p>
+<ol class="arabic simple">
+<li>「メニュー」-「ツール」-「ボディジェネレータ」から「クローラロボット」を選択する。</li>
+<li>ダイアログの各パラメータを入力し、「保存」を押す。上書きの場合は、「上書き保存」を押す。</li>
+<li>ファイル名を入力、保存場所を指定し、「保存」を押す。</li>
+</ol>
+<p>下図は、クローラロボットビルダのダイアログです。</p>
+<img alt="../_images/crawler_1.png" src="../_images/crawler_1.png" />
+<p>各項目に入力した数値を保存するときは、ダイアログ下の「エクスポート」を押し、YAMLファイルを保存してください。復元するときは、「インポート」を押し、YAMLファイルを読み込んでください。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">拡張機能</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cfd.html">ROV／UAVのシミュレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netem.html">通信障害効果の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image.html">カメラ画像のシミュレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motion.html">ロボットの移動経路の記録・表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision.html">干渉の可視化・記録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="status.html">ジョイスティック状態の表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">ジョイスティック状態の記録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explorer.html">ボディアイテムのファイル表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bookmark.html">プロジェクトのブックマーク登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html">プロジェクトの履歴表示・読み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipe.html">パイプモデルの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grating.html">グレーチングモデルの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slope.html">スロープモデルの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terrain.html">ボックステレインモデルの生成</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">クローラロボットモデルの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inertia.html">慣性モーメントの計算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ikplanner.html">経路の生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phits.html">放射線挙動のシミュレーション</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="inertia.html" title="慣性モーメントの計算"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="terrain.html" title="ボックステレインモデルの生成"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >拡張機能</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>
