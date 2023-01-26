@@ -1,0 +1,201 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Building and Installing from Source (Ubuntu Linux) &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Extensions" href="../extension/index.html" />
+    <link rel="prev" title="Installation" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../extension/index.html" title="Extensions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >HAIROWorldPlugin Operation Manual</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Installation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="building-and-installing-from-source-ubuntu-linux">
+<h1>Building and Installing from Source (Ubuntu Linux)<a class="headerlink" href="#building-and-installing-from-source-ubuntu-linux" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="obtaining-the-source-code">
+<h2>Obtaining the source code<a class="headerlink" href="#obtaining-the-source-code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="development-version">
+<h3>Development version<a class="headerlink" href="#development-version" title="Permalink to this headline">¶</a></h3>
+<p>HAIROWorldPlugin is managed as a git repository. You can find it at the following GitHub address.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/k38-suzuki/hairo-world-plugin">https://github.com/k38-suzuki/hairo-world-plugin</a></li>
+</ul>
+<p>You need to run git commands to use this repository. In Ubuntu, you can install git using the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">git</span>
+</pre></div>
+</div>
+<p>You can check out the HAIROWorldPlugin repository by executing the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">k38</span><span class="o">-</span><span class="n">suzuki</span><span class="o">/</span><span class="n">hairo</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">plugin</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>This creates a “hairo-world-plugin” directory that holds the repository. In this directory, you can use commands such as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">pull</span>
+</pre></div>
+</div>
+<p>to update to the source code to the latest available version.</p>
+<p>For details on how to use git, see the git manual and explanatory articles.</p>
+</div>
+</div>
+<div class="section" id="cmake-build-settings">
+<h2>CMake build settings<a class="headerlink" href="#cmake-build-settings" title="Permalink to this headline">¶</a></h2>
+<p>First, use the cmake command to generate the makefile you need to build Choreonoid. In the Choreonoid source directory, execute</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>to find the necessary libraries and generate a makefile. (Note the period after the cmake command.)</p>
+<p>If you are working in one of the Ubuntu versions described above, you should be able to generate a makefile without any problems. However, if the necessary libraries are not installed in the prescribed location, you may get an error when executing cmake. In that case, you will need to install the libraries properly or modify the CMake build settings. You can also change these build settings from the command line by using the cmake command. Execute the ccmake command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccmake</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>to access all settings in the form of a menu. Check the CMake manual for details.</p>
+<p>For using HAIROWorldPlugin, set BUILD_HAIRO_WORLD_PLUGIN to “ON.”</p>
+<p>Choreonoid also has some optional functions that are not built during the default process described above. You can find a summary of these functions in Optional Functions Overview . If you want to use them, you can enable them in the CMake settings.</p>
+</div>
+<div class="section" id="building-choreonoid">
+<h2>Building Choreonoid<a class="headerlink" href="#building-choreonoid" title="Permalink to this headline">¶</a></h2>
+<p>If CMake successfully generates a makefile, you can use the make command to build Choreonoid. In the directory where you executed CMake (the build directory), execute</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
+</pre></div>
+</div>
+<p>to build Choreonoid.</p>
+<p>If you have a multi-core CPU, you can shorten the build time by using the “-j” option to do a parallel build. For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">-</span><span class="n">j8</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>On Linux, you can run the executable file generated in the build directory as it is (without going through an installation process). If the build was successful, an executable file called “choreonoid” will have been generated in the “bin” directory inside the build directory. Execute this file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="o">/</span><span class="n">choreonoid</span>
+</pre></div>
+</div>
+<p>If there are no problems with the build, this will launch the Choreonoid main window.</p>
+<p>It is convenient that you can run the program without going through the installation process. Usually, however, you would go through this installation process and then run the executable file in the installation destination directory. To install the program, execute</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>in the build directory. A set of files needed to run the program will be installed in the specified directory.</p>
+<p>On Linux, the default install location is “/usr/local.” You will usually need root privileges to write to this directory. Execute</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>You can also change the install location by changing CMake’s CMAKE_INSTALL_PREFIX setting. If there is no need for multiple accounts to have access to Choreonoid, you can install it anywhere in the Home directory. In that case, you also will not need sudo to install the program.</p>
+<p>Normally, you would need have a common library path pointing to the lib directory of the install location. If you set ENABLE_INSTALL_RPATH to “ON,” you can use the program even without that common library path.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension/index.html">拡張機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../update/index.html">更新履歴</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">HAIROWorldPlugin Operation Manual</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extension/index.html">Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../update/index.html">Updates</a></li>
+</ul>
+</li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../extension/index.html" title="Extensions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Installation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >HAIROWorldPlugin Operation Manual</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Installation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>
