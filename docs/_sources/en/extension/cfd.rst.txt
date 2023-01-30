@@ -101,10 +101,6 @@ This plugin calculates the buoyancy and resistance acting on a body. For calcula
     - 0.0
     - \-
     - The drag coefficient in air.
-  * - surface
-    - 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
-    - m, m, m, m, m, m
-    - The representative area of links seen from each coordinate axis (X+, X-, Y+, Y-, Z+, Z-). If there is a surface with no resistance, set the representative area of that surface to 0.0.
   * - cv
     - 0.0
     - m
@@ -124,7 +120,6 @@ How to write
     cdw: 1.0
     cda: 1.0
     cw: 0.2
-    surface: [ 0.01, 0.01, 0.01, 0.01, 0.01, 0.01 ]
 
 Thruster notation
 -----------------
@@ -138,6 +133,7 @@ Thruster apply thrust and torque to a robot moving through water. You can set as
         name: Thruster
         forceOffset: 1.0
         torqueOffset: 0.1
+        symbol: true
 
 Thruster device has following keys.
 
@@ -182,6 +178,7 @@ Rotor apply propulsive force and torque to a robot moving through water. You can
         name: Rotor
         forceOffset: 1.0
         torqueOffset: 0.1
+        symbol: true
 
 Rotor device has following parameters.
 

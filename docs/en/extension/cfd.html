@@ -167,17 +167,12 @@ FluidArea item has following properties.</p>
 <td>-</td>
 <td>The drag coefficient in air.</td>
 </tr>
-<tr class="row-even"><td>surface</td>
-<td>0.0, 0.0, 0.0, 0.0, 0.0, 0.0</td>
-<td>m, m, m, m, m, m</td>
-<td>The representative area of links seen from each coordinate axis (X+, X-, Y+, Y-, Z+, Z-). If there is a surface with no resistance, set the representative area of that surface to 0.0.</td>
-</tr>
-<tr class="row-odd"><td>cv</td>
+<tr class="row-even"><td>cv</td>
 <td>0.0</td>
 <td>m</td>
 <td>The coefficient of the resistance which is proportional to the velocity of a link.</td>
 </tr>
-<tr class="row-even"><td>cw</td>
+<tr class="row-odd"><td>cw</td>
 <td>0.0</td>
 <td>-</td>
 <td>The coefficient of the resistance which is proportional to the angular velocity of a link.</td>
@@ -191,7 +186,6 @@ FluidArea item has following properties.</p>
 <span class="nt">cdw</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
 <span class="nt">cda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
 <span class="nt">cw</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.2</span>
-<span class="nt">surface</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span> <span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 </div>
@@ -204,6 +198,7 @@ FluidArea item has following properties.</p>
   <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Thruster</span>
   <span class="nt">forceOffset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
   <span class="nt">torqueOffset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1</span>
+  <span class="nt">symbol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 <p>Thruster device has following keys.</p>
@@ -258,6 +253,7 @@ FluidArea item has following properties.</p>
   <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Rotor</span>
   <span class="nt">forceOffset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
   <span class="nt">torqueOffset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1</span>
+  <span class="nt">symbol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 <p>Rotor device has following parameters.</p>
