@@ -157,7 +157,6 @@
 <span class="nt">cdw</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
 <span class="nt">cda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
 <span class="nt">cw</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.2</span>
-<span class="nt">surface</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span> <span class="nv">0.01</span> <span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>各キーの詳細は以下の通りです。</p>
@@ -196,17 +195,12 @@
 <td>-</td>
 <td>空気中での抗力係数を指定します。</td>
 </tr>
-<tr class="row-even"><td>surface</td>
-<td>0.0, 0.0, 0.0, 0.0, 0.0, 0.0</td>
-<td>m, m, m, m, m, m</td>
-<td>各座標軸方向から見たリンクの代表面積(X+, X-, Y+, Y-, Z+, Z-)を指定します。抗力を発生させない面がある場合は、その代表面積を0.0に設定してください。</td>
-</tr>
-<tr class="row-odd"><td>cv</td>
+<tr class="row-even"><td>cv</td>
 <td>0.0</td>
 <td>m</td>
 <td>リンクの速度に比例する抵抗力（粘性力）の係数を指定します。粘性力は本係数×リンクを包含している流体領域の粘度×リンクの速度で計算されます。</td>
 </tr>
-<tr class="row-even"><td>cw</td>
+<tr class="row-odd"><td>cw</td>
 <td>0.0</td>
 <td>-</td>
 <td>リンクの角速度に比例する抵抗力の係数を指定します。値を大きくすると回転運動を妨げるためのトルクが大きくなります。</td>
@@ -223,6 +217,7 @@
   <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Thruster</span>
   <span class="nt">forceOffset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
   <span class="nt">torqueOffset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1</span>
+  <span class="nt">symbol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 <p>各キーの詳細は以下の通りです。</p>
@@ -278,6 +273,7 @@
   <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Rotor</span>
   <span class="nt">forceOffset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
   <span class="nt">torqueOffset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1</span>
+  <span class="nt">symbol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 <p>各キーの詳細は以下の通りです。</p>

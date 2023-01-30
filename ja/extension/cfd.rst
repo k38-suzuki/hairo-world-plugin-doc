@@ -115,7 +115,6 @@ target_link_libraries(<任意のコントローラ名> CnoidFluidDynamicsPlugin)
     cdw: 1.0
     cda: 1.0
     cw: 0.2
-    surface: [ 0.01, 0.01, 0.01, 0.01, 0.01, 0.01 ]
 
 各キーの詳細は以下の通りです。
 
@@ -143,10 +142,6 @@ target_link_libraries(<任意のコントローラ名> CnoidFluidDynamicsPlugin)
     - 0.0
     - \-
     - 空気中での抗力係数を指定します。
-  * - surface
-    - 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
-    - m, m, m, m, m, m
-    - 各座標軸方向から見たリンクの代表面積(X+, X-, Y+, Y-, Z+, Z-)を指定します。抗力を発生させない面がある場合は、その代表面積を0.0に設定してください。
   * - cv
     - 0.0
     - m
@@ -170,6 +165,7 @@ target_link_libraries(<任意のコントローラ名> CnoidFluidDynamicsPlugin)
         name: Thruster
         forceOffset: 1.0
         torqueOffset: 0.1
+        symbol: true
 
 各キーの詳細は以下の通りです。
 
@@ -216,6 +212,7 @@ target_link_libraries(<任意のコントローラ名> CnoidFluidDynamicsPlugin)
         name: Rotor
         forceOffset: 1.0
         torqueOffset: 0.1
+        symbol: true
 
 
 各キーの詳細は以下の通りです。
