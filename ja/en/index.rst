@@ -1,6 +1,6 @@
 
-HAIROWorldPlugin Operation Manual
-=================================
+HAIROWorldPlugin Operation Manual (in English)
+==============================================
 
 .. toctree::
    :maxdepth: 2
