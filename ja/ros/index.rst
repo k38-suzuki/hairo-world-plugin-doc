@@ -6,4 +6,5 @@ ROSとの連携
 
    intro
    build
-   sample
+   example
+   kinova/index
