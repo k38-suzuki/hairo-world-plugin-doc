@@ -4,7 +4,7 @@ HAIROWorldプラグイン関連パッケージのビルド
 ROS環境のChoreonoidのビルド
 ---------------------------
 
-HAIROWorldプラグインとROSを連携させるために、ROS環境でChoreonoid関連パッケージをビルドします。
+HAIROWorldプラグインとROSを連携させるために、まずROS環境でChoreonoid関連パッケージをビルドします。
 ROSのインストールとChoreonoid関連パッケージのビルドについては、以下のページを参照してください。
 
  1. ROSのインストール (https://choreonoid.org/ja/manuals/latest/ros/install-ros.html)
@@ -16,7 +16,7 @@ ROSのインストールとChoreonoid関連パッケージのビルドについ�
 
 作成したワークスペースの "src" ディレクトリ（例：catkin_ws/src）内に、以下のソースコードリポジトリをクローンします。 ::
 
- https:github.com/k38-suzuki/hairo_world_plugin_ros.git
+ https://github.com/k38-suzuki/hairo_world_plugin_ros.git
  
 このリポジトリには、以下のパッケージが含まれています。
 
