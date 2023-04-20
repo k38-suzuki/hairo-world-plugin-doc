@@ -14,9 +14,9 @@ ROSのインストールとChoreonoid関連パッケージのビルドについ�
 パッケージソースの追加
 ----------------------
 
-作成したワークスペースの "src" ディレクトリ（例：catkin_ws/src）内に、以下のソースコードリポジトリをクローンします。 ::
+作成したワークスペースの "src" ディレクトリ（例：catkin_ws/src）内に、以下のコマンドでソースコードリポジトリをクローンします。 ::
 
- https://github.com/k38-suzuki/hairo_world_plugin_ros.git
+ git clone https://github.com/k38-suzuki/hairo_world_plugin_ros.git
  
 このリポジトリには、以下のパッケージが含まれています。
 
