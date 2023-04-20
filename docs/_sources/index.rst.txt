@@ -25,6 +25,7 @@ HAIROWorldPluginマニュアル
    about/index
    install/index
    extension/index
+   ros/index
    paper/index
    update/index
    en/index
