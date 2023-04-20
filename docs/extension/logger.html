@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>ジョイスティック状態の記録 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>JoyStickStartプラグイン(ジョイスティック状態の記録) &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -16,8 +16,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="シミュレーションの操作" href="joystick.html" />
-    <link rel="prev" title="ジョイスティック状態の表示" href="status.html" /> 
+    <link rel="next" title="JoystickStartプラグイン(シミュレーションの操作)" href="joystick.html" />
+    <link rel="prev" title="JoystickStartプラグイン(ジョイスティック状態の表示)" href="status.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -26,10 +26,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="joystick.html" title="シミュレーションの操作"
+          <a href="joystick.html" title="JoystickStartプラグイン(シミュレーションの操作)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="status.html" title="ジョイスティック状態の表示"
+          <a href="status.html" title="JoystickStartプラグイン(ジョイスティック状態の表示)"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">拡張機能</a> &#187;</li> 
@@ -41,11 +41,11 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="id1">
-<h1>ジョイスティック状態の記録<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="joystickstart">
+<h1>JoyStickStartプラグイン(ジョイスティック状態の記録)<a class="headerlink" href="#joystickstart" title="Permalink to this headline">¶</a></h1>
 <p>ここでは、ジョイスティック状態の記録の仕方を説明します。この機能は、接続されているジョイスティック（/dev/input/js0のみ対応）のスティックとボタンの状態を記録するものです。ジョイスティックが接続されていない場合は、「仮想ジョイスティック」の状態を記録できます。</p>
-<div class="section" id="id2">
-<h2>ジョイスティック状態の記録の設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>ジョイスティック状態の記録の設定<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>ジョイスティック状態の記録を行うジョイスティックロガーを生成します。
 ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「ジョイスティックロガー」を選択して「JoystickLogger」生成してください。生成したJoystickLoggerは、AISTシミュレータアイテムの小アイテムとして配置します。</p>
 <p>次に、以下の手順でJoystickLoggerの設定を変更してください。</p>
@@ -53,7 +53,6 @@
 <li>アイテムツリービュー上で「JoystickLogger」を選択する。</li>
 <li>プロパティビュー上で「ジョイスティック状態の記録」の設定を「true」に変更する。</li>
 </ol>
-<img alt="../_images/logger_0.png" src="../_images/logger_0.png" />
 <p>JoystickLoggerの設定の詳細は以下のとおりです。</p>
 <table border="1" class="colwidths-given docutils">
 <colgroup>
@@ -78,12 +77,12 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="id3">
-<h2>シミュレーションの実行<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2>シミュレーションの実行<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると、ジョイスティック状態を記録したアイテム「Joystick States」がジョイスティックロガーの小アイテムとして自動生成されます。</p>
 </div>
-<div class="section" id="id4">
-<h2>ジョイスティック状態のファイル出力<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>ジョイスティック状態のファイル出力<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>以下の手順で記録したジョイスティック状態をファイル出力します。</p>
 <ol class="arabic simple">
 <li>シミュレーション実行後に自動生成されたアイテム「Joystick States」を選択する。</li>
@@ -93,8 +92,8 @@
 <p>なお、出力したファイルには、ジョイスティック状態が全スティック-全ボタンの順番で記録されます。
 （例えば、スティック（Axis）が8入力、ボタン(Button)が13入力のジョイスティックを使用している場合は、Axis-0, Axis-1, …, Axis-7, Button-0, Button-1, …, Button-12の順番で記録されます。）</p>
 </div>
-<div class="section" id="id5">
-<h2>ジョイスティック状態のグラフ表示<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>ジョイスティック状態のグラフ表示<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>以下の手順で記録したジョイスティック状態をグラフ表示できます。</p>
 <ol class="arabic simple">
 <li>「メニュー」-「表示」-「ビューの表示」から「Multi Value Seq」を選択する。</li>
@@ -117,27 +116,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">拡張機能</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cfd.html">ROV／UAVのシミュレーション</a></li>
-<li class="toctree-l2"><a class="reference internal" href="netem.html">通信障害効果の設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="image.html">カメラ画像のシミュレーション</a></li>
-<li class="toctree-l2"><a class="reference internal" href="motion.html">ロボットの移動経路の記録・表示</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collision.html">干渉の可視化・記録</a></li>
-<li class="toctree-l2"><a class="reference internal" href="status.html">ジョイスティック状態の表示</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ジョイスティック状態の記録</a></li>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
-<li class="toctree-l2"><a class="reference internal" href="explorer.html">ボディアイテムのファイル表示</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bookmark.html">プロジェクトのブックマーク登録</a></li>
-<li class="toctree-l2"><a class="reference internal" href="history.html">プロジェクトの履歴表示・読み込み</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pipe.html">パイプモデルの生成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="grating.html">グレーチングモデルの生成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slope.html">スロープモデルの生成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="terrain.html">ボックステレインモデルの生成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="crawler.html">クローラロボットモデルの生成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inertia.html">慣性モーメントの計算</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ikplanner.html">経路の生成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="phits.html">放射線挙動のシミュレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfd.html">CFDプラグイン(ROV／UAVのシミュレーション)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netem.html">NetEmプラグイン(通信障害効果の設定)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image.html">VisualEffectプラグイン(カメラ画像のシミュレーション)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motion.html">MotionCaptureプラグイン(ロボットの移動経路の記録・表示)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision.html">CollisionSeqプラグイン(干渉の可視化・記録)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="status.html">JoystickStartプラグイン(ジョイスティック状態の表示)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">JoyStickStartプラグイン(ジョイスティック状態の記録)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joystick.html">JoystickStartプラグイン(シミュレーションの操作)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explorer.html">FileExplorerプラグイン(ボディアイテムのファイル表示)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bookmark.html">Bookmarkプラグイン(プロジェクトのブックマーク登録)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html">Bookmarkプラグイン(プロジェクトの履歴表示・読み込み)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipe.html">BodyEditプラグイン(パイプモデルの生成)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grating.html">BodyEditプラグイン(グレーチングモデルの生成)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slope.html">BodyEditプラグイン(スロープモデルの生成)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terrain.html">BodyEditプラグイン(ボックステレインモデルの生成)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crawler.html">BodyEditプラグイン(クローラロボットモデルの生成)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inertia.html">BodyEditプラグイン(慣性モーメントの計算)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ikplanner.html">IKPlannerプラグイン(経路の生成)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phits.html">PHITSプラグイン(放射線挙動のシミュレーション)</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
@@ -189,10 +189,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="joystick.html" title="シミュレーションの操作"
+          <a href="joystick.html" title="JoystickStartプラグイン(シミュレーションの操作)"
              >next</a> |</li>
         <li class="right" >
-          <a href="status.html" title="ジョイスティック状態の表示"
+          <a href="status.html" title="JoystickStartプラグイン(ジョイスティック状態の表示)"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >拡張機能</a> &#187;</li> 
