@@ -1,0 +1,216 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>実行 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="関連論文" href="../../paper/index.html" />
+    <link rel="prev" title="準備" href="preparation.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../paper/index.html" title="関連論文"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="preparation.html" title="準備"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >ROSとの連携</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">kinova-ros連携版 Gen2チュートリアル</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>実行<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは，予め用意している <a class="reference external" href="http://wiki.ros.org/roslaunch">launchファイル</a> を使って”Gen2”モデルをROSのPub/Sub機能を用いて動かします。</p>
+<div class="section" id="id2">
+<h2>起動<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>下記のコマンドでサンプルを起動することができます。</p>
+<p>関節位置制御（Joint Position Control）の場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">choreonoid_ros_gen2</span> <span class="n">gen2_joint</span><span class="o">.</span><span class="n">launch</span>
+</pre></div>
+</div>
+<p>デカルト位置制御（Cartesian Position Control）の場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">choreonoid_ros_gen2</span> <span class="n">gen2_cartesian</span><span class="o">.</span><span class="n">launch</span>
+</pre></div>
+</div>
+<p>サンプルを起動すると、下図の仮想ジョイスティックノードが同時に起動します。起動時すると、下図の操作画面が表示されます。</p>
+<blockquote>
+<div><img alt="../../_images/joystick_01.png" src="../../_images/joystick_01.png" />
+</div></blockquote>
+</div>
+<div class="section" id="gen2">
+<h2>関節位置制御によるGen2の操作<a class="headerlink" href="#gen2" title="Permalink to this headline">¶</a></h2>
+<p>gen2_joint.launchを起動して、関節位置制御でGen2を操作する場合は、画面左の「Angular」ボタンをクリックします。ボタンをクリックすると、下図の画面が表示されます。</p>
+<blockquote>
+<div><img alt="../../_images/joystick_01.png" src="../../_images/joystick_01.png" />
+</div></blockquote>
+<p>画面内の項目は以下のようになっています。</p>
+<blockquote>
+<div><ul class="simple">
+<li>Angular control: 「＋」または「−」のボタンをクリックすることで、Gen2の各関節を動かすことができます。</li>
+<li>Angular velocity: Gen2の各関節の角速度を指定できます。</li>
+<li>Gripper: グリッパを開閉する信号を送信します。</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Gripperの項目は、実機のGen2を操作するためのものです。そのため、シミュレーション中にボタンをクリックすると、実機からの応答待ち状態となり、画面が操作できなくなりますのでご注意ください。</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>デカルト位置制御によるGen2の操作<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>gen2_cartesian.launchを起動して、デカルト位置制御でGen2を操作する場合は、画面左の「Cartesian」ボタンをクリックします。ボタンをクリックすると、下図の画面が表示されます。</p>
+<blockquote>
+<div><img alt="../../_images/joystick_1.png" src="../../_images/joystick_1.png" />
+</div></blockquote>
+<p>画面内の項目は以下のようになっています。</p>
+<blockquote>
+<div><ul class="simple">
+<li>Translation: ボタンをクリックすることで、Gen2の手先をデカルト座標系のX、Y、Z軸に沿って動かすことができます。</li>
+<li>Orientation: ボタンをクリックすることで、Gen2の手先をGen2の手先のローカル座標を基準にして回転させることができます。</li>
+<li>Cartesian velocity: Gen2の手先の並進速度、角速度を指定できます。</li>
+<li>Gripper: グリッパを開閉する信号を送信します。</li>
+</ul>
+</div></blockquote>
+<p>操作を始める際は、Cartesian velocityに任意の速度に設定してください。（安全のために初期値が0に設定されています。)</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Cartesian velocityの項目内の「Home」ボタンは、実機のGen2を操作するためのものです。そのため、シミュレーション中にボタンをクリックすると、実機からの応答待ち状態となり、画面が操作できなくなりますのでご注意ください。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Gripperの項目は、実機のGen2を操作するためのものです。そのため、シミュレーション中にボタンをクリックすると、実機からの応答待ち状態となり、画面が操作できなくなりますのでご注意ください。</p>
+</div>
+<p>また、デカルト位置制御でGen2を操作する場合は、ジョイスティックを利用することもできます。ジョイスティックを利用する場合は、画面左の「Joystick」ボタンをクリックします。ボタンをクリックすると、下図の画面が表示されます。</p>
+<blockquote>
+<div><img alt="../../_images/joystick_2.png" src="../../_images/joystick_2.png" />
+</div></blockquote>
+<p>画面内の項目は以下のようになっています。</p>
+<blockquote>
+<div><ul class="simple">
+<li>Translation: Gen2の手先をデカルト座標系のX、Y、Z軸に沿って動かすことができます。</li>
+<li>Orientation: Gen2の手先をGen2の手先のローカル座標を基準にして回転させることができます。</li>
+<li>Cartesian velocity: Gen2の手先の並進速度、角速度を指定できます。</li>
+<li>Gripper: グリッパを開閉する信号を送信します。</li>
+</ul>
+</div></blockquote>
+<p>操作を始める際は、Cartesian velocityに任意の速度に設定してください。（安全のために初期値が0に設定されています。)</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Cartesian velocityの項目内の「Home」ボタンは、実機のGen2を操作するためのものです。そのため、シミュレーション中にボタンをクリックすると、実機からの応答待ち状態となり、画面が操作できなくなりますのでご注意ください。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Gripperの項目は、実機のGen2を操作するためのものです。そのため、シミュレーション中にボタンをクリックすると、実機からの応答待ち状態となり、画面が操作できなくなりますのでご注意ください。</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension/index.html">拡張機能</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ROSとの連携</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">HAIROWorldプラグインとROSの連携</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build.html">HAIROWorldプラグイン関連パッケージのビルド</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../example.html">サンプルの実行</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">kinova-ros連携版 Gen2チュートリアル</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../paper/index.html" title="関連論文"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="preparation.html" title="準備"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >ROSとの連携</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >kinova-ros連携版 Gen2チュートリアル</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

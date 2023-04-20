@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>準備 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="実行" href="example1.html" />
+    <link rel="prev" title="kinova-ros連携版 Gen2チュートリアル" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="example1.html" title="実行"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="kinova-ros連携版 Gen2チュートリアル"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >ROSとの連携</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">kinova-ros連携版 Gen2チュートリアル</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>準備<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="roschoreonoid">
+<h2>ROSとChoreonoid関連パッケージのセットアップ<a class="headerlink" href="#roschoreonoid" title="Permalink to this headline">¶</a></h2>
+<p>本チュートリアルの実施にあたっては、まず <a class="reference external" href="https://choreonoid.org/ja/manuals/latest/ros/install-ros.html">ROSのインストール</a> と <a class="reference external" href="https://choreonoid.org/ja/manuals/latest/ros/build-choreonoid.html">Choreonoid関連パッケージのビルド</a> を行っておく必要があります。これらのページの手順に従ってインストールやビルドを行い、  <a class="reference external" href="https://choreonoid.org/ja/manuals/latest/ros/run-choreonoid.html">ROS環境におけるChoreonoidの実行</a> が実行できることを確認しておいてください。</p>
+<p>なお、 <a class="reference external" href="https://k38-suzuki.github.io/hairo-world-plugin-doc/ros/build.html#id1">パッケージソースの追加</a> については実行する必要はありません。（もちろん、導入されていても特に問題はありません。）</p>
+</div>
+<div class="section" id="choreonoid-ros-gen2">
+<h2>choreonoid_ros_gen2のダウンロードとビルド<a class="headerlink" href="#choreonoid-ros-gen2" title="Permalink to this headline">¶</a></h2>
+<p>本チュートリアルでは、catkinワークスペースまでのパスは “&lt;catkin_ws&gt;” として表記しますので、適宜読み替えてください。なお、ワークスペース自体の名前は”catkin_ws”で無くても問題ありません（例えば”choreonoid_ws”等）。プロジェクトごとにワークスペースを分けてお使いになることをお勧めします。</p>
+<p>まずはcatkinワークスペースの下に”choreonoid_ros_gen2”、”gen2_ros”、”kinova-ros”リポジトリをダウンロード（git clone）します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">catkin_ws</span><span class="o">&gt;/</span><span class="n">src</span>
+<span class="n">cd</span> <span class="o">&lt;</span><span class="n">catkin_ws</span><span class="o">&gt;/</span><span class="n">src</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">k38</span><span class="o">-</span><span class="n">suzuki</span><span class="o">/</span><span class="n">choreonoid_ros_gen2</span><span class="o">.</span><span class="n">git</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">k38</span><span class="o">-</span><span class="n">suzuki</span><span class="o">/</span><span class="n">gen2_ros</span><span class="o">.</span><span class="n">git</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Kinovarobotics</span><span class="o">/</span><span class="n">kinova</span><span class="o">-</span><span class="n">ros</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>最後に、 <a class="reference external" href="http://wiki.ros.org/catkin/commands/catkin_make">catkin_make</a> もしくは、 <a class="reference external" href="https://catkin-tools.readthedocs.io/en/latest/">catkin tools</a> を使ってパッケージのビルドを行いましょう。ここでは、 <a class="reference external" href="https://catkin-tools.readthedocs.io/en/latest/">catkin tools</a> を利用します。:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">&lt;</span><span class="n">catkin_ws</span><span class="o">&gt;</span>
+<span class="n">catkin</span> <span class="n">build</span>
+</pre></div>
+</div>
+<p>以上で、パッケージのダウンロードとビルドまで完了です。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension/index.html">拡張機能</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ROSとの連携</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">HAIROWorldプラグインとROSの連携</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build.html">HAIROWorldプラグイン関連パッケージのビルド</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../example.html">サンプルの実行</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">kinova-ros連携版 Gen2チュートリアル</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="example1.html" title="実行"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="kinova-ros連携版 Gen2チュートリアル"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >ROSとの連携</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >kinova-ros連携版 Gen2チュートリアル</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>&lt;no title&gt; &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>kinova-ros連携版 Gen2チュートリアル &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -15,7 +15,9 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="準備" href="preparation.html" />
+    <link rel="prev" title="サンプルの実行" href="../example.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -23,7 +25,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li> 
+        <li class="right" >
+          <a href="preparation.html" title="準備"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../example.html" title="サンプルの実行"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">ROSとの連携</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -32,7 +41,27 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  
+  <div class="section" id="kinova-ros-gen2">
+<h1>kinova-ros連携版 Gen2チュートリアル<a class="headerlink" href="#kinova-ros-gen2" title="Permalink to this headline">¶</a></h1>
+<p>本チュートリアルでは、HAIROWorldPluginのサンプルモデルのひとつである “Gen2” モデルを対象とし、”kinova-ros”を介して”Gen2”モデルを動かすため方法を説明します．”Gen2”は、Kinova社（カナダ）の多関節ロボットアームで、本チュートリアルで用いる”Gen2”モデルは、Kinova社が公開しているROSパッケージ <a class="reference external" href="https://github.com/Kinovarobotics/kinova-ros">kinova-ros</a> 内にある7自由度のGen2（j2s7s300）のメッシュファイル及びURDFファイルを参考に、ChoreonoidのBodyファイルとして再構成したものです。</p>
+<p>本チュートリアルでは、環境のセットアップと実行方法を説明します。環境のセットアップについて、”Gen2”モデルが必要無い方は「 ROSとの連携 」に戻り、項目の上から順番にお読みください。</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="preparation.html">準備</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="preparation.html#roschoreonoid">ROSとChoreonoid関連パッケージのセットアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preparation.html#choreonoid-ros-gen2">choreonoid_ros_gen2のダウンロードとビルド</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="example1.html">実行</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="example1.html#id2">起動</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example1.html#gen2">関節位置制御によるGen2の操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example1.html#id3">デカルト位置制御によるGen2の操作</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
 
           </div>
         </div>
@@ -40,14 +69,20 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h3><a href="../../index.html">Table Of Contents</a></h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../about/index.html">HAIROWorldPlugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">インストール</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../extension/index.html">拡張機能</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ros/index.html">ROSとの連携</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ROSとの連携</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">HAIROWorldプラグインとROSの連携</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build.html">HAIROWorldプラグイン関連パッケージのビルド</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../example.html">サンプルの実行</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">kinova-ros連携版 Gen2チュートリアル</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../paper/index.html">関連論文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../update/index.html">更新履歴</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
 </ul>
 
 
@@ -95,7 +130,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li> 
+        <li class="right" >
+          <a href="preparation.html" title="準備"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../example.html" title="サンプルの実行"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >ROSとの連携</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
