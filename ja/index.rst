@@ -24,7 +24,17 @@ HAIROWorldPluginマニュアル
 
    about/index
    install/index
-   extension/index
+   cfd/index
+   netem/index
+   visual/index
+   motion/index
+   collision/index
+   phits/index   
+   body/index   
+   file/index
+   bookmark/index
+   joystick/index
+   ompl/index
    ros/index
    paper/index
    update/index

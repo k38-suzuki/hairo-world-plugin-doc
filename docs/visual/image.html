@@ -1,0 +1,312 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>カメラ画像のシミュレーション &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MotionCaptureプラグイン" href="../motion/index.html" />
+    <link rel="prev" title="VisualEffectプラグイン" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../motion/index.html" title="MotionCaptureプラグイン"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="VisualEffectプラグイン"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">VisualEffectプラグイン</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>カメラ画像のシミュレーション<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、ビジュアルエフェクタを使ったカメラ画像のシミュレートの仕方を説明します。</p>
+<div class="section" id="id2">
+<h2>画像ビューの生成<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>ビジュアルエフェクタによって視覚効果が付与されたカメラ画像は、「画像ビュー」に表示されます。
+メインメニューの「表示」-「ビューの表示」-「画像」から画像ビューを生成してください。</p>
+</div>
+<div class="section" id="id3">
+<h2>画像ビューバーの生成<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>シミュレートするカメラの選択とカメラ画像に付与する効果の設定には、画像ビューバーを使用します。メインメニュー「表示」-「ツールバーの表示」-「画像ビューバー」から画像ビューバーを生成してください。</p>
+</div>
+<div class="section" id="id4">
+<h2>ビジュアルエフェクタの作成と設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>シミュレーションの実行主体となるビジュアルエフェクタを生成します。</p>
+<p>ここではChoreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。
+メインメニューの「ファイル」-「新規」-「視覚効果」を選択して生成してください。生成したビジュアルエフェクタは、任意のボディアイテムの子アイテムとして配置します。
+ボディアイテムの子アイテムにビジュアルエフェクタを設定すると、ボディに設定されているカメラ毎にVEImageVisualizerItemが自動生成されます。この自動生成されたアイテムのチェックボックスにチェックしたカメラが、画像ビューバーのコンボボックスに登録されます。
+次に、メインメニューの「ファイル」-「新規」-「GLビジョンシミュレータ」を選択して生成してください。GLビジョンシミュレータはAISTシミュレータアイテムの子アイテムとして配置します。</p>
+</div>
+<div class="section" id="id5">
+<h2>視覚効果の設定<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>ビジュアルエフェクタの子アイテムとして生成されたVEImageVisualizerItemから任意のアイテムを選択し、右クリックをしてください。右クリックをして表示されたポップアップメニューから、「視覚効果」を選択すると以下のダイアログが表示されます。このダイアログで設定したパラメータに基づいてカメラ画像に視覚効果が付与されます。</p>
+<img alt="../_images/image_3.png" src="../_images/image_3.png" />
+<p>ビジュアルエフェクタでは、以下の視覚効果をカメラ画像に付与することができます。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="7%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>色相</td>
+<td>0</td>
+<td>-</td>
+<td>色相を調整します。</td>
+</tr>
+<tr class="row-odd"><td>彩度</td>
+<td>0</td>
+<td>-</td>
+<td>彩度を調整します。</td>
+</tr>
+<tr class="row-even"><td>明度</td>
+<td>0</td>
+<td>-</td>
+<td>明度を調整します。</td>
+</tr>
+<tr class="row-odd"><td>赤</td>
+<td>0</td>
+<td>-</td>
+<td>赤色の輝度を調整します。</td>
+</tr>
+<tr class="row-even"><td>緑</td>
+<td>0</td>
+<td>-</td>
+<td>緑色の輝度を調整します。</td>
+</tr>
+<tr class="row-odd"><td>青</td>
+<td>0</td>
+<td>-</td>
+<td>青色の輝度を調整します。</td>
+</tr>
+<tr class="row-even"><td>歪み</td>
+<td>0</td>
+<td>-</td>
+<td>樽型歪みの度合いを調整します。</td>
+</tr>
+<tr class="row-odd"><td>拡大率</td>
+<td>0</td>
+<td>-</td>
+<td>拡大率を調整します。</td>
+</tr>
+<tr class="row-even"><td>標準偏差</td>
+<td>1</td>
+<td>-</td>
+<td>ガウシアンノイズの度合いを調整します。</td>
+</tr>
+<tr class="row-odd"><td>白色ノイズ</td>
+<td>0</td>
+<td>-</td>
+<td>ゴマ塩ノイズの白色の生成確率を調整します。</td>
+</tr>
+<tr class="row-even"><td>黒色ノイズ</td>
+<td>0</td>
+<td>-</td>
+<td>ゴマ塩ノイズの黒色の生成確率を調整します。</td>
+</tr>
+<tr class="row-odd"><td>反転</td>
+<td>false</td>
+<td>-</td>
+<td>画像の上下と左右を反転します。</td>
+</tr>
+<tr class="row-even"><td>フィルタ</td>
+<td>フィルタなし</td>
+<td>-</td>
+<td>画像に指定したフィルタを適用します。（フィルタなし/ガウシアン3x3/ガウシアン5x5/ソーベル/プリューウィット）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id6">
+<h2>視覚効果エリアの設定<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>視覚効果エリアは、視覚効果を動的に付与するためのアイテムです。メインメニューの「ファイル」-「新規」-「視覚効果エリア」を選択して生成してください。生成した視覚効果エリアは、ワールドアイテムの子アイテムとして配置します。視覚効果エリアを設定することで、ユーザが指定した領域にカメラが設定されたリンクが進入したときに、その領域に進入したカメラに視覚効果が付与されます。</p>
+<p>視覚効果エリアでは、上述のパラメータと以下のパラメータを設定できます。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="10%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>形状</td>
+<td>Box</td>
+<td>-</td>
+<td>視覚効果エリアの形状を指定します。(Box/Cylinder/Sphere)</td>
+</tr>
+<tr class="row-odd"><td>サイズ</td>
+<td>1.0, 1.0, 1.0</td>
+<td>m, m, m</td>
+<td>視覚効果エリアのサイズをXYZで指定します。（形状がBoxの場合のみ）</td>
+</tr>
+<tr class="row-even"><td>半径</td>
+<td>1.0</td>
+<td>m</td>
+<td>視覚効果エリアの半径を指定します。（形状がCylinder・Sphereの場合のみ）</td>
+</tr>
+<tr class="row-odd"><td>高さ</td>
+<td>1.0</td>
+<td>m</td>
+<td>視覚効果エリアの高さを指定します。（形状がCylinderの場合のみ）</td>
+</tr>
+<tr class="row-even"><td>位置</td>
+<td>0, 0, 0</td>
+<td>m, m, m</td>
+<td>視覚効果エリアの位置をXYZで指定します。</td>
+</tr>
+<tr class="row-odd"><td>RPY</td>
+<td>0, 0, 0</td>
+<td>deg, deg, deg</td>
+<td>視覚効果エリアの向きをRoll, Pitch, Yawで指定します。</td>
+</tr>
+<tr class="row-even"><td>拡散色</td>
+<td>0, 0, 0</td>
+<td>-, -, -</td>
+<td>視覚効果エリアの拡散色ををRGBで指定します。</td>
+</tr>
+<tr class="row-odd"><td>透過度</td>
+<td>0</td>
+<td>-</td>
+<td>視覚効果エリアの透過度を指定します。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id7">
+<h2>シミュレーションの実行<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>シミュレーションバーから通常通りシミュレーションを実行してください。任意の画像ビューを選択し、画像ビューバーのコンボボックスからカメラを選択するとカメラ画像が表示されます。
+以下は、歪みを-0.3、拡大率を1.7とした場合のカメラ画像の例です。</p>
+<img alt="../_images/image_4.png" src="../_images/image_4.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">VisualEffectプラグイン</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">カメラ画像のシミュレーション</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../collision/index.html">CollisionSeqプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyEditプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file/index.html">FileExplorerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">JoyStickStartプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../motion/index.html" title="MotionCaptureプラグイン"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="VisualEffectプラグイン"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >VisualEffectプラグイン</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>
