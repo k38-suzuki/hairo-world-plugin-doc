@@ -37,6 +37,7 @@ HAIROWorldPluginマニュアル
    ompl/index
    ros/index
    paper/index
+   tips/index
    update/index
    en/index
 
