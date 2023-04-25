@@ -84,10 +84,10 @@
 <div class="section" id="cmake">
 <h3>CMake によるビルド設定<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h3>
 <p>まず、cmakeコマンドを使ってMakefileを更新します。Qtcappのビルドディレクトリ上で</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">..</span> <span class="o">-</span><span class="n">DUSE_CATKIN_MAKE</span><span class="o">=</span><span class="n">OFF</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">..</span>
 </pre></div>
 </div>
-<p>を実行すると、必要なライブラリをチェックしMakefileを更新します。(cmakeコマンドのあとのピリオドに注意してください。）”-DUSE_CATKIN_MAKE=OFF”は、qtcappを単体でビルドするためのビルドオプションです。</p>
+<p>を実行すると、必要なライブラリをチェックしMakefileを更新します。(cmakeコマンドのあとのピリオドに注意してください。）</p>
 </div>
 <div class="section" id="id5">
 <h3>ビルド<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
@@ -317,7 +317,7 @@
 </div>
 <div class="section" id="ros-qtcapp-node">
 <h3>ROSノード(qtcapp_node)の起動<a class="headerlink" href="#ros-qtcapp-node" title="Permalink to this headline">¶</a></h3>
-<p>ROSマスターを起動した端末とは別の端末を開いて以下を入力し、QtcappのROSノード(qtcapp_node)を起動します。</p>
+<p>ROSマスターを起動した端末とは別の端末を起動して以下を入力し、QtcappのROSノード(qtcapp_node)を起動します。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosrun</span> <span class="n">qtcapp</span> <span class="n">qtcapp_node</span>
 </pre></div>
 </div>
