@@ -50,9 +50,9 @@ CMake によるビルド設定
 
 まず、cmakeコマンドを使ってMakefileを更新します。Qtcappのビルドディレクトリ上で ::
 
- cmake ..
+ cmake .. -DUSE_CATKIN_MAKE=OFF
 
-を実行すると、必要なライブラリをチェックしMakefileを更新します。(cmakeコマンドのあとのピリオドに注意してください。）
+を実行すると、必要なライブラリをチェックしMakefileを更新します。(cmakeコマンドのあとのピリオドに注意してください。）"-DUSE_CATKIN_MAKE=OFF"は、qtcappを単体でビルドするためのビルドオプションです。
 
 ビルド
 ~~~~~~
