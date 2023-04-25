@@ -84,10 +84,10 @@
 <div class="section" id="cmake">
 <h3>CMake によるビルド設定<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h3>
 <p>まず、cmakeコマンドを使ってMakefileを更新します。Qtcappのビルドディレクトリ上で</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">..</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">..</span> <span class="o">-</span><span class="n">DUSE_CATKIN_MAKE</span><span class="o">=</span><span class="n">OFF</span>
 </pre></div>
 </div>
-<p>を実行すると、必要なライブラリをチェックしMakefileを更新します。(cmakeコマンドのあとのピリオドに注意してください。）</p>
+<p>を実行すると、必要なライブラリをチェックしMakefileを更新します。(cmakeコマンドのあとのピリオドに注意してください。）”-DUSE_CATKIN_MAKE=OFF”は、qtcappを単体でビルドするためのビルドオプションです。</p>
 </div>
 <div class="section" id="id5">
 <h3>ビルド<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
