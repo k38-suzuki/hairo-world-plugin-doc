@@ -308,18 +308,15 @@
 <p>すると端末起動時に自動でこのファイルが実行され、設定が読み込まれるようになります。</p>
 <p>初回ビルド時はまだこの設定が取り込まれていませんので、端末を起動し直すか、上記のコマンドをコマンドラインから直接入力して、設定を反映させるようにしてください。</p>
 </div>
-<div class="section" id="id18">
-<h3>ROSマスターの起動<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
-<p>端末を開いて以下を入力し、ROSマスターを起動します。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roscore</span>
-</pre></div>
-</div>
-</div>
 <div class="section" id="ros-qtcapp-node">
 <h3>ROSノード(qtcapp_node)の起動<a class="headerlink" href="#ros-qtcapp-node" title="Permalink to this headline">¶</a></h3>
-<p>ROSマスターを起動した端末とは別の端末を起動して以下を入力し、QtcappのROSノード(qtcapp_node)を起動します。</p>
+<p>端末を開いて以下を入力し、QtcappのROSノード(qtcapp_node)を起動します。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosrun</span> <span class="n">qtcapp</span> <span class="n">qtcapp_node</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">通常、ROSノードを起動する際にはROSマスター(roscore)を起動しますが、QtcappのROSノードはトピック通信等を行わないため、ROSマスターを起動しなくても起動できます。</p>
 </div>
 </div>
 </div>
