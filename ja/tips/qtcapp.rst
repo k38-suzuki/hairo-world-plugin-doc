@@ -50,9 +50,9 @@ CMake によるビルド設定
 
 まず、cmakeコマンドを使ってMakefileを更新します。Qtcappのビルドディレクトリ上で ::
 
- cmake .. -DUSE_CATKIN_MAKE=OFF
+ cmake ..
 
-を実行すると、必要なライブラリをチェックしMakefileを更新します。(cmakeコマンドのあとのピリオドに注意してください。）"-DUSE_CATKIN_MAKE=OFF"は、qtcappを単体でビルドするためのビルドオプションです。
+を実行すると、必要なライブラリをチェックしMakefileを更新します。(cmakeコマンドのあとのピリオドに注意してください。）
 
 ビルド
 ~~~~~~
@@ -291,7 +291,7 @@ ROSマスターの起動
 ROSノード(qtcapp_node)の起動
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-ROSマスターを起動した端末とは別の端末を開いて以下を入力し、QtcappのROSノード(qtcapp_node)を起動します。 ::
+ROSマスターを起動した端末とは別の端末を起動して以下を入力し、QtcappのROSノード(qtcapp_node)を起動します。 ::
 
  rosrun qtcapp qtcapp_node
 
