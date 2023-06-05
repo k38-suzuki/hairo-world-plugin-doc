@@ -12,12 +12,12 @@ choreonoid_ros_gen2のダウンロードとビルド
 
 本チュートリアルでは、catkinワークスペースまでのパスは "<catkin_ws>" として表記しますので、適宜読み替えてください。なお、ワークスペース自体の名前は"catkin_ws"で無くても問題ありません（例えば"choreonoid_ws"等）。プロジェクトごとにワークスペースを分けてお使いになることをお勧めします。
                
-まずはcatkinワークスペースの下に"choreonoid_ros_gen2"、"gen2_ros"、"kinova-ros"リポジトリをダウンロード（git clone）します。 ::
+まずはcatkinワークスペースの下に"choreonoid_ros_gen2"、"rqt_gen2_plugin"、"kinova-ros"リポジトリをダウンロード（git clone）します。 ::
 
  mkdir -p <catkin_ws>/src
  cd <catkin_ws>/src
  git clone https://github.com/k38-suzuki/choreonoid_ros_gen2.git
- git clone https://github.com/k38-suzuki/gen2_ros.git
+ git clone https://github.com/k38-suzuki/rqt_gen2_plugin.git
  git clone https://github.com/Kinovarobotics/kinova-ros.git
 
 最後に、 `catkin_make <http://wiki.ros.org/catkin/commands/catkin_make>`_ もしくは、 `catkin tools <https://catkin-tools.readthedocs.io/en/latest/>`_ を使ってパッケージのビルドを行いましょう。ここでは、 `catkin tools <https://catkin-tools.readthedocs.io/en/latest/>`_ を利用します。::
