@@ -79,7 +79,7 @@
 <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span>    <span class="n">ALL</span><span class="o">=</span><span class="n">NOPASSWD</span><span class="p">:</span> <span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">rmmod</span>
 </pre></div>
 </div>
-<p>&lt;username&gt;は、使用しているユーザ名です。これは、Qtcapp内で利用しているルート権限を要するコマンド(modprobe, ip等)をパスワードなしで実行するための設定です。これにより、”Apply”ボタン押下時にパスワードの入力が求められないようにしています。</p>
+<p>&lt;username&gt;は、使用しているユーザ名です。これは、Qtcapp内で利用しているルート権限を要するコマンド(modprobe, ip等)をパスワードなしで実行するための設定です。これにより、”Start”ボタン押下時にパスワードの入力が求められないようにしています。</p>
 </div>
 <div class="section" id="cmake">
 <h3>CMake によるビルド設定<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h3>
@@ -141,21 +141,12 @@
 <span class="o">./</span><span class="n">build</span><span class="o">/</span><span class="n">qtcapp</span>
 </pre></div>
 </div>
-<p>起動すると以下のようなQtcappのメインウィンドウが表示されます。</p>
-<img alt="../_images/start_0.png" src="../_images/start_0.png" />
-<p>メインウィンドウの位置やサイズの変更、最小化、最大化といった基本操作は、OSのウィンドウシステムの流儀に従って操作できるようになっています。</p>
-<p>メインメニューからは各種操作や設定にメニュー形式でアクセスできます。メニュー項目は、「File」、「Edit」、「View」、「Option」、「Help」といったカテゴリごとにまとめられています。</p>
+<p>起動すると以下のようなQtcappの画面が表示されます。</p>
+<img alt="../_images/qtcapp_0.png" src="../_images/qtcapp_0.png" />
+<p>画面の位置やサイズの変更、最小化、最大化といった基本操作は、OSのウィンドウシステムの流儀に従って操作できるようになっています。</p>
+</div>
 <div class="section" id="id8">
-<h3>コマンドライン引数による設定ファイルの指定<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-<p>Qtcapp起動時に設定ファイルを読み込んだ状態にすることも可能です。これを行うためには、Qtcapp起動時にコマンドライン引数で設定ファイル（.qtc）を指定します。例えば、カレントディレクトリにある”setting1.qtc”という設定ファイルを読み込む場合は、</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qtcapp</span> <span class="n">setting1</span><span class="o">.</span><span class="n">qtc</span>
-</pre></div>
-</div>
-<p>といったかたちで指定すればOKです。コマンドラインに慣れていれば、この方法によって設定ファイルの読み込みを効率的に行うことができます。</p>
-</div>
-</div>
-<div class="section" id="id9">
-<h2>操作方法<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<h2>操作方法<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <p>ここではQtcappの操作方法について解説します。</p>
 <p>Qtcappでは以下のパラメータを設定できます。</p>
 <table border="1" class="colwidths-given docutils">
@@ -234,40 +225,36 @@
 </ul>
 </dd>
 </dl>
+<div class="section" id="id9">
+<h3>設定の反映と解除<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>設定を入力し、“Start”ボタンを押すと、設定が反映されます。“Stop”ボタンを押すと、設定が解除されます。</p>
+</div>
+</div>
 <div class="section" id="id10">
-<h3>設定の反映と解除<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
-<p>設定を入力し、“Apply”ボタンを押すと、設定が反映されます。設定が反映されている間は、ボタンの色が以下の図のように赤色になります。</p>
-<img alt="../_images/execute_0.png" src="../_images/execute_0.png" />
-<p>“Apply”ボタンをもう１度押すと、設定が解除されます。</p>
-</div>
-</div>
-<div class="section" id="id11">
-<h2>設定の読み込みと保存<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<h2>設定の読み込みと保存<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
 <p>ここでは、設定したパラメータの読み込みと保存の仕方を説明します。</p>
-<div class="section" id="id12">
-<h3>設定の読み込み<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>設定の読み込み<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>以下の手順で設定を読み込みます。</p>
 <ol class="arabic simple">
-<li>メニューの「File」を開く。</li>
-<li>「Import」を選択する。</li>
+<li>「Open」ボタン（フォルダのアイコン）を押す。</li>
 <li>表示されるダイアログでファイルを選択する。</li>
 <li>ダイアログの「Open」ボタンを押す。</li>
 </ol>
 </div>
-<div class="section" id="id13">
-<h3>設定の保存<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3>設定の保存<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p>以下の手順で設定を保存します。</p>
-<ol class="arabic simple">
-<li>メニューの「File」を開く。</li>
-<li>「Export」を選択する。</li>
+<ol class="arabic simple" start="2">
+<li>「Save」ボタン（ストレージのアイコン）を押す。</li>
 <li>表示されるダイアログにファイル名を入力する。</li>
 <li>ダイアログの「Save」ボタンを押す。</li>
 </ol>
 </div>
 </div>
-<div class="section" id="id14">
-<h2>終了方法<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
-<p>Qtcappを終了させたいときは、メインウィンドウのクローズボタンを押すか、メインメニューの「File」-「Quit」を実行して終了させます。端末からQtcappを起動した場合は、端末上で “Ctrl + C” を入力して終了させることもできます。</p>
+<div class="section" id="id13">
+<h2>終了方法<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>Qtcappを終了させたいときは、メインウィンドウのクローズボタンを押して終了させます。端末からQtcappを起動した場合は、端末上で “Ctrl + C” を入力して終了させることもできます。</p>
 </div>
 <div class="section" id="ros">
 <h2>ROSとの連携<a class="headerlink" href="#ros" title="Permalink to this headline">¶</a></h2>
@@ -283,23 +270,23 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id15">
-<h3>パッケージソースの追加<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>パッケージソースの追加<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <p>作成したワークスペースの “src” ディレクトリ内に、Qtcappのソースコードリポジトリをクローンします。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span>
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">k38</span><span class="o">-</span><span class="n">suzuki</span><span class="o">/</span><span class="n">qtcapp</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id16">
-<h3>ビルド<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>ビルド<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>ワークスペースのトップディレクトリ(例：catkin_ws以下)で、以下のコマンドでビルドします。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catkin_make</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id17">
-<h3>ワークスペースセットアップスクリプトの取り込み<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>ワークスペースセットアップスクリプトの取り込み<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <p>ビルドをすると、 ワークスペースのdevelディレクトリに “setup.bash” というファイルが生成されます。このスクリプトに記述されている設定は、ワークスペース内のパッケージを実行したりする際に必要となりますので、デフォルトで実行されるようにしておきます。通常はホームディレクトリの .bashrc ファイルに</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>source $HOME/catkin_ws/devel/setup.bash
 </pre></div>
