@@ -52,16 +52,16 @@
 <div class="section" id="id4">
 <h2>ダウンロードとビルド<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>本チュートリアルでは、catkinワークスペースまでのパスは “&lt;catkin_ws&gt;” として表記しますので、適宜読み替えてください。なお、ワークスペース自体の名前は”catkin_ws”で無くても問題ありません（例えば”choreonoid_ws”等）。プロジェクトごとにワークスペースを分けてお使いになることをお勧めします。</p>
-<p>まずはcatkinワークスペースの下に、”rqt_gen2_plugin”、”kinova-ros”リポジトリをダウンロード（git clone）します。</p>
+<p>まずはcatkinワークスペースの下に、”choreonoid_ros_gen2”、”kinova-ros”リポジトリをダウンロード（git clone）します。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">catkin_ws</span><span class="o">&gt;/</span><span class="n">src</span>
 <span class="n">cd</span> <span class="o">&lt;</span><span class="n">catkin_ws</span><span class="o">&gt;/</span><span class="n">src</span>
-<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">k38</span><span class="o">-</span><span class="n">suzuki</span><span class="o">/</span><span class="n">rqt_gen2_plugin</span><span class="o">.</span><span class="n">git</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">k38</span><span class="o">-</span><span class="n">suzuki</span><span class="o">/</span><span class="n">choreonoid_ros_gen2</span><span class="o">.</span><span class="n">git</span>
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Kinovarobotics</span><span class="o">/</span><span class="n">kinova</span><span class="o">-</span><span class="n">ros</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 <p>最後に、 <a class="reference external" href="http://wiki.ros.org/catkin/commands/catkin_make">catkin_make</a> もしくは、 <a class="reference external" href="https://catkin-tools.readthedocs.io/en/latest/">catkin tools</a> を使ってパッケージのビルドを行いましょう。ここでは、 <a class="reference external" href="https://catkin-tools.readthedocs.io/en/latest/">catkin tools</a> を利用します。:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">&lt;</span><span class="n">catkin_ws</span><span class="o">&gt;</span>
-<span class="n">catkin</span> <span class="n">build</span> <span class="o">-</span><span class="n">DBUILD_ROS_GEN2_SAMPLE</span><span class="o">=</span><span class="n">ON</span>
+<span class="n">catkin</span> <span class="n">build</span>
 </pre></div>
 </div>
 <p>以上で、パッケージのダウンロードとビルドまで完了です。</p>

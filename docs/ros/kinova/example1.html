@@ -44,29 +44,14 @@
             
   <div class="section" id="id1">
 <h1>実行<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>ここでは，予め用意している <a class="reference external" href="http://wiki.ros.org/roslaunch">launchファイル</a> を使って”Gen2”モデルをROSのPub/Sub機能を用いて動かします。</p>
+<p>ここでは，予め用意している <a class="reference external" href="http://wiki.ros.org/roslaunch">launchファイル</a> について説明します。</p>
 <div class="section" id="joint-position-control-gen2">
 <h2>関節位置制御（Joint Position Control）によるGen2の操作<a class="headerlink" href="#joint-position-control-gen2" title="Permalink to this headline">¶</a></h2>
 <p>関節位置制御でGen2を操作する場合、下記のコマンドでサンプルを起動することができます。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">choreonoid_ros_gen2</span> <span class="n">gen2_joint</span><span class="o">.</span><span class="n">launch</span>
 </pre></div>
 </div>
-<p>gen2_joint.launchを起動すると、Choreonoidと下図の操作画面が同時に表示されます。</p>
-<blockquote>
-<div><img alt="../../_images/gen2_0.png" src="../../_images/gen2_0.png" />
-</div></blockquote>
-<p>画面内の項目は以下のようになっています。</p>
-<blockquote>
-<div><ul class="simple">
-<li>Angular control: 「＋」または「−」のボタンをクリックすることで、Gen2の各関節を動かすことができます。</li>
-<li>Angular velocity: Gen2の各関節の角速度を指定できます。</li>
-<li>Gripper: グリッパを開閉する信号を送信します。</li>
-</ul>
-</div></blockquote>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Gripperの項目は、実機のGen2を操作するためのものです。そのため、シミュレーション中にボタンをクリックすると、実機からの応答待ち状態となり、画面が操作できなくなりますのでご注意ください。</p>
-</div>
+<p>gen2_joint.launchを起動すると、Choreonoidが起動し、関節位置制御でGen2を動かせる状態になります。kinova-rosパッケージで定義されているkinova_msgs::JointVelocityのトピックをパブリッシュすることで、Gen2の各関節の速度を指定できます。</p>
 </div>
 <div class="section" id="cartesian-position-control-gen2">
 <h2>デカルト位置制御（Cartesian Position Control）によるGen2の操作<a class="headerlink" href="#cartesian-position-control-gen2" title="Permalink to this headline">¶</a></h2>
@@ -74,60 +59,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">choreonoid_ros_gen2</span> <span class="n">gen2_cartesian</span><span class="o">.</span><span class="n">launch</span>
 </pre></div>
 </div>
-<p>gen2_cartesian.launchを起動すると、Choreonoidと下図の操作画面が同時に表示されます。</p>
-<blockquote>
-<div><img alt="../../_images/gen2_1.png" src="../../_images/gen2_1.png" />
-</div></blockquote>
-<p>画面内の項目は以下のようになっています。</p>
-<blockquote>
-<div><ul class="simple">
-<li>Translation: ボタンをクリックすることで、Gen2の手先をデカルト座標系のX、Y、Z軸に沿って動かすことができます。</li>
-<li>Orientation: ボタンをクリックすることで、Gen2の手先をGen2の手先のローカル座標を基準にして回転させることができます。</li>
-<li>Cartesian velocity: Gen2の手先の並進速度、角速度を指定できます。</li>
-<li>Gripper: グリッパを開閉する信号を送信します。</li>
-</ul>
-</div></blockquote>
-<p>操作を始める際は、Cartesian velocityに任意の速度に設定してください。（安全のために初期値が0に設定されています。)</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Cartesian velocityの項目内の「Home」ボタンは、実機のGen2を操作するためのものです。そのため、シミュレーション中にボタンをクリックすると、実機からの応答待ち状態となり、画面が操作できなくなりますのでご注意ください。</p>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Gripperの項目は、実機のGen2を操作するためのものです。そのため、シミュレーション中にボタンをクリックすると、実機からの応答待ち状態となり、画面が操作できなくなりますのでご注意ください。</p>
-</div>
-</div>
-<div class="section" id="gen2">
-<h2>ジョイスティックによるGen2の操作<a class="headerlink" href="#gen2" title="Permalink to this headline">¶</a></h2>
-<p>ジョイスティックでGen2を操作する場合、下記のコマンドでサンプルを起動することができます。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">choreonoid_ros_gen2</span> <span class="n">gen2_joystick</span><span class="o">.</span><span class="n">launch</span>
-</pre></div>
-</div>
-<p>gen2_cartesian.launchを起動すると、Choreonoidと下図の操作画面が同時に表示されます。</p>
-<blockquote>
-<div><img alt="../../_images/gen2_2.png" src="../../_images/gen2_2.png" />
-</div></blockquote>
-<p>画面内の項目は以下のようになっています。</p>
-<blockquote>
-<div><ul class="simple">
-<li>Cartesian velocity: Gen2の手先の並進速度、角速度を指定できます。</li>
-<li>Gripper: グリッパを開閉する信号を送信します。</li>
-</ul>
-</div></blockquote>
-<p>操作を始める際は、Cartesian velocityに任意の速度に設定してください。（安全のために初期値が0に設定されています。)</p>
-<p>Gen2の操作方法は以下のとおりです。</p>
-<p>DUALSHOCK 4の場合</p>
-<blockquote>
-<div><ul class="simple">
-<li>左スティック(L_STICK) -&gt;　Gen2の操作（Translation mode: Gen2の手先の並進(X, Y), Wrist mode: Gen2の手先の回転(Pitch, Yaw)）</li>
-<li>方向キー（十字キー） -&gt; Gen2の操作（Translation mode: Gen2の手先の並進(Z), Wrist mode: Gen2の手先の回転(Roll)）</li>
-<li>○ボタン -&gt; Translation modeとWrist modeの切り替え</li>
-</ul>
-</div></blockquote>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Gripperの項目は、実機のGen2を操作するためのものです。そのため、シミュレーション中にボタンをクリックすると、実機からの応答待ち状態となり、画面が操作できなくなりますのでご注意ください。</p>
-</div>
+<p>gen2_cartesian.launchを起動すると、Choreonoidが起動し、デカルト位置制御でGen2を動かせる状態になります。kinova-rosパッケージで定義されているkinova_msgs::PoseVelocityのトピックをパブリッシュすることで、Gen2の手先の位置・姿勢を指定できます。</p>
 </div>
 </div>
 
