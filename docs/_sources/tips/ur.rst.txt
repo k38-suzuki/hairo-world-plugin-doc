@@ -7,7 +7,7 @@ URロボットは、`ユニバーサルロボット <https://www.universal-robot
 
 ビルド方法
 ----------
-本サンプルのビルドは、HAIROWorldPluginのビルドと同時に行われます。HAIROWorldPluginのビルドが完了していない場合は、 `ソースコードからのビルドとインストール <https://k38-suzuki.github.io/hairo-world-plugin-doc/install/install.html>`_ を参照してください。
+本サンプルのビルドは、HAIROWorldPluginのビルドと同時に行われます。HAIROWorldPluginのビルドが完了していない場合は、 `ソースコードからのビルドとインストール <https://k38-suzuki.github.io/hairo-world-plugin-doc/install/install.html>`_ を参照して、HAIROWorldPluginをビルドしてください。
 
 サンプルプロジェクトの紹介
 --------------------------
