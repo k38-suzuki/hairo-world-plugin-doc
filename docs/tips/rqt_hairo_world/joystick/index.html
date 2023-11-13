@@ -1,0 +1,229 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Joy Publisher &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="joy-publisher">
+<h1>Joy Publisher<a class="headerlink" href="#joy-publisher" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、Joy Publisherの使い方を説明します。Joy Publisherは、PCに接続されているゲームパッドの各軸、各ボタンの状態をROSのsensor_mgs/Joyに格納して、トピックをパブリッシュするrqtの拡張機能です。</p>
+<img alt="../../../_images/joystick.png" src="../../../_images/joystick.png" />
+<div class="section" id="id1">
+<h2>Joy Publisherの起動<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Joy Publisherを起動する手順は次のとおりです。</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>メインメニュー「Plugins」-「Topics」-「Joy Publisher」を選択する</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h2>トピックのパブリッシュ<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>トピックをパブリッシュする手順は次のとおりです。</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>ツールバーのボタン（電波のアイコン）を押してトピックのパブリッシュを開始する（もう一度押すとパブリッシュが停止する）</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>Joy Publisherの設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Joy Publisherでは、以下の設定をすることができます。</p>
+<img alt="../../../_images/joystick_config.png" src="../../../_images/joystick_config.png" />
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="10%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Device</td>
+<td>/dev/input/js0</td>
+<td>-</td>
+<td>使用するゲームパッド（デバイス）を指定します</td>
+</tr>
+<tr class="row-odd"><td>Topic</td>
+<td>joy</td>
+<td>-</td>
+<td>パブリッシュするトピック名を指定します</td>
+</tr>
+<tr class="row-even"><td>Timestep</td>
+<td>0.010</td>
+<td>s</td>
+<td>sensor_mgs/Joyのバッファの計算に使用します。バッファのサイズは、下記のBuffer/Timestepで計算されます</td>
+</tr>
+<tr class="row-odd"><td>Buffer</td>
+<td>0.000</td>
+<td>s</td>
+<td>sensor_mgs/Joyのバッファの計算に使用します。指定した時間だけトピックが遅れてパブリッシュされます</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h2>キーの設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>Joy Publisherでは、以下の設定を変更することができます。</p>
+<img alt="../../../_images/joystick_setup.png" src="../../../_images/joystick_setup.png" />
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="10%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ</th>
+<th class="head">デフォルト値</th>
+<th class="head">単位</th>
+<th class="head">意味</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ID</td>
+<td>ゲームパッド毎の初期ID</td>
+<td>-</td>
+<td>軸またはボタンのIDを指定（割付けを変更）します。</td>
+</tr>
+<tr class="row-odd"><td>Max</td>
+<td>1.00</td>
+<td>-</td>
+<td>軸の入力をしたときの最小値/最大値の絶対値を指定します。1.0のときに最小値/最大値は-1.0/1.0、0.5のときに-0.5/0.5となります</td>
+</tr>
+<tr class="row-even"><td>Dead zone</td>
+<td>0</td>
+<td>%</td>
+<td>軸の入力をしたときの不感帯の範囲を指定します。0.5のときに不感帯は50%となります</td>
+</tr>
+<tr class="row-odd"><td>Reverse</td>
+<td>unchecked</td>
+<td>-</td>
+<td>軸の入力をしたときの値の正負を反転します</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id5">
+<h2>仮想ジョイスティックの利用<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>PCにゲームパッドが接続されていない場合、以下の仮想ジョイスティックを利用してゲームパッドの各軸、各ボタンの入力をすることができます。仮想ジョイスティックは、画面上のボタンをマウスを使ってクリックするか、画面上のボタンに表示されているアルファベットまたは記号のキーをキーボードから入力することで使用します。なお、キーボードから入力するときは、仮想ジョイスティックの画面をアクティブにしてください。</p>
+<img alt="../../../_images/virtual_joystick.png" src="../../../_images/virtual_joystick.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../visual/index.html">VisualEffectプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../collision/index.html">CollisionSeqプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../body/index.html">BodyEditプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../file/index.html">FileExplorerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../joystick/index.html">JoyStickStartプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros/index.html">ROSとの連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>
