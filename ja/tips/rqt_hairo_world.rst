@@ -14,3 +14,4 @@ rqt_hairo_world
    rqt_hairo_world/netem/index
    rqt_hairo_world/ping/index
    rqt_hairo_world/ur/index
+   rqt_hairo_world/jackal/index
