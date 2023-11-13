@@ -7,3 +7,4 @@
 
    qtcapp
    ur
+..   rqt_hairo_world

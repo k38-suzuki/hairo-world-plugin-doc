@@ -1,0 +1,199 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>MinIO Client &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="minio-client">
+<h1>MinIO Client<a class="headerlink" href="#minio-client" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、MinIO Clientの使い方を説明します。MinIO Clientは、オブジェクトストレージMinIOのオブジェクトを操作するrqtの拡張機能です。</p>
+<img alt="../../../_images/minio_client.png" src="../../../_images/minio_client.png" />
+<div class="section" id="id1">
+<h2>MinIO Clientの起動<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>MinIO Clientを起動する手順は次のとおりです。</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>メインメニュー「Plugins」-「Miscellaneous Tools」-「MinIO Client」を選択する</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h2>ユーザ情報の認証<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>MinIOのサーバに接続するためのユーザ情報を設定します。ユーザ情報を設定する手順は次のとおりです。</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>画面右上のボタン（ディスプレイがロックされているアイコン）を押す</li>
+<li>表示されたダイアログにUser、Password、Endpointを入力する</li>
+<li>ダイアログのOkボタンを押す</li>
+</ol>
+</div></blockquote>
+<p>MinIOのサーバのUser、Passwordの初期値は「minioadmin」です。EndpointはMinIOのサーバの管理者に確認して入力ください。
+ユーザ情報の認証が成功すると、画面上部のコンボボックスからMinIOのサーバ上にあるバケットを選択できるようになります。</p>
+<img alt="../../../_images/credentials.png" src="../../../_images/credentials.png" />
+</div>
+<div class="section" id="id3">
+<h2>バケットの作成<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>バケットを新たに作成する場合は、次の手順で行います。</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>ツールバー（上）右の＋ボタンを押す</li>
+<li>表示されたダイアログにバケット名を入力する</li>
+<li>ダイアログのOkボタンを押す</li>
+</ol>
+</div></blockquote>
+<img alt="../../../_images/create_bucket.png" src="../../../_images/create_bucket.png" />
+</div>
+<div class="section" id="id4">
+<h2>ファイルのアップロード<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>MinIOのサーバにファイルをアップロード（プット）する場合は、次の手順で行います。</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>ツールバー（下）右の＋ボタンを押す</li>
+<li>表示されたダイアログにPathを入力する（任意）</li>
+<li>Key、Valueを入力する（Value 0〜Value 5は必須）</li>
+<li>ダイアログのPutボタンを押してアップロードするファイルまたはフォルダを選択する</li>
+<li>ダイアログのOkボタンを押す</li>
+</ol>
+</div></blockquote>
+<img alt="../../../_images/put_objects.png" src="../../../_images/put_objects.png" />
+</div>
+<div class="section" id="id5">
+<h2>オブジェクトのダウンロード<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>MinIOのサーバからファイルをダウンロード（ゲット）する場合は、次の手順で行います。</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>ダウンロードしたいオブジェクトにチェックをいれる</li>
+<li>ツールバー（下）右のハードディスクボタンを押す</li>
+<li>オブジェクトの保存先を入力する</li>
+<li>ダイアログのOkボタンを押す</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="id6">
+<h2>オブジェクトの抽出<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>MinIOのサーバ上のオブジェクトを抽出（検索）する場合は、次の手順で行います。</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>ツールバー（下）右のボタン（ルーペのアイコン）を押す</li>
+<li>期間を入力する（例：20231109）</li>
+<li>抽出の種類（AND/OR）を選択する</li>
+<li>Keyを選択する（任意）</li>
+<li>3.で選択したKeyのValueを選択する</li>
+<li>ダイアログのOkボタンを押す</li>
+</ol>
+</div></blockquote>
+<p>オブジェクトの抽出が成功すると、オブジェクトのリストが表示されます。</p>
+<img alt="../../../_images/head_objects.png" src="../../../_images/head_objects.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../visual/index.html">VisualEffectプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../collision/index.html">CollisionSeqプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../body/index.html">BodyEditプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../file/index.html">FileExplorerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../joystick/index.html">JoyStickStartプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros/index.html">ROSとの連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>
