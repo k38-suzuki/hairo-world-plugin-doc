@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>スロープモデルの生成 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>ボディモデルの変換 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -16,8 +16,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ボックステレインモデルの生成" href="terrain.html" />
-    <link rel="prev" title="グレーチングモデルの生成" href="grating.html" /> 
+    <link rel="next" title="FileExplorerプラグイン" href="../file/index.html" />
+    <link rel="prev" title="慣性モーメントの計算" href="inertia.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -26,10 +26,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="terrain.html" title="ボックステレインモデルの生成"
+          <a href="../file/index.html" title="FileExplorerプラグイン"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="grating.html" title="グレーチングモデルの生成"
+          <a href="inertia.html" title="慣性モーメントの計算"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">BodyEditプラグイン</a> &#187;</li> 
@@ -42,23 +42,20 @@
           <div class="body" role="main">
             
   <div class="section" id="id1">
-<h1>スロープモデルの生成<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>ここでは、スロープビルダを使ったスロープモデルの生成の仕方を説明します。</p>
+<h1>ボディモデルの変換<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、ボディモデルの変換について説明します。
+この機能は、ボディモデルのフォーマット1.0と2.0を相互に変換するものです。</p>
 <div class="section" id="id2">
-<h2>スロープモデルの構造とパラメータ<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>下図は、スロープモデルの構造です。</p>
-<img alt="../_images/slope_0.png" src="../_images/slope_0.png" />
-</div>
-<div class="section" id="id3">
-<h2>スロープモデルの作成<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>以下の手順でスロープモデルを作成します。</p>
+<h2>ボディモデルを生成<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>以下の手順でフォーマットを変換したボディモデルを生成します。</p>
 <ol class="arabic simple">
-<li>「メニュー」-「ツール」-「Bodyファイルの生成」から「スロープ」を選択する。</li>
-<li>ダイアログの各パラメータを入力し、「保存」を押す。上書きの場合は、「上書き保存」を押す。</li>
-<li>ファイル名を入力、保存場所を指定し、「保存」を押す。</li>
+<li>「メニュー」-「ツール」-「Bodyファイルの生成」から「ボディの変換」を選択する。</li>
+<li>ダイアログで変換先のフォーマットを指定する。</li>
+<li>ダイアログの「Convert」を押す。</li>
+<li>ファイル名を指定し、「開く」を押す。</li>
 </ol>
-<p>下図は、スロープビルダのダイアログです。</p>
-<img alt="../_images/slope_1.png" src="../_images/slope_1.png" />
+<p>ボディモデルの変換が成功すると、指定したファイルと同じディレクトリに変換後のファイルが自動的に保存されます。
+ファイル名は、変換元が”Tank.body”の場合、”Tank_c.body”のようになります。</p>
 </div>
 </div>
 
@@ -81,11 +78,11 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">BodyEditプラグイン</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pipe.html">パイプモデルの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="grating.html">グレーチングモデルの生成</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">スロープモデルの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slope.html">スロープモデルの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="terrain.html">ボックステレインモデルの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="crawler.html">クローラロボットモデルの生成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inertia.html">慣性モーメントの計算</a></li>
-<li class="toctree-l2"><a class="reference internal" href="convert.html">ボディモデルの変換</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ボディモデルの変換</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../file/index.html">FileExplorerプラグイン</a></li>
@@ -145,10 +142,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="terrain.html" title="ボックステレインモデルの生成"
+          <a href="../file/index.html" title="FileExplorerプラグイン"
              >next</a> |</li>
         <li class="right" >
-          <a href="grating.html" title="グレーチングモデルの生成"
+          <a href="inertia.html" title="慣性モーメントの計算"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >BodyEditプラグイン</a> &#187;</li> 

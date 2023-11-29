@@ -11,4 +11,5 @@ BodyEditプラグイン
    terrain
    crawler
    inertia
+   convert
 
