@@ -1,5 +1,5 @@
 
-JoyStickStartプラグイン
+JoystickStartプラグイン
 =======================
 
 .. toctree::
