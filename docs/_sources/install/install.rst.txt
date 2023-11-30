@@ -69,9 +69,9 @@ CMakeによりMakefileの生成が成功すれば、makeコマンドでChoreonoi
 
 スクリプトを使用して、ChoreonoidとHAIROWorldPluginのビルドを一括して行うこともできます。なお、この方法では、Choreonoidのビルドまで行います。Choreonoidのインストールが必要な場合は、別途実行してください。また、スクリプトはUbuntu 20.04 LTS向けのものです。他のOS、ディストリビューション、バージョンでご使用の際は、ご自身の環境に合わせて適宜修正してください。
 
-まず、:download:`リンク <./install-choreonoid.sh>` からスクリプトを任意のディレクトリに保存します。 ::
+まず、:download:`こちら <./install-choreonoid.sh>` からスクリプトを任意のディレクトリにダウンロードします。 ::
 
-次に、スクリプトをダウンロードしたディレクトリ上で端末を開き、 ::
+次に、スクリプトを保存したディレクトリ上で端末を開き、 ::
 
  chmod +x install-choreonoid.sh
  ./install-choreonoid.sh
