@@ -102,6 +102,17 @@
 <h2>Choreonoidのビルドとインストール<a class="headerlink" href="#choreonoid" title="Permalink to this headline">¶</a></h2>
 <p>CMakeによりMakefileの生成が成功すれば、makeコマンドでChoreonoidをビルドします。Choreonoidのビルドとインストールについては <a class="reference external" href="https://choreonoid.org/ja/manuals/latest/install/build-ubuntu.html">Choreonoidのビルド</a> 以降を参照してください。</p>
 </div>
+<div class="section" id="id6">
+<h2>簡易インストール<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>スクリプトを使用して、ChoreonoidとHAIROWorldPluginのビルドを一括して行うこともできます。なお、この方法では、Choreonoidのビルドまで行います。Choreonoidのインストールが必要な場合は、別途実行してください。また、スクリプトはUbuntu 20.04 LTS向けのものです。他のOS、ディストリビューション、バージョンでご使用の際は、ご自身の環境に合わせて適宜修正してください。</p>
+<p>まず、<a class="reference download internal" download="" href="../_downloads/e808f7141f8bce4648d16e9552704669/install-choreonoid.sh"><code class="xref download docutils literal notranslate"><span class="pre">リンク</span></code></a> からスクリプトを任意のディレクトリに保存します。</p>
+<p>次に、スクリプトをダウンロードしたディレクトリ上で端末を開き、</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">install</span><span class="o">-</span><span class="n">choreonoid</span><span class="o">.</span><span class="n">sh</span>
+<span class="o">./</span><span class="n">install</span><span class="o">-</span><span class="n">choreonoid</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>を実行します。実行が成功すると、ホームディレクトリに”cnoid_ws”というディレクトリが生成され、このディレクトリ内でChoreonoidがビルドされます。</p>
+</div>
 </div>
 
 
@@ -126,7 +137,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyEditプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../file/index.html">FileExplorerプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">JoyStickStartプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">JoystickStartプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>

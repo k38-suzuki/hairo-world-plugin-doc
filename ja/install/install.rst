@@ -64,3 +64,16 @@ Choreonoidのビルドとインストール
 
 CMakeによりMakefileの生成が成功すれば、makeコマンドでChoreonoidをビルドします。Choreonoidのビルドとインストールについては `Choreonoidのビルド <https://choreonoid.org/ja/manuals/latest/install/build-ubuntu.html>`_ 以降を参照してください。
 
+簡易インストール
+------------------
+
+スクリプトを使用して、ChoreonoidとHAIROWorldPluginのビルドを一括して行うこともできます。なお、この方法では、Choreonoidのビルドまで行います。Choreonoidのインストールが必要な場合は、別途実行してください。また、スクリプトはUbuntu 20.04 LTS向けのものです。他のOS、ディストリビューション、バージョンでご使用の際は、ご自身の環境に合わせて適宜修正してください。
+
+まず、:download:`リンク <./install-choreonoid.sh>` からスクリプトを任意のディレクトリに保存します。 ::
+
+次に、スクリプトをダウンロードしたディレクトリ上で端末を開き、 ::
+
+ chmod +x install-choreonoid.sh
+ ./install-choreonoid.sh
+
+を実行します。実行が成功すると、ホームディレクトリに"cnoid_ws"というディレクトリが生成され、このディレクトリ内でChoreonoidがビルドされます。
