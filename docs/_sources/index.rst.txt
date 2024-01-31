@@ -35,6 +35,7 @@ HAIROWorldPluginマニュアル
    bookmark/index
    joystick/index
    ompl/index
+   lift/index
    ros/index
    paper/index
    tips/index
