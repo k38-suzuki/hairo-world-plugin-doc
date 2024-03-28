@@ -1,19 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>URサンプルについて &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="更新履歴" href="../update/index.html" />
@@ -32,7 +31,8 @@
           <a href="qtcapp.html" title="ネットワークエミュレータ(Qtcapp)の使用方法について"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">補足事項</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">補足事項</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">URサンプルについて</a></li> 
       </ul>
     </div>  
 
@@ -41,32 +41,31 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="ur">
+  <section id="ur">
 <h1>URサンプルについて<a class="headerlink" href="#ur" title="Permalink to this headline">¶</a></h1>
 <p>URロボットは、<a class="reference external" href="https://www.universal-robots.com/ja/%E8%A3%BD%E5%93%81%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%8A%E3%83%83%E3%83%97/">ユニバーサルロボット</a> 社によって開発された協働ロボットアームです。Choreonoidには、URロボットのUR3、UR5、UR10のボディモデルが含まれており、シミュレーションに利用することができます。本サンプルでは、このURロボットのモデルをゲームパッドで操作する実装例を提供しています。なお、本サンプルはあくまで実装例としてURロボットをゲームパッドで操作できるようにしたものであり、実際のURロボットはゲームパッドを使って直接操作することはできませんのでご注意ください。</p>
 <img alt="../_images/ur_scene.png" src="../_images/ur_scene.png" />
-<div class="section" id="id2">
+<section id="id2">
 <h2>ビルド方法<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>本サンプルのビルドは、HAIROWorldPluginのビルドと同時に行われます。HAIROWorldPluginのビルドが完了していない場合は、 <a class="reference external" href="https://k38-suzuki.github.io/hairo-world-plugin-doc/install/install.html">ソースコードからのビルドとインストール</a> を参照して、HAIROWorldPluginをビルドしてください。</p>
-</div>
-<div class="section" id="id4">
+</section>
+<section id="id4">
 <h2>サンプルプロジェクトの紹介<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>以下の3つのサンプルプロジェクトが用意されています。</p>
 <blockquote>
 <div><ul class="simple">
-<li>UR3-2F85.cnoid</li>
-<li>UR5-2F85.cnoid</li>
-<li>UR10-2F85.cnoid</li>
+<li><p>UR3-2F85.cnoid</p></li>
+<li><p>UR5-2F85.cnoid</p></li>
+<li><p>UR10-2F85.cnoid</p></li>
 </ul>
 </div></blockquote>
-<dl class="docutils">
-<dt>サンプルプロジェクトは以下の手順で読み込むことができます。ここでは例として、UR5のサンプルプロジェクトを読み込みます。</dt>
-<dd><ol class="first last arabic simple">
-<li>「メニュー」-「ファイル」-「プロジェクトを開く」を選択する。</li>
-<li>ダイアログ左の「choreonoid」を選択する。</li>
-<li>「project」を選択する。</li>
-<li>任意のプロジェクトを選択する。</li>
-<li>ダイアログ右下の「開く」を押す。</li>
+<dl class="simple">
+<dt>サンプルプロジェクトは以下の手順で読み込むことができます。ここでは例として、UR5のサンプルプロジェクトを読み込みます。</dt><dd><ol class="arabic simple">
+<li><p>「メニュー」-「ファイル」-「プロジェクトを開く」を選択する。</p></li>
+<li><p>ダイアログ左の「choreonoid」を選択する。</p></li>
+<li><p>「project」を選択する。</p></li>
+<li><p>任意のプロジェクトを選択する。</p></li>
+<li><p>ダイアログ右下の「開く」を押す。</p></li>
 </ol>
 </dd>
 </dl>
@@ -80,23 +79,24 @@
 <p>いずれもプレイステーション4用のDUALSHOCK4を使用して操作できます。キーの割当は以下のとおりです。</p>
 <blockquote>
 <div><ul class="simple">
-<li>左スティック前後　・・・　URロボットのベースリンク（BASE）を基準に、手先（Gripper_Base）をX軸方向（前／後）に移動</li>
-<li>左スティック左右　・・・　URロボットのベースリンク（BASE）を基準に、手先（Gripper_Base）をY軸方向（左／右）に移動</li>
-<li>右スティック前後　・・・　URロボットの手先（Gripper_Base）を基準に、手先（Gripper_Base）をY軸まわりに回転</li>
-<li>右スティック左右　・・・　URロボットの手先（Gripper_Base）を基準に、手先（Gripper_Base）をZ軸まわりに回転</li>
-<li>十字キー前後　・・・　URロボットのベースリンク（BASE）を基準に、手先（Gripper_Base）をZ軸方向（上／下）に移動</li>
-<li>十字キー左右　・・・　URロボットの手先（Gripper_Base）を基準に、手先（Gripper_Base）をX軸まわりに回転</li>
-<li>×ボタン　・・・　ホームポジションに戻る　※実機のポームポジションとは異なります。</li>
+<li><p>左スティック前後　・・・　URロボットのベースリンク（BASE）を基準に、手先（Gripper_Base）をX軸方向（前／後）に移動</p></li>
+<li><p>左スティック左右　・・・　URロボットのベースリンク（BASE）を基準に、手先（Gripper_Base）をY軸方向（左／右）に移動</p></li>
+<li><p>右スティック前後　・・・　URロボットの手先（Gripper_Base）を基準に、手先（Gripper_Base）をY軸まわりに回転</p></li>
+<li><p>右スティック左右　・・・　URロボットの手先（Gripper_Base）を基準に、手先（Gripper_Base）をZ軸まわりに回転</p></li>
+<li><p>十字キー前後　・・・　URロボットのベースリンク（BASE）を基準に、手先（Gripper_Base）をZ軸方向（上／下）に移動</p></li>
+<li><p>十字キー左右　・・・　URロボットの手先（Gripper_Base）を基準に、手先（Gripper_Base）をX軸まわりに回転</p></li>
+<li><p>×ボタン　・・・　ホームポジションに戻る　※実機のポームポジションとは異なります。</p></li>
 </ul>
 </div></blockquote>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">ChoreonoidがサポートしているロジクールのF310、Xbox用コントローラ及びXbox360用コントローラでは動作未確認のため、URロボットを正常に操作できない可能性がありますので、ご注意ください。</p>
+<p class="admonition-title">Note</p>
+<p>ChoreonoidがサポートしているロジクールのF310、Xbox用コントローラ及びXbox360用コントローラでは動作未確認のため、URロボットを正常に操作できない可能性がありますので、ご注意ください。</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -153,17 +153,15 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
 
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -181,12 +179,13 @@
           <a href="qtcapp.html" title="ネットワークエミュレータ(Qtcapp)の使用方法について"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >補足事項</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >補足事項</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">URサンプルについて</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

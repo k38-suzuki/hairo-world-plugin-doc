@@ -2,6 +2,12 @@
 更新履歴
 ========
 
+* 2024/3/28
+
+ * :doc:`../cfd/cfd` を更新
+ * :doc:`../netem/netem` を更新
+ * :doc:`../visual/image` を更新
+
 * 2024/01/31
 
  * :doc:`../lift/lift` を追加
