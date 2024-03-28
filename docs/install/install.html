@@ -1,19 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>ソースコードからのビルドとインストール &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CFDプラグイン" href="../cfd/index.html" />
@@ -32,7 +31,8 @@
           <a href="index.html" title="インストール"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">インストール</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">インストール</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ソースコードからのビルドとインストール</a></li> 
       </ul>
     </div>  
 
@@ -41,15 +41,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="id1">
+  <section id="id1">
 <h1>ソースコードからのビルドとインストール<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
+<section id="id2">
 <h2>ソースコードの取得<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id3">
+<section id="id3">
 <h3>開発版<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>HAIROWorldPluginはgitリポジトリとして管理されており、githubの以下のアドレスにて公開されています。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/k38-suzuki/hairo-world-plugin">https://github.com/k38-suzuki/hairo-world-plugin</a></li>
+<li><p><a class="reference external" href="https://github.com/k38-suzuki/hairo-world-plugin">https://github.com/k38-suzuki/hairo-world-plugin</a></p></li>
 </ul>
 <p>Choreonoidのソースディレクトリ直下にあるextディレクトリに移動して、
 以下のコマンドでHAIROWorldPluginを取得します。</p>
@@ -61,8 +61,8 @@
 </pre></div>
 </div>
 <p>などとすることにより、その時点での最新のソースコードにアップデートできます。</p>
-</div>
-<div class="section" id="id4">
+</section>
+<section id="id4">
 <h3>依存パッケージのインストール<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>Ubuntuの場合、”hairo-world-plugin/misc/script” 以下にある “install-requisites-ubuntu-x.x.sh” というスクリプトを用いることにより、以上のソフトウェアのほとんどを簡単にインストールすることができます。x.xはUbuntuのバージョンに対応します。例えば Ubuntu 18.04 であれば</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">misc</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">requisites</span><span class="o">-</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">18.04</span><span class="o">.</span><span class="n">sh</span>
@@ -77,9 +77,9 @@
 </pre></div>
 </div>
 <p>&lt;username&gt;は、使用しているユーザ名です。これは、NetEmプラグイン内で利用しているルート権限を要するコマンド(modprobe, ip等)をパスワードなしで実行するための設定です。これにより、シミュレーション実行時にパスワードの入力が求められ、シミュレーションが停止しないようにしています。</p>
-</div>
-</div>
-<div class="section" id="cmake">
+</section>
+</section>
+<section id="cmake">
 <h2>CMake によるビルド設定<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h2>
 <p>まず、cmakeコマンドを使ってMakefileを更新します。Choreonoidのビルドディレクトリ上で</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">..</span>
@@ -92,30 +92,31 @@
 </div>
 <p>と実行し、 <strong>BUILD_HAIRO_WORLD_PLUGIN</strong> を “ON” にします。</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<div class="last line-block">
+<p class="admonition-title">Note</p>
+<div class="line-block">
 <div class="line">2022年12月21日のアップデートで、このビルドオプションを廃止しました。これに伴い、Choreonoidのビルドと同時に、HAIROWorldPluginが必ずビルドされるようになりました。</div>
 </div>
 </div>
-</div>
-<div class="section" id="choreonoid">
+</section>
+<section id="choreonoid">
 <h2>Choreonoidのビルドとインストール<a class="headerlink" href="#choreonoid" title="Permalink to this headline">¶</a></h2>
 <p>CMakeによりMakefileの生成が成功すれば、makeコマンドでChoreonoidをビルドします。Choreonoidのビルドとインストールについては <a class="reference external" href="https://choreonoid.org/ja/manuals/latest/install/build-ubuntu.html">Choreonoidのビルド</a> 以降を参照してください。</p>
-</div>
-<div class="section" id="id6">
+</section>
+<section id="id6">
 <h2>簡易インストール<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>スクリプトを使用して、ChoreonoidとHAIROWorldPluginのビルドを一括して行うこともできます。なお、この方法では、Choreonoidのビルドまで行います。Choreonoidのインストールが必要な場合は、別途実行してください。また、スクリプトはUbuntu 20.04 LTS向けのものです。他のOS、ディストリビューション、バージョンでご使用の際は、ご自身の環境に合わせて適宜修正してください。</p>
-<p>まず、<a class="reference download internal" download="" href="../_downloads/e808f7141f8bce4648d16e9552704669/install-choreonoid.sh"><code class="xref download docutils literal notranslate"><span class="pre">こちら</span></code></a> からスクリプトを任意のディレクトリにダウンロードします。</p>
+<p>まず、<a class="reference download internal" download="" href="../_downloads/90319250c771f9d7c60800f32c9aa9dd/install-choreonoid.sh"><code class="xref download docutils literal notranslate"><span class="pre">こちら</span></code></a> からスクリプトを任意のディレクトリにダウンロードします。</p>
 <p>次に、スクリプトを保存したディレクトリ上で端末を開き、</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">install</span><span class="o">-</span><span class="n">choreonoid</span><span class="o">.</span><span class="n">sh</span>
 <span class="o">./</span><span class="n">install</span><span class="o">-</span><span class="n">choreonoid</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
 <p>を実行します。実行が成功すると、ホームディレクトリに”cnoid_ws”というディレクトリが生成され、このディレクトリ内でChoreonoidがビルドされます。</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -171,17 +172,15 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
 
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -199,12 +198,13 @@
           <a href="index.html" title="インストール"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >インストール</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >インストール</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ソースコードからのビルドとインストール</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

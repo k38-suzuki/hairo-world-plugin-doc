@@ -1,19 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>シミュレーションの操作 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="IKPlannerプラグイン" href="../ompl/index.html" />
@@ -32,7 +31,8 @@
           <a href="logger.html" title="ジョイスティック状態の記録"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">JoystickStartプラグイン</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">JoystickStartプラグイン</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">シミュレーションの操作</a></li> 
       </ul>
     </div>  
 
@@ -41,44 +41,45 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="id1">
+  <section id="id1">
 <h1>シミュレーションの操作<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>ここでは、ジョイスティックを使ったシミュレーションの開始・停止・一時停止・再開の仕方を説明します。</p>
-<div class="section" id="id2">
+<section id="id2">
 <h2>機能の有効化<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>以下の手順で機能を有効化します。</p>
 <ol class="arabic simple">
-<li>メニューの「オプション」-「ジョイスティック」を開く。</li>
-<li>「シミュレーションを開始（スタートボタン）」及び「プロジェクトを開く（ロゴボタン）」を選択する。</li>
+<li><p>メニューの「オプション」-「ジョイスティック」を開く。</p></li>
+<li><p>「シミュレーションを開始（スタートボタン）」及び「プロジェクトを開く（ロゴボタン）」を選択する。</p></li>
 </ol>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<div class="last line-block">
+<p class="admonition-title">Note</p>
+<div class="line-block">
 <div class="line">本機能では、ゲームパッドの「Shareボタン」・「Optionボタン」・「Logoボタン」を使用します。（DualShock4の場合）</div>
 <div class="line">他の用途にこれらのボタンを使用する場合は、本機能を無効化してください。</div>
 </div>
 </div>
-</div>
-<div class="section" id="id3">
+</section>
+<section id="id3">
 <h2>シミュレーションの開始・停止・一時停止・再開<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>シミュレーションの開始・停止・一時停止・再開は次のように割り当てられています。</p>
 <ul class="simple">
-<li>初期位置からシミュレーションを開始　・・・　停止状態のときにOptionボタンを１回押す</li>
-<li>現在位置からシミュレーションを開始　・・・　停止状態のときにShareボタンを１回押す</li>
-<li>停止　・・・　一時停止状態またはシミュレーション中にShareボタンを１回押す</li>
-<li>一時停止 ・・・　シミュレーション中にOptionボタンを１回押す</li>
-<li>現在位置からシミュレーションを再開 ・・・　一時停止状態のときにOptionボタンを１回押す</li>
+<li><p>初期位置からシミュレーションを開始　・・・　停止状態のときにOptionボタンを１回押す</p></li>
+<li><p>現在位置からシミュレーションを開始　・・・　停止状態のときにShareボタンを１回押す</p></li>
+<li><p>停止　・・・　一時停止状態またはシミュレーション中にShareボタンを１回押す</p></li>
+<li><p>一時停止 ・・・　シミュレーション中にOptionボタンを１回押す</p></li>
+<li><p>現在位置からシミュレーションを再開 ・・・　一時停止状態のときにOptionボタンを１回押す</p></li>
 </ul>
 <p>本機能は下図のように状態が遷移します。</p>
 <img alt="../_images/joystick_0.png" src="../_images/joystick_0.png" />
-</div>
-<div class="section" id="id4">
+</section>
+<section id="id4">
 <h2>プロジェクトの読み込み<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>ロゴボタンを押すとプロジェクトを開くためのダイアログを呼び出します。</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -136,17 +137,15 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
 
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -164,12 +163,13 @@
           <a href="logger.html" title="ジョイスティック状態の記録"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >JoystickStartプラグイン</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >JoystickStartプラグイン</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">シミュレーションの操作</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>
