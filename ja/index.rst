@@ -16,7 +16,7 @@ HAIROWorldPluginマニュアル
    install/index
    cfd/index
    netem/index
-   visual/index
+   vfx/index
    motion/index
    collision/index
    phits/index   
