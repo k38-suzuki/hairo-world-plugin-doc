@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>ステップ２：ドローンのシミュレーション &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ステップ３：カメラ画像のシミュレーション" href="step3.html" />
+    <link rel="prev" title="ステップ１：シミュレーションプロジェクトの作成" href="step1.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="step3.html" title="ステップ３：カメラ画像のシミュレーション"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="step1.html" title="ステップ１：シミュレーションプロジェクトの作成"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">講習会特設ページ</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ステップ２：ドローンのシミュレーション</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>ステップ２：ドローンのシミュレーション<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、ドローンのシミュレーションの設定を行います。</p>
+<section id="id2">
+<h2>コントローラのソースコード<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>ドローンのコントローラを作成します。プロジェクトディレクトリ内に”DroneController.cpp”を作成して、以下を記述してください。
+<a class="reference external" href="https://raw.githubusercontent.com/k38-suzuki/hairo-world-plugin/main/sample/tutorial/Drone/DroneController.cpp">ドローンのコントローラの記述</a> を参照してください。</p>
+</section>
+<section id="cmakelists-txt">
+<h2>CMakeLists.txtの記述<a class="headerlink" href="#cmakelists-txt" title="Permalink to this headline">¶</a></h2>
+<p>CMakeLists.txtの記述については、
+<a class="reference external" href="https://choreonoid.org/ja/manuals/latest/simulation/tank-tutorial/step2.html#cmakelists-txt">CMakeLists.txtの記述</a> を参照してください。
+ここでは、コントローラ名に”DroneTutorial_DroneController”、ソースファイルに”DroneController.cpp”を記述します。</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">choreonoid_add_simple_controller</span><span class="p">(</span><span class="s">DroneTutorial_DroneController</span><span class="w"> </span><span class="s">DroneController.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">DroneTutorial_DroneController</span><span class="w"> </span><span class="s">CnoidCFDPlugin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>2行目の”target_link_libraries”では、コントローラ内でロータを使用するためにCFDプラグインの共有ライブラリをコントローラにリンクしています。</p>
+</section>
+<section id="id5">
+<h2>コントローラのビルド<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://choreonoid.org/ja/manuals/latest/simulation/tank-tutorial/step2.html#id6">コントローラのビルド</a> を参照してください。</p>
+</section>
+<section id="id7">
+<h2>コントローラの導入<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://choreonoid.org/ja/manuals/latest/simulation/tank-tutorial/step2.html#simulation-tank-tutorial-introduce-controller">コントローラの導入</a> を参照してください。</p>
+</section>
+<section id="cfd">
+<h2>CFDシミュレータアイテムの作成<a class="headerlink" href="#cfd" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://k38-suzuki.github.io/hairo-world-plugin-doc/cfd/cfd.html#cfd">CFDシミュレータの作成と設定</a> を参照してください。</p>
+</section>
+<section id="id10">
+<h2>マルチコライダアイテムの作成<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://k38-suzuki.github.io/hairo-world-plugin-doc/cfd/cfd.html#id1">マルチコライダアイテムの作成と設定</a> を参照してください。</p>
+</section>
+<section id="id12">
+<h2>プロパティの設定<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>マルチコライダアイテムの「サイズ」に10 10 10、「透過度」に1.00を設定してください。</p>
+</section>
+<section id="id13">
+<h2>シミュレーションの実行<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://k38-suzuki.github.io/hairo-world-plugin-doc/cfd/cfd.html#id5">シミュレーションの実行</a> を参照してください。</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../collision/index.html">CollisionSeqプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyEditプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file/index.html">FileExplorerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">JoystickStartプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">講習会特設ページ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="step1.html">ステップ１：シミュレーションプロジェクトの作成</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ステップ２：ドローンのシミュレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html">ステップ３：カメラ画像のシミュレーション</a></li>
+</ul>
+</li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="step3.html" title="ステップ３：カメラ画像のシミュレーション"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="step1.html" title="ステップ１：シミュレーションプロジェクトの作成"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >講習会特設ページ</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ステップ２：ドローンのシミュレーション</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    </div>
+  </body>
+</html>
