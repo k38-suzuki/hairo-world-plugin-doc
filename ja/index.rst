@@ -31,6 +31,7 @@ HAIROWorldPluginマニュアル
    tips/index
    update/index
    en/index
+   wrs/index
 
 以下の画像をクリックすると紹介動画が再生されます。
 
