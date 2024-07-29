@@ -27,6 +27,7 @@ HAIROWorldPluginマニュアル
    ompl/index
    lift/index
    ros/index
+   ros2/index
    paper/index
    tips/index
    update/index
