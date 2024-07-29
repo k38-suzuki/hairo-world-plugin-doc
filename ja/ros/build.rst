@@ -10,19 +10,7 @@ ROSのインストールとChoreonoid関連パッケージのビルドについ�
  1.  `ROSのインストール <https://choreonoid.org/ja/manuals/latest/ros/install-ros.html>`_ 
  2.  `Choreonoid関連パッケージのビルド <https://choreonoid.org/ja/manuals/latest/ros/build-choreonoid.html>`_ 
  3.  `ROS環境におけるChoreonoidの実行 <https://choreonoid.org/ja/manuals/latest/ros/run-choreonoid.html>`_ 
- 
-パッケージソースの追加
-----------------------
 
-作成したワークスペースの "src" ディレクトリ（例：catkin_ws/src）内に、以下のコマンドでソースコードリポジトリをクローンします。 ::
-
- git clone https://github.com/k38-suzuki/hairo_world_plugin_ros.git
- 
-このリポジトリには、以下のパッケージが含まれています。
-
- * hairo_world_plugin_ros_samples : HAIROWorldプラグインでROSを使用するサンプル（Husky, Jackal）
- * hairo_world_plugin_joy : サンプル（Husky, Jackal）をジョイスティック（ゲームパッド）で操作するためのROSノード
- 
 ROS環境のChoreonoidへのHAIROWorldプラグインの導入
 -------------------------------------------------
 
@@ -46,8 +34,6 @@ Ubuntu 18.04は ::
  misc/script/install-requisites-ubuntu-18.04.sh
 
 を実行してください。
-
-なお、OS上でROSとは独立して既に最新のChoreonoidをインストールしている場合この作業は適用済みのはずですので、あらためて実行する必要はありません。
 
 ビルド
 ------
