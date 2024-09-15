@@ -10,11 +10,11 @@
 ------------------------
 
 以下のコマンドでChoreonoidを起動してください。
-ROS2環境でChoreonoidを使用している場合は、 ::
+ChoreonoidをROS2環境で使用している場合は、 ::
 
  $ ros2 run choreonoid_ros choreonoid --wrs-util <mission_name>
 
-Choreonoid単体で使用している場合は、（例：choreonoid/build内で） ::
+Choreonoidを単体で使用している場合は、（例：choreonoid/build内で） ::
 
  $ ./bin/choreonoid --wrs-util <mission_name>
 
@@ -96,11 +96,11 @@ Choreonoid単体で使用している場合は、（例：choreonoid/build内で
 ディレクリ内に自作のロボットモデルのファイルやディレクトリを全てをコピーしてください。
 
 次に、Choreonoidをリビルドしてください。
-ROS2環境でChoreonoidを使用している場合、リビルドするときに追加したファイルが認識されない場合があります。
+ChoreonoidをROS2環境で使用している場合、リビルドするときに追加したファイルが認識されない場合があります。
 そのときは、オプション"--cmake-clean-cache"を追加してください。
 
-リビルドが完了したら、ROS2環境でChoreonoidを使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/mode以下、
-Choreonoid単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/model以下を確認します。
+リビルドが完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/mode以下、
+Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/model以下を確認します。
 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。
 
 ディレクトリ内に前述の手順で作成したディレクトリ（例：model_<チーム名>）があれば、この手順は終了です。
@@ -109,8 +109,8 @@ choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替�
 ~~~~~~~~~~~~~~~~~~
 
 ここでは、ロボットモデルを保存したプロジェクトを作成します。
-Choreonoidを起動して、ROS2環境でChoreonoidを使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/mode以下、
-Choreonoid単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/model以下の自作のロボットモデルを読み込んでください。
+Choreonoidを起動して、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/mode以下、
+Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/model以下の自作のロボットモデルを読み込んでください。
 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。
 
 自作のロボットモデルを読み込んだら、必要な必要なシンプルコントローラ等を全て設定してください。
@@ -118,19 +118,19 @@ choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替�
 自作のロボットモデルに設定したカメラやレンジセンサのデバイスを使用する場合は、ロボットモデルの子アイテムにSensorVisualizer（センサ可視化）を追加して、
 アイテムツリービューで使用するデバイスにチェックを入れてください。
 
-ROS2環境でChoreonoidを使用している場合で、カメラやレンジセンサ等のデバイスが取得した情報をパブリッシュするときは、
+ChoreonoidをROS2環境で使用している場合で、カメラやレンジセンサ等のデバイスが取得した情報をパブリッシュするときは、
 ロボットモデルの子アイテムにBodyROS2アイテムを追加してください。
 
-設定が完了したら、ROS2環境でChoreonoidを使用している場合は、ros2_ws/src/choreonoid/ext/WRS2024PRE/project以下、
-Choreonoid単体で使用している場合は、choreonoid/ext/WRS2024PRE/project以下に任意の名前（例：project_<チーム名>）のディレクトリを作成して、
+設定が完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/src/choreonoid/ext/WRS2024PRE/project以下、
+Choreonoidを単体で使用している場合は、choreonoid/ext/WRS2024PRE/project以下に任意の名前（例：project_<チーム名>）のディレクトリを作成して、
 そのディレクトリ内にプロジェクト(.cnoid)を保存します。プロジェクトは、自作のロボットモデルの名前で保存してください。
 **ここで保存したプロジェクトの名前を後述のYAMLファイルをファイルの作成で使用します。**
 
-次に、Choreonoidをリビルドしてください。ROS2環境でChoreonoidを使用している場合、リビルドするときに追加したファイルが認識されない場合があります。
+次に、Choreonoidをリビルドしてください。ChoreonoidをROS2環境で使用している場合、リビルドするときに追加したファイルが認識されない場合があります。
 そのときは、オプション"--cmake-clean-cache"を追加してください。
 
-リビルドが完了したら、ROS2環境でChoreonoidを使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
-Choreonoid単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下を確認します。
+リビルドが完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
+Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下を確認します。
 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。
 
 ディレクトリ内に前述の手順で作成したディレクトリ（例：project_<チーム名>）があれば、この手順は終了です。
@@ -215,11 +215,11 @@ Choreonoidの起動
 Choreonoidを起動します。
 
 以下のコマンドでChoreonoidを起動してください。
-ROS2環境でChoreonoidを使用している場合は、 ::
+ChoreonoidをROS2環境で使用している場合は、 ::
 
  $ ros2 run choreonoid_ros choreonoid <path/to/yaml> --wrs-util <mission_name>
 
-Choreonoid単体で使用している場合は、（例：choreonoid/build内で） ::
+Choreonoidを単体で使用している場合は、（例：choreonoid/build内で） ::
 
  $ ./bin/choreonoid <path/to/yaml> --wrs-util <mission_name>
 
@@ -275,15 +275,15 @@ YAMLファイルの詳細
     - 空
     - \-
     - フィールドが保存されたプロジェクトをリストで指定します。
-      ROS2環境でChoreonoidを使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
-      Choreonoid単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下にあるプロジェクトを指定できます。
+      ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
+      Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下にあるプロジェクトを指定できます。
       プロジェクトは、リストで指定した順番に読み込まれます。
   * - robot_project
     - 空
     - \-
     - ロボットが保存されたプロジェクトをリストで指定します。
-      ROS2環境でChoreonoidを使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
-      Choreonoid単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下にあるプロジェクトを指定できます。
+      ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
+      Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下にあるプロジェクトを指定できます。
       プロジェクトは、リストで指定した順番に読み込まれ、先に指定したロボットを左側、後に指定したロボットは右側に配置されます。
   * - robot_alignment
     - X+
@@ -300,15 +300,15 @@ YAMLファイルの詳細
     - 空
     - \-
     - シミュレータアイテムが保存されたプロジェクトをリストで指定します。
-      ROS2環境でChoreonoidを使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
-      Choreonoid単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下にあるプロジェクトを指定できます。
+      ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
+      Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下にあるプロジェクトを指定できます。
       プロジェクトは、リストで指定した順番に読み込まれます。
   * - view_project
     - 空
     - \-
     - ビューのレイアウトが保存されたプロジェクトをリストで指定します。
-      ROS2環境でChoreonoidを使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
-      Choreonoid単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下にあるプロジェクトを指定できます。
+      ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
+      Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下にあるプロジェクトを指定できます。
       プロジェクトは、リストで指定した順番に読み込まれます。
   * - enable_recording
     - false
