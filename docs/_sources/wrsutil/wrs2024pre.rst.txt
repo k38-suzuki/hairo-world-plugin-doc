@@ -113,7 +113,7 @@ Choreonoidを起動して、ChoreonoidをROS2環境で使用している場合�
 Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/model以下の自作のロボットモデルを読み込んでください。
 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。
 
-自作のロボットモデルを読み込んだら、必要な必要なシンプルコントローラ等を全て設定してください。
+自作のロボットモデルを読み込んだら、必要なシンプルコントローラ等を全て設定してください。
 
 自作のロボットモデルに設定したカメラやレンジセンサのデバイスを使用する場合は、ロボットモデルの子アイテムにSensorVisualizer（センサ可視化）を追加して、
 アイテムツリービューで使用するデバイスにチェックを入れてください。
@@ -124,7 +124,7 @@ ChoreonoidをROS2環境で使用している場合で、カメラやレンジセ
 設定が完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/src/choreonoid/ext/WRS2024PRE/project以下、
 Choreonoidを単体で使用している場合は、choreonoid/ext/WRS2024PRE/project以下に任意の名前（例：project_<チーム名>）のディレクトリを作成して、
 そのディレクトリ内にプロジェクト(.cnoid)を保存します。プロジェクトは、自作のロボットモデルの名前で保存してください。
-**ここで保存したプロジェクトの名前を後述のYAMLファイルをファイルの作成で使用します。**
+**ここで保存したプロジェクトの名前を後述の"YAMLファイルの作成"で使用します。**
 
 次に、Choreonoidをリビルドしてください。ChoreonoidをROS2環境で使用している場合、リビルドするときに追加したファイルが認識されない場合があります。
 そのときは、オプション"--cmake-clean-cache"を追加してください。
@@ -144,9 +144,10 @@ registration_test.yamlを任意のディレクトリにコピーして、任意�
 
 任意のテキストエディタでそのYAMLファイルを開き、1行目を以下のように書き換えてください。 ::
 
- robot_list: &RobotList [ project_<チーム名>/自作のロボットモデルを保存したプロジェクトの名前 ]
+ robot_list: &RobotList [ 作成したディレクトリの名前/自作のロボットモデルを保存したプロジェクトの名前 ]
 
-例えば、<チーム名>が"team1"で、前述の手順で保存したプロジェクトの名前が"my_robot.cnoid"の場合は ::
+例えば、<チーム名>が"team1"で、ディレクトリの名前が"project_team1"、
+前述の手順で保存したプロジェクトの名前が"my_robot.cnoid"の場合は ::
 
  robot_list: &RobotList [ project_team1/my_robot ]
 

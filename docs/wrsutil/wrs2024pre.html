@@ -169,7 +169,7 @@ choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替�
 Choreonoidを起動して、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/mode以下、
 Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/model以下の自作のロボットモデルを読み込んでください。
 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。</p>
-<p>自作のロボットモデルを読み込んだら、必要な必要なシンプルコントローラ等を全て設定してください。</p>
+<p>自作のロボットモデルを読み込んだら、必要なシンプルコントローラ等を全て設定してください。</p>
 <p>自作のロボットモデルに設定したカメラやレンジセンサのデバイスを使用する場合は、ロボットモデルの子アイテムにSensorVisualizer（センサ可視化）を追加して、
 アイテムツリービューで使用するデバイスにチェックを入れてください。</p>
 <p>ChoreonoidをROS2環境で使用している場合で、カメラやレンジセンサ等のデバイスが取得した情報をパブリッシュするときは、
@@ -177,7 +177,7 @@ choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替�
 <p>設定が完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/src/choreonoid/ext/WRS2024PRE/project以下、
 Choreonoidを単体で使用している場合は、choreonoid/ext/WRS2024PRE/project以下に任意の名前（例：project_&lt;チーム名&gt;）のディレクトリを作成して、
 そのディレクトリ内にプロジェクト(.cnoid)を保存します。プロジェクトは、自作のロボットモデルの名前で保存してください。
-<strong>ここで保存したプロジェクトの名前を後述のYAMLファイルをファイルの作成で使用します。</strong></p>
+<strong>ここで保存したプロジェクトの名前を後述の”YAMLファイルの作成”で使用します。</strong></p>
 <p>次に、Choreonoidをリビルドしてください。ChoreonoidをROS2環境で使用している場合、リビルドするときに追加したファイルが認識されない場合があります。
 そのときは、オプション”–cmake-clean-cache”を追加してください。</p>
 <p>リビルドが完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
@@ -191,10 +191,11 @@ choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替�
 ここでは、WRS2024PRE/project/project_test以下に格納されているregistration_test.yamlをテンプレートとして利用します。
 registration_test.yamlを任意のディレクトリにコピーして、任意の名前（例：registration_&lt;チーム名&gt;.yaml）に変更してください。</p>
 <p>任意のテキストエディタでそのYAMLファイルを開き、1行目を以下のように書き換えてください。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">project_</span><span class="o">&lt;</span><span class="n">チーム名</span><span class="o">&gt;/</span><span class="n">自作のロボットモデルを保存したプロジェクトの名前</span> <span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">作成したディレクトリの名前</span><span class="o">/</span><span class="n">自作のロボットモデルを保存したプロジェクトの名前</span> <span class="p">]</span>
 </pre></div>
 </div>
-<p>例えば、&lt;チーム名&gt;が”team1”で、前述の手順で保存したプロジェクトの名前が”my_robot.cnoid”の場合は</p>
+<p>例えば、&lt;チーム名&gt;が”team1”で、ディレクトリの名前が”project_team1”、
+前述の手順で保存したプロジェクトの名前が”my_robot.cnoid”の場合は</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">project_team1</span><span class="o">/</span><span class="n">my_robot</span> <span class="p">]</span>
 </pre></div>
 </div>
