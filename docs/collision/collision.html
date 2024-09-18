@@ -46,9 +46,9 @@
 <p>ここでは、シミュレーションに使用している動的モデルの干渉の表示と記録の仕方を説明します。この機能では、動的モデルのリンク毎の干渉を可視化するためのものです。リンクが他の物体に干渉している場合は、そのリンクの干渉モデルの色が赤色に、干渉していない場合は白色に変更されます。また、この機能では、動的モデルのリンク毎の干渉を記録し、ファイル出力することができます。</p>
 <section id="id2">
 <h2>干渉の可視化・記録の設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>干渉の可視化・記録を行うCollisionVisualizerを生成します。
-ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「干渉可視化」を選択して「CollisionVisualizer」生成してください。生成したCollisionVisualizerは、AISTシミュレータアイテムの小アイテムとして配置します。</p>
-<p>また、CollisionVisualizerでは以下の設定ができます。</p>
+<p>干渉の可視化・記録を行うCollisionSeqLoggerを生成します。
+ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「干渉時系列ロガー」を選択して「CollisionSeqLogger」生成してください。生成したCollisionSeqLoggerは、AISTシミュレータアイテムの子アイテムとして配置します。</p>
+<p>また、CollisionSeqLoggerでは以下の設定ができます。</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 17%" />
@@ -76,15 +76,15 @@
 </tr>
 </tbody>
 </table>
-<p>干渉を記録するときは、以下の手順でCollisionVisualizerの設定を変更します。可視化のみ場合は、設定の変更は不要です。</p>
+<p>干渉を記録するときは、以下の手順でCollisionSeqLoggerの設定を変更します。可視化のみ場合は、設定の変更は不要です。</p>
 <ol class="arabic simple">
-<li><p>アイテムツリービュー上で「CollisionVisualizer」を選択する。</p></li>
+<li><p>アイテムツリービュー上で「CollisionSeqLogger」を選択する。</p></li>
 <li><p>プロパティビュー上で「干渉の記録」の設定を「true」に変更する。</p></li>
 </ol>
 </section>
 <section id="id3">
 <h2>コリジョンセンサの設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>CollisionVisualizerでは、リンクの干渉を可視化するためにコリジョンセンサを使用します。</p>
+<p>CollisionSeqLoggerでは、リンクの干渉を可視化するためにコリジョンセンサを使用します。</p>
 <p>コリジョンセンサは、カメラやライト等と同様に任意のリンクのelements以下に記述します。</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"></span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CollisionSensor</span><span class="w"></span>
@@ -120,7 +120,7 @@
 </section>
 <section id="id4">
 <h2>シミュレーションの実行<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると、コリジョンセンサが取り付けられているリンクが、他のオブジェクトと干渉しているときにリンクの色がコリジョンセンサのパラメータで指定した色に変更されます。また、干渉を記録している場合は、ボディの干渉を記録したアイテム「Collision States」がCollisionVisualizerの小アイテムとして自動生成されます。</p>
+<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると、コリジョンセンサが取り付けられているリンクが、他のオブジェクトと干渉しているときにリンクの色がコリジョンセンサのパラメータで指定した色に変更されます。また、干渉を記録している場合は、ボディの干渉を記録したアイテム「Collision States」がCollisionSeqLoggerの子アイテムとして自動生成されます。</p>
 <img alt="../_images/collision_1.png" src="../_images/collision_1.png" />
 </section>
 <section id="id5">
