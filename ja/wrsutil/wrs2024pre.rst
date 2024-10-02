@@ -27,12 +27,39 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
 
   * - 引数
     - 詳細
+  * - M1-1
+    - 競技M1の環境（エリア1のみ）を読み込みます。この引数では、ロボットを配置しません。
+  * - M1-1-AizuSpiderDA
+    - 競技M1の環境（エリア1のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
+  * - M1-1-AizuSpiderDA-ROS2
+    - 競技M1の環境（エリア1のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
+      AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
   * - M1-1-AizuSpiderSA
     - 競技M1の環境（エリア1のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
+  * - M1-1-AizuSpiderSA-ROS2
+    - 競技M1の環境（エリア1のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
+      AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
+  * - M1-1-AizuSpiderSS
+    - 競技M1の環境（エリア1のみ）を読み込み、AISTシミュレータ向けのAizuSpiderを配置します。
+  * - M1-1-AizuSpiderSS-ROS2
+    - 競技M1の環境（エリア1のみ）を読み込み、AISTシミュレータ向けのAizuSpiderを配置します。
+      AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
+  * - M1-2
+    - 競技M1の環境（エリア2のみ）を読み込みます。この引数では、ロボットを配置しません。
+  * - M1-2-AizuSpiderDA
+    - 競技M1の環境（エリア2のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
+  * - M1-2-AizuSpiderDA-ROS2
+    - 競技M1の環境（エリア2のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
+      AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
   * - M1-2-AizuSpiderSA
     - 競技M1の環境（エリア2のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
-  * - M1-AizuSpiderSA-ROS2
-    - 競技M1の環境（エリア1とエリア2）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
+  * - M1-2-AizuSpiderSA-ROS2
+    - 競技M1の環境（エリア2のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
+      AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
+  * - M1-2-AizuSpiderSS
+    - 競技M1の環境（エリア2のみ）を読み込み、AISTシミュレータ向けのAizuSpiderを配置します。
+  * - M1-2-AizuSpiderSS-ROS2
+    - 競技M1の環境（エリア2のみ）を読み込み、AISTシミュレータ向けのAizuSpiderを配置します。
       AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
   * - M2
     - 競技M2の環境（エリア1〜4）を読み込みます。この引数では、ロボットを配置しません。
@@ -44,6 +71,11 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
     - 競技M2の環境（エリア3とエリア4のみ）を読み込みます。この引数では、ロボットを配置しません。
   * - M2-A4
     - 競技M2の環境（エリア4とエリア1のみ）を読み込みます。この引数では、ロボットを配置しません。
+  * - M2-AizuSpiderDA
+    - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
+  * - M2-AizuSpiderDA-ROS2
+    - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
+      AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
   * - M2-AizuSpiderSA
     - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
   * - M2-AizuSpiderSA-ROS2
