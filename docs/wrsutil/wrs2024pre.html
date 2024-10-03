@@ -225,8 +225,6 @@ Choreonoidを起動して、ChoreonoidをROS2環境で使用している場合�
 Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/model以下の自作のロボットモデルを読み込んでください。
 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。</p>
 <p>自作のロボットモデルを読み込んだら、必要なシンプルコントローラ等を全て設定してください。</p>
-<p>自作のロボットモデルに設定したカメラやレンジセンサのデバイスを使用する場合は、ロボットモデルの子アイテムにSensorVisualizer（センサ可視化）を追加して、
-アイテムツリービューで使用するデバイスにチェックを入れてください。</p>
 <p>ChoreonoidをROS2環境で使用している場合で、カメラやレンジセンサ等のデバイスが取得した情報をパブリッシュするときは、
 ロボットモデルの子アイテムにBodyROS2アイテムを追加してください。</p>
 <p>設定が完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/src/choreonoid/ext/WRS2024PRE/project以下、
@@ -268,6 +266,13 @@ registration_test.yamlを任意のディレクトリにコピーして、任意�
 </tr>
 </thead>
 <tbody>
+<tr class="row-even"><td><p>AizuSpiderDA</p></td>
+<td><p>AGXシミュレータ向けのAizuSpider。</p></td>
+</tr>
+<tr class="row-odd"><td><p>AizuSpiderDA-ROS2</p></td>
+<td><p>AGXシミュレータ向けのAizuSpider。
+AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
+</tr>
 <tr class="row-even"><td><p>AizuSpiderSA</p></td>
 <td><p>AGXシミュレータ向けのAizuSpider。</p></td>
 </tr>
@@ -296,15 +301,20 @@ DoubleArmV7は、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスク�
 <td><p>AISTシミュレータ向けのDoubleArmV7。
 DoubleArmV7は、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
 </tr>
-<tr class="row-even"><td><p>SampleDroneA-ROS2</p></td>
-<td><p>AGXシミュレータ向けのSampleDrone。
+<tr class="row-even"><td><p>SampleDrone</p></td>
+<td><p>SampleDrone。</p></td>
+</tr>
+<tr class="row-odd"><td><p>SampleDrone-ROS2</p></td>
+<td><p>SampleDrone。
 SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサブスクライブします。
 この引数を使用するにはROS2パッケージ <a class="reference external" href="https://github.com/k38-suzuki/choreonoid_ros2_sample_drone_tutorial">choreonoid_ros2_sample_drone_tutorial</a> が必要です。</p></td>
 </tr>
-<tr class="row-odd"><td><p>SampleDroneS-ROS2</p></td>
-<td><p>AISTシミュレータ向けのSampleDrone。
-SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサブスクライブします。
-この引数を使用するにはROS2パッケージ <a class="reference external" href="https://github.com/k38-suzuki/choreonoid_ros2_sample_drone_tutorial">choreonoid_ros2_sample_drone_tutorial</a> が必要です。</p></td>
+<tr class="row-even"><td><p>HobbyDrone</p></td>
+<td><p>HobbyDrone。</p></td>
+</tr>
+<tr class="row-odd"><td><p>HobbyDrone-ROS2</p></td>
+<td><p>HobbyDrone。
+HobbyDroneは、ROS2の <strong>sensor_msgs::msg::Joyの/joy2</strong> トピックをサブスクライブします。</p></td>
 </tr>
 <tr class="row-even"><td><p>MonoCrawlerG3LA</p></td>
 <td><p>AGXシミュレータ向けのMonoCrawlerG3L。</p></td>
@@ -387,8 +397,8 @@ start_positionで初期位置の座標[ x, y, z ]を調整してください。
 <p>以上で、競技環境の読込（応用編）は終了です。</p>
 </section>
 </section>
-<section id="id10">
-<h2>YAMLファイルの詳細<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<section id="id9">
+<h2>YAMLファイルの詳細<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 17%" />

@@ -154,9 +154,6 @@ choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替�
 
 自作のロボットモデルを読み込んだら、必要なシンプルコントローラ等を全て設定してください。
 
-自作のロボットモデルに設定したカメラやレンジセンサのデバイスを使用する場合は、ロボットモデルの子アイテムにSensorVisualizer（センサ可視化）を追加して、
-アイテムツリービューで使用するデバイスにチェックを入れてください。
-
 ChoreonoidをROS2環境で使用している場合で、カメラやレンジセンサ等のデバイスが取得した情報をパブリッシュするときは、
 ロボットモデルの子アイテムにBodyROS2アイテムを追加してください。
 
@@ -200,6 +197,11 @@ registration_test.yamlを任意のディレクトリにコピーして、任意�
 
   * - 引数
     - 詳細
+  * - AizuSpiderDA
+    - AGXシミュレータ向けのAizuSpider。
+  * - AizuSpiderDA-ROS2
+    - AGXシミュレータ向けのAizuSpider。
+      AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
   * - AizuSpiderSA
     - AGXシミュレータ向けのAizuSpider。
   * - AizuSpiderSA-ROS2
@@ -220,14 +222,17 @@ registration_test.yamlを任意のディレクトリにコピーして、任意�
   * - DoubleArmV7S-ROS2
     - AISTシミュレータ向けのDoubleArmV7。
       DoubleArmV7は、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
-  * - SampleDroneA-ROS2
-    - AGXシミュレータ向けのSampleDrone。
+  * - SampleDrone
+    - SampleDrone。
+  * - SampleDrone-ROS2
+    - SampleDrone。
       SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサブスクライブします。
       この引数を使用するにはROS2パッケージ `choreonoid_ros2_sample_drone_tutorial <https://github.com/k38-suzuki/choreonoid_ros2_sample_drone_tutorial>`_ が必要です。
-  * - SampleDroneS-ROS2
-    - AISTシミュレータ向けのSampleDrone。
-      SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサブスクライブします。
-      この引数を使用するにはROS2パッケージ `choreonoid_ros2_sample_drone_tutorial <https://github.com/k38-suzuki/choreonoid_ros2_sample_drone_tutorial>`_ が必要です。
+  * - HobbyDrone
+    - HobbyDrone。
+  * - HobbyDrone-ROS2
+    - HobbyDrone。
+      HobbyDroneは、ROS2の **sensor_msgs::msg::Joyの/joy2** トピックをサブスクライブします。
   * - MonoCrawlerG3LA
     - AGXシミュレータ向けのMonoCrawlerG3L。
   * - MonoCrawlerG3LA-ROS2
