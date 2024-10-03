@@ -178,7 +178,7 @@ YAMLファイルの作成
 ~~~~~~~~~~~~~~~~~~
 
 競技環境の読込に使用するYAMLファイルを作成します。
-ここでは、WRS2024PRE/project/project_test以下に格納されているregistration_test.yamlをテンプレートとして利用します。
+ここでは、WRS2024PRE/registration以下に格納されているregistration_test.yamlをテンプレートとして利用します。
 registration_test.yamlを任意のディレクトリにコピーして、任意の名前（例：registration_<チーム名>.yaml）に変更してください。
 
 任意のテキストエディタでそのYAMLファイルを開き、1行目を以下のように書き換えてください。 ::

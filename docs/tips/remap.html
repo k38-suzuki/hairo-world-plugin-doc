@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>URサンプルについて &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>ROS2版choreonoid_joyの使い方 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -15,8 +15,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ROS2版choreonoid_joyの使い方" href="remap.html" />
-    <link rel="prev" title="ネットワークエミュレータ(Qtcapp)の使用方法について" href="qtcapp.html" /> 
+    <link rel="next" title="更新履歴" href="../update/index.html" />
+    <link rel="prev" title="URサンプルについて" href="ur.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -25,14 +25,14 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="remap.html" title="ROS2版choreonoid_joyの使い方"
+          <a href="../update/index.html" title="更新履歴"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="qtcapp.html" title="ネットワークエミュレータ(Qtcapp)の使用方法について"
+          <a href="ur.html" title="URサンプルについて"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">補足事項</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">URサンプルについて</a></li> 
+        <li class="nav-item nav-item-this"><a href="">ROS2版choreonoid_joyの使い方</a></li> 
       </ul>
     </div>  
 
@@ -41,56 +41,21 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="ur">
-<h1>URサンプルについて<a class="headerlink" href="#ur" title="Permalink to this headline">¶</a></h1>
-<p>URロボットは、<a class="reference external" href="https://www.universal-robots.com/ja/%E8%A3%BD%E5%93%81%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%8A%E3%83%83%E3%83%97/">ユニバーサルロボット</a> 社によって開発された協働ロボットアームです。Choreonoidには、URロボットのUR3、UR5、UR10のボディモデルが含まれており、シミュレーションに利用することができます。本サンプルでは、このURロボットのモデルをゲームパッドで操作する実装例を提供しています。なお、本サンプルはあくまで実装例としてURロボットをゲームパッドで操作できるようにしたものであり、実際のURロボットはゲームパッドを使って直接操作することはできませんのでご注意ください。</p>
-<img alt="../_images/ur_scene.png" src="../_images/ur_scene.png" />
-<section id="id2">
-<h2>ビルド方法<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>本サンプルのビルドは、HAIROWorldPluginのビルドと同時に行われます。HAIROWorldPluginのビルドが完了していない場合は、 <a class="reference external" href="https://k38-suzuki.github.io/hairo-world-plugin-doc/install/install.html">ソースコードからのビルドとインストール</a> を参照して、HAIROWorldPluginをビルドしてください。</p>
+  <section id="ros2choreonoid-joy">
+<h1>ROS2版choreonoid_joyの使い方<a class="headerlink" href="#ros2choreonoid-joy" title="Permalink to this headline">¶</a></h1>
+<section id="id1">
+<h2>パッケージの取得<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>ROS2に対応するchoreonoid_joyを利用したい場合は、 <a class="reference external" href="https://github.com/k38-suzuki/choreonoid_ros2_sample_drone_tutorial">こちら</a> のROS2パッケージをビルドしてください。
+joyトピックをパブリッシュするノード（choreonoid_joy_node）は次のコマンドで実行できます。:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros2_sample_drone_tutorial choreonoid_joy_node
+</pre></div>
+</div>
 </section>
-<section id="id4">
-<h2>サンプルプロジェクトの紹介<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>以下の3つのサンプルプロジェクトが用意されています。</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>UR3-2F85.cnoid</p></li>
-<li><p>UR5-2F85.cnoid</p></li>
-<li><p>UR10-2F85.cnoid</p></li>
-</ul>
-</div></blockquote>
-<dl class="simple">
-<dt>サンプルプロジェクトは以下の手順で読み込むことができます。ここでは例として、UR5のサンプルプロジェクトを読み込みます。</dt><dd><ol class="arabic simple">
-<li><p>「メニュー」-「ファイル」-「プロジェクトを開く」を選択する。</p></li>
-<li><p>ダイアログ左の「choreonoid」を選択する。</p></li>
-<li><p>「project」を選択する。</p></li>
-<li><p>任意のプロジェクトを選択する。</p></li>
-<li><p>ダイアログ右下の「開く」を押す。</p></li>
-</ol>
-</dd>
-</dl>
-<img alt="../_images/ur_step1.png" src="../_images/ur_step1.png" />
-<img alt="../_images/ur_step2.png" src="../_images/ur_step2.png" />
-<img alt="../_images/ur_step3.png" src="../_images/ur_step3.png" />
-<img alt="../_images/ur_step4.png" src="../_images/ur_step4.png" />
-<img alt="../_images/ur_step5.png" src="../_images/ur_step5.png" />
-<p>プロジェクトが読み込まれると以下のように表示されます。</p>
-<img alt="../_images/ur_step6.png" src="../_images/ur_step6.png" />
-<p>いずれもプレイステーション4用のDUALSHOCK4を使用して操作できます。キーの割当は以下のとおりです。</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>左スティック前後　・・・　URロボットのベースリンク（BASE）を基準に、手先（Gripper_Base）をX軸方向（前／後）に移動</p></li>
-<li><p>左スティック左右　・・・　URロボットのベースリンク（BASE）を基準に、手先（Gripper_Base）をY軸方向（左／右）に移動</p></li>
-<li><p>右スティック前後　・・・　URロボットの手先（Gripper_Base）を基準に、手先（Gripper_Base）をY軸まわりに回転</p></li>
-<li><p>右スティック左右　・・・　URロボットの手先（Gripper_Base）を基準に、手先（Gripper_Base）をZ軸まわりに回転</p></li>
-<li><p>十字キー前後　・・・　URロボットのベースリンク（BASE）を基準に、手先（Gripper_Base）をZ軸方向（上／下）に移動</p></li>
-<li><p>十字キー左右　・・・　URロボットの手先（Gripper_Base）を基準に、手先（Gripper_Base）をX軸まわりに回転</p></li>
-<li><p>×ボタン　・・・　ホームポジションに戻る　※実機のポームポジションとは異なります。</p></li>
-</ul>
-</div></blockquote>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>ChoreonoidがサポートしているロジクールのF310、Xbox用コントローラ及びXbox360用コントローラでは動作未確認のため、URロボットを正常に操作できない可能性がありますので、ご注意ください。</p>
+<section id="joy">
+<h2>joyトピックのリマップ<a class="headerlink" href="#joy" title="Permalink to this headline">¶</a></h2>
+<p>トピック名を変更したい場合（ここではjoyをjoy2へ変更）、次のコマンドでchoreonoid_joy_nodeを実行します。:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros2_sample_drone_tutorial choreonoid_joy_node --ros-args --remap joy:=/joy2
+</pre></div>
 </div>
 </section>
 </section>
@@ -123,8 +88,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">補足事項</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="qtcapp.html">ネットワークエミュレータ(Qtcapp)の使用方法について</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">URサンプルについて</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remap.html">ROS2版choreonoid_joyの使い方</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ur.html">URサンプルについて</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ROS2版choreonoid_joyの使い方</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
@@ -177,14 +142,14 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="remap.html" title="ROS2版choreonoid_joyの使い方"
+          <a href="../update/index.html" title="更新履歴"
              >next</a> |</li>
         <li class="right" >
-          <a href="qtcapp.html" title="ネットワークエミュレータ(Qtcapp)の使用方法について"
+          <a href="ur.html" title="URサンプルについて"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >補足事項</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">URサンプルについて</a></li> 
+        <li class="nav-item nav-item-this"><a href="">ROS2版choreonoid_joyの使い方</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
