@@ -86,16 +86,6 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
   * - M2-AizuSpiderSS-ROS2
     - 競技M2の環境（エリア1〜4）を読み込み、AISTシミュレータ向けのAizuSpiderを配置します。
       AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
-  * - M2-DoubleArmV7A
-    - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのDoubleArmV7を配置します。
-  * - M2-DoubleArmV7A-ROS2
-    - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのDoubleArmV7を配置します。
-      DoubleArmV7は、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
-  * - M2-DoubleArmV7S
-    - 競技M2の環境（エリア1〜4）を読み込み、AISTシミュレータ向けのDoubleArmV7を配置します。
-  * - M2-DoubleArmV7S-ROS2
-    - 競技M2の環境（エリア1〜4）を読み込み、AISTシミュレータ向けのDoubleArmV7を配置します。
-      DoubleArmV7は、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
   * - M2-SampleDroneA-ROS2
     - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのSampleDroneを配置します。
       SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサブスクライブします。
@@ -104,16 +94,6 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
     - 競技M2の環境（エリア1〜4）を読み込み、AISTシミュレータ向けのSampleDroneを配置します。
       SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサブスクライブします。
       この引数を使用するにはROS2パッケージ `choreonoid_ros2_sample_drone_tutorial <https://github.com/k38-suzuki/choreonoid_ros2_sample_drone_tutorial>`_ が必要です。
-  * - M2-MonoCrawlerG3LA
-    - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのMonoCrawlerG3Lを配置します。
-  * - M2-MonoCrawlerG3LA-ROS2
-    - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのMonoCrawlerG3Lを配置します。
-      MonoCrawlerG3Lは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
-  * - M2-MonoCrawlerG3LS
-    - 競技M2の環境（エリア1〜4）を読み込み、AISTシミュレータ向けのMonoCrawlerG3Lを配置します。
-  * - M2-MonoCrawlerG3LS-ROS2
-    - 競技M2の環境（エリア1〜4）を読み込み、AISTシミュレータ向けのMonoCrawlerG3Lを配置します。
-      MonoCrawlerG3Lは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
 
 以上で、競技環境の読込（基本編）は終了です。
 
@@ -195,7 +175,7 @@ registration_test.yamlを任意のディレクトリにコピーして、任意�
   :widths: 30, 70
   :header-rows: 1
 
-  * - 引数
+  * - プロジェクトの名前
     - 詳細
   * - AizuSpiderDA
     - AGXシミュレータ向けのAizuSpider。
@@ -212,16 +192,6 @@ registration_test.yamlを任意のディレクトリにコピーして、任意�
   * - AizuSpiderSS-ROS2
     - AISTシミュレータ向けのAizuSpider。
       AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
-  * - DoubleArmV7A
-    - AGXシミュレータ向けのDoubleArmV7。
-  * - DoubleArmV7A-ROS2
-    - AGXシミュレータ向けのDoubleArmV7。
-      DoubleArmV7は、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
-  * - DoubleArmV7S
-    - AISTシミュレータ向けのDoubleArmV7。
-  * - DoubleArmV7S-ROS2
-    - AISTシミュレータ向けのDoubleArmV7。
-      DoubleArmV7は、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
   * - SampleDrone
     - SampleDrone。
   * - SampleDrone-ROS2
@@ -233,16 +203,6 @@ registration_test.yamlを任意のディレクトリにコピーして、任意�
   * - HobbyDrone-ROS2
     - HobbyDrone。
       HobbyDroneは、ROS2の **sensor_msgs::msg::Joyの/joy2** トピックをサブスクライブします。
-  * - MonoCrawlerG3LA
-    - AGXシミュレータ向けのMonoCrawlerG3L。
-  * - MonoCrawlerG3LA-ROS2
-    - AGXシミュレータ向けのMonoCrawlerG3L。
-      MonoCrawlerG3Lは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
-  * - MonoCrawlerG3LS
-    - AISTシミュレータ向けのMonoCrawlerG3L。
-  * - MonoCrawlerG3LS-ROS2
-    - AISTシミュレータ向けのMonoCrawlerG3L。
-      MonoCrawlerG3Lは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
 
 例えば、ROS環境で使用できるAGXシミュレータ向けのAizuSpider（AizuSpiderSA-ROS2）を自作のロボットモデル（my_robot）と同時に使用する場合は、
 YAMLファイルの1行目を以下のように書き換えてください。 ::
