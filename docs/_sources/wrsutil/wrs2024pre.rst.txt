@@ -6,6 +6,21 @@
 この機能は、競技環境の読込とロボットモデルの配置を自動的に行うためのものです。
 この機能を使用するには `こちら <https://github.com/wrs-frei-simulation/WRS-Pre-2024>`_ のパッケージが必要です。
 
+競技環境の読込（予選・決勝）
+----------------------------
+
+WRS2024プレ大会の予選および決勝で使用した競技環境を読み込むときは、次のコマンドでChoreonoidを起動してください。
+
+予選（2024/10/04） ::
+
+ $ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2024PRE/registration/registration_20241004.yaml
+
+決勝（2024/10/05） ::
+
+ $ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2024PRE/registration/registration_20241005.yaml
+
+読込みが完了したら、WRSUtilバーのコンボボックスでエリアを選択して、コンボボックス右の「プロジェクトを開く」ボタンを押してください。
+
 競技環境の読込（基本編）
 ------------------------
 

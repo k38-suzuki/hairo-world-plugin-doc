@@ -43,7 +43,20 @@
 この機能は、競技環境の読込とロボットモデルの配置を自動的に行うためのものです。
 この機能を使用するには <a class="reference external" href="https://github.com/wrs-frei-simulation/WRS-Pre-2024">こちら</a> のパッケージが必要です。</p>
 <section id="id3">
-<h2>競技環境の読込（基本編）<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>競技環境の読込（予選・決勝）<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>WRS2024プレ大会の予選および決勝で使用した競技環境を読み込むときは、次のコマンドでChoreonoidを起動してください。</p>
+<p>予選（2024/10/04）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2024PRE/registration/registration_20241004.yaml
+</pre></div>
+</div>
+<p>決勝（2024/10/05）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2024PRE/registration/registration_20241005.yaml
+</pre></div>
+</div>
+<p>読込みが完了したら、WRSUtilバーのコンボボックスでエリアを選択して、コンボボックス右の「プロジェクトを開く」ボタンを押してください。</p>
+</section>
+<section id="id4">
+<h2>競技環境の読込（基本編）<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>以下のコマンドでChoreonoidを起動してください。
 ChoreonoidをROS2環境で使用している場合は、</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid --wrs-util &lt;mission_name&gt;
@@ -126,8 +139,8 @@ SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサ�
 </div></blockquote>
 <p>以上で、競技環境の読込（基本編）は終了です。</p>
 </section>
-<section id="id4">
-<h2>競技環境の読込（応用編）<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<section id="id5">
+<h2>競技環境の読込（応用編）<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>ここでは、上述の競技環境の読込の際に自作のロボットモデルも配置できるようにするための手順を説明します。
 主な手順は次のとおりです。</p>
 <blockquote>
@@ -138,8 +151,8 @@ SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサ�
 <li><p>Choreonoidの起動</p></li>
 </ol>
 </div></blockquote>
-<section id="id5">
-<h3>ロボットモデルのコピー<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<section id="id6">
+<h3>ロボットモデルのコピー<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>まず、choreonoid/ext/WRS2024PRE/model以下に任意の名前（例：model_&lt;チーム名&gt;）のディレクトリを作成して、
 ディレクリ内に自作のロボットモデルのファイルやディレクトリを全てをコピーしてください。</p>
 <p>次に、Choreonoidをリビルドしてください。
@@ -150,8 +163,8 @@ Choreonoidを単体で使用している場合は、choreonoid/build/share/chore
 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。</p>
 <p>ディレクトリ内に前述の手順で作成したディレクトリ（例：model_&lt;チーム名&gt;）があれば、この手順は終了です。</p>
 </section>
-<section id="id6">
-<h3>プロジェクトの作成<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<section id="id7">
+<h3>プロジェクトの作成<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>ここでは、ロボットモデルを保存したプロジェクトを作成します。
 Choreonoidを起動して、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/mode以下、
 Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/model以下の自作のロボットモデルを読み込んでください。
@@ -291,8 +304,8 @@ start_positionで初期位置の座標[ x, y, z ]を調整してください。
 <p>以上で、競技環境の読込（応用編）は終了です。</p>
 </section>
 </section>
-<section id="id8">
-<h2>YAMLファイルの詳細<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<section id="id9">
+<h2>YAMLファイルの詳細<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 17%" />
