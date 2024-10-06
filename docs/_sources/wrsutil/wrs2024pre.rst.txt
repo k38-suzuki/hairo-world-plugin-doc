@@ -168,15 +168,15 @@ registration_test.yamlを任意のディレクトリにコピーして、任意�
       SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサブスクライブします。
       この引数を使用するにはROS2パッケージ `choreonoid_ros2_sample_drone_tutorial <https://github.com/k38-suzuki/choreonoid_ros2_sample_drone_tutorial>`_ が必要です。
 
-例えば、ROS環境で使用できるAGXシミュレータ向けのAizuSpider（AizuSpiderSA-ROS2）を自作のロボットモデル（my_robot）と同時に使用する場合は、
+例えば、ROS環境で使用できるAGXシミュレータ向けのAizuSpider（AizuSpiderDA-ROS2）を自作のロボットモデル（my_robot）と同時に使用する場合は、
 YAMLファイルの1行目を以下のように書き換えてください。 ::
 
- robot_list: &RobotList [ project_team1/my_robot, AizuSpiderSA-ROS2 ]
+ robot_list: &RobotList [ project_team1/my_robot, AizuSpiderDA-ROS2 ]
 
-この設定で競技環境を読み込んだ場合、my_robotが左側、AizuSpiderSAが右側に配置されます。
+この設定で競技環境を読み込んだ場合、my_robotが左側、AizuSpiderDAが右側に配置されます。
 配置を入れ替える場合は、順番を入れ替えて次のように書き換えてください。 ::
 
- robot_list: &RobotList [ AizuSpiderSA-ROS2, project_team1/my_robot ]
+ robot_list: &RobotList [ AizuSpiderDA-ROS2, project_team1/my_robot ]
 
 YAMLファイルを保存したら、この手順は終了です。
 
@@ -256,8 +256,8 @@ YAMLファイルの詳細
     - X+
     - \-
     - 初期配置のロボットの向きを指定できます。
-      X+、X-、Y+、Y-、X+Z+、X-Z+、Y+Z+、Y-Z+が指定できます。
-      X+Z+、X-Z+、Y+Z+、Y-Z+では、ロボットがZ軸方向に並べて配置されます。
+      X+、X-、Y+、Y-、ZX+、ZX-、ZY+、ZY-が指定できます。
+      ZX+、ZX-、ZY+、ZY-では、ロボットがZ軸方向に並べて配置されます。
   * - start_position
     - [ 0.0, 0.0, 0.0 ]
     - [ m, m, m]

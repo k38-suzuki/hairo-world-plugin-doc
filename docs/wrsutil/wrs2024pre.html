@@ -227,14 +227,14 @@ SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサ�
 </tbody>
 </table>
 </div></blockquote>
-<p>例えば、ROS環境で使用できるAGXシミュレータ向けのAizuSpider（AizuSpiderSA-ROS2）を自作のロボットモデル（my_robot）と同時に使用する場合は、
+<p>例えば、ROS環境で使用できるAGXシミュレータ向けのAizuSpider（AizuSpiderDA-ROS2）を自作のロボットモデル（my_robot）と同時に使用する場合は、
 YAMLファイルの1行目を以下のように書き換えてください。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">project_team1</span><span class="o">/</span><span class="n">my_robot</span><span class="p">,</span> <span class="n">AizuSpiderSA</span><span class="o">-</span><span class="n">ROS2</span> <span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">project_team1</span><span class="o">/</span><span class="n">my_robot</span><span class="p">,</span> <span class="n">AizuSpiderDA</span><span class="o">-</span><span class="n">ROS2</span> <span class="p">]</span>
 </pre></div>
 </div>
-<p>この設定で競技環境を読み込んだ場合、my_robotが左側、AizuSpiderSAが右側に配置されます。
+<p>この設定で競技環境を読み込んだ場合、my_robotが左側、AizuSpiderDAが右側に配置されます。
 配置を入れ替える場合は、順番を入れ替えて次のように書き換えてください。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">AizuSpiderSA</span><span class="o">-</span><span class="n">ROS2</span><span class="p">,</span> <span class="n">project_team1</span><span class="o">/</span><span class="n">my_robot</span> <span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">AizuSpiderDA</span><span class="o">-</span><span class="n">ROS2</span><span class="p">,</span> <span class="n">project_team1</span><span class="o">/</span><span class="n">my_robot</span> <span class="p">]</span>
 </pre></div>
 </div>
 <p>YAMLファイルを保存したら、この手順は終了です。</p>
@@ -334,8 +334,8 @@ Choreonoidを単体で使用している場合は、choreonoid/build/share/chore
 <td><p>X+</p></td>
 <td><p>-</p></td>
 <td><p>初期配置のロボットの向きを指定できます。
-X+、X-、Y+、Y-、X+Z+、X-Z+、Y+Z+、Y-Z+が指定できます。
-X+Z+、X-Z+、Y+Z+、Y-Z+では、ロボットがZ軸方向に並べて配置されます。</p></td>
+X+、X-、Y+、Y-、ZX+、ZX-、ZY+、ZY-が指定できます。
+ZX+、ZX-、ZY+、ZY-では、ロボットがZ軸方向に並べて配置されます。</p></td>
 </tr>
 <tr class="row-even"><td><p>start_position</p></td>
 <td><p>[ 0.0, 0.0, 0.0 ]</p></td>
