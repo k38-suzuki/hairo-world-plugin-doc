@@ -59,11 +59,11 @@
 <h2>競技環境の読込（基本編）<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>以下のコマンドでChoreonoidを起動してください。
 ChoreonoidをROS2環境で使用している場合は、</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid --wrs-util &lt;mission_name&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2024PRE/registration/registration.yaml --wrs-util &lt;mission_name&gt;
 </pre></div>
 </div>
 <p>Choreonoidを単体で使用している場合は、（例：choreonoid/build内で）</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./bin/choreonoid --wrs-util &lt;mission_name&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./bin/choreonoid ../ext/WRS2024PRE/registration/registration.yaml --wrs-util &lt;mission_name&gt;
 </pre></div>
 </div>
 <p>と入力してください。
