@@ -27,11 +27,11 @@ WRS2024プレ大会の予選および決勝で使用した競技環境を読み�
 以下のコマンドでChoreonoidを起動してください。
 ChoreonoidをROS2環境で使用している場合は、 ::
 
- $ ros2 run choreonoid_ros choreonoid --wrs-util <mission_name>
+ $ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2024PRE/registration/registration.yaml --wrs-util <mission_name>
 
 Choreonoidを単体で使用している場合は、（例：choreonoid/build内で） ::
 
- $ ./bin/choreonoid --wrs-util <mission_name>
+ $ ./bin/choreonoid ../ext/WRS2024PRE/registration/registration.yaml --wrs-util <mission_name>
 
 と入力してください。
 <mission_name>で指定できる引数は以下のとおりです。
