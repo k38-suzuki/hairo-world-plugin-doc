@@ -45,16 +45,34 @@
 <h1>ROS2版choreonoid_joyの使い方<a class="headerlink" href="#ros2choreonoid-joy" title="Permalink to this headline">¶</a></h1>
 <section id="id1">
 <h2>パッケージの取得<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>ROS2に対応するchoreonoid_joyを利用したい場合は、 <a class="reference external" href="https://github.com/k38-suzuki/choreonoid_ros2_sample_drone_tutorial">こちら</a> のROS2パッケージをビルドしてください。
-joyトピックをパブリッシュするノード（choreonoid_joy_node）は次のコマンドで実行できます。:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros2_sample_drone_tutorial choreonoid_joy_node
+<p>ROS2に対応するchoreonoid_joyを利用したい場合は、 <a class="reference external" href="https://github.com/k38-suzuki/choreonoid_joy2">こちら</a> のROS2パッケージをビルドしてください。
+joyトピックは次のコマンドでパブリッシュします。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_joy2 node
 </pre></div>
 </div>
 </section>
-<section id="joy">
-<h2>joyトピックのリマップ<a class="headerlink" href="#joy" title="Permalink to this headline">¶</a></h2>
-<p>トピック名を変更したい場合（ここではjoyをjoy2へ変更）、次のコマンドでchoreonoid_joy_nodeを実行します。:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros2_sample_drone_tutorial choreonoid_joy_node --ros-args --remap joy:=/joy2
+<section id="id3">
+<h2>トピック名の変更<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>トピック名を変更したい場合（ここではjoyをjoy2へ変更）、次のコマンドでパブリッシュします。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_joy2 node --ros-args -p topic_name:=joy2
+</pre></div>
+</div>
+<p>または、</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_joy2 node --ros-args --remap joy:=/joy2
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2>デバイスの変更<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>デバイスを変更したい場合（ここでは/dev/input/js0を/dev/input/js1へ変更）、次のコマンドでパブリッシュします。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_joy2 node --ros-args -p device_name:=/dev/input/js1
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>トピック名とデバイスの変更<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>トピック名とデバイスを同時に変更したい場合、次のコマンドでパブリッシュします。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_joy2 node --ros-args -p topic_name:=joy2 -p device_name:=/dev/input/js1
 </pre></div>
 </div>
 </section>
