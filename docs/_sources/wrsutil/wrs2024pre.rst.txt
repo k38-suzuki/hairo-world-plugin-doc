@@ -42,17 +42,9 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
 
   * - 引数
     - 詳細
-  * - M1-1
-    - 競技M1の環境（エリア1のみ）を読み込みます。この引数では、ロボットを配置しません。
-  * - M1-1-AizuSpiderDA
-    - 競技M1の環境（エリア1のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
   * - M1-1-AizuSpiderDA-ROS2
     - 競技M1の環境（エリア1のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
       AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
-  * - M1-2
-    - 競技M1の環境（エリア2のみ）を読み込みます。この引数では、ロボットを配置しません。
-  * - M1-2-AizuSpiderDA
-    - 競技M1の環境（エリア2のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
   * - M1-2-AizuSpiderDA-ROS2
     - 競技M1の環境（エリア2のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
       AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
@@ -66,13 +58,9 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
     - 競技M2の環境（エリア3とエリア4のみ）を読み込みます。この引数では、ロボットを配置しません。
   * - M2-A4
     - 競技M2の環境（エリア4とエリア1のみ）を読み込みます。この引数では、ロボットを配置しません。
-  * - M2-AizuSpiderDA
-    - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
   * - M2-AizuSpiderDA-ROS2
     - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
       AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
-  * - M2-HobbyDrone
-    - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのHobbyDroneを配置します。
   * - M2-HobbyDrone-ROS2
     - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのHobbyDroneを配置します。
       HobbyDroneは、ROS2の **sensor_msgs::msg::Joyの/joy2** トピックをサブスクライブします。
@@ -163,18 +151,12 @@ registration_test.yamlを任意のディレクトリにコピーして、任意�
 
   * - プロジェクトの名前
     - 詳細
-  * - AizuSpiderDA
-    - AGXシミュレータ向けのAizuSpider。
   * - AizuSpiderDA-ROS2
     - AGXシミュレータ向けのAizuSpider。
       AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。      
-  * - AizuSpiderDS
-    - AISTシミュレータ向けのAizuSpider。
   * - AizuSpiderDS-ROS2
     - AISTシミュレータ向けのAizuSpider。
       AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
-  * - HobbyDrone
-    - HobbyDrone。
   * - HobbyDrone-ROS2
     - HobbyDrone。
       HobbyDroneは、ROS2の **sensor_msgs::msg::Joyの/joy2** トピックをサブスクライブします。
@@ -296,3 +278,11 @@ YAMLファイルの詳細
     - false
     - \-
     - 起動した環境のWorldアイテムにWorldLogFileアイテムを子アイテムとして追加します。
+  * - enable_tracking
+    - false
+    - \-
+    - ロボットとして読み込んだBodyアイテムにBodySyncCameraアイテムを子アイテムとして追加します。
+  * - enable_ros
+    - false
+    - \-
+    - ロボットとして読み込んだBodyアイテムにシンプルコントローラアイテムを子アイテムとして追加し、JoyTopicSubscriberControllerを登録します。1番目の読み込んだロボットは **joy** トピックをサブスクライブし、2番目に読み込んだロボットは **joy2** トピックをサブスクライブします。

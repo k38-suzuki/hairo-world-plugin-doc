@@ -80,21 +80,9 @@ ChoreonoidをROS2環境で使用している場合は、</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>M1-1</p></td>
-<td><p>競技M1の環境（エリア1のみ）を読み込みます。この引数では、ロボットを配置しません。</p></td>
-</tr>
-<tr class="row-odd"><td><p>M1-1-AizuSpiderDA</p></td>
-<td><p>競技M1の環境（エリア1のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。</p></td>
-</tr>
 <tr class="row-even"><td><p>M1-1-AizuSpiderDA-ROS2</p></td>
 <td><p>競技M1の環境（エリア1のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
 AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
-</tr>
-<tr class="row-odd"><td><p>M1-2</p></td>
-<td><p>競技M1の環境（エリア2のみ）を読み込みます。この引数では、ロボットを配置しません。</p></td>
-</tr>
-<tr class="row-even"><td><p>M1-2-AizuSpiderDA</p></td>
-<td><p>競技M1の環境（エリア2のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。</p></td>
 </tr>
 <tr class="row-odd"><td><p>M1-2-AizuSpiderDA-ROS2</p></td>
 <td><p>競技M1の環境（エリア2のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
@@ -115,15 +103,9 @@ AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスク�
 <tr class="row-even"><td><p>M2-A4</p></td>
 <td><p>競技M2の環境（エリア4とエリア1のみ）を読み込みます。この引数では、ロボットを配置しません。</p></td>
 </tr>
-<tr class="row-odd"><td><p>M2-AizuSpiderDA</p></td>
-<td><p>競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。</p></td>
-</tr>
-<tr class="row-even"><td><p>M2-AizuSpiderDA-ROS2</p></td>
+<tr class="row-odd"><td><p>M2-AizuSpiderDA-ROS2</p></td>
 <td><p>競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
 AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
-</tr>
-<tr class="row-odd"><td><p>M2-HobbyDrone</p></td>
-<td><p>競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのHobbyDroneを配置します。</p></td>
 </tr>
 <tr class="row-even"><td><p>M2-HobbyDrone-ROS2</p></td>
 <td><p>競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのHobbyDroneを配置します。
@@ -211,28 +193,19 @@ registration_test.yamlを任意のディレクトリにコピーして、任意�
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>AizuSpiderDA</p></td>
-<td><p>AGXシミュレータ向けのAizuSpider。</p></td>
-</tr>
-<tr class="row-odd"><td><p>AizuSpiderDA-ROS2</p></td>
+<tr class="row-even"><td><p>AizuSpiderDA-ROS2</p></td>
 <td><p>AGXシミュレータ向けのAizuSpider。
 AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
-</tr>
-<tr class="row-even"><td><p>AizuSpiderDS</p></td>
-<td><p>AISTシミュレータ向けのAizuSpider。</p></td>
 </tr>
 <tr class="row-odd"><td><p>AizuSpiderDS-ROS2</p></td>
 <td><p>AISTシミュレータ向けのAizuSpider。
 AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
 </tr>
-<tr class="row-even"><td><p>HobbyDrone</p></td>
-<td><p>HobbyDrone。</p></td>
-</tr>
-<tr class="row-odd"><td><p>HobbyDrone-ROS2</p></td>
+<tr class="row-even"><td><p>HobbyDrone-ROS2</p></td>
 <td><p>HobbyDrone。
 HobbyDroneは、ROS2の <strong>sensor_msgs::msg::Joyの/joy2</strong> トピックをサブスクライブします。</p></td>
 </tr>
-<tr class="row-even"><td><p>SampleDrone-ROS2</p></td>
+<tr class="row-odd"><td><p>SampleDrone-ROS2</p></td>
 <td><p>SampleDrone。
 SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサブスクライブします。
 この引数を使用するにはROS2パッケージ <a class="reference external" href="https://github.com/k38-suzuki/choreonoid_ros2_sample_drone_tutorial">choreonoid_ros2_sample_drone_tutorial</a> が必要です。</p></td>
@@ -376,6 +349,16 @@ Choreonoidを単体で使用している場合は、choreonoid/build/share/chore
 <td><p>false</p></td>
 <td><p>-</p></td>
 <td><p>起動した環境のWorldアイテムにWorldLogFileアイテムを子アイテムとして追加します。</p></td>
+</tr>
+<tr class="row-even"><td><p>enable_tracking</p></td>
+<td><p>false</p></td>
+<td><p>-</p></td>
+<td><p>ロボットとして読み込んだBodyアイテムにBodySyncCameraアイテムを子アイテムとして追加します。</p></td>
+</tr>
+<tr class="row-odd"><td><p>enable_ros</p></td>
+<td><p>false</p></td>
+<td><p>-</p></td>
+<td><p>ロボットとして読み込んだBodyアイテムにシンプルコントローラアイテムを子アイテムとして追加し、JoyTopicSubscriberControllerを登録します。1番目の読み込んだロボットは <strong>joy</strong> トピックをサブスクライブし、2番目に読み込んだロボットは <strong>joy2</strong> トピックをサブスクライブします。</p></td>
 </tr>
 </tbody>
 </table>
