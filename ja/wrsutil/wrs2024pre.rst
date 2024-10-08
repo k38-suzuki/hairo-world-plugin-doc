@@ -42,10 +42,10 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
 
   * - 引数
     - 詳細
-  * - M1-1-AizuSpiderDA-ROS2
+  * - M1-1
     - 競技M1の環境（エリア1のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
       AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
-  * - M1-2-AizuSpiderDA-ROS2
+  * - M1-2
     - 競技M1の環境（エリア2のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
       AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
   * - M2
@@ -58,16 +58,6 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
     - 競技M2の環境（エリア3とエリア4のみ）を読み込みます。この引数では、ロボットを配置しません。
   * - M2-A4
     - 競技M2の環境（エリア4とエリア1のみ）を読み込みます。この引数では、ロボットを配置しません。
-  * - M2-AizuSpiderDA-ROS2
-    - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
-      AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。
-  * - M2-HobbyDrone-ROS2
-    - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのHobbyDroneを配置します。
-      HobbyDroneは、ROS2の **sensor_msgs::msg::Joyの/joy2** トピックをサブスクライブします。
-  * - M2-SampleDrone-ROS2
-    - 競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのSampleDroneを配置します。
-      SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサブスクライブします。
-      この引数を使用するにはROS2パッケージ `choreonoid_ros2_sample_drone_tutorial <https://github.com/k38-suzuki/choreonoid_ros2_sample_drone_tutorial>`_ が必要です。
 
 以上で、競技環境の読込（基本編）は終了です。
 
@@ -86,7 +76,7 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
 ~~~~~~~~~~~~~~~~~~~~~~
 
 まず、choreonoid/ext/WRS2024PRE/model以下に任意の名前（例：model_<チーム名>）のディレクトリを作成して、
-ディレクリ内に自作のロボットモデルのファイルやディレクトリを全てをコピーしてください。
+そのディレクリ内に自作のロボットモデルのファイルやディレクトリを全てをコピーしてください。
 
 次に、Choreonoidをリビルドしてください。
 ChoreonoidをROS2環境で使用している場合、リビルドするときに追加したファイルが認識されない場合があります。
@@ -132,7 +122,7 @@ YAMLファイルの作成
 ここでは、WRS2024PRE/registration以下に格納されているregistration_test.yamlをテンプレートとして利用します。
 registration_test.yamlを任意のディレクトリにコピーして、任意の名前（例：registration_<チーム名>.yaml）に変更してください。
 
-任意のテキストエディタでそのYAMLファイルを開き、1行目を以下のように書き換えてください。 ::
+任意のテキストエディタでそのYAMLファイルを開き、2行目を以下のように書き換えてください。 ::
 
  robot_list: &RobotList [ 作成したディレクトリの名前/自作のロボットモデルを保存したプロジェクトの名前 ]
 

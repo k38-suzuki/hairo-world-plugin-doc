@@ -80,11 +80,11 @@ ChoreonoidをROS2環境で使用している場合は、</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>M1-1-AizuSpiderDA-ROS2</p></td>
+<tr class="row-even"><td><p>M1-1</p></td>
 <td><p>競技M1の環境（エリア1のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
 AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
 </tr>
-<tr class="row-odd"><td><p>M1-2-AizuSpiderDA-ROS2</p></td>
+<tr class="row-odd"><td><p>M1-2</p></td>
 <td><p>競技M1の環境（エリア2のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
 AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
 </tr>
@@ -102,19 +102,6 @@ AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスク�
 </tr>
 <tr class="row-even"><td><p>M2-A4</p></td>
 <td><p>競技M2の環境（エリア4とエリア1のみ）を読み込みます。この引数では、ロボットを配置しません。</p></td>
-</tr>
-<tr class="row-odd"><td><p>M2-AizuSpiderDA-ROS2</p></td>
-<td><p>競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
-AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
-</tr>
-<tr class="row-even"><td><p>M2-HobbyDrone-ROS2</p></td>
-<td><p>競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのHobbyDroneを配置します。
-HobbyDroneは、ROS2の <strong>sensor_msgs::msg::Joyの/joy2</strong> トピックをサブスクライブします。</p></td>
-</tr>
-<tr class="row-odd"><td><p>M2-SampleDrone-ROS2</p></td>
-<td><p>競技M2の環境（エリア1〜4）を読み込み、AGXシミュレータ向けのSampleDroneを配置します。
-SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサブスクライブします。
-この引数を使用するにはROS2パッケージ <a class="reference external" href="https://github.com/k38-suzuki/choreonoid_ros2_sample_drone_tutorial">choreonoid_ros2_sample_drone_tutorial</a> が必要です。</p></td>
 </tr>
 </tbody>
 </table>
@@ -136,7 +123,7 @@ SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサ�
 <section id="id6">
 <h3>ロボットモデルのコピー<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>まず、choreonoid/ext/WRS2024PRE/model以下に任意の名前（例：model_&lt;チーム名&gt;）のディレクトリを作成して、
-ディレクリ内に自作のロボットモデルのファイルやディレクトリを全てをコピーしてください。</p>
+そのディレクリ内に自作のロボットモデルのファイルやディレクトリを全てをコピーしてください。</p>
 <p>次に、Choreonoidをリビルドしてください。
 ChoreonoidをROS2環境で使用している場合、リビルドするときに追加したファイルが認識されない場合があります。
 そのときは、オプション”–cmake-clean-cache”を追加してください。</p>
@@ -170,7 +157,7 @@ choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替�
 <p>競技環境の読込に使用するYAMLファイルを作成します。
 ここでは、WRS2024PRE/registration以下に格納されているregistration_test.yamlをテンプレートとして利用します。
 registration_test.yamlを任意のディレクトリにコピーして、任意の名前（例：registration_&lt;チーム名&gt;.yaml）に変更してください。</p>
-<p>任意のテキストエディタでそのYAMLファイルを開き、1行目を以下のように書き換えてください。</p>
+<p>任意のテキストエディタでそのYAMLファイルを開き、2行目を以下のように書き換えてください。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">作成したディレクトリの名前</span><span class="o">/</span><span class="n">自作のロボットモデルを保存したプロジェクトの名前</span> <span class="p">]</span>
 </pre></div>
 </div>
@@ -277,8 +264,8 @@ start_positionで初期位置の座標[ x, y, z ]を調整してください。
 <p>以上で、競技環境の読込（応用編）は終了です。</p>
 </section>
 </section>
-<section id="id9">
-<h2>YAMLファイルの詳細<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<section id="id8">
+<h2>YAMLファイルの詳細<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 17%" />
