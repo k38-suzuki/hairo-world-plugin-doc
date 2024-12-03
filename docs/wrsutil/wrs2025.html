@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>競技環境の構築（プレ大会） &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>競技環境の構築（本大会） &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -15,7 +15,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="競技環境の構築（本大会）" href="wrs2025.html" /> 
+    <link rel="next" title="競技環境の構築（プレ大会）" href="wrs2024pre.html" />
+    <link rel="prev" title="WRSUtilプラグイン" href="index.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -24,11 +25,14 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="wrs2025.html" title="競技環境の構築（本大会）"
+          <a href="wrs2024pre.html" title="競技環境の構築（プレ大会）"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="WRSUtilプラグイン"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">WRSUtilプラグイン</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">競技環境の構築（プレ大会）</a></li> 
+        <li class="nav-item nav-item-this"><a href="">競技環境の構築（本大会）</a></li> 
       </ul>
     </div>  
 
@@ -38,32 +42,19 @@
           <div class="body" role="main">
             
   <section id="id1">
-<h1>競技環境の構築（プレ大会）<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>ここでは、WRS2024プレ大会の競技環境の構築の仕方を説明します。
+<h1>競技環境の構築（本大会）<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、WRS2025本大会の競技環境の構築の仕方を説明します。
 この機能は、競技環境の読込とロボットモデルの配置を自動的に行うためのものです。
-この機能を使用するには <a class="reference external" href="https://github.com/wrs-frei-simulation/WRS-Pre-2024">こちら</a> のパッケージが必要です。</p>
+この機能を使用するには <a class="reference external" href="https://github.com/wrs-frei-simulation/WRS-2025">こちら</a> のパッケージが必要です。</p>
 <section id="id3">
-<h2>競技環境の読込（予選・決勝）<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>WRS2024プレ大会の予選および決勝で使用した競技環境を読み込むときは、次のコマンドでChoreonoidを起動してください。</p>
-<p>予選（2024/10/04）</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2024PRE/registration/registration_20241004.yaml
-</pre></div>
-</div>
-<p>決勝（2024/10/05）</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2024PRE/registration/registration_20241005.yaml
-</pre></div>
-</div>
-<p>読込みが完了したら、WRSUtilバーのコンボボックスでエリアを選択して、コンボボックス右の「プロジェクトを開く」ボタンを押してください。</p>
-</section>
-<section id="id4">
-<h2>競技環境の読込（基本編）<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>競技環境の読込（基本編）<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>以下のコマンドでChoreonoidを起動してください。
 ChoreonoidをROS2環境で使用している場合は、</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2024PRE/registration/registration.yaml --wrs-util &lt;mission_name&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2025/registration/registration_test2.yaml --wrs-util &lt;mission_name&gt;
 </pre></div>
 </div>
 <p>Choreonoidを単体で使用している場合は、（例：choreonoid/build内で）</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./bin/choreonoid ../ext/WRS2024PRE/registration/registration.yaml --wrs-util &lt;mission_name&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./bin/choreonoid ../ext/WRS2025/registration/registration_test2.yaml --wrs-util &lt;mission_name&gt;
 </pre></div>
 </div>
 <p>と入力してください。
@@ -80,36 +71,28 @@ ChoreonoidをROS2環境で使用している場合は、</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>M1-1</p></td>
-<td><p>競技M1の環境（エリア1のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
-AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
-</tr>
-<tr class="row-odd"><td><p>M1-2</p></td>
-<td><p>競技M1の環境（エリア2のみ）を読み込み、AGXシミュレータ向けのAizuSpiderを配置します。
-AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
-</tr>
 <tr class="row-even"><td><p>M2</p></td>
-<td><p>競技M2の環境（エリア1〜4）を読み込みます。この引数では、ロボットを配置しません。</p></td>
+<td><p>競技M2の環境（エリア1〜4）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。</p></td>
 </tr>
 <tr class="row-odd"><td><p>M2-A1</p></td>
-<td><p>競技M2の環境（エリア1とエリア2のみ）を読み込みます。この引数では、ロボットを配置しません。</p></td>
+<td><p>競技M2の環境（エリア1とエリア2のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。</p></td>
 </tr>
 <tr class="row-even"><td><p>M2-A2</p></td>
-<td><p>競技M2の環境（エリア2とエリア3のみ）を読み込みます。この引数では、ロボットを配置しません。</p></td>
+<td><p>競技M2の環境（エリア2とエリア3のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。</p></td>
 </tr>
 <tr class="row-odd"><td><p>M2-A3</p></td>
-<td><p>競技M2の環境（エリア3とエリア4のみ）を読み込みます。この引数では、ロボットを配置しません。</p></td>
+<td><p>競技M2の環境（エリア3とエリア4のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。</p></td>
 </tr>
 <tr class="row-even"><td><p>M2-A4</p></td>
-<td><p>競技M2の環境（エリア4とエリア1のみ）を読み込みます。この引数では、ロボットを配置しません。</p></td>
+<td><p>競技M2の環境（エリア4とエリア1のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。</p></td>
 </tr>
 </tbody>
 </table>
 </div></blockquote>
 <p>以上で、競技環境の読込（基本編）は終了です。</p>
 </section>
-<section id="id5">
-<h2>競技環境の読込（応用編）<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<section id="id4">
+<h2>競技環境の読込（応用編）<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>ここでは、上述の競技環境の読込の際に自作のロボットモデルも配置できるようにするための手順を説明します。
 主な手順は次のとおりです。</p>
 <blockquote>
@@ -120,43 +103,43 @@ AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスク�
 <li><p>Choreonoidの起動</p></li>
 </ol>
 </div></blockquote>
-<section id="id6">
-<h3>ロボットモデルのコピー<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<p>まず、choreonoid/ext/WRS2024PRE/model以下に任意の名前（例：model_&lt;チーム名&gt;）のディレクトリを作成して、
+<section id="id5">
+<h3>ロボットモデルのコピー<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>まず、choreonoid/ext/WRS2025/model以下に任意の名前（例：model_&lt;チーム名&gt;）のディレクトリを作成して、
 そのディレクリ内に自作のロボットモデルのファイルやディレクトリを全てをコピーしてください。</p>
 <p>次に、Choreonoidをリビルドしてください。
 ChoreonoidをROS2環境で使用している場合、リビルドするときに追加したファイルが認識されない場合があります。
 そのときは、オプション”–cmake-clean-cache”を追加してください。</p>
-<p>リビルドが完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/mode以下、
-Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/model以下を確認します。
+<p>リビルドが完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2025/mode以下、
+Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2025/model以下を確認します。
 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。</p>
 <p>ディレクトリ内に前述の手順で作成したディレクトリ（例：model_&lt;チーム名&gt;）があれば、この手順は終了です。</p>
 </section>
-<section id="id7">
-<h3>プロジェクトの作成<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<section id="id6">
+<h3>プロジェクトの作成<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>ここでは、ロボットモデルを保存したプロジェクトを作成します。
-Choreonoidを起動して、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/mode以下、
-Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/model以下の自作のロボットモデルを読み込んでください。
+Choreonoidを起動して、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2025/mode以下、
+Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2025/model以下の自作のロボットモデルを読み込んでください。
 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。</p>
 <p>自作のロボットモデルを読み込んだら、必要なシンプルコントローラ等を全て設定してください。</p>
 <p>ChoreonoidをROS2環境で使用している場合で、カメラやレンジセンサ等のデバイスが取得した情報をパブリッシュするときは、
 ロボットモデルの子アイテムにBodyROS2アイテムを追加してください。</p>
-<p>設定が完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/src/choreonoid/ext/WRS2024PRE/project以下、
-Choreonoidを単体で使用している場合は、choreonoid/ext/WRS2024PRE/project以下に任意の名前（例：project_&lt;チーム名&gt;）のディレクトリを作成して、
+<p>設定が完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/src/choreonoid/ext/WRS2025/project以下、
+Choreonoidを単体で使用している場合は、choreonoid/ext/WRS2025/project以下に任意の名前（例：project_&lt;チーム名&gt;）のディレクトリを作成して、
 そのディレクトリ内にプロジェクト(.cnoid)を保存します。プロジェクトは、自作のロボットモデルの名前で保存してください。
 <strong>ここで保存したプロジェクトの名前を後述の”YAMLファイルの作成”で使用します。</strong></p>
 <p>次に、Choreonoidをリビルドしてください。ChoreonoidをROS2環境で使用している場合、リビルドするときに追加したファイルが認識されない場合があります。
 そのときは、オプション”–cmake-clean-cache”を追加してください。</p>
-<p>リビルドが完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
-Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下を確認します。
+<p>リビルドが完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2025/project以下、
+Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2025/project以下を確認します。
 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。</p>
 <p>ディレクトリ内に前述の手順で作成したディレクトリ（例：project_&lt;チーム名&gt;）があれば、この手順は終了です。</p>
 </section>
 <section id="yaml">
 <h3>YAMLファイルの作成<a class="headerlink" href="#yaml" title="Permalink to this headline">¶</a></h3>
 <p>競技環境の読込に使用するYAMLファイルを作成します。
-ここでは、WRS2024PRE/registration以下に格納されているregistration_test.yamlをテンプレートとして利用します。
-registration_test.yamlを任意のディレクトリにコピーして、任意の名前（例：registration_&lt;チーム名&gt;.yaml）に変更してください。</p>
+ここでは、WRS2025/registration以下に格納されているregistration_test2.yamlをテンプレートとして利用します。
+registration_test2.yamlを任意のディレクトリにコピーして、任意の名前（例：registration_&lt;チーム名&gt;.yaml）に変更してください。</p>
 <p>任意のテキストエディタでそのYAMLファイルを開き、2行目を以下のように書き換えてください。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">作成したディレクトリの名前</span><span class="o">/</span><span class="n">自作のロボットモデルを保存したプロジェクトの名前</span> <span class="p">]</span>
 </pre></div>
@@ -180,13 +163,13 @@ registration_test.yamlを任意のディレクトリにコピーして、任意�
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>AizuSpiderDA-ROS2</p></td>
-<td><p>AGXシミュレータ向けのAizuSpider。
-AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
+<tr class="row-even"><td><p>MonoCrawlerNA-ROS2</p></td>
+<td><p>AGXシミュレータ向けのMonoCrawler。
+MonoCrawlerは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
 </tr>
-<tr class="row-odd"><td><p>AizuSpiderDS-ROS2</p></td>
-<td><p>AISTシミュレータ向けのAizuSpider。
-AizuSpiderは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
+<tr class="row-odd"><td><p>MonoCrawlerNS-ROS2</p></td>
+<td><p>AISTシミュレータ向けのMonoCrawler。
+MonoCrawlerは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。</p></td>
 </tr>
 <tr class="row-even"><td><p>HobbyDrone-ROS2</p></td>
 <td><p>HobbyDrone。
@@ -200,14 +183,14 @@ SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサ�
 </tbody>
 </table>
 </div></blockquote>
-<p>例えば、ROS環境で使用できるAGXシミュレータ向けのAizuSpider（AizuSpiderDA-ROS2）を自作のロボットモデル（my_robot）と同時に使用する場合は、
+<p>例えば、ROS環境で使用できるAGXシミュレータ向けのMonoCrawler（MonoCrawlerNA-ROS2）を自作のロボットモデル（my_robot）と同時に使用する場合は、
 YAMLファイルの1行目を以下のように書き換えてください。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">project_team1</span><span class="o">/</span><span class="n">my_robot</span><span class="p">,</span> <span class="n">AizuSpiderDA</span><span class="o">-</span><span class="n">ROS2</span> <span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">project_team1</span><span class="o">/</span><span class="n">my_robot</span><span class="p">,</span> <span class="n">MonoCrawlerNA</span><span class="o">-</span><span class="n">ROS2</span> <span class="p">]</span>
 </pre></div>
 </div>
-<p>この設定で競技環境を読み込んだ場合、my_robotが左側、AizuSpiderDAが右側に配置されます。
+<p>この設定で競技環境を読み込んだ場合、my_robotが左側、MonoCrawlerNAが右側に配置されます。
 配置を入れ替える場合は、順番を入れ替えて次のように書き換えてください。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">AizuSpiderDA</span><span class="o">-</span><span class="n">ROS2</span><span class="p">,</span> <span class="n">project_team1</span><span class="o">/</span><span class="n">my_robot</span> <span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">MonoCrawlerNA</span><span class="o">-</span><span class="n">ROS2</span><span class="p">,</span> <span class="n">project_team1</span><span class="o">/</span><span class="n">my_robot</span> <span class="p">]</span>
 </pre></div>
 </div>
 <p>YAMLファイルを保存したら、この手順は終了です。</p>
@@ -264,92 +247,6 @@ start_positionで初期位置の座標[ x, y, z ]を調整してください。
 <p>以上で、競技環境の読込（応用編）は終了です。</p>
 </section>
 </section>
-<section id="id8">
-<h2>YAMLファイルの詳細<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
-<table class="colwidths-given docutils align-default">
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 63%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>パラメータ</p></th>
-<th class="head"><p>デフォルト値</p></th>
-<th class="head"><p>単位</p></th>
-<th class="head"><p>意味</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>name</p></td>
-<td><p>空</p></td>
-<td><p>-</p></td>
-<td><p>設定の名前を指定します。
-<strong>ここで指定した名前が引数&lt;mission_name&gt;で指定できます。</strong></p></td>
-</tr>
-<tr class="row-odd"><td><p>task_project</p></td>
-<td><p>空</p></td>
-<td><p>-</p></td>
-<td><p>フィールドが保存されたプロジェクトをリストで指定します。
-ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
-Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下にあるプロジェクトを指定できます。
-プロジェクトは、リストで指定した順番に読み込まれます。</p></td>
-</tr>
-<tr class="row-even"><td><p>robot_project</p></td>
-<td><p>空</p></td>
-<td><p>-</p></td>
-<td><p>ロボットが保存されたプロジェクトをリストで指定します。
-ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
-Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下にあるプロジェクトを指定できます。
-プロジェクトは、リストで指定した順番に読み込まれ、先に指定したロボットを左側、後に指定したロボットは右側に配置されます。</p></td>
-</tr>
-<tr class="row-odd"><td><p>robot_alignment</p></td>
-<td><p>X+</p></td>
-<td><p>-</p></td>
-<td><p>初期配置のロボットの向きを指定できます。
-X+、X-、Y+、Y-、ZX+、ZX-、ZY+、ZY-が指定できます。
-ZX+、ZX-、ZY+、ZY-では、ロボットがZ軸方向に並べて配置されます。</p></td>
-</tr>
-<tr class="row-even"><td><p>start_position</p></td>
-<td><p>[ 0.0, 0.0, 0.0 ]</p></td>
-<td><p>[ m, m, m]</p></td>
-<td><p>ロボットの初期配置の座標を指定します。
-座標はメートル単位で指定します。</p></td>
-</tr>
-<tr class="row-odd"><td><p>simulator_project</p></td>
-<td><p>空</p></td>
-<td><p>-</p></td>
-<td><p>シミュレータアイテムが保存されたプロジェクトをリストで指定します。
-ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
-Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下にあるプロジェクトを指定できます。
-プロジェクトは、リストで指定した順番に読み込まれます。</p></td>
-</tr>
-<tr class="row-even"><td><p>view_project</p></td>
-<td><p>空</p></td>
-<td><p>-</p></td>
-<td><p>ビューのレイアウトが保存されたプロジェクトをリストで指定します。
-ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2024PRE/project以下、
-Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2024PRE/project以下にあるプロジェクトを指定できます。
-プロジェクトは、リストで指定した順番に読み込まれます。</p></td>
-</tr>
-<tr class="row-odd"><td><p>enable_recording</p></td>
-<td><p>false</p></td>
-<td><p>-</p></td>
-<td><p>起動した環境のWorldアイテムにWorldLogFileアイテムを子アイテムとして追加します。</p></td>
-</tr>
-<tr class="row-even"><td><p>enable_tracking</p></td>
-<td><p>false</p></td>
-<td><p>-</p></td>
-<td><p>ロボットとして読み込んだBodyアイテムにBodySyncCameraアイテムを子アイテムとして追加します。</p></td>
-</tr>
-<tr class="row-odd"><td><p>enable_ros</p></td>
-<td><p>false</p></td>
-<td><p>-</p></td>
-<td><p>ロボットとして読み込んだBodyアイテムにシンプルコントローラアイテムを子アイテムとして追加し、JoyTopicSubscriberControllerを登録します。1番目の読み込んだロボットは <strong>joy</strong> トピックをサブスクライブし、2番目に読み込んだロボットは <strong>joy2</strong> トピックをサブスクライブします。</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 </section>
 
 
@@ -383,8 +280,8 @@ Choreonoidを単体で使用している場合は、choreonoid/build/share/chore
 <li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">WRSUtilプラグイン</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="wrs2025.html">競技環境の構築（本大会）</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">競技環境の構築（プレ大会）</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">競技環境の構築（本大会）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wrs2024pre.html">競技環境の構築（プレ大会）</a></li>
 </ul>
 </li>
 </ul>
@@ -433,11 +330,14 @@ Choreonoidを単体で使用している場合は、choreonoid/build/share/chore
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="wrs2025.html" title="競技環境の構築（本大会）"
+          <a href="wrs2024pre.html" title="競技環境の構築（プレ大会）"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="WRSUtilプラグイン"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >WRSUtilプラグイン</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">競技環境の構築（プレ大会）</a></li> 
+        <li class="nav-item nav-item-this"><a href="">競技環境の構築（本大会）</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
