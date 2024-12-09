@@ -25,13 +25,13 @@ HAIROWorldプラグインのビルド・実行に必要となる依存パッケ�
 
 HAIROWorldプラグインのソースディレクトリに移動し対応するスクリプトを実行します。Ubuntu 20.04であれば、 ::
 
- misc/script/install-requisites-ubuntu-20.04.sh
+ sudo ./misc/script/install-requisites-ubuntu-20.04.sh
 
 を実行します。
 
 Ubuntu 18.04は ::
 
- misc/script/install-requisites-ubuntu-18.04.sh
+ sudo ./misc/script/install-requisites-ubuntu-18.04.sh
 
 を実行してください。
 

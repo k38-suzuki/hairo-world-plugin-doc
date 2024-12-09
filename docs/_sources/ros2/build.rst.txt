@@ -30,7 +30,7 @@ HAIROWorldプラグインのビルド・実行に必要となる依存パッケ�
 
 HAIROWorldプラグインのソースディレクトリに移動し対応するスクリプトを実行します。 ::
 
- misc/script/install-requisites-ubuntu-22.04.sh
+ sudo ./misc/script/install-requisites-ubuntu-22.04.sh
 
 を実行します。
 
