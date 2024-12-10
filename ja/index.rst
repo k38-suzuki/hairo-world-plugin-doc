@@ -6,8 +6,7 @@
 HAIROWorldPluginマニュアル
 ==========================
 
-　このサイトでは、日本原子力研究開発機構が開発したChoreonoidの拡張機能「HAIROWorldPlugin」の使い方を説明します。
-詳しく知りたい方は `こちら <https://jopss.jaea.go.jp/search/servlet/search?5070343>`_ をクリックしてください。
+　このサイトでは、日本原子力研究開発機構が開発したChoreonoidの拡張機能「HAIROWorldPlugin」の使い方を説明します。HAIROWorldPluginは、Choreonoid開発版上で動作することを確認しており、今後もChoreonoidの最新のバージョンに対応していく予定です。 **（2024/12時点では、choreonoid-2.2に対応しています。）** 対応OSはUbuntu18.04 LTS、Ubuntu20.04 LTSとUbuntu22.04 LTSです。他のOS、ディストリビューション、バージョン、アーキテクチャについては、公式にはサポートしておりません。Ubuntuベースの他のディストリビューションでは、ビルドをうまく通せば動作する可能性もありますが、保証はできません。また、VMWare・VirtualBox等の仮想マシンでの使用についても動作を保証できませんので、予めご了承ください。
 
 .. toctree::
    :maxdepth: 2
@@ -39,11 +38,6 @@ HAIROWorldPluginマニュアル
 
 .. image:: images/title.png
    :target: https://naraha.jaea.go.jp/information/files/2020/1211/movie/hairoworld2.mp4
-
-対応プラットフォーム
-====================
-
-　HAIROWorldPluginは、Choreonoid開発版上で動作することを確認しており、今後もChoreonoidの最新のバージョンに対応していく予定です。対応OSはUbuntu18.04 LTSとUbuntu20.04 LTSです。他のOS、ディストリビューション、バージョン、アーキテクチャについては、公式にはサポートしておりません。Ubuntuベースの他のディストリビューションでは、ビルドをうまく通せば動作する可能性もありますが、保証はできません。また、VMWare・VirtualBox等の仮想マシンでの使用についても動作を保証できませんので、予めご了承ください。
 
 免責事項
 ========
