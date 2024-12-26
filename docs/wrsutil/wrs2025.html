@@ -50,11 +50,11 @@
 <h2>競技環境の読込（基本編）<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>以下のコマンドでChoreonoidを起動してください。
 ChoreonoidをROS2環境で使用している場合は、</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2025/registration/registration_test2.yaml --wrs-util &lt;mission_name&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2025/registration/registration.yaml --wrs-util &lt;mission_name&gt;
 </pre></div>
 </div>
 <p>Choreonoidを単体で使用している場合は、（例：choreonoid/build内で）</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./bin/choreonoid ../ext/WRS2025/registration/registration_test2.yaml --wrs-util &lt;mission_name&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./bin/choreonoid ../ext/WRS2025/registration/registration.yaml --wrs-util &lt;mission_name&gt;
 </pre></div>
 </div>
 <p>と入力してください。
@@ -71,20 +71,14 @@ ChoreonoidをROS2環境で使用している場合は、</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>M2</p></td>
-<td><p>競技M2の環境（エリア1〜4）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。</p></td>
-</tr>
-<tr class="row-odd"><td><p>M2-A1</p></td>
+<tr class="row-even"><td><p>M2-A12</p></td>
 <td><p>競技M2の環境（エリア1とエリア2のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。</p></td>
 </tr>
-<tr class="row-even"><td><p>M2-A2</p></td>
-<td><p>競技M2の環境（エリア2とエリア3のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。</p></td>
-</tr>
-<tr class="row-odd"><td><p>M2-A3</p></td>
+<tr class="row-odd"><td><p>M2-A34</p></td>
 <td><p>競技M2の環境（エリア3とエリア4のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。</p></td>
 </tr>
-<tr class="row-even"><td><p>M2-A4</p></td>
-<td><p>競技M2の環境（エリア4とエリア1のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。</p></td>
+<tr class="row-even"><td><p>M3</p></td>
+<td><p>競技M3の環境を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。</p></td>
 </tr>
 </tbody>
 </table>
@@ -138,8 +132,8 @@ choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替�
 <section id="yaml">
 <h3>YAMLファイルの作成<a class="headerlink" href="#yaml" title="Permalink to this headline">¶</a></h3>
 <p>競技環境の読込に使用するYAMLファイルを作成します。
-ここでは、WRS2025/registration以下に格納されているregistration_test2.yamlをテンプレートとして利用します。
-registration_test2.yamlを任意のディレクトリにコピーして、任意の名前（例：registration_&lt;チーム名&gt;.yaml）に変更してください。</p>
+ここでは、WRS2025/registration以下に格納されているregistration.yamlをテンプレートとして利用します。
+registration.yamlを任意のディレクトリにコピーして、任意の名前（例：registration_&lt;チーム名&gt;.yaml）に変更してください。</p>
 <p>任意のテキストエディタでそのYAMLファイルを開き、2行目を以下のように書き換えてください。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">作成したディレクトリの名前</span><span class="o">/</span><span class="n">自作のロボットモデルを保存したプロジェクトの名前</span> <span class="p">]</span>
 </pre></div>
@@ -223,20 +217,14 @@ ChoreonoidをROS2環境で使用している場合は、</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>M2</p></td>
-<td><p>競技M2の環境（エリア1〜4）を読み込み、自作のロボットモデルを配置します。</p></td>
-</tr>
-<tr class="row-odd"><td><p>M2-A1</p></td>
+<tr class="row-even"><td><p>M2-A12</p></td>
 <td><p>競技M2の環境（エリア1とエリア2のみ）を読み込み、自作のロボットモデルを配置します。</p></td>
 </tr>
-<tr class="row-even"><td><p>M2-A2</p></td>
-<td><p>競技M2の環境（エリア2とエリア3のみ）を読み込み、自作のロボットモデルを配置します。</p></td>
-</tr>
-<tr class="row-odd"><td><p>M2-A3</p></td>
+<tr class="row-odd"><td><p>M2-A34</p></td>
 <td><p>競技M2の環境（エリア3とエリア4のみ）を読み込み、自作のロボットモデルを配置します。</p></td>
 </tr>
-<tr class="row-even"><td><p>M2-A4</p></td>
-<td><p>競技M2の環境（エリア4とエリア1のみ）を読み込み、自作のロボットモデルを配置します。</p></td>
+<tr class="row-even"><td><p>M3</p></td>
+<td><p>競技M3の環境を読み込み、自作のロボットモデルを配置します。</p></td>
 </tr>
 </tbody>
 </table>

@@ -12,11 +12,11 @@
 以下のコマンドでChoreonoidを起動してください。
 ChoreonoidをROS2環境で使用している場合は、 ::
 
- $ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2025/registration/registration_test2.yaml --wrs-util <mission_name>
+ $ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2025/registration/registration.yaml --wrs-util <mission_name>
 
 Choreonoidを単体で使用している場合は、（例：choreonoid/build内で） ::
 
- $ ./bin/choreonoid ../ext/WRS2025/registration/registration_test2.yaml --wrs-util <mission_name>
+ $ ./bin/choreonoid ../ext/WRS2025/registration/registration.yaml --wrs-util <mission_name>
 
 と入力してください。
 <mission_name>で指定できる引数は以下のとおりです。
@@ -27,16 +27,12 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
 
   * - 引数
     - 詳細
-  * - M2
-    - 競技M2の環境（エリア1〜4）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。
-  * - M2-A1
+  * - M2-A12
     - 競技M2の環境（エリア1とエリア2のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。
-  * - M2-A2
-    - 競技M2の環境（エリア2とエリア3のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。
-  * - M2-A3
+  * - M2-A34
     - 競技M2の環境（エリア3とエリア4のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。
-  * - M2-A4
-    - 競技M2の環境（エリア4とエリア1のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。
+  * - M3
+    - 競技M3の環境を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。
 
 以上で、競技環境の読込（基本編）は終了です。
 
@@ -98,8 +94,8 @@ YAMLファイルの作成
 ~~~~~~~~~~~~~~~~~~
 
 競技環境の読込に使用するYAMLファイルを作成します。
-ここでは、WRS2025/registration以下に格納されているregistration_test2.yamlをテンプレートとして利用します。
-registration_test2.yamlを任意のディレクトリにコピーして、任意の名前（例：registration_<チーム名>.yaml）に変更してください。
+ここでは、WRS2025/registration以下に格納されているregistration.yamlをテンプレートとして利用します。
+registration.yamlを任意のディレクトリにコピーして、任意の名前（例：registration_<チーム名>.yaml）に変更してください。
 
 任意のテキストエディタでそのYAMLファイルを開き、2行目を以下のように書き換えてください。 ::
 
@@ -171,16 +167,12 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
 
   * - 引数
     - 詳細
-  * - M2
-    - 競技M2の環境（エリア1〜4）を読み込み、自作のロボットモデルを配置します。
-  * - M2-A1
+  * - M2-A12
     - 競技M2の環境（エリア1とエリア2のみ）を読み込み、自作のロボットモデルを配置します。
-  * - M2-A2
-    - 競技M2の環境（エリア2とエリア3のみ）を読み込み、自作のロボットモデルを配置します。
-  * - M2-A3
+  * - M2-A34
     - 競技M2の環境（エリア3とエリア4のみ）を読み込み、自作のロボットモデルを配置します。
-  * - M2-A4
-    - 競技M2の環境（エリア4とエリア1のみ）を読み込み、自作のロボットモデルを配置します。
+  * - M3
+    - 競技M3の環境を読み込み、自作のロボットモデルを配置します。
 
 Choreonoidを起動したときに、ロボットモデルの配置がズレている場合は、
 start_positionで初期位置の座標[ x, y, z ]を調整してください。
