@@ -1,10 +1,42 @@
 
-競技環境の構築（本大会）
-========================
+競技環境の構築（本大会）***編集中（2025/02/25更新）***
+======================================================
 
-ここでは、WRS2025本大会の競技環境の構築の仕方を説明します。
-この機能は、競技環境の読込とロボットモデルの配置を自動的に行うためのものです。
+ここでは、WRS2025本大会の競技環境の構築の仕方を説明します。この機能は、競技環境の読込とロボットモデルの配置を自動的に行うためのものです。
 この機能を使用するには `こちら <https://github.com/wrs-frei-simulation/WRS-2025>`_ のパッケージが必要です。
+**なお、このページに記載した内容は、競技環境の開発状況により変更になる場合があります。**
+
+練習環境の読込
+--------------
+
+以下のコマンドでChoreonoidを起動してください。
+ChoreonoidをROS2環境で使用している場合は、 ::
+
+ $ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2025/registration/registration_m3.yaml --wrs-util <mission_name>
+
+Choreonoidを単体で使用している場合は、（例：choreonoid/build内で） ::
+
+ $ ./bin/choreonoid ../ext/WRS2025/registration/registration.yaml --wrs-util <mission_name>
+
+と入力してください。
+<mission_name>で指定できる引数は以下のとおりです。
+
+ .. list-table::
+  :widths: 30, 70
+  :header-rows: 1
+
+  * - 引数
+    - 詳細
+  * - M3-A1
+    - 練習環境（エリア1のみ）を読み込みます。デフォルトでAizuSpiderDSとHobbyDroneを配置します。
+  * - M3-A2
+    - 練習環境（エリア2のみ）を読み込みます。デフォルトでAizuSpiderDSとHobbyDroneを配置します。
+  * - M3-A3
+    - 練習環境（エリア3のみ）を読み込みます。デフォルトでAizuSpiderDSとHobbyDroneを配置します。
+  * - M3-A4
+    - 練習環境（エリア4のみ）を読み込みます。デフォルトでAizuSpiderDSとHobbyDroneを配置します。
+
+以上で、練習環境の読込は終了です。
 
 競技環境の読込（基本編）
 ------------------------
@@ -27,12 +59,14 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
 
   * - 引数
     - 詳細
-  * - M2-A12
-    - 競技M2の環境（エリア1とエリア2のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。
-  * - M2-A34
-    - 競技M2の環境（エリア3とエリア4のみ）を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。
-  * - M3
-    - 競技M3の環境を読み込みます。デフォルトでMonoCrawlerNAとHobbyDroneを配置します。
+  * - PS-1
+    - 競技環境（エリア1のみ）を読み込みます。デフォルトでAizuSpiderDSとHobbyDroneを配置します。
+  * - PS-2
+    - 競技環境（エリア2のみ）を読み込みます。デフォルトでAizuSpiderDSとHobbyDroneを配置します。
+  * - PS-3
+    - 競技環境（エリア3のみ）を読み込みます。デフォルトでAizuSpiderDSとHobbyDroneを配置します。
+  * - PS-4
+    - 競技環境（エリア4のみ）を読み込みます。デフォルトでAizuSpiderDSとHobbyDroneを配置します。
 
 以上で、競技環境の読込（基本編）は終了です。
 
@@ -57,7 +91,7 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
 ChoreonoidをROS2環境で使用している場合、リビルドするときに追加したファイルが認識されない場合があります。
 そのときは、オプション"--cmake-clean-cache"を追加してください。
 
-リビルドが完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2025/mode以下、
+リビルドが完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2025/model以下、
 Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2025/model以下を確認します。
 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。
 
@@ -67,7 +101,7 @@ choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替�
 ~~~~~~~~~~~~~~~~~~
 
 ここでは、ロボットモデルを保存したプロジェクトを作成します。
-Choreonoidを起動して、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2025/mode以下、
+Choreonoidを起動して、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2025/model以下、
 Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2025/model以下の自作のロボットモデルを読み込んでください。
 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。
 
@@ -116,6 +150,12 @@ registration.yamlを任意のディレクトリにコピーして、任意の名
 
   * - プロジェクトの名前
     - 詳細
+  * - AizuSpiderDA-ROS2
+    - AGXシミュレータ向けのAizuSpiderDS。
+      AizuSpiderDSは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。   
+  * - AizuSpiderDS-ROS2
+    - AISTシミュレータ向けのAizuSpiderDS。
+      AizuSpiderDSは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。   
   * - MonoCrawlerNA-ROS2
     - AGXシミュレータ向けのMonoCrawler。
       MonoCrawlerは、ROS2のsensor_msgs::msg::Joyの/joyトピックをサブスクライブします。      
@@ -130,15 +170,15 @@ registration.yamlを任意のディレクトリにコピーして、任意の名
       SampleDroneは、ROS2のgeometry_msgs::msg::Twistの/cmd_velトピックをサブスクライブします。
       この引数を使用するにはROS2パッケージ `choreonoid_ros2_sample_drone_tutorial <https://github.com/k38-suzuki/choreonoid_ros2_sample_drone_tutorial>`_ が必要です。
 
-例えば、ROS環境で使用できるAGXシミュレータ向けのMonoCrawler（MonoCrawlerNA-ROS2）を自作のロボットモデル（my_robot）と同時に使用する場合は、
+例えば、ROS環境で使用できるAGXシミュレータ向けのAizuSpider（AizuSpiderDA-ROS2）を自作のロボットモデル（my_robot）と同時に使用する場合は、
 YAMLファイルの1行目を以下のように書き換えてください。 ::
 
- robot_list: &RobotList [ project_team1/my_robot, MonoCrawlerNA-ROS2 ]
+ robot_list: &RobotList [ project_team1/my_robot, AizuSpiderDA-ROS2 ]
 
-この設定で競技環境を読み込んだ場合、my_robotが左側、MonoCrawlerNAが右側に配置されます。
+この設定で競技環境を読み込んだ場合、my_robotが左側、AizuSpiderDAが右側に配置されます。
 配置を入れ替える場合は、順番を入れ替えて次のように書き換えてください。 ::
 
- robot_list: &RobotList [ MonoCrawlerNA-ROS2, project_team1/my_robot ]
+ robot_list: &RobotList [ AizuSpiderDA-ROS2, project_team1/my_robot ]
 
 YAMLファイルを保存したら、この手順は終了です。
 
@@ -167,12 +207,14 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
 
   * - 引数
     - 詳細
-  * - M2-A12
-    - 競技M2の環境（エリア1とエリア2のみ）を読み込み、自作のロボットモデルを配置します。
-  * - M2-A34
-    - 競技M2の環境（エリア3とエリア4のみ）を読み込み、自作のロボットモデルを配置します。
-  * - M3
-    - 競技M3の環境を読み込み、自作のロボットモデルを配置します。
+  * - PS-1
+    - 競技環境（エリア1のみ）を読み込み、自作のロボットモデルとHobbyDroneを配置します。
+  * - PS-2
+    - 競技環境（エリア2のみ）を読み込み、自作のロボットモデルとHobbyDroneを配置します。
+  * - PS-3
+    - 競技環境（エリア3のみ）を読み込み、自作のロボットモデルとHobbyDroneを配置します。
+  * - PS-4
+    - 競技環境（エリア4のみ）を読み込み、自作のロボットモデルとHobbyDroneを配置します。
 
 Choreonoidを起動したときに、ロボットモデルの配置がズレている場合は、
 start_positionで初期位置の座標[ x, y, z ]を調整してください。
