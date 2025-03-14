@@ -1,5 +1,5 @@
 
-競技環境の構築（本大会）***編集中（2025/02/25更新）***
+競技環境の構築（本大会）***編集中（2025/03/14更新）***
 ======================================================
 
 ここでは、WRS2025本大会の競技環境の構築の仕方を説明します。この機能は、競技環境の読込とロボットモデルの配置を自動的に行うためのものです。
@@ -16,7 +16,7 @@ ChoreonoidをROS2環境で使用している場合は、 ::
 
 Choreonoidを単体で使用している場合は、（例：choreonoid/build内で） ::
 
- $ ./bin/choreonoid ../ext/WRS2025/registration/registration.yaml --wrs-util <mission_name>
+ $ ./bin/choreonoid ../ext/WRS2025/registration/registration_m3.yaml --wrs-util <mission_name>
 
 と入力してください。
 <mission_name>で指定できる引数は以下のとおりです。
@@ -35,6 +35,8 @@ Choreonoidを単体で使用している場合は、（例：choreonoid/build内
     - 練習環境（エリア3のみ）を読み込みます。デフォルトでAizuSpiderDSとHobbyDroneを配置します。
   * - M3-A4
     - 練習環境（エリア4のみ）を読み込みます。デフォルトでAizuSpiderDSとHobbyDroneを配置します。
+
+練習環境に自作のロボットを配置したい場合は、以降に記述する **競技環境の読込（応用編）** の作業を行い、WRS2025/registration以下に格納されているregistration_m3.yamlを直接またはコピーしてから **robot_list** のパラメータを編集してください。コピーした場合は、Choreonoidを起動するときの引数でコピーしたファイルを指定するようにしてください。
 
 以上で、練習環境の読込は終了です。
 
