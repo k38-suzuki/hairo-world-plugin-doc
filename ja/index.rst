@@ -32,6 +32,7 @@ HAIROWorldPluginマニュアル
    update/index
    en/index
    wrs/index
+   internship/index
    wrsutil/index
 
 以下の画像をクリックすると紹介動画が再生されます。

@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>ステップ2: コントローラの作成と導入 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ステップ3: ゲームパッドによるカメラ台座の制御" href="step3.html" />
+    <link rel="prev" title="ステップ1: シミュレーションプロジェクトの作成" href="step1.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="step3.html" title="ステップ3: ゲームパッドによるカメラ台座の制御"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="step1.html" title="ステップ1: シミュレーションプロジェクトの作成"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Crawlerチュートリアル</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ステップ2: コントローラの作成と導入</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>ステップ2: コントローラの作成と導入<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ステップ1ではコントローラが無かったため、シミュレーションの際にCrawlerモデルのカメラ台座の姿勢を維持することができませんでした。そこでステップ2では姿勢を維持するための最小限のコントローラの作成を通して、コントローラ導入の基本を学ぶことにします。</p>
+<div class="contents local topic" id="id2">
+<p class="topic-title">目次</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#step2-ref1" id="id17">コントローラの形式について</a></p></li>
+<li><p><a class="reference internal" href="#turretcontroller1" id="id18">コントローラ “TurretController1” の実装</a></p></li>
+<li><p><a class="reference internal" href="#step2-ref3" id="id19">コントローラのビルド方法</a></p></li>
+<li><p><a class="reference internal" href="#step2-ref4" id="id20">プロジェクトディレクトリの作成</a></p></li>
+<li><p><a class="reference internal" href="#cmakelists-txt" id="id21">CMakeLists.txtの記述</a></p></li>
+<li><p><a class="reference internal" href="#step2-ref6" id="id22">コントローラのビルド</a></p></li>
+<li><p><a class="reference internal" href="#step2-ref7" id="id23">コントローラの導入</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id9" id="id24">コントローラアイテムの生成</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id25">コントローラ本体のセット</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#step2-ref8" id="id26">シミュレーションの実行</a></p></li>
+<li><p><a class="reference internal" href="#step2-ref9" id="id27">実装内容の解説</a></p>
+<ul>
+<li><p><a class="reference internal" href="#simplecontroller" id="id28">SimpleControllerクラス</a></p></li>
+<li><p><a class="reference internal" href="#initialize" id="id29">initialize関数の実装</a></p></li>
+<li><p><a class="reference internal" href="#control" id="id30">control関数の実装</a></p></li>
+<li><p><a class="reference internal" href="#id16" id="id31">ファクトリ関数の定義</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="step2-ref1">
+<span id="id3"></span><h2><a class="toc-backref" href="#id17">コントローラの形式について</a><a class="headerlink" href="#step2-ref1" title="Permalink to this headline">¶</a></h2>
+<p>一般的に、コントローラの実装形式は様々なものがあり得ます。特定のロボットシステムやシミュレータが規定する形式もありますし、ROSなどのミドルウェアの規定する形式でコントローラを実装することも一般的となっています。</p>
+<p>これに関して、本チュートリアルでは、Choreonoid独自の 「シンプルコントローラ（SimpleController）」の形式でコントローラの実装を行います。シンプルコントローラは、C++言語とChoreonoid内部のデータ構造を用いてコントローラを実装するもので、ROSなどのミドルウェアを使用する場合と比べて覚えることが少なくて済み、コードも比較的シンプルなものになるといった利点があります。</p>
+<p>ただしこれはChoreonoidの独自形式であるため、汎用性の面ではROSなどのミドルウェアに劣ります。また、ROSなどのミドルウェアが提供するような通信機能を提供するものでもありません。ChoreonoidはROSと連携する機能も備えていますので、必要に応じてそちらも用いるようにしてください。ROSを利用する方法については <a class="reference external" href="https://choreonoid.org/ja/documents/latest/ros2/index.html">ROS2との連携</a> で解説しています。</p>
+</section>
+<section id="turretcontroller1">
+<span id="step2-ref2"></span><h2><a class="toc-backref" href="#id18">コントローラ “TurretController1” の実装</a><a class="headerlink" href="#turretcontroller1" title="Permalink to this headline">¶</a></h2>
+<p>シンプルコントローラ形式ではC++のクラスとしてコントローラを実装します。ここではカメラ台座(Turret)のピッチ軸を維持するだけの “TurretController1” の実装を行います。まずこのコントローラのソースコードを以下に示します。</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SimpleController&gt;</span><span class="cp"></span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">cnoid</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">class</span><span class="w"> </span><span class="nc">TurretController1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SimpleController</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="n">Link</span><span class="o">*</span><span class="w"> </span><span class="n">joint</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">q_ref</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">q_prev</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="n">SimpleControllerIO</span><span class="o">*</span><span class="w"> </span><span class="n">io</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">        </span><span class="n">joint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">link</span><span class="p">(</span><span class="s">&quot;TURRET_P&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">        </span><span class="n">joint</span><span class="o">-&gt;</span><span class="n">setActuationMode</span><span class="p">(</span><span class="n">Link</span><span class="o">::</span><span class="n">JOINT_TORQUE</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">        </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">enableIO</span><span class="p">(</span><span class="n">joint</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">        </span><span class="n">q_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q_prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joint</span><span class="o">-&gt;</span><span class="n">q</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="w">        </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">timeStep</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">control</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">        </span><span class="c1">// PD gains</span>
+<span class="linenos">28</span><span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">200.0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">50.0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joint</span><span class="o">-&gt;</span><span class="n">q</span><span class="p">();</span><span class="w"> </span><span class="c1">// input</span>
+<span class="linenos">32</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q_prev</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dq_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">34</span><span class="w">        </span><span class="n">joint</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">q_ref</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">dq_ref</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dq</span><span class="p">);</span><span class="w"> </span><span class="c1">// output</span>
+<span class="linenos">35</span><span class="w">        </span><span class="n">q_prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">36</span>
+<span class="linenos">37</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">38</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">39</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="n">CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY</span><span class="p">(</span><span class="n">TurretController1</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>以下では、このコントローラをシミュレーションプロジェクトに導入し、シミュレーションを行うまでを解説します。その後、コントローラの実装内容について解説したいと思います。</p>
+</section>
+<section id="step2-ref3">
+<span id="id4"></span><h2><a class="toc-backref" href="#id19">コントローラのビルド方法</a><a class="headerlink" href="#step2-ref3" title="Permalink to this headline">¶</a></h2>
+<p>C++言語で記述されたコントローラのソースコードをビルド（コンパイル）するにあたって、主に以下の２通りの方法があります。</p>
+<ol class="arabic simple">
+<li><p>Choreonoid本体と一緒にビルドを行う</p></li>
+<li><p>Choreonoid本体とは別にビルドを行う</p></li>
+</ol>
+<p>Choreonoidをソースからビルドしている場合、1の方が手軽ですので、本チュートリアルでは1で解説を進めることにします。</p>
+<p>ビルド方法の詳細については <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/howto-build-controller.html">コントローラのビルド</a> で解説していますのでそちらを参照してください。実際のコントローラ開発時には、環境や目的に応じて両手法を使い分けることになるかと思います。</p>
+<p>いずれの場合も、まずコントローラのソースコードを格納するディレクトリが必要となります。これを <em>「プロジェクトディレクトリ」</em> と呼ぶことにします。（プロジェクトディレクトリには本チュートリアルで作成する他のファイルも格納することにします。）</p>
+<p>上記の1の方法でビルドを行う場合は、プロジェクトディレクトリをChoreonoid本体のビルドシステムに認識させる必要があります。これについても2通りの方法があります。</p>
+<ol class="upperalpha simple">
+<li><p>Choreonoidのソースディレクトリ内の “ext” ディレクトリに対象のディレクトリを配置する</p></li>
+<li><p>ChoreonoidのCMakeの設定で “ADDITIONAL_EXT_DIRECTORIES” に対象のディレクトリを指定する</p></li>
+</ol>
+<p>Aを採用する場合は、プロジェクトディレクトリをextディレクトリ以下に作成します。
+Bを採用する場合は、プロジェクトディレクトリをどこかに作成した上で、そのディレクトリへのパスを上記の設定項目に指定します。対象ディレクトリが複数ある場合は、セミコロンで区切って入力することができます。</p>
+<p>特に理由がなければAの方法を用いるのがよいかと思います。以下ではその方法で進めることにします。</p>
+</section>
+<section id="step2-ref4">
+<span id="id6"></span><h2><a class="toc-backref" href="#id20">プロジェクトディレクトリの作成</a><a class="headerlink" href="#step2-ref4" title="Permalink to this headline">¶</a></h2>
+<p>ではプロジェクトディレクトリをext以下に作成しましょう。ディレクトリ名は何でもよいですが、ここでは “Crawler” というディレクトリ名を使うことにします。例えばChoreonoidのソースディレクトリ上で</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ext
+mkdir Crawler
+</pre></div>
+</div>
+<p>などとします。</p>
+<p>この “Crawler” ディレクトリの中に、本ステップの冒頭の <a class="reference internal" href="#step2-ref2"><span class="std std-ref">コントローラ “TurretController1” の実装</span></a> で示したソースコードのファイルを作成してください。ファイル名は “TurretController1.cpp” とすることにします。</p>
+<p>ここまで進めると、プロジェクトディレクトリとその中のファイルは以下の構成になります。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Choreonoidソースディレクトリ
+ + ext
+   + Crawler
+     - TurretController1.cpp
+</pre></div>
+</div>
+<p>なお、ステップ1で <a class="reference internal" href="step1.html#step1-ref7"><span class="std std-ref">プロジェクトの保存</span></a> を行ったファイルについても、この “Crawler” ディレクトリにまとめて保存するとよいでしょう。そのように、本チュートリアルのシミュレーションプロジェクトに関わる全てのファイルをまとめておく意図もあるので、このディレクトリを「プロジェクトディレクトリ」と呼んでいます。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ubuntuでどのテキストエディタを使ったらよいか分からないという方は、とりあえず標準の “gedit” というテキストエディタを使ってみて下さい。アプリの検索で “gedit”と入力すると出てくる「テキストエディター」というアイコンで起動できます。コマンドラインから “gedit” と入力してもOKです。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ソースコードのファイルはChoreonoid本体の “sample/tutorial/Crawler/” 以下に格納されています。自分で入力するのが面倒な場合は、このファイルを利用してもOKです。本チュートリアルで言及する他のファイルについてもこのディレクトリに格納されていますので、必要に応じてご利用下さい。</p>
+</div>
+</section>
+<section id="cmakelists-txt">
+<span id="step2-ref5"></span><h2><a class="toc-backref" href="#id21">CMakeLists.txtの記述</a><a class="headerlink" href="#cmakelists-txt" title="Permalink to this headline">¶</a></h2>
+<p>次に、プロジェクトディレクトリ “Crawler” 内に “CMakeLists.txt” というテキストファイルを新たに作成し、ここにコントローラのコンパイルに関する設定を記述します。</p>
+<p>といっても今回記述すべき内容は非常にシンプルで、新規作成した “CMakeLists.txt” のファイルに以下の一行を記述すればOKです。</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">choreonoid_add_simple_controller</span><span class="p">(</span><span class="s">CrawlerTutorial_TurretController1</span><span class="w"> </span><span class="s">TurretController1.cpp</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>ここで用いている “choreonoid_add_simple_controller” という関数は、Choreonoid本体のCMake記述にて予め定義された関数です。この関数に、生成されるコントローラの名前とソースファイルを与えるだけで、コントローラのコンパイルを行うことができます。</p>
+<p>今回コントローラ名に “CrawlerTutorial” というプレフィックスをつけています。これは必須というわけではありませんが、今後他のプロジェクトで開発したコントローラと区別しやすくするためにつけています。</p>
+<p>ここまで進めると、プロジェクトディレクトリとその中のファイルは以下の構成になります。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Choreonoidソースディレクトリ
+<span class="linenos">2</span> + ext
+<span class="linenos">3</span>   + Crawler
+<span class="linenos">4</span>     - CMakeLists.txt
+<span class="linenos">5</span>     - TurretController1.cpp
+</pre></div>
+</div>
+</section>
+<section id="step2-ref6">
+<span id="id7"></span><h2><a class="toc-backref" href="#id22">コントローラのビルド</a><a class="headerlink" href="#step2-ref6" title="Permalink to this headline">¶</a></h2>
+<p>コントローラのビルドを行いましょう。今回はChoreonoid本体と一緒にビルドする手法を用いているので、再度Choreonoid本体のビルドを行えばOKです。今回CMakeLists.txtが追加されましたので、まずそれを認識させるため、CMakeを再実行しましょう。ステップ1で開いた端末についてはChoreonoid本体のソースディレクトリがカレントディレクトリになっているかと思います。そうでない場合は</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="o">[</span>Choreonoid本体のソースディレクトリへのパス<span class="o">]</span>
+</pre></div>
+</div>
+<p>として、Choreonoid本体のソースディレクトリに移動してください。</p>
+<p>通常はビルド用の “build” ディレクトリを作成してビルドしているかと思いますので、そちらに移動して、CMakeを再実行します。</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> build
+cmake ..
+</pre></div>
+</div>
+<p>つぎにビルドディレクトリ上で続けて</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+<p>と入力して下さい。（ビルド方法の詳細は <a class="reference external" href="https://choreonoid.org/ja/documents/latest/install/build-ubuntu.html">ソースコードからのビルドとインストール (Ubuntu Linux編)</a> の <a class="reference external" href="https://choreonoid.org/ja/documents/latest/install/build-ubuntu.html#install-build-ubuntu-build">Choreonoidのビルド</a> を参照して下さい。）</p>
+<p>この際 <a class="reference internal" href="#step2-ref3"><span class="std std-ref">コントローラのビルド方法</span></a> で述べたAかBの条件を満たしていれば、上記のCMakeLists.txtが検出され、その内容も実行されるというわけです。</p>
+<p>ビルドに成功すると、ビルドディレクトリの “lib/choreonoid-x.x/simplecontroller” （x.xはChoreonoidのバージョン番号）に、</p>
+<ul class="simple">
+<li><p><strong>CrawlerTutorial_TurretController1.so</strong></p></li>
+</ul>
+<p>というファイルが生成されるはずです。これがコントローラ本体のファイルとなります。この拡張子からも分かるように、コントローラの実態は共有ライブラリファイルとなります。コントローラが生成されたディレクトリは今後 <em>「コントローラディレクトリ」</em> と呼ぶことにします。</p>
+<p>コンパイルエラーが出た場合は、エラーメッセージを参考にして、ソースコードやCMakeLists.txtの記述を見直してみて下さい。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>この後 “make install” を実行すると、生成されたコントローラのファイルである “CrawlerTutorial_TurretController1.so” もインストール先にコピーされます。ただし本チュートリアルでは、ステップ1の <a class="reference internal" href="step1.html#step1-ref1"><span class="std std-ref">Choreonoidの起動</span></a> で述べたように、”make install” は実行せずに、buildディレクトリ内のファイルを実行する前提で解説していますので、その点にご注意ください。</p>
+</div>
+</section>
+<section id="step2-ref7">
+<span id="id8"></span><h2><a class="toc-backref" href="#id23">コントローラの導入</a><a class="headerlink" href="#step2-ref7" title="Permalink to this headline">¶</a></h2>
+<p>ビルドしたコントローラをシミュレーションプロジェクトに導入します。</p>
+<section id="id9">
+<h3><a class="toc-backref" href="#id24">コントローラアイテムの生成</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>シンプルコントローラは「シンプルコントローラアイテム」によってプロジェクトに導入するようになっていますので、まずは対応するアイテムを生成しましょう。メインメニューの「ファイル」-「新規」から「シンプルコントローラ」を選択して生成します。アイテムの名前はなんでもよいですが、コントローラに合わせて “TurretController” とするとよいでしょう。</p>
+<p>生成したアイテムは、下図のように、制御対象のCrawlerアイテムの子アイテムとして配置するようにします。</p>
+<img alt="../_images/step2-1.png" src="../_images/step2-1.png" />
+<p>この配置によって、コントローラの制御対象がCrawlerモデルであることを明示します。これを実現するにあたっては、Crawlerアイテムを選択状態としてからコントローラアイテムの生成を行ってもよいですし、生成後にこの配置になるようドラッグしてもOKです。</p>
+</section>
+<section id="id10">
+<h3><a class="toc-backref" href="#id25">コントローラ本体のセット</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>次に先ほど作成したコントローラの本体をシンプルコントローラアイテムにセットします。</p>
+<p>これはシンプルコントローラアイテムの「コントローラモジュール」というプロパティを用いて行います。まず、アイテムツリー上で “TurretController” を選択します。するとこのアイテムのプロパティ一覧がアイテムプロパティビュー上に表示されますので、その中から「コントローラモジュール」というプロパティを探して下さい。そのプロパティの値の部分（デフォルトでは空欄となっている）をダブルクリックすると、モジュールのファイルを入力することができます。</p>
+<p>この際、入力用のファイルダイアログを用いて入力するのが手軽です。コントローラモジュールの入力時には下図に示すように値を入力する箇所の右端にアイコンがあります。</p>
+<img alt="../_images/step2-2.png" src="../_images/step2-2.png" />
+<p>このアイコンをクリックすると、ファイル選択のダイアログが表示されます。このダイアログは通常シンプルコントローラ格納用の標準ディレクトリを指しています。そこには先ほど作成した “CrawlerTutorial_TurretController1.so” が格納されているはずですので、これを選択して下さい。</p>
+<p>これでコントローラ本体がシンプルコントローラアイテムにセットされました。これでコントローラを機能させることができます。</p>
+<p>ここまで設定できたら、またプロジェクトを保存しておきましょう。ファイル名は “step2.cnoid” として、プロジェクトディレクトリに保存しておくとよいかと思います。</p>
+</section>
+</section>
+<section id="step2-ref8">
+<span id="id11"></span><h2><a class="toc-backref" href="#id26">シミュレーションの実行</a><a class="headerlink" href="#step2-ref8" title="Permalink to this headline">¶</a></h2>
+<p>以上の設定を行った上でシミュレーションを実行して下さい。すると、ステップ1では重力で下を向いてしまったカメラ台座が、今回は正面を向いたままとなっているはずです。これはコントローラ “TurretController1” によって、姿勢の維持に必要なトルクがカメラ台座ピッチ軸にかけられているからです。</p>
+<p>うまくいかない場合は、メッセージビューも確認してみて下さい。コントローラの設定や稼働に問題があると、シミュレーション開始時にその旨を知らせるメッセージが出力される場合があります。</p>
+<p>なお、このコントローラではカメラ台座ヨー軸の制御は行っていないため、そちらには力がかかっていません。ステップ1の時と同様に、 <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/interaction.html">インタラクション機能</a> を用いてカメラ台座部分をドラッグすると、ヨー軸に関してはフリーで動かせることが分かります。</p>
+</section>
+<section id="step2-ref9">
+<span id="id13"></span><h2><a class="toc-backref" href="#id27">実装内容の解説</a><a class="headerlink" href="#step2-ref9" title="Permalink to this headline">¶</a></h2>
+<p>今回作成したコントローラ “TurretController1” の実装内容は以下のようになっています。</p>
+<section id="simplecontroller">
+<h3><a class="toc-backref" href="#id28">SimpleControllerクラス</a><a class="headerlink" href="#simplecontroller" title="Permalink to this headline">¶</a></h3>
+<p>まず、シンプルコントローラはChoreonoidで定義されている “SimpleController” クラスを継承したクラスとして実装するようになっています。そこでまず</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SimpleController&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>によって、このクラスが定義されているヘッダをインクルードしています。Choreonoidが提供するヘッダファイルはインクルードディレクトリの “cnoid” サブディレクトリに格納されるようになっており、このように cnoid ディレクトリからのパスとして記述します。拡張子は必要ありません。</p>
+<p>また、Choreonoidで定義されているクラスは全て “cnoid” という名前空間に所属しています。ここでは</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">cnoid</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>によって名前区間を省略できるようにしています。</p>
+<p>コントローラのクラス定義は、</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TurretController1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SimpleController</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>によって行われています。SimpleControllerを継承するかたちでTurretController1を定義していることが分かります。</p>
+<p>SimpleControllerクラスではいくつかの関数が仮想（バーチャル）関数として定義されており、継承先でそれらの関数をオーバーライドすることでコントローラの処理内容を実装します。通常以下の２つの関数をオーバーライドします。</p>
+<ul class="simple">
+<li><p><strong>virtual bool initialize(SimpleControllerIO* io)</strong></p></li>
+<li><p><strong>virtual bool control()</strong></p></li>
+</ul>
+</section>
+<section id="initialize">
+<h3><a class="toc-backref" href="#id29">initialize関数の実装</a><a class="headerlink" href="#initialize" title="Permalink to this headline">¶</a></h3>
+<p>initialize関数はコントローラの初期化を行う関数で、シミュレーション開始の直前に１回だけ実行されます。</p>
+<p>この関数に引数として与えられるSimpleControllerIO型は、コントローラの入出力に必要な機能をまとめたクラスとなっています。この詳細は <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/howto-implement-controller.html">コントローラの実装</a> の <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/howto-implement-controller.html#simulator-simple-controller-io">IOオブジェクト</a> をみていただくとして、ここではまず</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">joint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">link</span><span class="p">(</span><span class="s">&quot;TURRET_P&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>によって、カメラ台座ピッチ軸の入出力を行うためのLinkオブジェクトを取得し、joint変数に格納しています。</p>
+<p>io-&gt;body() によってCrawlerモデル入出力用のBodyオブジェクトを取得し、続けてこのオブジェクトが有するLinkオブジェクトから “TURRET_P” という名前を持つものを取得しています。これは <a href="#id32"><span class="problematic" id="id33">`Crawlerモデルの作成 &lt;&gt;`_</span></a> において記述した <a href="#id34"><span class="problematic" id="id35">`カメラ台座ピッチ軸部 &lt;&gt;`_</span></a> の関節に対応するものです。</p>
+<p>次に</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">joint</span><span class="o">-&gt;</span><span class="n">setActuationMode</span><span class="p">(</span><span class="n">Link</span><span class="o">::</span><span class="n">JOINT_TORQUE</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>によって、この関節の <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/howto-implement-controller.html#simulation-implement-controller-actuation-mode">状態変数シンボル</a> を関節トルクに設定しています。これにより、関節トルクを指令値とした制御が可能となります。</p>
+<p>また、</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">io</span><span class="o">-&gt;</span><span class="n">enableIO</span><span class="p">(</span><span class="n">joint</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>によって、この関節に対する入出力を有効にしています。この記述は関節のデフォルトの入出力を有効化するものです。今回悪チュエーションモードが関節トルクとなっているので、関節角度を入力し、関節トルクを出力することになります。これによってこの関節に対してPD制御を行うことが可能となります。</p>
+<p>関節に対して上記のアクチュエーションモードの設定や入出力の有効化を行わない場合、その関節の制御を行うことはできませんので、ご注意下さい。入出力を設定する関数としては、他に入力飲みを設定する enableInput という関数と、出力のみを設定する enableOutput という関数も利用可能です。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>同様のことを行う関数として、SimpleControllerIOのsetLinkInput、setJointInput、setLinkOutput、setJointOutputといった関数もありますが、これらは古い仕様の関数を互換性のために残しているものですので、今後はenableXXXの関数を使うようにしてください。</p>
+</div>
+<p>他にPD制御に必要な値として、</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">q_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q_prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joint</span><span class="o">-&gt;</span><span class="n">q</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>によって初期関節角度を取得し、それを変数q_ref、 q_prevに代入しています。q_refは目標関節角で、q_prevは関節角速度計算用の変数です。また、</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">timeStep</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>によって変数dtにタイムステップを代入しています。これはシミュレーションの物理計算１回あたりに進める内部の時間を表していて、この時間間隔で次の control 関数が呼ばれることになります。</p>
+<p>最後にinitialize関数の戻り値として true を返して、初期化に成功したことをシステムに伝えています。</p>
+</section>
+<section id="control">
+<h3><a class="toc-backref" href="#id30">control関数の実装</a><a class="headerlink" href="#control" title="Permalink to this headline">¶</a></h3>
+<p>control関数は実際の制御コードを記述する部分で、シミュレーション中に繰り返し実行されます。</p>
+<p>ここではカメラ台座ピッチ軸に関するPD制御のコードが書かれているだけです。</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">200.0</span><span class="p">;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">50.0</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>はPゲイン、Dゲインの値で、</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joint</span><span class="o">-&gt;</span><span class="n">q</span><span class="p">();</span><span class="w"> </span><span class="c1">// input</span>
+</pre></div>
+</div>
+<p>によって現在関節角を入力し、</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">dq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q_prev</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>によって現在角速度を算出し、</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">dq_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>で目標角速度は0に設定し、</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">joint</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">q_ref</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">dq_ref</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dq</span><span class="p">);</span><span class="w"> </span><span class="c1">// output</span>
+</pre></div>
+</div>
+<p>によってPD制御で計算したトルク値を関節に出力し、</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">q_prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>によって次回計算用にq_prevを更新しています。</p>
+<p>このように、入出力はLinkオブジェクトの変数を用いて行うことがポイントです。joint-&gt;q()、joint-&gt;u() はそれぞれ関節角度、関節トルクの変数に対応しています。</p>
+<p>最後に、正常終了を表すtrueを戻り値として返しています。これによって制御ループが継続されます。</p>
+</section>
+<section id="id16">
+<h3><a class="toc-backref" href="#id31">ファクトリ関数の定義</a><a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p>シンプルコントローラのクラスを定義したら、そのオブジェクトを生成する「ファクトリ関数」も所定の形式で定義しておく必要があります。これは、シンプルコントローラアイテムが実行時にコントローラの共有ライブラリを読み込んで、そこからコントローラのオブジェクトを生成するために必要となります。</p>
+<p>これはマクロを使って、</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY</span><span class="p">(</span><span class="n">TurretController1</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>と記述することができます。引数としてはこのようにコントローラのクラス名を与えて下さい。</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../collision/index.html">CollisionSeqプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyEditプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file/index.html">FileExplorerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">JoystickStartプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Crawlerチュートリアル</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="step1.html">ステップ1: シミュレーションプロジェクトの作成</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ステップ2: コントローラの作成と導入</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html">ステップ3: ゲームパッドによるカメラ台座の制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html">ステップ4: ゲームパッドによるヒンジの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step5.html">ステップ5: クローラの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step6.html">ステップ6: サブクローラの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step7.html">ステップ7: ライトの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step8.html">ステップ8: カメラ画像のシミュレーションと取得</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="step3.html" title="ステップ3: ゲームパッドによるカメラ台座の制御"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="step1.html" title="ステップ1: シミュレーションプロジェクトの作成"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Crawlerチュートリアル</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ステップ2: コントローラの作成と導入</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    </div>
+  </body>
+</html>
