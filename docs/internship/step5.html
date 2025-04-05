@@ -47,20 +47,20 @@
 <div class="contents local topic" id="id2">
 <p class="topic-title">目次</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#crawler" id="id12">Crawlerモデルの簡易クローラ</a></p></li>
-<li><p><a class="reference internal" href="#step5-ref2" id="id13">簡易クローラのコントローラ</a></p></li>
-<li><p><a class="reference internal" href="#step5-ref3" id="id14">コントローラの導入</a></p></li>
-<li><p><a class="reference internal" href="#step5-ref4" id="id15">クローラの操作</a></p></li>
-<li><p><a class="reference internal" href="#step5-ref5" id="id16">実装内容の解説</a></p></li>
+<li><p><a class="reference internal" href="#crawler" id="id11">Crawlerモデルの簡易クローラ</a></p></li>
+<li><p><a class="reference internal" href="#step5-ref2" id="id12">簡易クローラのコントローラ</a></p></li>
+<li><p><a class="reference internal" href="#step5-ref3" id="id13">コントローラの導入</a></p></li>
+<li><p><a class="reference internal" href="#step5-ref4" id="id14">クローラの操作</a></p></li>
+<li><p><a class="reference internal" href="#step5-ref5" id="id15">実装内容の解説</a></p></li>
 </ul>
 </div>
 <section id="crawler">
-<span id="step5-ref1"></span><h2><a class="toc-backref" href="#id12">Crawlerモデルの簡易クローラ</a><a class="headerlink" href="#crawler" title="Permalink to this headline">¶</a></h2>
+<span id="step5-ref1"></span><h2><a class="toc-backref" href="#id11">Crawlerモデルの簡易クローラ</a><a class="headerlink" href="#crawler" title="Permalink to this headline">¶</a></h2>
 <p>Crawlerモデルの左右のクローラは「簡易クローラ」としてモデリングされています（ <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/modelfile/modelfile-newformat.html#modelfile-yaml-crawlers">クローラの記述</a> 参照）。これはクローラ部と環境との接触点に推力を与えるというもので、履帯の部分が実際にホイールの周りを動いていくというものではないのですが、これを用いることでクローラ風の動きをすることが可能です。ただし、履帯の部分が地形に沿って変形していくようなものではないので、走破性は本物のクローラには及びません。この詳細は <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/pseudo-continuous-track.html">無限軌道の簡易シミュレーション</a> を参照して下さい。</p>
 <p>Crawlerモデルでは、左クローラに対応するリンクが “TRACK_L”、右クローラに対応するリンクが “TRACK_R” という名前でモデリングされています。これらのリンクは簡易クローラに対応する “pseudoContinuousTrack” タイプの軸が設定されており、それらの軸をゲームパッドで制御できるようにしたいと思います。</p>
 </section>
 <section id="step5-ref2">
-<span id="id5"></span><h2><a class="toc-backref" href="#id13">簡易クローラのコントローラ</a><a class="headerlink" href="#step5-ref2" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2><a class="toc-backref" href="#id12">簡易クローラのコントローラ</a><a class="headerlink" href="#step5-ref2" title="Permalink to this headline">¶</a></h2>
 <p>今回作成するコントローラ “TrackController1” のソースコードを以下に示します。</p>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SimpleController&gt;</span><span class="cp"></span>
 <span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Joystick&gt;</span><span class="cp"></span>
@@ -79,8 +79,8 @@
 <span class="linenos">15</span><span class="w">        </span><span class="n">trackL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">link</span><span class="p">(</span><span class="s">&quot;TRACK_L&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="linenos">16</span><span class="w">        </span><span class="n">trackR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">link</span><span class="p">(</span><span class="s">&quot;TRACK_R&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="linenos">17</span>
-<span class="linenos">18</span><span class="w">        </span><span class="n">trackL</span><span class="o">-&gt;</span><span class="n">setActuationMode</span><span class="p">(</span><span class="n">Link</span><span class="o">::</span><span class="n">JOINT_SURFACE_VELOCITY</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">19</span><span class="w">        </span><span class="n">trackR</span><span class="o">-&gt;</span><span class="n">setActuationMode</span><span class="p">(</span><span class="n">Link</span><span class="o">::</span><span class="n">JOINT_SURFACE_VELOCITY</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">        </span><span class="n">trackL</span><span class="o">-&gt;</span><span class="n">setActuationMode</span><span class="p">(</span><span class="n">Link</span><span class="o">::</span><span class="n">JointVelocity</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">        </span><span class="n">trackR</span><span class="o">-&gt;</span><span class="n">setActuationMode</span><span class="p">(</span><span class="n">Link</span><span class="o">::</span><span class="n">JointVelocity</span><span class="p">);</span><span class="w"></span>
 <span class="linenos">20</span>
 <span class="linenos">21</span><span class="w">        </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">enableOutput</span><span class="p">(</span><span class="n">trackL</span><span class="p">);</span><span class="w"></span>
 <span class="linenos">22</span><span class="w">        </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">enableOutput</span><span class="p">(</span><span class="n">trackR</span><span class="p">);</span><span class="w"></span>
@@ -119,7 +119,7 @@
 <p>という記述を追加し、コンパイルを行って下さい。</p>
 </section>
 <section id="step5-ref3">
-<span id="id6"></span><h2><a class="toc-backref" href="#id14">コントローラの導入</a><a class="headerlink" href="#step5-ref3" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2><a class="toc-backref" href="#id13">コントローラの導入</a><a class="headerlink" href="#step5-ref3" title="Permalink to this headline">¶</a></h2>
 <p>コントローラの導入についても、これまでと同様に…と言いたいところですが、今回作成したコントローラはカメラ台座を制御する部分がありませんので、このコントローラだけセットしても、カメラ台座を動かすことができなくなってしまいます。そこで、これまでのカメラ台座のコントローラを生かしつつ、今回のコントローラを追加で導入したいと思います。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -144,7 +144,7 @@
 <p>なお、前者の並列形式についても、複数のコントローラの並列実行が可能という点は利点となります。また、異なるタイプのコントローラアイテムは、この形式でしか利用できません。従って、状況に応じて両形式を使い分けることになります。</p>
 </section>
 <section id="step5-ref4">
-<span id="id8"></span><h2><a class="toc-backref" href="#id15">クローラの操作</a><a class="headerlink" href="#step5-ref4" title="Permalink to this headline">¶</a></h2>
+<span id="id8"></span><h2><a class="toc-backref" href="#id14">クローラの操作</a><a class="headerlink" href="#step5-ref4" title="Permalink to this headline">¶</a></h2>
 <p>シミュレーションを実行しましょう。今回はゲームパッドのもう一方（左側）のアナログスティックで、Crawlerモデルの車体を走らせることができますので、試してみて下さい。スティックを前に倒すと前進、後ろで後退、左で左旋回、右で右旋回となります。</p>
 <p>また、TurretControllerも残してありますので、カメラ台座の制御も引き続き可能となっています。</p>
 <p>ゲームパッドの各部位と操作内容の対応を仮想ジョイスティックビューで示すと以下のようになります。</p>
@@ -152,7 +152,7 @@
 <p>これでCrawlerモデルの全ての軸を操作できるようになりました。</p>
 </section>
 <section id="step5-ref5">
-<span id="id9"></span><h2><a class="toc-backref" href="#id16">実装内容の解説</a><a class="headerlink" href="#step5-ref5" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h2><a class="toc-backref" href="#id15">実装内容の解説</a><a class="headerlink" href="#step5-ref5" title="Permalink to this headline">¶</a></h2>
 <p>TrackController1の実装内容について、このコントローラに特有の部分に絞って解説します。</p>
 <p>まずintialize関数内の</p>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">trackL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">link</span><span class="p">(</span><span class="s">&quot;TRACK_L&quot;</span><span class="p">);</span><span class="w"></span>
@@ -160,18 +160,18 @@
 </pre></div>
 </div>
 <p>によって、左右それぞれのクローラに対応する入出力用リンクを取得しています。次に</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">trackL</span><span class="o">-&gt;</span><span class="n">setActuationMode</span><span class="p">(</span><span class="n">Link</span><span class="o">::</span><span class="n">JOINT_SURFACE_VELOCITY</span><span class="p">);</span><span class="w"></span>
-<span class="n">trackR</span><span class="o">-&gt;</span><span class="n">setActuationMode</span><span class="p">(</span><span class="n">Link</span><span class="o">::</span><span class="n">JOINT_SURFACE_VELOCITY</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">trackL</span><span class="o">-&gt;</span><span class="n">setActuationMode</span><span class="p">(</span><span class="n">Link</span><span class="o">::</span><span class="n">JointVelocity</span><span class="p">);</span><span class="w"></span>
+<span class="n">trackR</span><span class="o">-&gt;</span><span class="n">setActuationMode</span><span class="p">(</span><span class="n">Link</span><span class="o">::</span><span class="n">JointVelocity</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-<p>によって、各クローラリンクの <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/howto-implement-controller.html#simulation-implement-controller-actuation-mode">状態変数シンボル</a> として JOINT_SURFACE_VELOCITY を指定しています。 Crawlerモデルについては <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/modelfile/modelfile-newformat.html#modelfile-yaml-crawlers">クローラの記述</a> で示したように、モデルファイルにおいてアクチュエーションモードの指定をしていますので、この記述は無くても結構です。ただし、モデルファイルでそのように指定されているとは限りませんので、このようにアクチュエーションモードを明示的に設定するのが望ましいかと思います。</p>
+<p>によって、各クローラリンクの <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/howto-implement-controller.html#simulation-implement-controller-actuation-mode">状態変数シンボル</a> として JointVelocity を指定しています。</p>
 <p>そして、</p>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">io</span><span class="o">-&gt;</span><span class="n">enableOutput</span><span class="p">(</span><span class="n">trackL</span><span class="p">);</span><span class="w"></span>
 <span class="n">io</span><span class="o">-&gt;</span><span class="n">enableOutput</span><span class="p">(</span><span class="n">trackR</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>によって各クローラリンクへの出力を有効にしています。</p>
-<p>アクチュエーションモードが JOINT_SURFACE_VELOCITY の場合、出力する指令値はトルクではなく、クローラの表面速度で与えるようになっています。また、入力については特に必要ありません。従って、ここでは出力のみを有効化する “enableOutput” 関数を用いています。JOINT_SURFACE_VELOCITYの場合、リンクの状態変数 dq を用いて表面速度を出力します。</p>
+<p>アクチュエーションモードが JointVelocity の場合、出力する指令値はトルクではなく、クローラの表面速度で与えるようになっています。また、入力については特に必要ありません。従って、ここでは出力のみを有効化する “enableOutput” 関数を用いています。JointVelocityの場合、リンクの状態変数 dq を用いて表面速度を出力します。</p>
 <p>control関数内の</p>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">axisID</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
 </pre></div>
