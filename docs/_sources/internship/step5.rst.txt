@@ -43,8 +43,8 @@ Crawlerモデルでは、左クローラに対応するリンクが "TRACK_L"、
          trackL = io->body()->link("TRACK_L");
          trackR = io->body()->link("TRACK_R");
  
-         trackL->setActuationMode(Link::JOINT_SURFACE_VELOCITY);
-         trackR->setActuationMode(Link::JOINT_SURFACE_VELOCITY);
+         trackL->setActuationMode(Link::JointVelocity);
+         trackR->setActuationMode(Link::JointVelocity);
 
          io->enableOutput(trackL);
          io->enableOutput(trackR);
@@ -145,10 +145,10 @@ TrackController1の実装内容について、このコントローラに特有�
 
 によって、左右それぞれのクローラに対応する入出力用リンクを取得しています。次に ::
 
- trackL->setActuationMode(Link::JOINT_SURFACE_VELOCITY);
- trackR->setActuationMode(Link::JOINT_SURFACE_VELOCITY);
+ trackL->setActuationMode(Link::JointVelocity);
+ trackR->setActuationMode(Link::JointVelocity);
 
-によって、各クローラリンクの `状態変数シンボル <https://choreonoid.org/ja/documents/latest/simulation/howto-implement-controller.html#simulation-implement-controller-actuation-mode>`_ として JOINT_SURFACE_VELOCITY を指定しています。 Crawlerモデルについては `クローラの記述 <https://choreonoid.org/ja/documents/latest/handling-models/modelfile/modelfile-newformat.html#modelfile-yaml-crawlers>`_ で示したように、モデルファイルにおいてアクチュエーションモードの指定をしていますので、この記述は無くても結構です。ただし、モデルファイルでそのように指定されているとは限りませんので、このようにアクチュエーションモードを明示的に設定するのが望ましいかと思います。
+によって、各クローラリンクの `状態変数シンボル <https://choreonoid.org/ja/documents/latest/simulation/howto-implement-controller.html#simulation-implement-controller-actuation-mode>`_ として JointVelocity を指定しています。
 
 そして、 ::
 
@@ -157,7 +157,7 @@ TrackController1の実装内容について、このコントローラに特有�
   
 によって各クローラリンクへの出力を有効にしています。
 
-アクチュエーションモードが JOINT_SURFACE_VELOCITY の場合、出力する指令値はトルクではなく、クローラの表面速度で与えるようになっています。また、入力については特に必要ありません。従って、ここでは出力のみを有効化する "enableOutput" 関数を用いています。JOINT_SURFACE_VELOCITYの場合、リンクの状態変数 dq を用いて表面速度を出力します。
+アクチュエーションモードが JointVelocity の場合、出力する指令値はトルクではなく、クローラの表面速度で与えるようになっています。また、入力については特に必要ありません。従って、ここでは出力のみを有効化する "enableOutput" 関数を用いています。JointVelocityの場合、リンクの状態変数 dq を用いて表面速度を出力します。
 
 control関数内の ::
 

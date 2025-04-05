@@ -43,7 +43,7 @@
      virtual bool initialize(SimpleControllerIO* io) override
      {
          joint = io->body()->link("TURRET_P");
-         joint->setActuationMode(Link::JOINT_TORQUE);
+         joint->setActuationMode(Link::JointEffort);
          io->enableIO(joint);
          q_ref = q_prev = joint->q();
  
@@ -291,7 +291,7 @@ io->body() によってCrawlerモデル入出力用のBodyオブジェクトを�
 
 次に ::
 
- joint->setActuationMode(Link::JOINT_TORQUE);
+ joint->setActuationMode(Link::JointEffort);
 
 によって、この関節の `状態変数シンボル <https://choreonoid.org/ja/documents/latest/simulation/howto-implement-controller.html#simulation-implement-controller-actuation-mode>`_ を関節トルクに設定しています。これにより、関節トルクを指令値とした制御が可能となります。
 
