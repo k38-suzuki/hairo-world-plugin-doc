@@ -6,79 +6,87 @@
 .. contents:: 目次
    :local:
    :depth: 2
-   
+
+.. .. highlight:: C++
+..    :linenothreshold: 7
+
+.. _step3-ref0:
+
+ゲームパッドの使い方
+--------------------
+
+ゲームパッドの使い方については、Choreonoid公式の `こちら <https://choreonoid.org/ja/documents/latest/simulation/tank-tutorial/step3.html>`_ を参照してください。
+
+
 .. _step3-ref1:
 
 コントローラのソースコード
 --------------------------
 
-.. highlight:: C++
-   :linenothreshold: 7
-
-
 今回作成するコントローラのソースコードを以下に示します。これはステップ2のTurretController1に対して、カメラ台座ヨー軸の制御とゲームパッド入力による指令値の変更を追加した内容となっています。 ::
 
  #include <cnoid/SimpleController>
  #include <cnoid/Joystick>
- 
+
  using namespace cnoid;
- 
+
  class TurretController2 : public SimpleController
- { 
+ {
      Link* joints[2];
      double q_ref[2];
      double q_prev[2];
      double dt;
      Joystick joystick;
- 
+
  public:
      virtual bool initialize(SimpleControllerIO* io) override
      {
          joints[0] = io->body()->link("TURRET_Y");
          joints[1] = io->body()->link("TURRET_P");
- 
+
          for(int i=0; i < 2; ++i){
              Link* joint = joints[i];
              joint->setActuationMode(Link::JointEffort);
              io->enableIO(joint);
              q_ref[i] = q_prev[i] = joint->q();
          }
- 
+
          dt = io->timeStep();
-       
+
          return true;
      }
- 
+
      virtual bool control() override
      {
          static const double P = 200.0;
          static const double D = 50.0;
          static const int axisID[] = { 2, 3 };
- 
+
          joystick.readCurrentState();
- 
+
          for(int i=0; i < 2; ++i){
              Link* joint = joints[i];
              double q = joint->q();
              double dq = (q - q_prev[i]) / dt;
              double dq_ref = 0.0;
- 
+
              double pos = joystick.getPosition(axisID[i]);
              if(fabs(pos) > 0.25){
                  double deltaq = 0.002 * pos;
                  q_ref[i] += deltaq;
                  dq_ref = deltaq / dt;
              }
-      
+
              joint->u() = P * (q_ref[i] - q) + D * (dq_ref - dq);
              q_prev[i] = q;
          }
- 
+
          return true;
      }
  };
- 
+
  CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(TurretController2)
+
 
 .. _step3-ref2:
 
@@ -95,6 +103,7 @@
 
 これでChoreonoid本体のコンパイル操作を行うと、このコントローラも同時にコンパイルされ、コントローラディレクトリ内に "CrawlerTutorial_TurretController2.so" というファイルが生成されます。
 
+
 .. _step3-ref3:
 
 コントローラの置き換え
@@ -107,6 +116,7 @@
 これでコントローラの準備は完了です。この状態でプロジェクトを "step3.cnoid" といったファイル名で保存し直しておくとよいでしょう。
 
 仮想ジョイスティックビューを使用する場合は、必ずビューが表示されている状態でプロジェクトを保存してください。Joystickオブジェクトは、生成時に接続されているJoystickの状態を確認します。プロジェクトファイルに仮想ジョイスティックビューの設定が保存されていれば、プロジェクトの読み込み時に仮想ジョイスティックビューが復元され、その後コントローラが作成され、コントローラが仮想ジョイスティックビューを認識します。また、コントローラアイテムのプロパティで、再読込の項をTrueにすると、シミュレーション開始時に、毎回コントローラを作成し直すように設定出来ます。
+
 
 .. _step3-ref4:
 
@@ -175,9 +185,9 @@ JoystickクラスのオブジェクトはTurretController2のメンバ変数 ::
 注意点として、アナログスティックの軸の状態値について、0が中立点となるのですが、スティックを倒していない場合でも常に値が0になるとは限りません。ですので、倒しているかどうかの判定として、一定の閾値をかませることが必要になります。この処理は上記ソースコードのcontrol関数内で ::
 
  if(fabs(pos) > 0.25){
-  
+
 というコードで行っています。
- 
+
 ジョイスティックの軸の対応は、control関数内の ::
 
  static const int axisID[] = { 3, 4 };

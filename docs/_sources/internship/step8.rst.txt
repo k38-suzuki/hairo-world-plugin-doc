@@ -21,6 +21,7 @@ Crawlerモデルはカメラも搭載しています。ステップ8ではこの
 
 モデルファイル上でカメラが実際にどのように定義されているかは、 `カメラの記述 <https://choreonoid.org/ja/documents/latest/handling-models/modelfile/modelfile-newformat.html#modelfile-tank-camera>`_ を参照してください。
 
+
 .. _step8-ref2:
 
 シーンビューにおけるカメラの変更
@@ -59,6 +60,7 @@ Crawlerモデルはカメラも搭載しています。ステップ8ではこの
 
 ここでは、追加したシーンビューを右下に配置し、そこにはCrawlerモデルのカメラ画像を表示し、中央のシーンビューにはデフォルトのカメラによる俯瞰表示を行っています。
 
+
 .. _step8-ref3:
 
 カメラ画像のシミュレーション
@@ -74,6 +76,7 @@ Crawlerモデルはカメラも搭載しています。ステップ8ではこの
 
 GLビジョンシミュレータアイテムの詳細は `視覚センサのシミュレーション <https://choreonoid.org/ja/documents/latest/simulation/vision-simulation.html>`_ で解説していますので、そちらも参考にしてください。
 
+
 .. _step8-ref4:
 
 コントローラのソースコード
@@ -84,16 +87,16 @@ GLビジョンシミュレータアイテムの導入によりカメラ画像を
  #include <cnoid/SimpleController>
  #include <cnoid/Camera>
  #include <cnoid/Joystick>
- 
+
  using namespace cnoid;
- 
+
  class CameraController : public SimpleController
  {
      Camera* camera;
      Joystick joystick;
      bool prevButtonState;
      std::ostream* os;
-     
+
  public:
      virtual bool initialize(SimpleControllerIO* io) override
      {
@@ -103,11 +106,11 @@ GLビジョンシミュレータアイテムの導入によりカメラ画像を
          os = &io->os();
          return true;
      }
- 
+
      virtual bool control() override
      {
          joystick.readCurrentState();
- 
+
          bool currentState = joystick.getButtonState(1);
          if(currentState && !prevButtonState){
              const Image& image = camera->constImage();
@@ -120,11 +123,11 @@ GLビジョンシミュレータアイテムの導入によりカメラ画像を
              }
          }
          prevButtonState = currentState;
- 
+
          return true;
      }
  };
- 
+
  CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(CameraController)
 
 これまでと同様に、上記ソースコードを "CameraController.cpp" というファイル名でプロジェクトディレクトリに保存します。
@@ -135,6 +138,7 @@ CMakeLists.txt に ::
 
 を追加して、コンパイルを行って下さい。
 
+
 .. _step8-ref5:
 
 コントローラの導入
@@ -143,6 +147,7 @@ CMakeLists.txt に ::
 これまでと同様に、作成したコントローラをシンプルコントローラアイテムを用いてプロジェクトに導入し、TurretControllerの子アイテムとして配置します。これにより、アイテムツリービューは以下のようになります。
 
 .. image:: images/step8-5.png
+
 
 .. _step8-ref6:
 
@@ -164,6 +169,7 @@ Cameraコントローラの機能として、ゲームパッドもしくは仮�
 などとすることにより、取得したカメラ画像を表示できます。
 
 eogには、読み込んだ画像ファイルが更新されるとそれに伴って表示も更新する機能があるようです。これにより、eogを表示したままにしておけば、新たな画像を取得する度に、取得した画像が更新されているのを確認できます。
+
 
 .. _step8-ref7:
 

@@ -8,7 +8,7 @@
    :depth: 2
 
 .. highlight:: C++
-   :linenothreshold: 5
+   :linenothreshold: 7
 
 .. _step2-ref1:
 
@@ -21,6 +21,7 @@
 
 ただしこれはChoreonoidの独自形式であるため、汎用性の面ではROSなどのミドルウェアに劣ります。また、ROSなどのミドルウェアが提供するような通信機能を提供するものでもありません。ChoreonoidはROSと連携する機能も備えていますので、必要に応じてそちらも用いるようにしてください。ROSを利用する方法については `ROS2との連携 <https://choreonoid.org/ja/documents/latest/ros2/index.html>`_ で解説しています。
 
+
 .. _step2-ref2:
 
 コントローラ "TurretController1" の実装
@@ -29,16 +30,16 @@
 シンプルコントローラ形式ではC++のクラスとしてコントローラを実装します。ここではカメラ台座(Turret)のピッチ軸を維持するだけの "TurretController1" の実装を行います。まずこのコントローラのソースコードを以下に示します。 ::
 
  #include <cnoid/SimpleController>
- 
+
  using namespace cnoid;
- 
+
  class TurretController1 : public SimpleController
  {
      Link* joint;
      double q_ref;
      double q_prev;
      double dt;
- 
+
  public:
      virtual bool initialize(SimpleControllerIO* io) override
      {
@@ -46,31 +47,32 @@
          joint->setActuationMode(Link::JointEffort);
          io->enableIO(joint);
          q_ref = q_prev = joint->q();
- 
+
          dt = io->timeStep();
- 
+
          return true;
      }
- 
+
      virtual bool control() override
      {
          // PD gains
          static const double P = 200.0;
          static const double D = 50.0;
- 
+
          double q = joint->q(); // input
          double dq = (q - q_prev) / dt;
          double dq_ref = 0.0;
          joint->u() = P * (q_ref - q) + D * (dq_ref - dq); // output
          q_prev = q;
-   
+
          return true;
      }
  };
- 
+
  CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(TurretController1)
 
 以下では、このコントローラをシミュレーションプロジェクトに導入し、シミュレーションを行うまでを解説します。その後、コントローラの実装内容について解説したいと思います。
+
 
 .. _step2-ref3:
 
@@ -97,6 +99,7 @@ Aを採用する場合は、プロジェクトディレクトリをextディレ�
 Bを採用する場合は、プロジェクトディレクトリをどこかに作成した上で、そのディレクトリへのパスを上記の設定項目に指定します。対象ディレクトリが複数ある場合は、セミコロンで区切って入力することができます。
 
 特に理由がなければAの方法を用いるのがよいかと思います。以下ではその方法で進めることにします。
+
 
 .. _step2-ref4:
 
@@ -129,6 +132,7 @@ Bを採用する場合は、プロジェクトディレクトリをどこかに�
 
 .. note:: ソースコードのファイルはChoreonoid本体の "sample/tutorial/Crawler/" 以下に格納されています。自分で入力するのが面倒な場合は、このファイルを利用してもOKです。本チュートリアルで言及する他のファイルについてもこのディレクトリに格納されていますので、必要に応じてご利用下さい。
 
+
 .. _step2-ref5:
 
 CMakeLists.txtの記述
@@ -155,6 +159,7 @@ CMakeLists.txtの記述
     + Crawler
       - CMakeLists.txt
       - TurretController1.cpp
+
 
 .. _step2-ref6:
 
@@ -192,6 +197,7 @@ CMakeLists.txtの記述
 
 .. note:: この後 "make install" を実行すると、生成されたコントローラのファイルである "CrawlerTutorial_TurretController1.so" もインストール先にコピーされます。ただし本チュートリアルでは、ステップ1の :ref:`step1-ref1` で述べたように、"make install" は実行せずに、buildディレクトリ内のファイルを実行する前提で解説していますので、その点にご注意ください。
 
+
 .. _step2-ref7:
 
 コントローラの導入
@@ -227,6 +233,7 @@ CMakeLists.txtの記述
 
 ここまで設定できたら、またプロジェクトを保存しておきましょう。ファイル名は "step2.cnoid" として、プロジェクトディレクトリに保存しておくとよいかと思います。
 
+
 .. _step2-ref8:
 
 シミュレーションの実行
@@ -238,6 +245,7 @@ CMakeLists.txtの記述
 
 なお、このコントローラではカメラ台座ヨー軸の制御は行っていないため、そちらには力がかかっていません。ステップ1の時と同様に、 `インタラクション機能 <https://choreonoid.org/ja/documents/latest/simulation/interaction.html>`_ を用いてカメラ台座部分をドラッグすると、ヨー軸に関してはフリーで動かせることが分かります。
 
+
 .. _step2-ref9:
 
 実装内容の解説
@@ -247,8 +255,6 @@ CMakeLists.txtの記述
 
 SimpleControllerクラス
 ~~~~~~~~~~~~~~~~~~~~~~
-
-.. highlight:: C++
 
 まず、シンプルコントローラはChoreonoidで定義されている "SimpleController" クラスを継承したクラスとして実装するようになっています。そこでまず ::
 
@@ -277,8 +283,8 @@ SimpleControllerクラスではいくつかの関数が仮想（バーチャル�
 * **virtual bool control()**
 
 initialize関数の実装
-~~~~~~~~~~~~~~~~~~~~  
-  
+~~~~~~~~~~~~~~~~~~~~
+
 initialize関数はコントローラの初期化を行う関数で、シミュレーション開始の直前に１回だけ実行されます。
 
 この関数に引数として与えられるSimpleControllerIO型は、コントローラの入出力に必要な機能をまとめたクラスとなっています。この詳細は `コントローラの実装 <https://choreonoid.org/ja/documents/latest/simulation/howto-implement-controller.html>`_ の `IOオブジェクト <https://choreonoid.org/ja/documents/latest/simulation/howto-implement-controller.html#simulator-simple-controller-io>`_ をみていただくとして、ここではまず ::
@@ -287,7 +293,7 @@ initialize関数はコントローラの初期化を行う関数で、シミュ�
 
 によって、カメラ台座ピッチ軸の入出力を行うためのLinkオブジェクトを取得し、joint変数に格納しています。
 
-io->body() によってCrawlerモデル入出力用のBodyオブジェクトを取得し、続けてこのオブジェクトが有するLinkオブジェクトから "TURRET_P" という名前を持つものを取得しています。これは `Crawlerモデルの作成 <>`_ において記述した `カメラ台座ピッチ軸部 <>`_ の関節に対応するものです。
+io->body() によってCrawlerモデル入出力用のBodyオブジェクトを取得し、続けてこのオブジェクトが有するLinkオブジェクトから "TURRET_P" という名前を持つものを取得しています。これは :doc:`step0` において記述した :ref:`tutorial-20` の関節に対応するものです。
 
 次に ::
 
@@ -308,13 +314,13 @@ io->body() によってCrawlerモデル入出力用のBodyオブジェクトを�
 他にPD制御に必要な値として、 ::
 
  q_ref = q_prev = joint->q();
-  
+
 によって初期関節角度を取得し、それを変数q_ref、 q_prevに代入しています。q_refは目標関節角で、q_prevは関節角速度計算用の変数です。また、 ::
 
  dt = io->timeStep();
 
 によって変数dtにタイムステップを代入しています。これはシミュレーションの物理計算１回あたりに進める内部の時間を表していて、この時間間隔で次の control 関数が呼ばれることになります。
-  
+
 最後にinitialize関数の戻り値として true を返して、初期化に成功したことをシステムに伝えています。
 
 control関数の実装
@@ -332,19 +338,19 @@ control関数は実際の制御コードを記述する部分で、シミュレ�
  double q = joint->q(); // input
 
 によって現在関節角を入力し、 ::
-   
+
  double dq = (q - q_prev) / dt;
 
 によって現在角速度を算出し、 ::
 
  double dq_ref = 0.0;
-  
+
 で目標角速度は0に設定し、 ::
 
  joint->u() = P * (q_ref - q) + D * (dq_ref - dq); // output
 
 によってPD制御で計算したトルク値を関節に出力し、 ::
-   
+
  q_prev = q;
 
 によって次回計算用にq_prevを更新しています。

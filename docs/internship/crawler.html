@@ -1,0 +1,397 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Crawlerモデルファイル全記述内容 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="WRSUtilプラグイン" href="../wrsutil/index.html" />
+    <link rel="prev" title="ステップ8: カメラ画像のシミュレーションと取得" href="step8.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../wrsutil/index.html" title="WRSUtilプラグイン"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="step8.html" title="ステップ8: カメラ画像のシミュレーションと取得"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Crawlerチュートリアル</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Crawlerモデルファイル全記述内容</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="crawler">
+<h1>Crawlerモデルファイル全記述内容<a class="headerlink" href="#crawler" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="step0.html"><span class="doc">ステップ0: Crawlerモデルの作成</span></a> で解説したCrawlerモデルを記述しているモデルファイルの全テキストを以下に掲載します。本モデルは HAIROWorldPluginの “sample/tutorial/Crawler/crawler.body” というファイルに格納されています。</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChoreonoidBody</span><span class="w"></span>
+<span class="linenos">  2</span><span class="nt">formatVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w"></span>
+<span class="linenos">  3</span><span class="nt">angleUnit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degree</span><span class="w"></span>
+<span class="linenos">  4</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Crawler</span><span class="w"></span>
+<span class="linenos">  5</span>
+<span class="linenos">  6</span><span class="nt">links</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">  7</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
+<span class="linenos">  8</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span><span class="w"></span>
+<span class="linenos">  9</span><span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 10</span><span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">free</span><span class="w"></span>
+<span class="linenos"> 11</span><span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 12</span><span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.0</span><span class="w"></span>
+<span class="linenos"> 13</span><span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
+<span class="linenos"> 14</span><span class="w">      </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos"> 15</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos"> 16</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.5</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 17</span><span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 18</span><span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 19</span><span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 20</span><span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Box</span><span class="w"></span>
+<span class="linenos"> 21</span><span class="w">          </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 22</span><span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;BodyAppearance</span><span class="w"></span>
+<span class="linenos"> 23</span><span class="w">          </span><span class="nt">material</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 24</span><span class="w">            </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 25</span><span class="w">            </span><span class="nt">specularColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 26</span><span class="w">            </span><span class="nt">shininess</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span><span class="w"></span>
+<span class="linenos"> 27</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
+<span class="linenos"> 28</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TURRET_Y</span><span class="w"></span>
+<span class="linenos"> 29</span><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span><span class="w"></span>
+<span class="linenos"> 30</span><span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 31</span><span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span><span class="w"></span>
+<span class="linenos"> 32</span><span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Z</span><span class="w"></span>
+<span class="linenos"> 33</span><span class="w">    </span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unlimited</span><span class="w"></span>
+<span class="linenos"> 34</span><span class="w">    </span><span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span><span class="w"></span>
+<span class="linenos"> 35</span><span class="w">    </span><span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="linenos"> 36</span><span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.025</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 37</span><span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.0</span><span class="w"></span>
+<span class="linenos"> 38</span><span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
+<span class="linenos"> 39</span><span class="w">      </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos"> 40</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos"> 41</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 42</span><span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 43</span><span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 44</span><span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 45</span><span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Box</span><span class="w"></span>
+<span class="linenos"> 46</span><span class="w">          </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 47</span><span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span><span class="w"></span>
+<span class="linenos"> 48</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
+<span class="linenos"> 49</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TURRET_P</span><span class="w"></span>
+<span class="linenos"> 50</span><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TURRET_Y</span><span class="w"></span>
+<span class="linenos"> 51</span><span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 52</span><span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span><span class="w"></span>
+<span class="linenos"> 53</span><span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Y</span><span class="w"></span>
+<span class="linenos"> 54</span><span class="w">    </span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">45</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 55</span><span class="w">    </span><span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span><span class="w"></span>
+<span class="linenos"> 56</span><span class="w">    </span><span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="linenos"> 57</span><span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 58</span><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"></span>
+<span class="linenos"> 59</span><span class="w">        </span><span class="c1"># Turret</span><span class="w"></span>
+<span class="linenos"> 60</span><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RigidBody</span><span class="w"></span>
+<span class="linenos"> 61</span><span class="w">        </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 62</span><span class="w">        </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span><span class="w"></span>
+<span class="linenos"> 63</span><span class="w">        </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
+<span class="linenos"> 64</span><span class="w">          </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos"> 65</span><span class="w">          </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos"> 66</span><span class="w">          </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 67</span><span class="w">        </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 68</span><span class="w">          </span><span class="nt">Shape</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 69</span><span class="w">            </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 70</span><span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cylinder</span><span class="w"></span>
+<span class="linenos"> 71</span><span class="w">              </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span><span class="w"></span>
+<span class="linenos"> 72</span><span class="w">              </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span><span class="w"></span>
+<span class="linenos"> 73</span><span class="w">            </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span><span class="w"></span>
+<span class="linenos"> 74</span><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"></span>
+<span class="linenos"> 75</span><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpotLight</span><span class="w"></span>
+<span class="linenos"> 76</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Light</span><span class="w"></span>
+<span class="linenos"> 77</span><span class="w">        </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.08</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 78</span><span class="w">        </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 79</span><span class="w">        </span><span class="nt">beamWidth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">36</span><span class="w"></span>
+<span class="linenos"> 80</span><span class="w">        </span><span class="nt">cutOffAngle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span><span class="w"></span>
+<span class="linenos"> 81</span><span class="w">        </span><span class="nt">cutOffExponent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w"></span>
+<span class="linenos"> 82</span><span class="w">        </span><span class="nt">attenuation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.01</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 83</span><span class="w">        </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 84</span><span class="w">          </span><span class="nt">Shape</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 85</span><span class="w">            </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 86</span><span class="w">            </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 87</span><span class="w">            </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 88</span><span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cone</span><span class="w"></span>
+<span class="linenos"> 89</span><span class="w">              </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.04</span><span class="w"></span>
+<span class="linenos"> 90</span><span class="w">              </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.025</span><span class="w"></span>
+<span class="linenos"> 91</span><span class="w">            </span><span class="nt">appearance</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 92</span><span class="w">              </span><span class="nt">material</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 93</span><span class="w">                </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.4</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 94</span><span class="w">                </span><span class="nt">ambientIntensity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span><span class="w"></span>
+<span class="linenos"> 95</span><span class="w">                </span><span class="nt">emissiveColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos"> 96</span><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"></span>
+<span class="linenos"> 97</span><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Camera</span><span class="w"></span>
+<span class="linenos"> 98</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Camera</span><span class="w"></span>
+<span class="linenos"> 99</span><span class="w">        </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">100</span><span class="w">        </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">],</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">101</span><span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">COLOR</span><span class="w"></span>
+<span class="linenos">102</span><span class="w">        </span><span class="nt">fieldOfView</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">62</span><span class="w"></span>
+<span class="linenos">103</span><span class="w">        </span><span class="nt">nearClipDistance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span><span class="w"></span>
+<span class="linenos">104</span><span class="w">        </span><span class="nt">width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">640</span><span class="w"></span>
+<span class="linenos">105</span><span class="w">        </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">480</span><span class="w"></span>
+<span class="linenos">106</span><span class="w">        </span><span class="nt">frameRate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span><span class="w"></span>
+<span class="linenos">107</span><span class="w">        </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">108</span><span class="w">          </span><span class="nt">Shape</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">109</span><span class="w">            </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">110</span><span class="w">            </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">111</span><span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cylinder</span><span class="w"></span>
+<span class="linenos">112</span><span class="w">              </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span><span class="w"></span>
+<span class="linenos">113</span><span class="w">              </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span><span class="w"></span>
+<span class="linenos">114</span><span class="w">            </span><span class="nt">appearance</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">115</span><span class="w">              </span><span class="nt">material</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">116</span><span class="w">                </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.8</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">117</span><span class="w">                </span><span class="nt">specularColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">118</span><span class="w">                </span><span class="nt">shininess</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span><span class="w"></span>
+<span class="linenos">119</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
+<span class="linenos">120</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_L</span><span class="w"></span>
+<span class="linenos">121</span><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span><span class="w"></span>
+<span class="linenos">122</span><span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">123</span><span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pseudo_continuous_track</span><span class="w"></span>
+<span class="linenos">124</span><span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span><span class="w"></span>
+<span class="linenos">125</span><span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">126</span><span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w"></span>
+<span class="linenos">127</span><span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
+<span class="linenos">128</span><span class="w">      </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">129</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">130</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">131</span><span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">132</span><span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;TRACK</span><span class="w"></span>
+<span class="linenos">133</span><span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">134</span><span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extrusion</span><span class="w"></span>
+<span class="linenos">135</span><span class="w">          </span><span class="nt">crossSection</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
+<span class="linenos">136</span><span class="w">            </span><span class="nv">-0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.08</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">137</span><span class="w">             </span><span class="nv">0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.08</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">138</span><span class="w">             </span><span class="nv">0.34</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.00</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">139</span><span class="w">             </span><span class="nv">0.22</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.08</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">140</span><span class="w">            </span><span class="nv">-0.22</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.08</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">141</span><span class="w">            </span><span class="nv">-0.34</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.00</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">142</span><span class="w">            </span><span class="nv">-0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.08</span><span class="w"></span>
+<span class="linenos">143</span><span class="w">            </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">144</span><span class="w">          </span><span class="nt">spine</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">145</span><span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">146</span><span class="w">          </span><span class="nt">material</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">147</span><span class="w">            </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">148</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
+<span class="linenos">149</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_R</span><span class="w"></span>
+<span class="linenos">150</span><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span><span class="w"></span>
+<span class="linenos">151</span><span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">152</span><span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pseudo_continuous_track</span><span class="w"></span>
+<span class="linenos">153</span><span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span><span class="w"></span>
+<span class="linenos">154</span><span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">155</span><span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w"></span>
+<span class="linenos">156</span><span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
+<span class="linenos">157</span><span class="w">      </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">158</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">159</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">160</span><span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">161</span><span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nv">*TRACK</span><span class="w"></span>
+<span class="linenos">162</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
+<span class="linenos">163</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HINGE_L</span><span class="w"></span>
+<span class="linenos">164</span><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_L</span><span class="w"></span>
+<span class="linenos">165</span><span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.055</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">166</span><span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span><span class="w"></span>
+<span class="linenos">167</span><span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Y</span><span class="w"></span>
+<span class="linenos">168</span><span class="w">    </span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">169</span><span class="w">    </span><span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span><span class="w"></span>
+<span class="linenos">170</span><span class="w">    </span><span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w"></span>
+<span class="linenos">171</span><span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">172</span><span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span><span class="w"></span>
+<span class="linenos">173</span><span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
+<span class="linenos">174</span><span class="w">      </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">175</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">176</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">177</span><span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">178</span><span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;HINGE</span><span class="w"></span>
+<span class="linenos">179</span><span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">180</span><span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cylinder</span><span class="w"></span>
+<span class="linenos">181</span><span class="w">          </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span><span class="w"></span>
+<span class="linenos">182</span><span class="w">          </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span><span class="w"></span>
+<span class="linenos">183</span><span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span><span class="w"></span>
+<span class="linenos">184</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
+<span class="linenos">185</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HINGE_R</span><span class="w"></span>
+<span class="linenos">186</span><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_R</span><span class="w"></span>
+<span class="linenos">187</span><span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.055</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">188</span><span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span><span class="w"></span>
+<span class="linenos">189</span><span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Y</span><span class="w"></span>
+<span class="linenos">190</span><span class="w">    </span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">191</span><span class="w">    </span><span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span><span class="w"></span>
+<span class="linenos">192</span><span class="w">    </span><span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w"></span>
+<span class="linenos">193</span><span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">194</span><span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span><span class="w"></span>
+<span class="linenos">195</span><span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
+<span class="linenos">196</span><span class="w">      </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">197</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">198</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">199</span><span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">200</span><span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nv">*HINGE</span><span class="w"></span>
+<span class="linenos">201</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
+<span class="linenos">202</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_FL</span><span class="w"></span>
+<span class="linenos">203</span><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HINGE_L</span><span class="w"></span>
+<span class="linenos">204</span><span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">205</span><span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pseudo_continuous_track</span><span class="w"></span>
+<span class="linenos">206</span><span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span><span class="w"></span>
+<span class="linenos">207</span><span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">208</span><span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span><span class="w"></span>
+<span class="linenos">209</span><span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
+<span class="linenos">210</span><span class="w">      </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">211</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">212</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">213</span><span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">214</span><span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;SUBTRACK</span><span class="w"></span>
+<span class="linenos">215</span><span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">216</span><span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extrusion</span><span class="w"></span>
+<span class="linenos">217</span><span class="w">          </span><span class="nt">crossSection</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
+<span class="linenos">218</span><span class="w">            </span><span class="nv">-0.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.07</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">219</span><span class="w">             </span><span class="nv">0.17</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.00</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">220</span><span class="w">            </span><span class="nv">-0.11</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.07</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">221</span><span class="w">            </span><span class="nv">-0.17</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.00</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">222</span><span class="w">            </span><span class="nv">-0.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.07</span><span class="w"></span>
+<span class="linenos">223</span><span class="w">            </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">224</span><span class="w">          </span><span class="nt">spine</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.025</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.025</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">225</span><span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">226</span><span class="w">          </span><span class="nt">material</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">227</span><span class="w">            </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">228</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
+<span class="linenos">229</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_FR</span><span class="w"></span>
+<span class="linenos">230</span><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HINGE_R</span><span class="w"></span>
+<span class="linenos">231</span><span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">232</span><span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pseudo_continuous_track</span><span class="w"></span>
+<span class="linenos">233</span><span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span><span class="w"></span>
+<span class="linenos">234</span><span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">235</span><span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span><span class="w"></span>
+<span class="linenos">236</span><span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
+<span class="linenos">237</span><span class="w">      </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">238</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="linenos">239</span><span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="linenos">240</span><span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
+<span class="linenos">241</span><span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nv">*SUBTRACK</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../collision/index.html">CollisionSeqプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyEditプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file/index.html">FileExplorerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">JoystickStartプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Crawlerチュートリアル</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="step0.html">ステップ0: Crawlerモデルの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html">ステップ1: シミュレーションプロジェクトの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html">ステップ2: コントローラの作成と導入</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html">ステップ3: ゲームパッドによるカメラ台座の制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html">ステップ4: ゲームパッドによるヒンジの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step5.html">ステップ5: クローラの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step6.html">ステップ6: サブクローラの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step7.html">ステップ7: ライトの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step8.html">ステップ8: カメラ画像のシミュレーションと取得</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Crawlerモデルファイル全記述内容</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../wrsutil/index.html" title="WRSUtilプラグイン"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="step8.html" title="ステップ8: カメラ画像のシミュレーションと取得"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Crawlerチュートリアル</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Crawlerモデルファイル全記述内容</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    </div>
+  </body>
+</html>

@@ -8,4 +8,3 @@
    qtcapp
    ur
    remap
-..   rqt_hairo_world

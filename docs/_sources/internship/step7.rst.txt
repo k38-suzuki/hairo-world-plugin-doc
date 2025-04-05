@@ -9,7 +9,7 @@ Crawlerモデルはライト（光源）を搭載しています。ステップ7
 
 .. highlight:: C++
    :linenothreshold: 7
-   
+
 .. _step7-ref1:
 
 環境設定
@@ -78,6 +78,7 @@ Crawlerモデル、Labo1モデルのライトによる影を有効にしたシ�
 
 .. note:: 影については使用するGPUやGPUドライバによっては描画されないこともあります。詳しくは `グラフィックス環境のセットアップ <https://choreonoid.org/ja/documents/latest/simulation/execution-and-playback.html#simulation-result-playback>`_ を参照してください。
 
+
 .. _step7-ref2:
 
 ライトのコントローラ
@@ -88,15 +89,15 @@ Crawlerモデル、Labo1モデルのライトによる影を有効にしたシ�
  #include <cnoid/SimpleController>
  #include <cnoid/SpotLight>
  #include <cnoid/Joystick>
- 
+
  using namespace cnoid;
- 
+
  class LightController : public SimpleController
  {
      SpotLight* light;
      Joystick joystick;
      bool prevButtonState;
- 
+
  public:
      virtual bool initialize(SimpleControllerIO* io) override
      {
@@ -104,22 +105,22 @@ Crawlerモデル、Labo1モデルのライトによる影を有効にしたシ�
          prevButtonState = false;
          return true;
      }
- 
+
      virtual bool control() override
      {
          static const int buttonID[] = { 0, 2, 3 };
-        
+
          joystick.readCurrentState();
- 
+
          bool changed = false;
- 
+
          bool currentState = joystick.getButtonState(buttonID[0]);
          if(currentState && !prevButtonState){
              light->on(!light->on());
              changed = true;
          }
          prevButtonState = currentState;
- 
+
          if(joystick.getButtonState(buttonID[1])){
              light->setBeamWidth(std::max(0.1f, light->beamWidth() - 0.001f));
              changed = true;
@@ -127,15 +128,15 @@ Crawlerモデル、Labo1モデルのライトによる影を有効にしたシ�
              light->setBeamWidth(std::min(0.7854f, light->beamWidth() + 0.001f));
              changed = true;
          }
- 
+
          if(changed){
              light->notifyStateChange();
          }
- 
+
          return true;
      }
  };
- 
+
  CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(LightController)
 
 これまでと同様に、上記ソースコードを "LightController.cpp" というファイル名でプロジェクトディレクトリに保存します。
@@ -145,6 +146,7 @@ CMakeLists.txt に ::
  choreonoid_add_simple_controller(CrawlerTutorial_LightController LightController.cpp)
 
 を追加して、コンパイルを行って下さい。
+
 
 .. _step7-ref3:
 
@@ -156,6 +158,7 @@ CMakeLists.txt に ::
 .. image:: images/step7-8.png
 
 このように配置することで、TurretController、HingeController、TrackController、LightControllerのcontrol関数が順番に呼ばれ、これらが一体となって機能することになります。
+
 
 .. _step7-ref4:
 
@@ -173,6 +176,7 @@ CMakeLists.txt に ::
 これまで実現してきたクローラやカメラ台座の操作も引き続き可能ですので、Crawlerモデルを移動させながら、Labo1の様々な箇所をライトで照射してみてください。
 
 なお、シミュレータアイテムのプロパティである「デバイス状態の記録」がtrueになっていれば、ライトの操作についてもシミュレーション結果として記録され、 `シミュレーション結果の再生 <https://choreonoid.org/ja/documents/latest/simulation/execution-and-playback.html#simulation-result-playback>`_ の際に再現されます。このプロパティはデフォルトでtrueになっています。この機能の確認のため、ライトをいろいろと操作した後にシミュレーションを停止して、シミュレーションの再生を行ってみて下さい。
+
 
 .. _step7-ref5:
 
