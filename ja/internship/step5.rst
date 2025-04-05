@@ -9,7 +9,7 @@
 
 .. highlight:: C++
    :linenothreshold: 7
-   
+
 .. _step5-ref1:
 
 Crawlerモデルの簡易クローラ
@@ -18,6 +18,7 @@ Crawlerモデルの簡易クローラ
 Crawlerモデルの左右のクローラは「簡易クローラ」としてモデリングされています（ `クローラの記述 <https://choreonoid.org/ja/documents/latest/handling-models/modelfile/modelfile-newformat.html#modelfile-yaml-crawlers>`_ 参照）。これはクローラ部と環境との接触点に推力を与えるというもので、履帯の部分が実際にホイールの周りを動いていくというものではないのですが、これを用いることでクローラ風の動きをすることが可能です。ただし、履帯の部分が地形に沿って変形していくようなものではないので、走破性は本物のクローラには及びません。この詳細は `無限軌道の簡易シミュレーション <https://choreonoid.org/ja/documents/latest/simulation/pseudo-continuous-track.html>`_ を参照して下さい。
 
 Crawlerモデルでは、左クローラに対応するリンクが "TRACK_L"、右クローラに対応するリンクが "TRACK_R" という名前でモデリングされています。これらのリンクは簡易クローラに対応する "pseudoContinuousTrack" タイプの軸が設定されており、それらの軸をゲームパッドで制御できるようにしたいと思います。
+
 
 .. _step5-ref2:
 
@@ -28,36 +29,36 @@ Crawlerモデルでは、左クローラに対応するリンクが "TRACK_L"、
 
  #include <cnoid/SimpleController>
  #include <cnoid/Joystick>
- 
+
  using namespace cnoid;
- 
+
  class TrackController1 : public SimpleController
  {
      Link* trackL;
      Link* trackR;
      Joystick joystick;
- 
+
  public:
      virtual bool initialize(SimpleControllerIO* io) override
      {
          trackL = io->body()->link("TRACK_L");
          trackR = io->body()->link("TRACK_R");
- 
+
          trackL->setActuationMode(Link::JointVelocity);
          trackR->setActuationMode(Link::JointVelocity);
 
          io->enableOutput(trackL);
          io->enableOutput(trackR);
- 
+
          return true;
      }
- 
+
      virtual bool control() override
      {
          static const int axisID[] = { 0, 1 };
- 
+
          joystick.readCurrentState();
- 
+
          double pos[2];
          for(int i=0; i < 2; ++i){
              pos[i] = joystick.getPosition(axisID[i]);
@@ -65,21 +66,22 @@ Crawlerモデルでは、左クローラに対応するリンクが "TRACK_L"、
                  pos[i] = 0.0;
              }
          }
- 
+
          trackL->dq_target() = -2.0 * pos[1] + pos[0];
          trackR->dq_target() = -2.0 * pos[1] - pos[0];
- 
+
          return true;
      }
  };
- 
+
  CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(TrackController1)
 
 これまでと同様に、上記のソースコードを "TrackController1.cpp" というファイル名でプロジェクトディレクトリに保存し、同ディレクトリ内のCMakeLists.txtに ::
 
- choreonoid_add_simple_controller(CrawlerTutorial_TrackController1 TrackController1.cpp)   
+ choreonoid_add_simple_controller(CrawlerTutorial_TrackController1 TrackController1.cpp)
 
 という記述を追加し、コンパイルを行って下さい。
+
 
 .. _step5-ref3:
 
@@ -115,6 +117,10 @@ Crawlerモデルでは、左クローラに対応するリンクが "TRACK_L"、
 本チュートリアルで作成するコントローラはどちらの場合でも正常に動作しますが、一般的には後者の一体形式を用いるのが望ましいです。そちらの方が必要なリソースが少なくて済みますし、コントローラ間の連携もしやすくなるからです。本チュートリアルではこの一体形式を用いるものとしますので、本ステップでは２番目の図のようにTurnetControllerの子アイテムとしてTrackControllerを配置するようにしてください。
 
 なお、前者の並列形式についても、複数のコントローラの並列実行が可能という点は利点となります。また、異なるタイプのコントローラアイテムは、この形式でしか利用できません。従って、状況に応じて両形式を使い分けることになります。
+
+
+ここまで設定できたら、またプロジェクトを保存しておきましょう。ファイル名は "step5.cnoid" として、プロジェクトディレクトリに保存しておくとよいかと思います。
+
 
 .. _step5-ref4:
 
@@ -154,7 +160,7 @@ TrackController1の実装内容について、このコントローラに特有�
 
  io->enableOutput(trackL);
  io->enableOutput(trackR);
-  
+
 によって各クローラリンクへの出力を有効にしています。
 
 アクチュエーションモードが JointVelocity の場合、出力する指令値はトルクではなく、クローラの表面速度で与えるようになっています。また、入力については特に必要ありません。従って、ここでは出力のみを有効化する "enableOutput" 関数を用いています。JointVelocityの場合、リンクの状態変数 dq を用いて表面速度を出力します。

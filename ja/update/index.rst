@@ -2,6 +2,10 @@
 更新履歴
 ========
 
+* 2025/04/06
+
+ * :doc:`../internship/step0` を追加
+
 * 2025/04/05
 
  * :doc:`../internship/index` を追加

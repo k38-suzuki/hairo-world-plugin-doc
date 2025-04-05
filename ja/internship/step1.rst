@@ -28,6 +28,7 @@ Choreonoidの起動
 .. note:: もちろん、"make install" によって"/usr/local"等のディレクトリにインストールされたファイルを使ってもOKですので、必要であればそのようにして下さい。この場合、コントローラの作成時にも"make install"を実行して、使用するコントローラのファイルもインストール先に格納されているものが対象となりますので、その点ご注意下さい。
 .. note:: Linuxの基本的な使用方法については、 `Linuxの基本的な使用方法について <https://choreonoid.org/ja/documents/latest/tips/howto-use-commands.html>`_ を参照ください。
 
+
 .. _step1-ref2:
 
 ワールドアイテムの作成
@@ -39,12 +40,13 @@ Choreonoidを起動したら、まずワールドアイテムを作成しまし�
 
 ワールドアイテムはひとつの仮想世界に対応するものであり、シミュレーションを実行するにあたって必ず生成しておく必要があります。
 
+
 .. _step1-ref3:
 
 Crawlerモデルの読み込み
 -----------------------
 
-今回のシミュレーション対象となる、 `Crawlerモデル <>`_ を読み込みます。Crawlerモデルは遠隔操作ロボットのモデルであり、2軸のカメラ台座と左右2つのクローラ、左右2つのサブクローラで構成されます。また、ライト（光源）とカメラも備えています。
+今回のシミュレーション対象となる、 :ref:`tutorial-1` を読み込みます。Crawlerモデルは遠隔操作ロボットのモデルであり、2軸のカメラ台座と左右2つのクローラ、左右2つのサブクローラで構成されます。また、ライト（光源）とカメラも備えています。
 
 まず、アイテムツリービュー上で先ほど作成したWorldアイテムをクリックして、選択状態にしておきましょう。このようにしておくことで、新たに読み込むアイテムがWorldの子アイテムとなります。
 
@@ -72,6 +74,7 @@ Crawlerアイテムにチェックが入っていると、このモデルがシ�
 .. image:: images/step1-4.png
 
 ここでシーンビューに対する `視点の変更 <https://choreonoid.org/ja/documents/latest/basics/sceneview.html#basics-sceneview-viewpoint>`_ 操作を行って、Crawlerモデルが見やすく表示されるようにしておくとよいでしょう。例えばシーンビュー上でマウスのホイールを操作することで、視点を前後に移動させ、モデルを大きく表示することができます。上図もそのような操作を適用したものとなっています。
+
 
 .. _step1-ref4:
 
@@ -101,6 +104,7 @@ Crawlerアイテムと同様に、
 
 .. note:: 床のモデルは必ずしもシーンビュー上に表示する必要はありません。今回使用するFloorモデルはZ=0の平面に相当するシンプルなものなので、デフォルトの床グリッドの表示があれば十分かもしれません。その場合はFoorアイテムのチェックを外して、表示をオフとしてもOKです。モデルのアイテムがWorldアイテムの子アイテムとなっていれば、表示のオン／オフに関わらず、シミュレーションにおいては存在するものとみなされます。
 
+
 .. _step1-ref5:
 
 シミュレータアイテムの作成
@@ -113,6 +117,7 @@ Crawlerアイテムと同様に、
 生成したシミュレータアイテムは、モデルのアイテムと同様に、Worldアイテムの子アイテムとして配置しておきます。これにより、シミュレータアイテムのシミュレーション対象となるワールドを明示します。従って、上記のアイテム生成操作を行う際にも、Worldアイテムを選択状態にしておくとよいでしょう。生成したアイテムがアイテムツリービュー上で以下のように表示されていればOKです。
 
 .. image:: images/step1-7.png
+
 
 .. _step1-ref6:
 
@@ -131,6 +136,7 @@ Crawlerアイテムと同様に、
 
 シミュレーションを行う際には、シミュレータアイテムのプロパティも適切に設定しておく必要があります。今回はデフォルトの設定でOKですが、 `時間分解能の設定 <https://choreonoid.org/ja/documents/latest/simulation/simulation-project.html#simulation-time-step>`_ 、 `時間範囲の設定 <https://choreonoid.org/ja/documents/latest/simulation/execution-and-playback.html#simulation-time-range>`_ 、 `実時間との同期 <https://choreonoid.org/ja/documents/latest/simulation/execution-and-playback.html#simulation-realtime-sync>`_ 、 `シミュレーション結果の記録 <https://choreonoid.org/ja/documents/latest/simulation/execution-and-playback.html#simulation-result-recording>`_ 、 `デバイス状態の記録 <https://choreonoid.org/ja/documents/latest/simulation/execution-and-playback.html#simulation-device-state-recording>`_ 等の設定を行うことが可能です。
 
+
 .. _step1-ref7:
 
 プロジェクトの保存
@@ -143,6 +149,7 @@ Crawlerアイテムと同様に、
 .. figure:: images/step1-9.png
 
 .. note:: HAIROWorldPluginの "sample/tutorial/Crawler" 以下には、本チュートリアルのステップごとのプロジェクト内容を保存したファイル step1.cnoid 〜 step8.cnoid が収録されています。
+
 
 .. _step1-ref8:
 
@@ -170,6 +177,7 @@ Crawlerアイテムと同様に、
 このように、コントローラがなければ、モデルの姿勢を維持することもできません。 `コントローラの導入 <https://choreonoid.org/ja/documents/latest/simulation/howto-use-controller.html>`_ の `コントローラ無しの場合 <https://choreonoid.org/ja/documents/latest/simulation/howto-use-controller.html#controller-no-controller-case>`_ で紹介したように、ヒューマノイドロボットの場合にはロボットの前進が崩れ落ちてしまうほどです。
 
 やはりロボットを動かすにはその制御を行うコントローラが必要ということで、次のステップからはコントローラを作成していきます。
+
 
 .. _step1-ref9:
 
