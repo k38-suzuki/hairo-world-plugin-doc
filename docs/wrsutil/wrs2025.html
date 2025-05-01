@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>競技環境の構築（本大会）***編集中（2025/04/27更新）*** &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>競技環境の構築（本大会）***編集中（2025/05/01更新）*** &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -32,7 +32,7 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">WRSUtilプラグイン</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">競技環境の構築（本大会）***編集中（2025/04/27更新）***</a></li> 
+        <li class="nav-item nav-item-this"><a href="">競技環境の構築（本大会）***編集中（2025/05/01更新）***</a></li> 
       </ul>
     </div>  
 
@@ -42,13 +42,13 @@
           <div class="body" role="main">
             
   <section id="id1">
-<h1>競技環境の構築（本大会）***編集中（2025/04/27更新）***<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>競技環境の構築（本大会）***編集中（2025/05/01更新）***<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>ここでは、WRS2025本大会の競技環境の構築の仕方を説明します。この機能は、競技環境の読込とロボットモデルの配置を自動的に行うためのものです。
 <strong>2025/04現在、本大会の競技環境はまだ非公開のため、公開となるまでは以下の練習環境を用いて競技参加の準備をお願いします。</strong>
 この機能を使用するには <a class="reference external" href="https://github.com/wrs-frei-simulation/WRS-2025">こちら</a> のパッケージが必要です。
 <strong>なお、このページに記載した内容は、競技環境の開発状況により変更になる場合があります。</strong></p>
 <section id="id3">
-<h2>練習環境の読込（基本編）<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>練習環境の読込（基本編 - コマンドラインでの読込）<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>以下のコマンドでChoreonoidを起動してください。
 ChoreonoidをROS2環境で使用している場合は、</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2025/registration/registration_m3.yaml --wrs-util &lt;mission_name&gt;
@@ -79,6 +79,25 @@ ChoreonoidをROS2環境で使用している場合は、</p>
 </table>
 </div></blockquote>
 <p>練習環境に自作のロボットを配置したい場合は、以降に記述する <strong>練習環境の読込（応用編）</strong> の作業を行い、WRS2025/registration以下に格納されているregistration_m3.yamlを直接またはコピーしてから <strong>robot_list</strong> のパラメータを編集してください。コピーした場合は、Choreonoidを起動するときの引数でコピーしたファイルを指定するようにしてください。</p>
+</section>
+<section id="gui">
+<h2>練習環境の読込（基本編 - GUIでの読込）<a class="headerlink" href="#gui" title="Permalink to this headline">¶</a></h2>
+<p>前のセクションでは、コマンドラインを使って練習環境を読み込む方法を説明しました。コマンドラインでの操作に慣れていない、または不安がある場合、GUIを使ってコマンドを使った場合と同様に練習環境を読み込むこともできます。具体的な手順は以下のとおりです。</p>
+<p>まず、メインメニューの「表示」-「ツールバーの表示」から「WRSUtilバー」を選択して、チェックを入れます。</p>
+<img alt="../_images/show_toolbar.png" src="../_images/show_toolbar.png" />
+<p>チェックを入れると、以下のWRSUtilバーがツールバーに表示されます。</p>
+<img alt="../_images/toolbar_1.png" src="../_images/toolbar_1.png" />
+<p>次に、WRSUtilバーの</p>
+<img alt="../_images/open_icon.png" src="../_images/open_icon.png" />
+<p>のアイコンをクリックして、表示されたダイアログで、~/ros2_ws/src/choreonoid/ext/WRS2025/registration/registration_m3.yamlを選択して、ファイルを開きます。</p>
+<img alt="../_images/select_yaml.png" src="../_images/select_yaml.png" />
+<p>YAMLファイルが読み込まれると、WRSUtilバーのコンボボックスが更新され、以下のように表示されます。</p>
+<img alt="../_images/toolbar_2.png" src="../_images/toolbar_2.png" />
+<p>ここでは、YAMLファイルによって設定されたプロジェクト「M3」がコンボボックスに登録されており、選択された状態になっています。YAMLファイルに他のプロジェクトが設定されている場合は、コンボボックスで任意のものを選択することができます。</p>
+<p>次に、WRSUtilバーの</p>
+<img alt="../_images/build_icon.png" src="../_images/build_icon.png" />
+<p>のアイコンをクリックして、練習環境を読み込みます。読み込みが完了すると、以下のように表示されます。（ <strong>実際の表示と若干異なる場合があります</strong> ）</p>
+<img alt="../_images/build_trial_env.png" src="../_images/build_trial_env.png" />
 <p>以上で、練習環境の読込は終了です。</p>
 </section>
 <section id="id4">
@@ -278,7 +297,7 @@ start_positionで初期位置の座標[ x, y, z ]を調整してください。
 <li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internship/index.html">Crawlerチュートリアル</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">WRSUtilプラグイン</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">競技環境の構築（本大会）***編集中（2025/04/27更新）***</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">競技環境の構築（本大会）***編集中（2025/05/01更新）***</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wrs2024pre.html">競技環境の構築（プレ大会）</a></li>
 </ul>
 </li>
@@ -335,7 +354,7 @@ start_positionで初期位置の座標[ x, y, z ]を調整してください。
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >WRSUtilプラグイン</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">競技環境の構築（本大会）***編集中（2025/04/27更新）***</a></li> 
+        <li class="nav-item nav-item-this"><a href="">競技環境の構築（本大会）***編集中（2025/05/01更新）***</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
