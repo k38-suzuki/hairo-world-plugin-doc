@@ -84,12 +84,16 @@ Bodyファイルは記述方式のベースとしてYAMLを採用しています
 ヘッダの記述
 ------------
 
-まずモデルファイルのヘッダとして、YAMLのマッピングを用いて以下のように記述します。 ::
+まずモデルファイルのヘッダとして、YAMLのマッピングを用いて以下のように記述します。
 
- format: ChoreonoidBody
- formatVersion: 1.0
- angleUnit: degree
- name: Crawler
+.. _crawler-example1:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 1-5
+   :lineno-start: 1
 
 最初の行の記述により、このファイルがChoreonoidのモデルファイルとして認識されるようになります。formatVersionは現在のところ2.0が最新ですが、見本となるファイルが少ないため、このチュートリアルでは1.0の記述方法を説明していきます。今後仕様に変更があった場合に、新しい仕様と区別するためにバージョン番号を明示しておきます。
 
@@ -161,29 +165,16 @@ LinkノードはYAMLのマッピング形式で記述します。マッピング
 車体リンクの記述
 ----------------
 
-ではまず本モデルの車体部分に対応するルートリンクを記述しましょう。対応するLinkノードをlinks以下に次のように記述してください。 ::
+ではまず本モデルの車体部分に対応するルートリンクを記述しましょう。対応するLinkノードをlinks以下に次のように記述してください。
 
- links:
-   -
-     name: CHASSIS
-     translation: [ 0, 0, 0.1 ]
-     jointType: free
-     centerOfMass: [ 0, 0, 0 ]
-     mass: 8.0
-     inertia: [
-       0.1, 0,   0,
-       0,   0.1, 0,
-       0,   0,   0.5 ]
-     elements:
-       Shape:
-         geometry:
-           type: Box
-           size: [ 0.45, 0.3, 0.1 ]
-         appearance: &BodyAppearance
-           material:
-             diffuseColor: [ 0.6, 0, 0 ]
-             specularColor: [ 0.8, 0.2, 0.2 ]
-             shininess: 0.6
+.. _crawler-example2:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 6-26
+   :lineno-start: 6
 
 YAMLでは各行のインデントがデータの構造も規定することになりますので、上記の記述でインデントが揃っているところはそのまま揃えて記述するように注意してください。
 
@@ -397,29 +388,16 @@ Linkノードではこのelementsを用いることで、形状やセンサと�
 カメラ台座ヨー軸部リンクの記述
 ------------------------------
 
-次はカメラ台座ヨー軸部のリンクを記述しましょう。これまでの記述に以下を加えて下さい。::
+次はカメラ台座ヨー軸部のリンクを記述しましょう。これまでの記述に以下を加えて下さい。
 
-   -
-     name: TURRET_Y
-     parent: CHASSIS
-     translation: [ 0.1, 0, 0.1 ]
-     jointType: revolute
-     jointAxis: -Z
-     jointRange: unlimited
-     maxJointVelocity: 90
-     jointId: 0
-     centerOfMass: [ 0, 0, 0.025 ]
-     mass: 4.0
-     inertia: [
-       0.1, 0,   0,
-       0,   0.1, 0,
-       0,   0,   0.1 ]
-     elements:
-       Shape:
-         geometry:
-           type: Box
-           size: [ 0.2, 0.2, 0.1 ]
-         appearance: *BodyAppearance
+.. _crawler-example3:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 27-47
+   :lineno-start: 27
 
 ここまで記述してファイルを保存し、前述の再読み込みを行って下さい。するとシーンビュー上のモデルの表示が以下のようになるかと思います。
 
@@ -558,34 +536,16 @@ TURRET_Yについては関節可動範囲を無制限にしているのですが
 カメラ台座ピッチ軸部の記述
 ----------------------------
 
-次にカメラ台座ピッチ軸部を記述していきましょう。まず以下をlinks以下に追加してください。::
+次にカメラ台座ピッチ軸部を記述していきましょう。まず以下をlinks以下に追加してください。
 
-   -
-     name: TURRET_P
-     parent: TURRET_Y
-     translation: [ 0, 0, 0.05 ]
-     jointType: revolute
-     jointAxis: -Y
-     jointRange: [ -10, 45 ]
-     maxJointVelocity: 90
-     jointId: 1
-     elements:
-       -
-         # Turret
-         type: RigidBody
-         centerOfMass: [ 0, 0, 0 ]
-         mass: 3.0
-         inertia: [
-           0.1, 0,   0,
-           0,   0.1, 0,
-           0,   0,   0.1 ]
-         elements:
-           Shape:
-             geometry:
-               type: Cylinder
-               height: 0.1
-               radius: 0.1
-             appearance: *BodyAppearance
+.. _crawler-example4:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 48-73
+   :lineno-start: 48
 
 nameに指定したように、このリンクの名前は "TURRET_P" としています。 ::
 
@@ -702,17 +662,16 @@ Choreonoidで定義されるロボットモデルにおいて、ロボットに�
 
 デバイスはいずれかのリンクに搭載されることになりますので、リンクのelements以下にその定義を記述します。ライトの方向を変えられるように、ライトはカメラ台座ピッチ軸部に搭載することにしましょう。これにより、カメラ台座ヨー軸、ピッチ軸の動きと連動してライトの向きも変わることになります。
 
-これを実現するため、TURRET_Pリンクのelementsに以下の記述を追加してください。::
+これを実現するため、TURRET_Pリンクのelementsに以下の記述を追加してください。
 
-       -
-         type: SpotLight
-         name: Light
-         translation: [ 0.08, 0, 0.1 ]
-         direction: [ 1, 0, 0 ]
-         beamWidth: 36
-         cutOffAngle: 40
-         cutOffExponent: 6
-         attenuation: [ 1, 0, 0.01 ]
+.. _crawler-example5:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 74-82
+   :lineno-start: 74
 
 ここでは type: SpotLight により、スポットライトのデバイスに対応するSpotLightノードの記述としています。記述内容のポイントを以下にまとめます。
 
@@ -724,21 +683,16 @@ Choreonoidで定義されるロボットモデルにおいて、ロボットに�
 ライト形状の記述
 ~~~~~~~~~~~~~~~~
 
-ライトに対応する形状を記述しましょう。SpotLightノードの最後にelementsとして以下を追記してください。::
+ライトに対応する形状を記述しましょう。SpotLightノードの最後にelementsとして以下を追記してください。
 
-         elements:
-           Shape:
-             rotation: [ 0, 0, 1, 90 ]
-             translation: [ -0.02, 0, 0 ]
-             geometry:
-               type: Cone
-               height: 0.04
-               radius: 0.025
-             appearance:
-               material:
-                 diffuseColor: [ 1.0, 1.0, 0.4 ]
-                 ambientIntensity: 0.3
-                 emissiveColor: [ 0.8, 0.8, 0.3 ]
+.. _crawler-example6:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 83-95
+   :lineno-start: 83
 
 ここではライトの形状としては円錐形状（Coneノード）を使用しています。これもデフォルトの座標系だと向きが合わないので、 `Transformパラメータ <https://choreonoid.org/ja/documents/latest/handling-models/modelfile/modelfile-newformat.html#modelfile-yaml-transform-parameters>`_ を利用して向きを変えています。また、光源がこの形状によって隠れてしまうことのないよう、少し後方にずらした位置としています。レンダリングにおいて影も発生させる場合にはこの点注意する必要があります。
 
@@ -756,31 +710,16 @@ materialではemissiveColorも設定し、暗闇の中でもライトの部分�
 カメラの記述
 ~~~~~~~~~~~~
 
-カメラのデバイスも追加しましょう。SpotLightノードと同様に、以下をTURRET_Pリンクのelements以下に追加します。::
+カメラのデバイスも追加しましょう。SpotLightノードと同様に、以下をTURRET_Pリンクのelements以下に追加します。
 
-       -
-         type: Camera
-         name: Camera
-         translation: [ 0.1, 0, 0.05 ]
-         rotation: [ [ 1, 0, 0, 90 ], [ 0, 1, 0, -90 ] ]
-         format: COLOR
-         fieldOfView: 62
-         nearClipDistance: 0.02
-         width: 640
-         height: 480
-         frameRate: 30
-         elements:
-           Shape:
-             rotation: [ 1, 0, 0, 90 ]
-             geometry:
-               type: Cylinder
-               radius: 0.02
-               height: 0.02
-             appearance:
-               material:
-                 diffuseColor: [ 0.2, 0.2, 0.8 ]
-                 specularColor: [ 0.6, 0.6, 1.0 ]
-                 shininess: 0.6
+.. _crawler-example7:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 96-118
+   :lineno-start: 96
 
 カメラはCameraノードを用いて記述します。
 
@@ -842,37 +781,16 @@ rotationによる姿勢の指定方法は :ref:`tutorial-17` で説明したよ�
 左クローラの記述
 ~~~~~~~~~~~~~~~~
 
-まずは左側のクローラから記述しましょう。 :ref:`tutorial-6` で述べたlinksの階層（インデント）に戻って、以下の記述を追加してください。::
+まずは左側のクローラから記述しましょう。 :ref:`tutorial-6` で述べたlinksの階層（インデント）に戻って、以下の記述を追加してください。
 
-   -
-     name: TRACK_L
-     parent: CHASSIS
-     translation: [ 0, 0.2, 0 ]
-     jointType: pseudo_continuous_track
-     jointAxis: Y
-     centerOfMass: [ 0, 0, 0 ]
-     mass: 1.0
-     inertia: [
-       0.02, 0,    0,
-       0,    0.02, 0,
-       0,    0,    0.02 ]
-     elements:
-       Shape: &TRACK
-         geometry:
-           type: Extrusion
-           crossSection: [
-             -0.22, -0.08,
-              0.22, -0.08,
-              0.34,  0.00,
-              0.22,  0.08,
-             -0.22,  0.08,
-             -0.34,  0.00,
-             -0.22, -0.08
-             ]
-           spine: [ 0, -0.05, 0, 0, 0.05, 0 ]
-         appearance:
-           material:
-             diffuseColor: [ 0.2, 0.2, 0.2 ]
+.. _crawler-example8:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 119-147
+   :lineno-start: 119
 
 この状態でモデルの再読み込みを行うと、以下のように左側のクローラがモデルに加わるかと思います。
 
@@ -900,22 +818,16 @@ jointAxis には想定されるクローラのホイールの回転軸方向を�
 右クローラの記述
 ~~~~~~~~~~~~~~~~
 
-右側のクローラも記述しましょう。先ほど同様にlinksの階層に以下を追加してください。::
+右側のクローラも記述しましょう。先ほど同様にlinksの階層に以下を追加してください。
 
-   -
-     name: TRACK_R
-     parent: CHASSIS
-     translation: [ 0, -0.2, 0 ]
-     jointType: pseudo_continuous_track
-     jointAxis: Y
-     centerOfMass: [ 0, 0, 0 ]
-     mass: 1.0
-     inertia: [
-       0.02, 0,    0,
-       0,    0.02, 0,
-       0,    0,    0.02 ]
-     elements:
-       Shape: *TRACK
+.. _crawler-example9:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 148-161
+   :lineno-start: 148
 
 このリンクの内容は、一部左右対称となっている以外は左クローラとほぼ同じ内容となっています。形状に関しては先ほど"TRACK"という名前で設定したアンカーをエイリアスとして参照しています。
 
@@ -933,30 +845,16 @@ jointAxis には想定されるクローラのホイールの回転軸方向を�
 左ヒンジの記述
 ~~~~~~~~~~~~~~
 
-次に左側のサブクローラを動かすためのヒンジを記述しましょう。 以下の記述を追加してください。::
+次に左側のサブクローラを動かすためのヒンジを記述しましょう。 以下の記述を追加してください。
 
-   -
-     name: HINGE_L
-     parent: TRACK_L
-     translation: [ 0.22, 0.055, 0 ]
-     jointType: revolute
-     jointAxis: -Y
-     jointRange: [ -45, 90 ]
-     maxJointVelocity: 90
-     jointId: 2
-     centerOfMass: [ 0, 0, 0 ]
-     mass: 2.0
-     inertia: [
-       0.1, 0,   0,
-       0,   0.1, 0,
-       0,   0,   0.1 ]
-     elements:
-       Shape: &HINGE
-         geometry:
-           type: Cylinder
-           height: 0.01
-           radius: 0.05
-         appearance: *BodyAppearance
+.. _crawler-example10:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 162-183
+   :lineno-start: 162
 
 .. image:: images/create_crawler-19.png
     :scale: 50%
@@ -966,25 +864,16 @@ jointAxis には想定されるクローラのホイールの回転軸方向を�
 右ヒンジの記述
 ~~~~~~~~~~~~~~
 
-右側のヒンジも記述しましょう。先ほど同様にlinksの階層に以下を追加してください。::
+右側のヒンジも記述しましょう。先ほど同様にlinksの階層に以下を追加してください。
 
-   -
-     name: HINGE_R
-     parent: TRACK_R
-     translation: [ 0.22, -0.055, 0 ]
-     jointType: revolute
-     jointAxis: -Y
-     jointRange: [ -45, 90 ]
-     maxJointVelocity: 90
-     jointId: 3
-     centerOfMass: [ 0, 0, 0 ]
-     mass: 2.0
-     inertia: [
-       0.1, 0,   0,
-       0,   0.1, 0,
-       0,   0,   0.1 ]
-     elements:
-       Shape: *HINGE
+.. _crawler-example11:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 184-200
+   :lineno-start: 184
 
 .. image:: images/create_crawler-20.png
     :scale: 50%
@@ -1003,35 +892,19 @@ jointAxis には想定されるクローラのホイールの回転軸方向を�
 前左クローラの記述
 ~~~~~~~~~~~~~~~~~~
 
-次に左側のサブクローラを記述しましょう。 以下の記述を追加してください。::
+次に左側のサブクローラを記述しましょう。 以下の記述を追加してください。
 
-   -
-     name: TRACK_FL
-     parent: HINGE_L
-     translation: [ 0.11, 0.03, 0 ]
-     jointType: pseudo_continuous_track
-     jointAxis: Y
-     centerOfMass: [ 0, 0, 0 ]
-     mass: 0.05
-     inertia: [
-       0.02, 0,    0,
-       0,    0.02, 0,
-       0,    0,    0.02 ]
-     elements:
-       Shape: &SUBTRACK
-         geometry:
-           type: Extrusion
-           crossSection: [
-             -0.11, -0.07,
-              0.17,  0.00,
-             -0.11,  0.07,
-             -0.17,  0.00,
-             -0.11, -0.07
-             ]
-           spine: [ 0, -0.025, 0, 0, 0.025, 0 ]
-         appearance:
-           material:
-             diffuseColor: [ 0.2, 0.2, 0.2 ]
+.. _crawler-example12:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 201-227
+   :lineno-start: 201
+
+.. image:: images/create_crawler-20.png
+    :scale: 50%
 
 .. image:: images/create_crawler-21.png
     :scale: 50%
@@ -1041,22 +914,16 @@ jointAxis には想定されるクローラのホイールの回転軸方向を�
 前右クローラの記述
 ~~~~~~~~~~~~~~~~~~
 
-右側のヒンジも記述しましょう。先ほど同様にlinksの階層に以下を追加してください。::
+右側のヒンジも記述しましょう。先ほど同様にlinksの階層に以下を追加してください。
 
-   -
-     name: TRACK_FR
-     parent: HINGE_R
-     translation: [ 0.11, -0.03, 0 ]
-     jointType: pseudo_continuous_track
-     jointAxis: Y
-     centerOfMass: [ 0, 0, 0 ]
-     mass: 0.05
-     inertia: [
-       0.02, 0,    0,
-       0,    0.02, 0,
-       0,    0,    0.02 ]
-     elements:
-       Shape: *SUBTRACK
+.. _crawler-example13:
+
+.. literalinclude:: ./src/crawler.body
+   :language: YAML
+   :linenos:
+   :caption: crawler.body
+   :lines: 228-241
+   :lineno-start: 228
 
 このリンクの内容は、一部左右対称となっている以外は前左クローラとほぼ同じ内容となっています。形状に関しては先ほど"SUBTRACK"という名前で設定したアンカーをエイリアスとして参照しています。
 

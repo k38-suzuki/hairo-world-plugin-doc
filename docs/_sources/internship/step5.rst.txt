@@ -25,60 +25,26 @@ Crawlerモデルでは、左クローラに対応するリンクが "TRACK_L"、
 簡易クローラのコントローラ
 --------------------------
 
-今回作成するコントローラ "TrackController1" のソースコードを以下に示します。 ::
+今回作成するコントローラ "TrackController1" のソースコードを以下に示します。
 
- #include <cnoid/SimpleController>
- #include <cnoid/Joystick>
+.. _controller-example3:
 
- using namespace cnoid;
+.. literalinclude:: ./src/TrackController1.cpp
+   :language: C++
+   :linenos:
+   :caption: TrackController1.cpp
 
- class TrackController1 : public SimpleController
- {
-     Link* trackL;
-     Link* trackR;
-     Joystick joystick;
 
- public:
-     virtual bool initialize(SimpleControllerIO* io) override
-     {
-         trackL = io->body()->link("TRACK_L");
-         trackR = io->body()->link("TRACK_R");
+これまでと同様に、上記のソースコードを "TrackController1.cpp" というファイル名でプロジェクトディレクトリに保存し、同ディレクトリ内のCMakeLists.txtに
 
-         trackL->setActuationMode(Link::JointVelocity);
-         trackR->setActuationMode(Link::JointVelocity);
+.. cmake-example3:
 
-         io->enableOutput(trackL);
-         io->enableOutput(trackR);
-
-         return true;
-     }
-
-     virtual bool control() override
-     {
-         static const int axisID[] = { 0, 1 };
-
-         joystick.readCurrentState();
-
-         double pos[2];
-         for(int i=0; i < 2; ++i){
-             pos[i] = joystick.getPosition(axisID[i]);
-             if(fabs(pos[i]) < 0.2){
-                 pos[i] = 0.0;
-             }
-         }
-
-         trackL->dq_target() = -2.0 * pos[1] + pos[0];
-         trackR->dq_target() = -2.0 * pos[1] - pos[0];
-
-         return true;
-     }
- };
-
- CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(TrackController1)
-
-これまでと同様に、上記のソースコードを "TrackController1.cpp" というファイル名でプロジェクトディレクトリに保存し、同ディレクトリ内のCMakeLists.txtに ::
-
- choreonoid_add_simple_controller(CrawlerTutorial_TrackController1 TrackController1.cpp)
+.. literalinclude:: ./src/CMakeLists.txt
+   :language: YAML
+   :linenos:
+   :caption: CMakeLists.txt
+   :lines: 4
+   :lineno-start: 4
 
 という記述を追加し、コンパイルを行って下さい。
 

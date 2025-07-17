@@ -23,70 +23,14 @@
 コントローラのソースコード
 --------------------------
 
-今回作成するコントローラのソースコードを以下に示します。これはステップ2のTurretController1に対して、カメラ台座ヨー軸の制御とゲームパッド入力による指令値の変更を追加した内容となっています。 ::
+今回作成するコントローラのソースコードを以下に示します。これはステップ2のTurretController1に対して、カメラ台座ヨー軸の制御とゲームパッド入力による指令値の変更を追加した内容となっています。
 
- #include <cnoid/SimpleController>
- #include <cnoid/Joystick>
+.. _controller-example2:
 
- using namespace cnoid;
-
- class TurretController2 : public SimpleController
- {
-     Link* joints[2];
-     double q_ref[2];
-     double q_prev[2];
-     double dt;
-     Joystick joystick;
-
- public:
-     virtual bool initialize(SimpleControllerIO* io) override
-     {
-         joints[0] = io->body()->link("TURRET_Y");
-         joints[1] = io->body()->link("TURRET_P");
-
-         for(int i=0; i < 2; ++i){
-             Link* joint = joints[i];
-             joint->setActuationMode(Link::JointEffort);
-             io->enableIO(joint);
-             q_ref[i] = q_prev[i] = joint->q();
-         }
-
-         dt = io->timeStep();
-
-         return true;
-     }
-
-     virtual bool control() override
-     {
-         static const double P = 200.0;
-         static const double D = 50.0;
-         static const int axisID[] = { 2, 3 };
-
-         joystick.readCurrentState();
-
-         for(int i=0; i < 2; ++i){
-             Link* joint = joints[i];
-             double q = joint->q();
-             double dq = (q - q_prev[i]) / dt;
-             double dq_ref = 0.0;
-
-             double pos = joystick.getPosition(axisID[i]);
-             if(fabs(pos) > 0.25){
-                 double deltaq = 0.002 * pos;
-                 q_ref[i] += deltaq;
-                 dq_ref = deltaq / dt;
-             }
-
-             joint->u() = P * (q_ref[i] - q) + D * (dq_ref - dq);
-             q_prev[i] = q;
-         }
-
-         return true;
-     }
- };
-
- CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(TurretController2)
-
+.. literalinclude:: ./src/TurretController2.cpp
+   :language: C++
+   :linenos:
+   :caption: TurretController2.cpp
 
 .. _step3-ref2:
 
@@ -97,9 +41,14 @@
 
 手順はステップ2で行ったのと同様です。ソースコードを "TurretController2.cpp" というファイル名でプロジェクトディレクトリに保存し、CMakeLists.txt に以下の記述を追加して下さい。
 
-.. code-block:: cmake
+.. cmake-example2:
 
- choreonoid_add_simple_controller(CrawlerTutorial_TurretController2 TurretController2.cpp)
+.. literalinclude:: ./src/CMakeLists.txt
+   :language: YAML
+   :linenos:
+   :caption: CMakeLists.txt
+   :lines: 1
+   :lineno-start: 2
 
 これでChoreonoid本体のコンパイル操作を行うと、このコントローラも同時にコンパイルされ、コントローラディレクトリ内に "CrawlerTutorial_TurretController2.so" というファイルが生成されます。
 

@@ -82,59 +82,27 @@ GLビジョンシミュレータアイテムの詳細は `視覚センサのシ�
 コントローラのソースコード
 --------------------------
 
-GLビジョンシミュレータアイテムの導入によりカメラ画像をシミュレートできるようになりましたが、それを確認するにはカメラデバイスから画像を取得するためのコントローラが必要です。ここではそのためのコントローラとして、取得した画像をファイルに出力するというコントローラを作成します。以下にそのソースコードを示します。 ::
+GLビジョンシミュレータアイテムの導入によりカメラ画像をシミュレートできるようになりましたが、それを確認するにはカメラデバイスから画像を取得するためのコントローラが必要です。ここではそのためのコントローラとして、取得した画像をファイルに出力するというコントローラを作成します。以下にそのソースコードを示します。
 
- #include <cnoid/SimpleController>
- #include <cnoid/Camera>
- #include <cnoid/Joystick>
+.. _controller-example5:
 
- using namespace cnoid;
-
- class CameraController : public SimpleController
- {
-     Camera* camera;
-     Joystick joystick;
-     bool prevButtonState;
-     std::ostream* os;
-
- public:
-     virtual bool initialize(SimpleControllerIO* io) override
-     {
-         camera = io->body()->findDevice<Camera>("Camera");
-         io->enableInput(camera);
-         prevButtonState = false;
-         os = &io->os();
-         return true;
-     }
-
-     virtual bool control() override
-     {
-         joystick.readCurrentState();
-
-         bool currentState = joystick.getButtonState(1);
-         if(currentState && !prevButtonState){
-             const Image& image = camera->constImage();
-             if(!image.empty()){
-                 std::string filename = camera->name() + ".png";
-                 camera->constImage().save(filename);
-                 (*os) << "The image of " << camera->name()
-                       << " has been saved to \"" << filename << "\"."
-                       << std::endl;
-             }
-         }
-         prevButtonState = currentState;
-
-         return true;
-     }
- };
-
- CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(CameraController)
+.. literalinclude:: ./src/CameraController.cpp
+   :language: C++
+   :linenos:
+   :caption: CameraController.cpp
 
 これまでと同様に、上記ソースコードを "CameraController.cpp" というファイル名でプロジェクトディレクトリに保存します。
 
-CMakeLists.txt に ::
+CMakeLists.txt に
 
- choreonoid_add_simple_controller(CrawlerTutorial_CameraController CameraController.cpp)
+.. cmake-example3:
+
+.. literalinclude:: ./src/CMakeLists.txt
+   :language: YAML
+   :linenos:
+   :caption: CMakeLists.txt
+   :lines: 7
+   :lineno-start: 7
 
 を追加して、コンパイルを行って下さい。
 

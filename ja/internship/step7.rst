@@ -76,7 +76,7 @@ Crawlerモデル、Labo1モデルのライトによる影を有効にしたシ�
 
 これでシーンの雰囲気がそれらしくなってきました。ここまでの設定を "step7.cnoid" といった名前のプロジェクトファイルとして保存しておきましょう。
 
-.. note:: 影については使用するGPUやGPUドライバによっては描画されないこともあります。詳しくは `グラフィックス環境のセットアップ <https://choreonoid.org/ja/documents/latest/simulation/execution-and-playback.html#simulation-result-playback>`_ を参照してください。
+.. note:: 影については使用するGPUやGPUドライバによっては描画されないこともあります。詳しくは `グラフィックス環境のセットアップ <https://choreonoid.org/ja/documents/latest/install/setup-gpu.html>`_ を参照してください。
 
 
 .. _step7-ref2:
@@ -84,66 +84,27 @@ Crawlerモデル、Labo1モデルのライトによる影を有効にしたシ�
 ライトのコントローラ
 --------------------
 
-環境設定が長くなってしまいましたが、本題に入りましょう。今回作成するのは、Crawlerモデルのライトを操作するためのコントローラで、これを "LightController" とします。このコントローラのソースコードを以下に示します。 ::
+環境設定が長くなってしまいましたが、本題に入りましょう。今回作成するのは、Crawlerモデルのライトを操作するためのコントローラで、これを "LightController" とします。このコントローラのソースコードを以下に示します。
 
- #include <cnoid/SimpleController>
- #include <cnoid/SpotLight>
- #include <cnoid/Joystick>
+.. _controller-example4:
 
- using namespace cnoid;
-
- class LightController : public SimpleController
- {
-     SpotLight* light;
-     Joystick joystick;
-     bool prevButtonState;
-
- public:
-     virtual bool initialize(SimpleControllerIO* io) override
-     {
-         light = io->body()->findDevice<SpotLight>("Light");
-         prevButtonState = false;
-         return true;
-     }
-
-     virtual bool control() override
-     {
-         static const int buttonID[] = { 0, 2, 3 };
-
-         joystick.readCurrentState();
-
-         bool changed = false;
-
-         bool currentState = joystick.getButtonState(buttonID[0]);
-         if(currentState && !prevButtonState){
-             light->on(!light->on());
-             changed = true;
-         }
-         prevButtonState = currentState;
-
-         if(joystick.getButtonState(buttonID[1])){
-             light->setBeamWidth(std::max(0.1f, light->beamWidth() - 0.001f));
-             changed = true;
-         } else if(joystick.getButtonState(buttonID[2])){
-             light->setBeamWidth(std::min(0.7854f, light->beamWidth() + 0.001f));
-             changed = true;
-         }
-
-         if(changed){
-             light->notifyStateChange();
-         }
-
-         return true;
-     }
- };
-
- CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(LightController)
+.. literalinclude:: ./src/LightController.cpp
+   :language: C++
+   :linenos:
+   :caption: LightController.cpp
 
 これまでと同様に、上記ソースコードを "LightController.cpp" というファイル名でプロジェクトディレクトリに保存します。
 
-CMakeLists.txt に ::
+CMakeLists.txt に
 
- choreonoid_add_simple_controller(CrawlerTutorial_LightController LightController.cpp)
+.. cmake-example3:
+
+.. literalinclude:: ./src/CMakeLists.txt
+   :language: YAML
+   :linenos:
+   :caption: CMakeLists.txt
+   :lines: 6
+   :lineno-start: 6
 
 を追加して、コンパイルを行って下さい。
 
@@ -189,7 +150,7 @@ Choreonoidではライトを「デバイス」のひとつとして定義して�
 
  light = io->body()->findDevice<SpotLight>("Light");
 
-によって、入出力用Bodyオブジェクトから、SpotLight型で"Light"という名前をもつデバイスオブジェクトを取得し、これをlight変数に格納しています。デバイスに関しても、このオブジェクトを入出力用に使います。Lightの定義については、  `Crawlerモデルの作成 <>`_ における `スポットライトの記述 <>`_ を参照してください。
+によって、入出力用Bodyオブジェクトから、SpotLight型で"Light"という名前をもつデバイスオブジェクトを取得し、これをlight変数に格納しています。デバイスに関しても、このオブジェクトを入出力用に使います。Lightの定義については、 :doc:`Crawlerモデルの作成 <./step0>` におけるスポットライトの記述を参照してください。
 
 control関数では、 ::
 
