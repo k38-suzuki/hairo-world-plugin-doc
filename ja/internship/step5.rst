@@ -31,7 +31,6 @@ Crawlerモデルでは、左クローラに対応するリンクが "TRACK_L"、
 
 .. literalinclude:: ./src/TrackController1.cpp
    :language: C++
-   :linenos:
    :caption: TrackController1.cpp
 
 
@@ -41,10 +40,8 @@ Crawlerモデルでは、左クローラに対応するリンクが "TRACK_L"、
 
 .. literalinclude:: ./src/CMakeLists.txt
    :language: YAML
-   :linenos:
    :caption: CMakeLists.txt
    :lines: 4
-   :lineno-start: 4
 
 という記述を追加し、コンパイルを行って下さい。
 

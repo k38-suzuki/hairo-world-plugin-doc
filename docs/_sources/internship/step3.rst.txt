@@ -29,7 +29,6 @@
 
 .. literalinclude:: ./src/TurretController2.cpp
    :language: C++
-   :linenos:
    :caption: TurretController2.cpp
 
 .. _step3-ref2:
@@ -45,10 +44,8 @@
 
 .. literalinclude:: ./src/CMakeLists.txt
    :language: YAML
-   :linenos:
    :caption: CMakeLists.txt
    :lines: 1
-   :lineno-start: 2
 
 これでChoreonoid本体のコンパイル操作を行うと、このコントローラも同時にコンパイルされ、コントローラディレクトリ内に "CrawlerTutorial_TurretController2.so" というファイルが生成されます。
 

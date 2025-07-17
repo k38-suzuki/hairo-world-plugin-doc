@@ -33,7 +33,6 @@
 
 .. literalinclude:: ./src/TurretController1.cpp
    :language: C++
-   :linenos:
    :caption: TurretController1.cpp
 
 以下では、このコントローラをシミュレーションプロジェクトに導入し、シミュレーションを行うまでを解説します。その後、コントローラの実装内容について解説したいと思います。
@@ -111,10 +110,8 @@ CMakeLists.txtの記述
 
 .. literalinclude:: ./src/CMakeLists.txt
    :language: YAML
-   :linenos:
    :caption: CMakeLists.txt
    :lines: 1
-   :lineno-start: 1
 
 ここで用いている "choreonoid_add_simple_controller" という関数は、Choreonoid本体のCMake記述にて予め定義された関数です。この関数に、生成されるコントローラの名前とソースファイルを与えるだけで、コントローラのコンパイルを行うことができます。
 

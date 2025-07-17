@@ -88,7 +88,6 @@ GLビジョンシミュレータアイテムの導入によりカメラ画像を
 
 .. literalinclude:: ./src/CameraController.cpp
    :language: C++
-   :linenos:
    :caption: CameraController.cpp
 
 これまでと同様に、上記ソースコードを "CameraController.cpp" というファイル名でプロジェクトディレクトリに保存します。
@@ -99,10 +98,8 @@ CMakeLists.txt に
 
 .. literalinclude:: ./src/CMakeLists.txt
    :language: YAML
-   :linenos:
    :caption: CMakeLists.txt
    :lines: 7
-   :lineno-start: 7
 
 を追加して、コンパイルを行って下さい。
 

@@ -90,10 +90,8 @@ Bodyファイルは記述方式のベースとしてYAMLを採用しています
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 1-5
-   :lineno-start: 1
 
 最初の行の記述により、このファイルがChoreonoidのモデルファイルとして認識されるようになります。formatVersionは現在のところ2.0が最新ですが、見本となるファイルが少ないため、このチュートリアルでは1.0の記述方法を説明していきます。今後仕様に変更があった場合に、新しい仕様と区別するためにバージョン番号を明示しておきます。
 
@@ -171,10 +169,8 @@ LinkノードはYAMLのマッピング形式で記述します。マッピング
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 6-26
-   :lineno-start: 6
 
 YAMLでは各行のインデントがデータの構造も規定することになりますので、上記の記述でインデントが揃っているところはそのまま揃えて記述するように注意してください。
 
@@ -394,10 +390,8 @@ Linkノードではこのelementsを用いることで、形状やセンサと�
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 27-47
-   :lineno-start: 27
 
 ここまで記述してファイルを保存し、前述の再読み込みを行って下さい。するとシーンビュー上のモデルの表示が以下のようになるかと思います。
 
@@ -542,10 +536,8 @@ TURRET_Yについては関節可動範囲を無制限にしているのですが
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 48-73
-   :lineno-start: 48
 
 nameに指定したように、このリンクの名前は "TURRET_P" としています。 ::
 
@@ -668,10 +660,8 @@ Choreonoidで定義されるロボットモデルにおいて、ロボットに�
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 74-82
-   :lineno-start: 74
 
 ここでは type: SpotLight により、スポットライトのデバイスに対応するSpotLightノードの記述としています。記述内容のポイントを以下にまとめます。
 
@@ -689,10 +679,8 @@ Choreonoidで定義されるロボットモデルにおいて、ロボットに�
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 83-95
-   :lineno-start: 83
 
 ここではライトの形状としては円錐形状（Coneノード）を使用しています。これもデフォルトの座標系だと向きが合わないので、 `Transformパラメータ <https://choreonoid.org/ja/documents/latest/handling-models/modelfile/modelfile-newformat.html#modelfile-yaml-transform-parameters>`_ を利用して向きを変えています。また、光源がこの形状によって隠れてしまうことのないよう、少し後方にずらした位置としています。レンダリングにおいて影も発生させる場合にはこの点注意する必要があります。
 
@@ -716,10 +704,8 @@ materialではemissiveColorも設定し、暗闇の中でもライトの部分�
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 96-118
-   :lineno-start: 96
 
 カメラはCameraノードを用いて記述します。
 
@@ -787,10 +773,8 @@ rotationによる姿勢の指定方法は :ref:`tutorial-17` で説明したよ�
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 119-147
-   :lineno-start: 119
 
 この状態でモデルの再読み込みを行うと、以下のように左側のクローラがモデルに加わるかと思います。
 
@@ -824,10 +808,8 @@ jointAxis には想定されるクローラのホイールの回転軸方向を�
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 148-161
-   :lineno-start: 148
 
 このリンクの内容は、一部左右対称となっている以外は左クローラとほぼ同じ内容となっています。形状に関しては先ほど"TRACK"という名前で設定したアンカーをエイリアスとして参照しています。
 
@@ -851,10 +833,8 @@ jointAxis には想定されるクローラのホイールの回転軸方向を�
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 162-183
-   :lineno-start: 162
 
 .. image:: images/create_crawler-19.png
     :scale: 50%
@@ -870,10 +850,8 @@ jointAxis には想定されるクローラのホイールの回転軸方向を�
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 184-200
-   :lineno-start: 184
 
 .. image:: images/create_crawler-20.png
     :scale: 50%
@@ -898,10 +876,8 @@ jointAxis には想定されるクローラのホイールの回転軸方向を�
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 201-227
-   :lineno-start: 201
 
 .. image:: images/create_crawler-20.png
     :scale: 50%
@@ -920,10 +896,8 @@ jointAxis には想定されるクローラのホイールの回転軸方向を�
 
 .. literalinclude:: ./src/crawler.body
    :language: YAML
-   :linenos:
    :caption: crawler.body
    :lines: 228-241
-   :lineno-start: 228
 
 このリンクの内容は、一部左右対称となっている以外は前左クローラとほぼ同じ内容となっています。形状に関しては先ほど"SUBTRACK"という名前で設定したアンカーをエイリアスとして参照しています。
 

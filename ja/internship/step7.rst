@@ -90,7 +90,6 @@ Crawlerモデル、Labo1モデルのライトによる影を有効にしたシ�
 
 .. literalinclude:: ./src/LightController.cpp
    :language: C++
-   :linenos:
    :caption: LightController.cpp
 
 これまでと同様に、上記ソースコードを "LightController.cpp" というファイル名でプロジェクトディレクトリに保存します。
@@ -101,10 +100,8 @@ CMakeLists.txt に
 
 .. literalinclude:: ./src/CMakeLists.txt
    :language: YAML
-   :linenos:
    :caption: CMakeLists.txt
    :lines: 6
-   :lineno-start: 6
 
 を追加して、コンパイルを行って下さい。
 
