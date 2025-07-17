@@ -47,28 +47,28 @@
 <div class="contents local topic" id="id2">
 <p class="topic-title">目次</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#step7-ref1" id="id16">環境設定</a></p>
+<li><p><a class="reference internal" href="#step7-ref1" id="id18">環境設定</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id4" id="id17">グラフィックス環境の確認</a></p></li>
-<li><p><a class="reference internal" href="#id6" id="id18">環境モデルの変更</a></p></li>
-<li><p><a class="reference internal" href="#id7" id="id19">シーン設定の変更</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id19">グラフィックス環境の確認</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id20">環境モデルの変更</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id21">シーン設定の変更</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#step7-ref2" id="id20">ライトのコントローラ</a></p></li>
-<li><p><a class="reference internal" href="#step7-ref3" id="id21">コントローラの導入</a></p></li>
-<li><p><a class="reference internal" href="#step7-ref4" id="id22">ライトの操作</a></p></li>
-<li><p><a class="reference internal" href="#step7-ref5" id="id23">実装内容の解説</a></p></li>
+<li><p><a class="reference internal" href="#step7-ref2" id="id22">ライトのコントローラ</a></p></li>
+<li><p><a class="reference internal" href="#step7-ref3" id="id23">コントローラの導入</a></p></li>
+<li><p><a class="reference internal" href="#step7-ref4" id="id24">ライトの操作</a></p></li>
+<li><p><a class="reference internal" href="#step7-ref5" id="id25">実装内容の解説</a></p></li>
 </ul>
 </div>
 <section id="step7-ref1">
-<span id="id3"></span><h2><a class="toc-backref" href="#id16">環境設定</a><a class="headerlink" href="#step7-ref1" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2><a class="toc-backref" href="#id18">環境設定</a><a class="headerlink" href="#step7-ref1" title="Permalink to this headline">¶</a></h2>
 <p>ライトを使用するにあたって、その効果をより分かりやすくするための環境設定を行うことにしましょう。</p>
 <section id="id4">
-<h3><a class="toc-backref" href="#id17">グラフィックス環境の確認</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">グラフィックス環境の確認</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>ライトの効果が正しく描画されるようにするためには、 <a class="reference external" href="https://choreonoid.org/ja/documents/latest/install/setup-gpu.html">グラフィックス環境のセットアップ</a> が適切に行われている必要があります。Ubuntu Linux使用時は <a class="reference external" href="https://choreonoid.org/ja/documents/latest/install/setup-gpu.html#setup-gpu-ubuntu-gpu-driver">Ubuntu LinuxにおけるGPUドライバのインストール</a> についても確認してください。</p>
 </section>
 <section id="id6">
-<h3><a class="toc-backref" href="#id18">環境モデルの変更</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">環境モデルの変更</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>これまで使ってきた床のモデルだけだと、ライトが照射されてもあまり代り映えがしません。そこで環境モデルも変更することにしましょう。今回はChoreonoidのサンプルとして用意されている “Labo1” というモデルを使うことにします。これは以下に示すような、研究用プラントを想定したモデルとなっています。</p>
 <img alt="../_images/step7-1.png" src="../_images/step7-1.png" />
 <p>このモデルはChoreonoidのshareディレクトリの “model/Labo1” に “Labo1.body” というファイル名で格納されています。これまで作成してきたプロジェクトに追加して、このモデルを読み込んでください。</p>
@@ -77,7 +77,7 @@
 <p>なお、アイテム間の親子関係が同じであれば、アイテムの並び順はどうなっていてもOKです。なので例えばLabo1がAISTSimulatorの次に配置されたりしていてもかまいません。もし並び順が気になる場合は、アイテムをドラッグすることで並び順だけ変えることもできますので、そこは好きなように設定してください。</p>
 </section>
 <section id="id7">
-<h3><a class="toc-backref" href="#id19">シーン設定の変更</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id21">シーン設定の変更</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>次にシーンの描画に関わる設定を変更しましょう。これを行うにあたっては、まず以下のシーンバーの「設定ボタン」を押します。</p>
 <img alt="../_images/step7-3.png" src="../_images/step7-3.png" />
 <p>設定ボタンは、以下のギヤのアイコンです。</p>
@@ -95,13 +95,15 @@
 <p>これでシーンの雰囲気がそれらしくなってきました。ここまでの設定を “step7.cnoid” といった名前のプロジェクトファイルとして保存しておきましょう。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>影については使用するGPUやGPUドライバによっては描画されないこともあります。詳しくは <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/execution-and-playback.html#simulation-result-playback">グラフィックス環境のセットアップ</a> を参照してください。</p>
+<p>影については使用するGPUやGPUドライバによっては描画されないこともあります。詳しくは <a class="reference external" href="https://choreonoid.org/ja/documents/latest/install/setup-gpu.html">グラフィックス環境のセットアップ</a> を参照してください。</p>
 </div>
 </section>
 </section>
 <section id="step7-ref2">
-<span id="id9"></span><h2><a class="toc-backref" href="#id20">ライトのコントローラ</a><a class="headerlink" href="#step7-ref2" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h2><a class="toc-backref" href="#id22">ライトのコントローラ</a><a class="headerlink" href="#step7-ref2" title="Permalink to this headline">¶</a></h2>
 <p>環境設定が長くなってしまいましたが、本題に入りましょう。今回作成するのは、Crawlerモデルのライトを操作するためのコントローラで、これを “LightController” とします。このコントローラのソースコードを以下に示します。</p>
+<div class="literal-block-wrapper docutils container" id="id16">
+<span id="controller-example4"></span><div class="code-block-caption"><span class="caption-text">LightController.cpp</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SimpleController&gt;</span><span class="cp"></span>
 <span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SpotLight&gt;</span><span class="cp"></span>
 <span class="linenos"> 3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Joystick&gt;</span><span class="cp"></span>
@@ -131,21 +133,21 @@
 <span class="linenos">27</span><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">28</span>
 <span class="linenos">29</span><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">currentState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
-<span class="linenos">30</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">currentState</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">prevButtonState</span><span class="p">){</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">currentState</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">prevButtonState</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="linenos">31</span><span class="w">            </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">on</span><span class="p">(</span><span class="o">!</span><span class="n">light</span><span class="o">-&gt;</span><span class="n">on</span><span class="p">());</span><span class="w"></span>
 <span class="linenos">32</span><span class="w">            </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">33</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="linenos">34</span><span class="w">        </span><span class="n">prevButtonState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentState</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">35</span>
-<span class="linenos">36</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">1</span><span class="p">])){</span><span class="w"></span>
+<span class="linenos">36</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="linenos">37</span><span class="w">            </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">setBeamWidth</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">beamWidth</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.001f</span><span class="p">));</span><span class="w"></span>
 <span class="linenos">38</span><span class="w">            </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">39</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">2</span><span class="p">])){</span><span class="w"></span>
+<span class="linenos">39</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="linenos">40</span><span class="w">            </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">setBeamWidth</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="mf">0.7854f</span><span class="p">,</span><span class="w"> </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">beamWidth</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.001f</span><span class="p">));</span><span class="w"></span>
 <span class="linenos">41</span><span class="w">            </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">42</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="linenos">43</span>
-<span class="linenos">44</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">changed</span><span class="p">){</span><span class="w"></span>
+<span class="linenos">44</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">changed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="linenos">45</span><span class="w">            </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">notifyStateChange</span><span class="p">();</span><span class="w"></span>
 <span class="linenos">46</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="linenos">47</span>
@@ -156,21 +158,25 @@
 <span class="linenos">52</span><span class="n">CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY</span><span class="p">(</span><span class="n">LightController</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
 <p>これまでと同様に、上記ソースコードを “LightController.cpp” というファイル名でプロジェクトディレクトリに保存します。</p>
 <p>CMakeLists.txt に</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">choreonoid_add_simple_controller</span><span class="p">(</span><span class="n">CrawlerTutorial_LightController</span><span class="w"> </span><span class="n">LightController</span><span class="p">.</span><span class="n">cpp</span><span class="p">)</span><span class="w"></span>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">CMakeLists.txt</span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="linenos">6</span><span class="l l-Scalar l-Scalar-Plain">choreonoid_add_simple_controller(CrawlerTutorial_LightController LightController.cpp)</span><span class="w"></span>
 </pre></div>
+</div>
 </div>
 <p>を追加して、コンパイルを行って下さい。</p>
 </section>
 <section id="step7-ref3">
-<span id="id10"></span><h2><a class="toc-backref" href="#id21">コントローラの導入</a><a class="headerlink" href="#step7-ref3" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2><a class="toc-backref" href="#id23">コントローラの導入</a><a class="headerlink" href="#step7-ref3" title="Permalink to this headline">¶</a></h2>
 <p>ステップ5で導入したTrackControllerと同様に、LightControllerについても対応するシンプルコントローラアイテムを生成し、これをTurretControllerの子アイテムとして配置するようにしてください。これを行うと、アイテムツリービューは以下のようになります。</p>
 <img alt="../_images/step7-8.png" src="../_images/step7-8.png" />
 <p>このように配置することで、TurretController、HingeController、TrackController、LightControllerのcontrol関数が順番に呼ばれ、これらが一体となって機能することになります。</p>
 </section>
 <section id="step7-ref4">
-<span id="id11"></span><h2><a class="toc-backref" href="#id22">ライトの操作</a><a class="headerlink" href="#step7-ref4" title="Permalink to this headline">¶</a></h2>
+<span id="id11"></span><h2><a class="toc-backref" href="#id24">ライトの操作</a><a class="headerlink" href="#step7-ref4" title="Permalink to this headline">¶</a></h2>
 <p>シミュレーションを実行して、ライトの操作ができるようになっていることを確認しましょう。</p>
 <p>ライトの操作はゲームパッドもしくは仮想ジョイスティックビューのA、X、Yボタン（プレイステーションのゲームパッドの場合は×、□、△ボタン）に割り当てられています。</p>
 <p>まずAボタンでライトのオン・オフを切り替えられます。</p>
@@ -179,13 +185,13 @@
 <p>なお、シミュレータアイテムのプロパティである「デバイス状態の記録」がtrueになっていれば、ライトの操作についてもシミュレーション結果として記録され、 <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/execution-and-playback.html#simulation-result-playback">シミュレーション結果の再生</a> の際に再現されます。このプロパティはデフォルトでtrueになっています。この機能の確認のため、ライトをいろいろと操作した後にシミュレーションを停止して、シミュレーションの再生を行ってみて下さい。</p>
 </section>
 <section id="step7-ref5">
-<span id="id13"></span><h2><a class="toc-backref" href="#id23">実装内容の解説</a><a class="headerlink" href="#step7-ref5" title="Permalink to this headline">¶</a></h2>
+<span id="id13"></span><h2><a class="toc-backref" href="#id25">実装内容の解説</a><a class="headerlink" href="#step7-ref5" title="Permalink to this headline">¶</a></h2>
 <p>Choreonoidではライトを「デバイス」のひとつとして定義しています。本ステップのポイントは、コントローラからデバイスへ出力を行う方法を知ることにあります。</p>
 <p>まず、initialize関数の</p>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">light</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">findDevice</span><span class="o">&lt;</span><span class="n">SpotLight</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Light&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-<p>によって、入出力用Bodyオブジェクトから、SpotLight型で”Light”という名前をもつデバイスオブジェクトを取得し、これをlight変数に格納しています。デバイスに関しても、このオブジェクトを入出力用に使います。Lightの定義については、  <a href="#id24"><span class="problematic" id="id25">`Crawlerモデルの作成 &lt;&gt;`_</span></a> における <a href="#id26"><span class="problematic" id="id27">`スポットライトの記述 &lt;&gt;`_</span></a> を参照してください。</p>
+<p>によって、入出力用Bodyオブジェクトから、SpotLight型で”Light”という名前をもつデバイスオブジェクトを取得し、これをlight変数に格納しています。デバイスに関しても、このオブジェクトを入出力用に使います。Lightの定義については、 <a class="reference internal" href="step0.html"><span class="doc">Crawlerモデルの作成</span></a> におけるスポットライトの記述を参照してください。</p>
 <p>control関数では、</p>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">buttonID</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
 </pre></div>

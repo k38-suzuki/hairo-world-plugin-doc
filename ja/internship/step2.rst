@@ -27,49 +27,14 @@
 コントローラ "TurretController1" の実装
 ---------------------------------------
 
-シンプルコントローラ形式ではC++のクラスとしてコントローラを実装します。ここではカメラ台座(Turret)のピッチ軸を維持するだけの "TurretController1" の実装を行います。まずこのコントローラのソースコードを以下に示します。 ::
+シンプルコントローラ形式ではC++のクラスとしてコントローラを実装します。ここではカメラ台座(Turret)のピッチ軸を維持するだけの "TurretController1" の実装を行います。まずこのコントローラのソースコードを以下に示します。
 
- #include <cnoid/SimpleController>
+.. _controller-example1:
 
- using namespace cnoid;
-
- class TurretController1 : public SimpleController
- {
-     Link* joint;
-     double q_ref;
-     double q_prev;
-     double dt;
-
- public:
-     virtual bool initialize(SimpleControllerIO* io) override
-     {
-         joint = io->body()->link("TURRET_P");
-         joint->setActuationMode(Link::JointEffort);
-         io->enableIO(joint);
-         q_ref = q_prev = joint->q();
-
-         dt = io->timeStep();
-
-         return true;
-     }
-
-     virtual bool control() override
-     {
-         // PD gains
-         static const double P = 200.0;
-         static const double D = 50.0;
-
-         double q = joint->q(); // input
-         double dq = (q - q_prev) / dt;
-         double dq_ref = 0.0;
-         joint->u() = P * (q_ref - q) + D * (dq_ref - dq); // output
-         q_prev = q;
-
-         return true;
-     }
- };
-
- CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(TurretController1)
+.. literalinclude:: ./src/TurretController1.cpp
+   :language: C++
+   :linenos:
+   :caption: TurretController1.cpp
 
 以下では、このコントローラをシミュレーションプロジェクトに導入し、シミュレーションを行うまでを解説します。その後、コントローラの実装内容について解説したいと思います。
 
@@ -142,9 +107,14 @@ CMakeLists.txtの記述
 
 といっても今回記述すべき内容は非常にシンプルで、新規作成した "CMakeLists.txt" のファイルに以下の一行を記述すればOKです。
 
-.. code-block:: cmake
+.. cmake-example1:
 
- choreonoid_add_simple_controller(CrawlerTutorial_TurretController1 TurretController1.cpp)
+.. literalinclude:: ./src/CMakeLists.txt
+   :language: YAML
+   :linenos:
+   :caption: CMakeLists.txt
+   :lines: 1
+   :lineno-start: 1
 
 ここで用いている "choreonoid_add_simple_controller" という関数は、Choreonoid本体のCMake記述にて予め定義された関数です。この関数に、生成されるコントローラの名前とソースファイルを与えるだけで、コントローラのコンパイルを行うことができます。
 
