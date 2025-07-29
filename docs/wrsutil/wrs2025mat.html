@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>マテリアルの設定（本大会）***New（2025/07/29追加）*** &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="競技環境の構築（プレ大会）" href="wrs2024pre.html" />
+    <link rel="prev" title="競技環境の構築（本大会）***編集中（2025/05/01更新）***" href="wrs2025.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="wrs2024pre.html" title="競技環境の構築（プレ大会）"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="wrs2025.html" title="競技環境の構築（本大会）***編集中（2025/05/01更新）***"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">WRSUtilプラグイン</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">マテリアルの設定（本大会）***New（2025/07/29追加）***</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="new-2025-07-29">
+<h1>マテリアルの設定（本大会）***New（2025/07/29追加）***<a class="headerlink" href="#new-2025-07-29" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、自作のロボットでAGXクローラを使用するときのマテリアルの設定について説明します。この設定により、自作のロボットが競技環境内の階段やスロープを登れるようになります。</p>
+<section id="yaml">
+<h2>YAMLファイルの編集<a class="headerlink" href="#yaml" title="Permalink to this headline">¶</a></h2>
+<p>まず、マテリアルの設定が記述されているYAMLファイルを編集します。
+ここでは、WRS2025/share/defaultに格納されているmaterials.yamlを編集します。</p>
+<p>任意のテキストエディタでそのYAMLファイルを開き、以下に示す272行目と273行目を書き換えてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reference_body</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">robot</span> <span class="n">name</span><span class="o">&gt;</span>
+<span class="n">reference_link</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">root</span> <span class="n">link</span> <span class="n">of</span> <span class="n">your</span> <span class="n">robot</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>272行目では、&lt;your robot name&gt;のところを、自作のロボットのボディの名前に変更してください。例えば、自作のロボットのボディの名前が”MyRobot”の場合は、:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reference_body</span><span class="p">:</span> <span class="n">MyRobot</span>
+</pre></div>
+</div>
+<p>というように書き換えます。
+続けて、273行目では、&lt;root link of your robot&gt;のところを、自作のロボットのルートリンクの名前に変更してください。例えば、自作のロボットのルートリンクの名前が”CHASSIS”の場合は、:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reference_link</span><span class="p">:</span> <span class="n">CHASSIS</span>
+</pre></div>
+</div>
+<p>というように書き換えます。</p>
+<p>YAMLファイルを保存したら、この手順は終了です。</p>
+</section>
+<section id="id1">
+<h2>マテリアルの指定<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>YAMLファイルの編集が完了したら、続けてAGXクローラのパラメータを編集します。
+まず、AGXVehicleContinuousTrackDeviceのマテリアルを指定します。以下は、AGXVehicleContinuousTrackDeviceの記述例です。:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span>
+  <span class="nb">type</span><span class="p">:</span> <span class="n">AGXVehicleContinuousTrackDevice</span>
+  <span class="n">name</span><span class="p">:</span> <span class="n">TRACK_R</span>
+  <span class="n">sprocketNames</span><span class="p">:</span> <span class="p">[</span> <span class="n">SPROCKET_R</span> <span class="p">]</span>
+  <span class="n">rollerNames</span><span class="p">:</span> <span class="p">[</span> <span class="n">ROLLER_R</span> <span class="p">]</span>
+  <span class="n">idlerNames</span><span class="p">:</span> <span class="p">[</span> <span class="n">IDLER_R</span> <span class="p">]</span>
+  <span class="n">upAxis</span><span class="p">:</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="p">]</span>
+  <span class="n">numberOfNodes</span><span class="p">:</span> <span class="mi">42</span>
+  <span class="n">nodeThickness</span><span class="p">:</span> <span class="mf">0.01</span>
+  <span class="n">nodeWidth</span><span class="p">:</span> <span class="mf">0.1</span>
+  <span class="n">nodeThickerThickness</span><span class="p">:</span> <span class="mf">0.02</span>
+  <span class="n">useThickerNodeEvery</span><span class="p">:</span> <span class="mi">3</span>
+  <span class="n">material</span><span class="p">:</span> <span class="n">WRSCommonTracks</span>
+  <span class="n">nodeDistanceTension</span><span class="p">:</span> <span class="mf">0.002</span>
+  <span class="n">stabilizingHingeFrictionParameter</span><span class="p">:</span> <span class="mf">8e-07</span>
+  <span class="n">minStabilizingHingeNormalForce</span><span class="p">:</span> <span class="mi">100</span>
+  <span class="n">hingeCompliance</span><span class="p">:</span> <span class="mf">2e-05</span>
+  <span class="n">hingeSpookDamping</span><span class="p">:</span> <span class="mf">0.01</span>
+  <span class="n">nodesToWheelsMergeThreshold</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.1</span>
+  <span class="n">nodesToWheelsSplitThreshold</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.05</span>
+</pre></div>
+</div>
+<p>のように、パラメータ”material”で <strong>“WRSCommonTracks”</strong> を指定してください。</p>
+<p>次に、AGXクローラのホイール（スプロケット、ローラ及びアイドラ）のパラメータを編集します。
+以下はスプロケットのリンクの記述例です。:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span>
+  <span class="n">name</span><span class="p">:</span> <span class="n">SPROCKET_L</span>
+  <span class="n">translation</span><span class="p">:</span> <span class="p">[</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span> <span class="p">]</span>
+  <span class="n">jointId</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="n">parent</span><span class="p">:</span> <span class="n">CHASSIS</span>
+  <span class="n">jointType</span><span class="p">:</span> <span class="n">revolute</span>
+  <span class="n">jointAxis</span><span class="p">:</span> <span class="n">Y</span>
+  <span class="n">centerOfMass</span><span class="p">:</span>  <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">]</span>
+  <span class="n">material</span><span class="p">:</span> <span class="n">WRSCommonWheel</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+</pre></div>
+</div>
+<p>のように、パラメータ”material”で <strong>“WRSCommonWheel”</strong> を指定してください。
+続けて、スプロケットの場合と同様にローラ及びアイドラのパラメータを編集します。
+以下は、ローラのリンクの記述例です。:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span>
+  <span class="n">name</span><span class="p">:</span> <span class="n">ROLLER_L</span>
+  <span class="n">translation</span><span class="p">:</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span> <span class="p">]</span>
+  <span class="n">jointId</span><span class="p">:</span> <span class="mi">2</span>
+  <span class="n">parent</span><span class="p">:</span> <span class="n">CHASSIS</span>
+  <span class="n">jointType</span><span class="p">:</span> <span class="n">revolute</span>
+  <span class="n">jointAxis</span><span class="p">:</span> <span class="n">Y</span>
+  <span class="n">centerOfMass</span><span class="p">:</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">]</span>
+  <span class="n">material</span><span class="p">:</span> <span class="n">WRSCommonWheel</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+</pre></div>
+</div>
+<p>以下は、アイドラのリンクの記述例です。:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span>
+  <span class="n">name</span><span class="p">:</span> <span class="n">IDLER_L</span>
+  <span class="n">translation</span><span class="p">:</span> <span class="p">[</span> <span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span> <span class="p">]</span>
+  <span class="n">jointId</span><span class="p">:</span> <span class="mi">4</span>
+  <span class="n">parent</span><span class="p">:</span> <span class="n">CHASSIS</span>
+  <span class="n">jointType</span><span class="p">:</span> <span class="n">revolute</span>
+  <span class="n">jointAxis</span><span class="p">:</span> <span class="n">Y</span>
+  <span class="n">centerOfMass</span><span class="p">:</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">]</span>
+  <span class="n">material</span><span class="p">:</span> <span class="n">WRSCommonWheel</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+</pre></div>
+</div>
+<p>以上で、マテリアルの指定は完了です。</p>
+<p>最後に、Choreonoidをリビルドしてください。ChoreonoidをROS2環境で使用している場合、リビルドするときに追加したファイルが認識されない場合があります。 そのときは、オプション”–cmake-clean-cache”を追加してください。</p>
+<p>リビルドが完了したら、ChoreonoidをROS2環境で使用している場合は、ros2_ws/install/choreonoid/share/choreonoid-x.x/WRS2025/share/default以下、 Choreonoidを単体で使用している場合は、choreonoid/build/share/choreonoid-x.x/WRS2025/share/default以下のmaterials.yaml確認します。 choreonoid-x.xは、使用しているChoreonoidのバージョンに読み替えてください。</p>
+<p>任意のテキストエディタでそのYAMLファイルを開き、 <strong>YAMLファイルの編集</strong> で書換えたとおりとなっていれば、マテリアルの設定は完了です。</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../collision/index.html">CollisionSeqプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyEditプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file/index.html">FileExplorerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">JoystickStartプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internship/index.html">Crawlerチュートリアル</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">WRSUtilプラグイン</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="wrs2025.html">競技環境の構築（本大会）***編集中（2025/05/01更新）***</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">マテリアルの設定（本大会）***New（2025/07/29追加）***</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wrs2024pre.html">競技環境の構築（プレ大会）</a></li>
+</ul>
+</li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="en">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>search</h3>
+    <form action="http://www.google.com/search" method=get>
+      <input type="hidden" name="hl" value="ja">
+      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
+      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
+      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="wrs2024pre.html" title="競技環境の構築（プレ大会）"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="wrs2025.html" title="競技環境の構築（本大会）***編集中（2025/05/01更新）***"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >WRSUtilプラグイン</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">マテリアルの設定（本大会）***New（2025/07/29追加）***</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    </div>
+  </body>
+</html>
