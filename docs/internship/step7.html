@@ -104,58 +104,58 @@
 <p>環境設定が長くなってしまいましたが、本題に入りましょう。今回作成するのは、Crawlerモデルのライトを操作するためのコントローラで、これを “LightController” とします。このコントローラのソースコードを以下に示します。</p>
 <div class="literal-block-wrapper docutils container" id="id16">
 <span id="controller-example4"></span><div class="code-block-caption"><span class="caption-text">LightController.cpp</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SimpleController&gt;</span><span class="cp"></span>
-<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SpotLight&gt;</span><span class="cp"></span>
-<span class="linenos"> 3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Joystick&gt;</span><span class="cp"></span>
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">cnoid</span><span class="p">;</span><span class="w"></span>
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="k">class</span><span class="w"> </span><span class="nc">LightController</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SimpleController</span><span class="w"></span>
-<span class="linenos"> 8</span><span class="p">{</span><span class="w"></span>
-<span class="linenos"> 9</span><span class="w">    </span><span class="n">SpotLight</span><span class="o">*</span><span class="w"> </span><span class="n">light</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">10</span><span class="w">    </span><span class="n">Joystick</span><span class="w"> </span><span class="n">joystick</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">11</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">prevButtonState</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">12</span>
-<span class="linenos">13</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="linenos">14</span><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="n">SimpleControllerIO</span><span class="o">*</span><span class="w"> </span><span class="n">io</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"></span>
-<span class="linenos">15</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">16</span><span class="w">        </span><span class="n">light</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">findDevice</span><span class="o">&lt;</span><span class="n">SpotLight</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Light&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">17</span><span class="w">        </span><span class="n">prevButtonState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">18</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">19</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">20</span>
-<span class="linenos">21</span><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">control</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"></span>
-<span class="linenos">22</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">23</span><span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">buttonID</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
-<span class="linenos">24</span>
-<span class="linenos">25</span><span class="w">        </span><span class="n">joystick</span><span class="p">.</span><span class="n">readCurrentState</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">26</span>
-<span class="linenos">27</span><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">28</span>
-<span class="linenos">29</span><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">currentState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
-<span class="linenos">30</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">currentState</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">prevButtonState</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">31</span><span class="w">            </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">on</span><span class="p">(</span><span class="o">!</span><span class="n">light</span><span class="o">-&gt;</span><span class="n">on</span><span class="p">());</span><span class="w"></span>
-<span class="linenos">32</span><span class="w">            </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">33</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">34</span><span class="w">        </span><span class="n">prevButtonState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentState</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">35</span>
-<span class="linenos">36</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">37</span><span class="w">            </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">setBeamWidth</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">beamWidth</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.001f</span><span class="p">));</span><span class="w"></span>
-<span class="linenos">38</span><span class="w">            </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">39</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">40</span><span class="w">            </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">setBeamWidth</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="mf">0.7854f</span><span class="p">,</span><span class="w"> </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">beamWidth</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.001f</span><span class="p">));</span><span class="w"></span>
-<span class="linenos">41</span><span class="w">            </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">42</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">43</span>
-<span class="linenos">44</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">changed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">45</span><span class="w">            </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">notifyStateChange</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">46</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">47</span>
-<span class="linenos">48</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">49</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">50</span><span class="p">};</span><span class="w"></span>
-<span class="linenos">51</span>
-<span class="linenos">52</span><span class="n">CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY</span><span class="p">(</span><span class="n">LightController</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SimpleController&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SpotLight&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Joystick&gt;</span><span class="cp"></span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">cnoid</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LightController</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SimpleController</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">SpotLight</span><span class="o">*</span><span class="w"> </span><span class="n">light</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Joystick</span><span class="w"> </span><span class="n">joystick</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">prevButtonState</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="n">SimpleControllerIO</span><span class="o">*</span><span class="w"> </span><span class="n">io</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">light</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">findDevice</span><span class="o">&lt;</span><span class="n">SpotLight</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Light&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">prevButtonState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">control</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">buttonID</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">joystick</span><span class="p">.</span><span class="n">readCurrentState</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">currentState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">currentState</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">prevButtonState</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">on</span><span class="p">(</span><span class="o">!</span><span class="n">light</span><span class="o">-&gt;</span><span class="n">on</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">prevButtonState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentState</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">setBeamWidth</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">beamWidth</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.001f</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">setBeamWidth</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="mf">0.7854f</span><span class="p">,</span><span class="w"> </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">beamWidth</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.001f</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">changed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">notifyStateChange</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="n">CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY</span><span class="p">(</span><span class="n">LightController</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -188,39 +188,39 @@
 <span id="id13"></span><h2><a class="toc-backref" href="#id25">実装内容の解説</a><a class="headerlink" href="#step7-ref5" title="Permalink to this headline">¶</a></h2>
 <p>Choreonoidではライトを「デバイス」のひとつとして定義しています。本ステップのポイントは、コントローラからデバイスへ出力を行う方法を知ることにあります。</p>
 <p>まず、initialize関数の</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">light</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">findDevice</span><span class="o">&lt;</span><span class="n">SpotLight</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Light&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">light</span> <span class="o">=</span> <span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">findDevice</span><span class="o">&lt;</span><span class="n">SpotLight</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;Light&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>によって、入出力用Bodyオブジェクトから、SpotLight型で”Light”という名前をもつデバイスオブジェクトを取得し、これをlight変数に格納しています。デバイスに関しても、このオブジェクトを入出力用に使います。Lightの定義については、 <a class="reference internal" href="step0.html"><span class="doc">Crawlerモデルの作成</span></a> におけるスポットライトの記述を参照してください。</p>
 <p>control関数では、</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">buttonID</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">const</span> <span class="nb">int</span> <span class="n">buttonID</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">};</span>
 </pre></div>
 </div>
 <p>により、ライトの操作に使うボタンのIDを設定しています。これらのIDが通常A、X、Yボタンに対応します。ボタンの対応がうまくいかない場合は、ここを調整するようにしてください。</p>
 <p>Aボタンの状態について、</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">currentState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span> <span class="n">currentState</span> <span class="o">=</span> <span class="n">joystick</span><span class="o">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
 </pre></div>
 </div>
 <p>で取得しています。このように、ボタンの状態はgetButtonState関数を用いて取得することができます。そして、</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">currentState</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">prevButtonState</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">on</span><span class="p">(</span><span class="o">!</span><span class="n">light</span><span class="o">-&gt;</span><span class="n">on</span><span class="p">());</span><span class="w"></span>
-<span class="w">    </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if(currentState &amp;&amp; !prevButtonState){
+    light-&gt;on(!light-&gt;on());
+    changed = true;
+}
 </pre></div>
 </div>
 <p>によって、ボタンが押されたときに、SpotLightデバイスのon関数を用いて、lightオブジェクトのオン・オフ状態を切り替えるようにしています。</p>
 <p>なお、入出力用デバイスオブジェクトの状態を変更しただけでは、その内容を出力したことにはなりません。これを行うには、デバイスオブジェクトに対して “notifyStateChange” という関数を実行する必要があります。これによって状態の変化がシミュレータ本体にも検知され、実際にシミュレーションに反映されることになります。</p>
 <p>ただしこの関数は、デバイスの複数のパラメータを変化させる場合でも、(一回のcontrol関数呼び出しにおいて）一回実行するだけでOKです。このため、本実装ではまずchangedというbool変数を状態変化があったかどうかのフラグとして利用し、最後の</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">changed</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">notifyStateChange</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">changed</span><span class="p">){</span>
+    <span class="n">light</span><span class="o">-&gt;</span><span class="n">notifyStateChange</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>でまとめて一回実行するようにしています。</p>
 <p>ライトの照射範囲を変える操作についても同様です。照射範囲拡大の操作については、</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">1</span><span class="p">])){</span><span class="w"></span>
-<span class="w">    </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">setBeamWidth</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="n">light</span><span class="o">-&gt;</span><span class="n">beamWidth</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.001f</span><span class="p">));</span><span class="w"></span>
-<span class="w">    </span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">joystick</span><span class="o">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="n">buttonID</span><span class="p">[</span><span class="mi">1</span><span class="p">])){</span>
+    <span class="n">light</span><span class="o">-&gt;</span><span class="n">setBeamWidth</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="nb">max</span><span class="p">(</span><span class="mf">0.1</span><span class="n">f</span><span class="p">,</span> <span class="n">light</span><span class="o">-&gt;</span><span class="n">beamWidth</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.001</span><span class="n">f</span><span class="p">));</span>
+    <span class="n">changed</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>によってXボタンの状態を判定し、ボタンが押されていればSpotLightのsetBeamWidth関数で、照射角度の値を減らしています。Yボタンの操作についてもこれと同様です。</p>

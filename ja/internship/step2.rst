@@ -7,9 +7,6 @@
    :local:
    :depth: 2
 
-.. highlight:: C++
-   :linenothreshold: 7
-
 .. _step2-ref1:
 
 コントローラの形式について

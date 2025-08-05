@@ -7,9 +7,6 @@ Crawlerモデルはライト（光源）を搭載しています。ステップ7
    :local:
    :depth: 2
 
-.. highlight:: C++
-   :linenothreshold: 7
-
 .. _step7-ref1:
 
 環境設定

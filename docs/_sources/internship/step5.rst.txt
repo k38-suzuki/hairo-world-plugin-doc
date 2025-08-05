@@ -7,9 +7,6 @@
    :local:
    :depth: 2
 
-.. highlight:: C++
-   :linenothreshold: 7
-
 .. _step5-ref1:
 
 Crawlerモデルの簡易クローラ

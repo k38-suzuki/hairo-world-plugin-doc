@@ -7,9 +7,6 @@
    :local:
    :depth: 2
 
-.. .. highlight:: C++
-..    :linenothreshold: 7
-
 .. _step3-ref0:
 
 ゲームパッドの使い方
@@ -45,7 +42,7 @@
 .. literalinclude:: ./src/CMakeLists.txt
    :language: YAML
    :caption: CMakeLists.txt
-   :lines: 1
+   :lines: 2
 
 これでChoreonoid本体のコンパイル操作を行うと、このコントローラも同時にコンパイルされ、コントローラディレクトリ内に "CrawlerTutorial_TurretController2.so" というファイルが生成されます。
 
