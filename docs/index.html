@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>HAIROWorldPluginマニュアル &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/nature.css?v=601dbdee" />
+    <script src="_static/documentation_options.js?v=7026087e"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="HAIROWorldPlugin" href="about/index.html" /> 
@@ -37,7 +35,7 @@
           <div class="body" role="main">
             
   <section id="hairoworldplugin">
-<h1>HAIROWorldPluginマニュアル<a class="headerlink" href="#hairoworldplugin" title="Permalink to this headline">¶</a></h1>
+<h1>HAIROWorldPluginマニュアル<a class="headerlink" href="#hairoworldplugin" title="Link to this heading">¶</a></h1>
 <p>　このサイトでは、日本原子力研究開発機構が開発したChoreonoidの拡張機能「HAIROWorldPlugin」の使い方を説明します。HAIROWorldPluginは、Choreonoid開発版上で動作することを確認しており、今後もChoreonoidの最新のバージョンに対応していく予定です。 <strong>（2024/12時点では、choreonoid-2.2に対応しています。）</strong> 対応OSはUbuntu18.04 LTS、Ubuntu20.04 LTSとUbuntu22.04 LTSです。他のOS、ディストリビューション、バージョン、アーキテクチャについては、公式にはサポートしておりません。Ubuntuベースの他のディストリビューションでは、ビルドをうまく通せば動作する可能性もありますが、保証はできません。また、VMWare・VirtualBox等の仮想マシンでの使用についても動作を保証できませんので、予めご了承ください。</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -126,10 +124,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="note/index.html">パッチノート</a></li>
 <li class="toctree-l1"><a class="reference internal" href="en/index.html">HAIROWorldPlugin Operation Manual (in English)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="en/install/index.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="en/extension/index.html">Extensions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="en/update/index.html">Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="en/note/index.html">Patch note</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="wrs/index.html">講習会特設ページ</a><ul>
@@ -163,7 +163,7 @@
 <a class="reference external image-reference" href="https://naraha.jaea.go.jp/information/files/2020/1211/movie/hairoworld2.mp4"><img alt="_images/title.png" src="_images/title.png" /></a>
 </section>
 <section id="id1">
-<h1>免責事項<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>免責事項<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <p>　HAIROWorldPluginの使用に伴うトラブルやその他の損失・損害について当機構では一切の責任を負いません。予めご了承ください。</p>
 </section>
 
@@ -195,6 +195,7 @@
 <li class="toctree-l1"><a class="reference internal" href="paper/index.html">関連論文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tips/index.html">補足事項</a></li>
 <li class="toctree-l1"><a class="reference internal" href="update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="note/index.html">パッチノート</a></li>
 <li class="toctree-l1"><a class="reference internal" href="en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wrs/index.html">講習会特設ページ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="internship/index.html">Crawlerチュートリアル</a></li>
@@ -233,7 +234,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -252,8 +253,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

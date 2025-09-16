@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>HAIROWorldプラグイン関連パッケージのビルド &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=601dbdee" />
+    <script src="../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="サンプルの実行" href="example.html" />
@@ -42,9 +40,9 @@
           <div class="body" role="main">
             
   <section id="hairoworld">
-<h1>HAIROWorldプラグイン関連パッケージのビルド<a class="headerlink" href="#hairoworld" title="Permalink to this headline">¶</a></h1>
+<h1>HAIROWorldプラグイン関連パッケージのビルド<a class="headerlink" href="#hairoworld" title="Link to this heading">¶</a></h1>
 <section id="ros2choreonoid">
-<h2>ROS2環境のChoreonoidのビルド<a class="headerlink" href="#ros2choreonoid" title="Permalink to this headline">¶</a></h2>
+<h2>ROS2環境のChoreonoidのビルド<a class="headerlink" href="#ros2choreonoid" title="Link to this heading">¶</a></h2>
 <p>HAIROWorldプラグインとROS2を連携させるために、まずROS環境でChoreonoid関連パッケージをビルドします。
 ROS2のインストールとChoreonoid関連パッケージのビルドについては、以下のページを参照してください。</p>
 <blockquote>
@@ -56,7 +54,7 @@ ROS2のインストールとChoreonoid関連パッケージのビルドについ
 </div></blockquote>
 </section>
 <section id="id1">
-<h2>パッケージソースの追加<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>パッケージソースの追加<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>作成したワークスペースの “src” ディレクトリ（例：ros2_ws/src）内で、以下のコマンドでソースコードリポジトリをクローンします。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">k38</span><span class="o">-</span><span class="n">suzuki</span><span class="o">/</span><span class="n">hairo</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">plugin</span><span class="o">.</span><span class="n">git</span> <span class="n">choreonoid</span><span class="o">/</span><span class="n">ext</span><span class="o">/</span><span class="n">hairo</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">plugin</span>
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">k38</span><span class="o">-</span><span class="n">suzuki</span><span class="o">/</span><span class="n">choreonoid_ros2_sample_drone_tutorial</span><span class="o">.</span><span class="n">git</span>
@@ -66,7 +64,7 @@ ROS2のインストールとChoreonoid関連パッケージのビルドについ
 <p>２つ目のコマンドが成功すると、ros2_ws/srcディレクトリ下にchoreonoid_ros2_sample_drone_tutorialがクローンされます。</p>
 </section>
 <section id="id2">
-<h2>依存パッケージのインストール<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>依存パッケージのインストール<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>HAIROWorldプラグインのビルド・実行に必要となる依存パッケージをインストールしておきます。</p>
 <p>HAIROWorldプラグインのソースディレクトリに移動し対応するスクリプトを実行します。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">misc</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">requisites</span><span class="o">-</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">22.04</span><span class="o">.</span><span class="n">sh</span>
@@ -75,7 +73,7 @@ ROS2のインストールとChoreonoid関連パッケージのビルドについ
 <p>を実行します。</p>
 </section>
 <section id="id3">
-<h2>ビルド<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>ビルド<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <p>設定が完了したら、ビルドを行いましょう。ワークスペース内のディレクトリであれば、以下のコマンドでビルドできます。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">colcon</span> <span class="n">build</span> <span class="o">--</span><span class="n">symlink</span><span class="o">-</span><span class="n">install</span>
 </pre></div>
@@ -123,6 +121,7 @@ ROS2のインストールとChoreonoid関連パッケージのビルドについ
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internship/index.html">Crawlerチュートリアル</a></li>
@@ -161,7 +160,7 @@ ROS2のインストールとChoreonoid関連パッケージのビルドについ
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -184,8 +183,8 @@ ROS2のインストールとChoreonoid関連パッケージのビルドについ
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

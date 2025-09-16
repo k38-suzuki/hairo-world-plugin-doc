@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ソースコードからのビルドとインストール &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=601dbdee" />
+    <script src="../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CFDプラグイン" href="../cfd/index.html" />
@@ -42,11 +40,11 @@
           <div class="body" role="main">
             
   <section id="id1">
-<h1>ソースコードからのビルドとインストール<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>ソースコードからのビルドとインストール<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <section id="id2">
-<h2>ソースコードの取得<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>ソースコードの取得<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <section id="id3">
-<h3>開発版<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>開発版<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <p>HAIROWorldPluginはgitリポジトリとして管理されており、githubの以下のアドレスにて公開されています。</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/k38-suzuki/hairo-world-plugin">https://github.com/k38-suzuki/hairo-world-plugin</a></p></li>
@@ -63,7 +61,7 @@
 <p>などとすることにより、その時点での最新のソースコードにアップデートできます。</p>
 </section>
 <section id="id4">
-<h3>依存パッケージのインストール<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>依存パッケージのインストール<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <p>Ubuntuの場合、”hairo-world-plugin/misc/script” 以下にある “install-requisites-ubuntu-x.x.sh” というスクリプトを用いることにより、以上のソフトウェアのほとんどを簡単にインストールすることができます。x.xはUbuntuのバージョンに対応します。例えば Ubuntu 18.04 であれば</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">misc</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">requisites</span><span class="o">-</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">18.04</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
@@ -80,7 +78,7 @@
 </section>
 </section>
 <section id="cmake">
-<h2>CMake によるビルド設定<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h2>
+<h2>CMake によるビルド設定<a class="headerlink" href="#cmake" title="Link to this heading">¶</a></h2>
 <p>まず、cmakeコマンドを使ってMakefileを更新します。Choreonoidのビルドディレクトリ上で</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">..</span>
 </pre></div>
@@ -99,11 +97,11 @@
 </div>
 </section>
 <section id="choreonoid">
-<h2>Choreonoidのビルドとインストール<a class="headerlink" href="#choreonoid" title="Permalink to this headline">¶</a></h2>
+<h2>Choreonoidのビルドとインストール<a class="headerlink" href="#choreonoid" title="Link to this heading">¶</a></h2>
 <p>CMakeによりMakefileの生成が成功すれば、makeコマンドでChoreonoidをビルドします。Choreonoidのビルドとインストールについては <a class="reference external" href="https://choreonoid.org/ja/manuals/latest/install/build-ubuntu.html">Choreonoidのビルド</a> 以降を参照してください。</p>
 </section>
 <section id="id6">
-<h2>簡易インストール<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2>簡易インストール<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
 <p>スクリプトを使用して、ChoreonoidとHAIROWorldPluginのビルドを一括して行うこともできます。なお、この方法では、Choreonoidのビルドまで行います。Choreonoidのインストールが必要な場合は、別途実行してください。また、スクリプトはUbuntu 20.04 LTS向けのものです。他のOS、ディストリビューション、バージョンでご使用の際は、ご自身の環境に合わせて適宜修正してください。</p>
 <p>まず、<a class="reference download internal" download="" href="../_downloads/90319250c771f9d7c60800f32c9aa9dd/install-choreonoid.sh"><code class="xref download docutils literal notranslate"><span class="pre">こちら</span></code></a> からスクリプトを任意のディレクトリにダウンロードします。</p>
 <p>次に、スクリプトを保存したディレクトリ上で端末を開き、</p>
@@ -146,6 +144,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internship/index.html">Crawlerチュートリアル</a></li>
@@ -184,7 +183,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -207,8 +206,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

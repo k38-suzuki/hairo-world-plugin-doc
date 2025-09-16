@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>VisualEffectPlugin &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/nature.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nature.css?v=601dbdee" />
+    <script src="../../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="MotionCapturePlugin" href="motion.html" />
@@ -43,27 +41,27 @@
           <div class="body" role="main">
             
   <section id="visualeffectplugin">
-<h1>VisualEffectPlugin<a class="headerlink" href="#visualeffectplugin" title="Permalink to this headline">¶</a></h1>
+<h1>VisualEffectPlugin<a class="headerlink" href="#visualeffectplugin" title="Link to this heading">¶</a></h1>
 <p>This section explains how to simulate camera images using the VFX Vision Simulator.</p>
 <section id="generating-an-image-view">
-<h2>Generating an Image View<a class="headerlink" href="#generating-an-image-view" title="Permalink to this headline">¶</a></h2>
+<h2>Generating an Image View<a class="headerlink" href="#generating-an-image-view" title="Link to this heading">¶</a></h2>
 <p>Camera images with visual effects applied by the VFX Vision Simulator are displayed in the “Image View.”
 To generate an Image View, select “View” - “Show View” - “Image” from the main menu.</p>
 </section>
 <section id="generating-an-image-view-bar">
-<h2>Generating an Image View Bar<a class="headerlink" href="#generating-an-image-view-bar" title="Permalink to this headline">¶</a></h2>
+<h2>Generating an Image View Bar<a class="headerlink" href="#generating-an-image-view-bar" title="Link to this heading">¶</a></h2>
 <p>The Image View Bar is used to select the camera to simulate. Generate an Image View Bar by selecting “View” - “Show Toolbar” - “Image View Bar” from the main menu.</p>
 </section>
 <section id="configuring-a-multi-collider-item">
-<h2>Configuring a Multi-Collider Item<a class="headerlink" href="#configuring-a-multi-collider-item" title="Permalink to this headline">¶</a></h2>
+<h2>Configuring a Multi-Collider Item<a class="headerlink" href="#configuring-a-multi-collider-item" title="Link to this heading">¶</a></h2>
 <p>A Multi-Collider item defines the area where visual effects are applied to camera images. To generate one, select “File” - “New” - “Multi-Collider” from the main menu. The generated Multi-Collider item should be placed as a child item of a World item or a Body item. If placed as a child of a World item, visual effects will be applied to the camera image when a link with a camera configured enters the area specified by that Multi-Collider item. If placed as a child of a Body item, the Multi-Collider item will move in synchronization with the body’s movement, and visual effects will always be applied to the camera image.</p>
 <p>Visual effects can be configured by changing the properties of the Multi-Collider item. To change properties, select the desired Multi-Collider item in the Item Tree View and modify the parameters in the Property View. Below are the Multi-Collider properties for defining the area where visual effects are applied to camera images and for setting the visual effects to be applied to camera images.</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 63%" />
+<col style="width: 16.8%" />
+<col style="width: 10.1%" />
+<col style="width: 10.1%" />
+<col style="width: 63.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter</p></th>
@@ -192,12 +190,12 @@ To generate an Image View, select “View” - “Show View” - “Image” fro
 </table>
 </section>
 <section id="creating-and-configuring-a-vfx-vision-simulator">
-<h2>Creating and Configuring a VFX Vision Simulator<a class="headerlink" href="#creating-and-configuring-a-vfx-vision-simulator" title="Permalink to this headline">¶</a></h2>
+<h2>Creating and Configuring a VFX Vision Simulator<a class="headerlink" href="#creating-and-configuring-a-vfx-vision-simulator" title="Link to this heading">¶</a></h2>
 <p>The VFX Vision Simulator is an item used to apply visual effects to camera images. The VFX Vision Simulator inherits from Choreonoid’s GL Vision Simulator and performs both camera image generation and visual effect application. Here, we’ll use Choreonoid’s standard simulator item, “AIST Simulator.” Select “File” - “New” - “VFX Vision Simulator” from the main menu to generate it. The VFX Vision Simulator should be placed as a child item of the AIST Simulator item. Next, select “File” - “New” - “Sensor Visualization” from the main menu to generate a Sensor Visualizer. The generated Sensor Visualizer should be placed as a child item of any Body item. When a Sensor Visualizer is set as a child item of a Body item, a CameraImageVisualizerItem is automatically generated for each camera configured on the body. The cameras checked in this automatically generated item’s checkbox will be registered in the combo box of the Image View Bar.</p>
 <p>Regarding visual effects applied by the VFX Vision Simulator, the VFX Vision Simulator can apply “Hue (H), Saturation (S), Brightness (V),” “Red (R), Green (G), Blue (B),” “Distortion,” “Magnification,” “Gaussian Noise,” “Salt-and-Pepper Noise (White Noise, Black Noise),” and “Mosaic” as shown in the Multi-Collider properties above. However, if all these visual effects are applied to a camera image, the computational load for image processing may increase, and the simulation might not run in real time.</p>
 </section>
 <section id="running-the-simulation">
-<h2>Running the Simulation<a class="headerlink" href="#running-the-simulation" title="Permalink to this headline">¶</a></h2>
+<h2>Running the Simulation<a class="headerlink" href="#running-the-simulation" title="Link to this heading">¶</a></h2>
 <p>Run the simulation as usual from the simulation bar. Select any Image View and then choose a camera from the combo box in the Image View Bar to display the camera image.
 Below is an example of a camera image with distortion set to -0.3 and magnification set to 1.7.</p>
 <img alt="../../_images/image_4.png" src="../../_images/image_4.png" />
@@ -232,10 +230,12 @@ Below is an example of a camera image with distortion set to -0.3 and magnificat
 <li class="toctree-l1"><a class="reference internal" href="../../paper/index.html">関連論文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tips/index.html">補足事項</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../note/index.html">パッチノート</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">HAIROWorldPlugin Operation Manual (in English)</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../install/index.html">Installation</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Extensions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../update/index.html">Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../note/index.html">Patch note</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../wrs/index.html">講習会特設ページ</a></li>
@@ -275,7 +275,7 @@ Below is an example of a camera image with distortion set to -0.3 and magnificat
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -299,8 +299,8 @@ Below is an example of a camera image with distortion set to -0.3 and magnificat
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

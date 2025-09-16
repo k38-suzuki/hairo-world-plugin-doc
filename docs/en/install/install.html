@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Building and Installing from Source (Ubuntu Linux) &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/nature.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nature.css?v=601dbdee" />
+    <script src="../../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Extensions" href="../extension/index.html" />
@@ -43,11 +41,11 @@
           <div class="body" role="main">
             
   <section id="building-and-installing-from-source-ubuntu-linux">
-<h1>Building and Installing from Source (Ubuntu Linux)<a class="headerlink" href="#building-and-installing-from-source-ubuntu-linux" title="Permalink to this headline">¶</a></h1>
+<h1>Building and Installing from Source (Ubuntu Linux)<a class="headerlink" href="#building-and-installing-from-source-ubuntu-linux" title="Link to this heading">¶</a></h1>
 <section id="obtaining-the-source-code">
-<h2>Obtaining the source code<a class="headerlink" href="#obtaining-the-source-code" title="Permalink to this headline">¶</a></h2>
+<h2>Obtaining the source code<a class="headerlink" href="#obtaining-the-source-code" title="Link to this heading">¶</a></h2>
 <section id="development-version">
-<h3>Development version<a class="headerlink" href="#development-version" title="Permalink to this headline">¶</a></h3>
+<h3>Development version<a class="headerlink" href="#development-version" title="Link to this heading">¶</a></h3>
 <p>HAIROWorldPlugin is managed as a git repository. You can find it at the following GitHub address.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/k38-suzuki/hairo-world-plugin">https://github.com/k38-suzuki/hairo-world-plugin</a></p></li>
@@ -69,7 +67,7 @@
 </section>
 </section>
 <section id="installing-dependent-packages">
-<h2>Installing dependent packages<a class="headerlink" href="#installing-dependent-packages" title="Permalink to this headline">¶</a></h2>
+<h2>Installing dependent packages<a class="headerlink" href="#installing-dependent-packages" title="Link to this heading">¶</a></h2>
 <p>In Ubuntu, you can easily install most of the software above by running the script “install-requisites-ubuntu-x.x.sh” under “misc/script.” x.x should be your version of Ubuntu. For example, if you have Ubuntu 18.04, execute</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">misc</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">requisites</span><span class="o">-</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">18.04</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
@@ -86,7 +84,7 @@
 <p>&lt;username&gt; means the name of your user account. This is a setting for NetEmPlugin to execute commands (modprobe, ip and etc.) which require root privileges without a password.</p>
 </section>
 <section id="cmake-build-settings">
-<h2>CMake build settings<a class="headerlink" href="#cmake-build-settings" title="Permalink to this headline">¶</a></h2>
+<h2>CMake build settings<a class="headerlink" href="#cmake-build-settings" title="Link to this heading">¶</a></h2>
 <p>First, use the cmake command to generate the makefile you need to build Choreonoid. In the Choreonoid source directory, execute</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">.</span>
 </pre></div>
@@ -101,7 +99,7 @@
 <p>Choreonoid also has some optional functions that are not built during the default process described above. You can find a summary of these functions in Optional Functions Overview . If you want to use them, you can enable them in the CMake settings.</p>
 </section>
 <section id="building-choreonoid">
-<h2>Building Choreonoid<a class="headerlink" href="#building-choreonoid" title="Permalink to this headline">¶</a></h2>
+<h2>Building Choreonoid<a class="headerlink" href="#building-choreonoid" title="Link to this heading">¶</a></h2>
 <p>If CMake successfully generates a makefile, you can use the make command to build Choreonoid. In the directory where you executed CMake (the build directory), execute</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
 </pre></div>
@@ -113,7 +111,7 @@
 </div>
 </section>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
 <p>On Linux, you can run the executable file generated in the build directory as it is (without going through an installation process). If the build was successful, an executable file called “choreonoid” will have been generated in the “bin” directory inside the build directory. Execute this file.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="o">/</span><span class="n">choreonoid</span>
 </pre></div>
@@ -161,10 +159,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../paper/index.html">関連論文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tips/index.html">補足事項</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../note/index.html">パッチノート</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">HAIROWorldPlugin Operation Manual (in English)</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../extension/index.html">Extensions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../update/index.html">Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../note/index.html">Patch note</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../wrs/index.html">講習会特設ページ</a></li>
@@ -204,7 +204,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -228,8 +228,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>
