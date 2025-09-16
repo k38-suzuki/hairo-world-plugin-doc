@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ステップ8: カメラ画像のシミュレーションと取得 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=601dbdee" />
+    <script src="../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Crawlerモデルファイル全記述内容" href="crawler.html" />
@@ -42,9 +40,9 @@
           <div class="body" role="main">
             
   <section id="id1">
-<h1>ステップ8: カメラ画像のシミュレーションと取得<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>ステップ8: カメラ画像のシミュレーションと取得<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <p>Crawlerモデルはカメラも搭載しています。ステップ8ではこのカメラをシミュレーションできるようにし、コントローラ側からカメラ画像を取得する方法を学びます。</p>
-<div class="contents local topic" id="id2">
+<nav class="contents local" id="id2">
 <p class="topic-title">目次</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#step8-ref1" id="id15">カメラデバイス</a></p></li>
@@ -55,15 +53,15 @@
 <li><p><a class="reference internal" href="#step8-ref6" id="id20">カメラ画像の取得と表示</a></p></li>
 <li><p><a class="reference internal" href="#step8-ref7" id="id21">実装内容の解説</a></p></li>
 </ul>
-</div>
+</nav>
 <p>ステップ7で作成したプロジェクトは視覚的に様々な要素が入っていますので、本ステップはこのプロジェクトで設定した状態から進めていきましょう。まずはプロジェクトを”step8.cnoid”という名前であらためて保存し、本ステップの作業を行っていくことにします。</p>
 <section id="step8-ref1">
-<span id="id3"></span><h2><a class="toc-backref" href="#id15">カメラデバイス</a><a class="headerlink" href="#step8-ref1" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2><a class="toc-backref" href="#id15" role="doc-backlink">カメラデバイス</a><a class="headerlink" href="#step8-ref1" title="Link to this heading">¶</a></h2>
 <p>ステップ7で扱ったライトと同様に、カメラもChoreonoid上では「デバイス」のひとつとして定義されています。Crawlerモデルが搭載しているカメラは”Camera”という名前がつけられており、この名前でデバイスを識別することができます。コントローラからのアクセス方法はライトを含む他のデバイスと同様です。</p>
 <p>モデルファイル上でカメラが実際にどのように定義されているかは、 <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/modelfile/modelfile-newformat.html#modelfile-tank-camera">カメラの記述</a> を参照してください。</p>
 </section>
 <section id="step8-ref2">
-<span id="id5"></span><h2><a class="toc-backref" href="#id16">シーンビューにおけるカメラの変更</a><a class="headerlink" href="#step8-ref2" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2><a class="toc-backref" href="#id16" role="doc-backlink">シーンビューにおけるカメラの変更</a><a class="headerlink" href="#step8-ref2" title="Link to this heading">¶</a></h2>
 <p>シーンビューは、ロボットモデルに搭載されたカメラからの視点で表示することも可能となっています。この機能を用いて、まずはCrawlerモデルに搭載されているカメラからどのような画像が得られるかを確認してみることにしましょう。</p>
 <p>カメラの切り替えは、以下のシーンバーの「カメラの選択」コンボボックスで行うことができます。</p>
 <img alt="../_images/step8-1.png" src="../_images/step8-1.png" />
@@ -85,7 +83,7 @@
 <p>ここでは、追加したシーンビューを右下に配置し、そこにはCrawlerモデルのカメラ画像を表示し、中央のシーンビューにはデフォルトのカメラによる俯瞰表示を行っています。</p>
 </section>
 <section id="step8-ref3">
-<span id="id7"></span><h2><a class="toc-backref" href="#id17">カメラ画像のシミュレーション</a><a class="headerlink" href="#step8-ref3" title="Permalink to this headline">¶</a></h2>
+<span id="id7"></span><h2><a class="toc-backref" href="#id17" role="doc-backlink">カメラ画像のシミュレーション</a><a class="headerlink" href="#step8-ref3" title="Link to this heading">¶</a></h2>
 <p>シーンビューを用いてカメラ画像を表示することができました。ただしこれはGUI上での描画を行うものであり、シミュレーションとは独立した機能となっています。実際シミュレーションを開始していなくても、カメラ画像の描画は行えているのが分かるかと思います。シミュレーションにおいてコントローラからカメラ画像を取得するためには、デバイスとしてのカメラ画像のシミュレーションも行う必要があります。</p>
 <p>これを行うためには、「GLビジョンシミュレータアイテム」と「センサビジュアライザ」をプロジェクトに導入する必要があります。メインメニューの「ファイル」-「新規」-「GLビジョンシミュレータ」によってこのアイテムを生成し、シミュレータアイテムの子アイテムとして配置してください。センサビジュアライザは、メインメニューの「ファイル」-「新規」-「センサ可視化」によってこのアイテムを生成し、Crawlerの子アイテムとして配置してください。また、センサビジュアライザを展開して、Cameraにチェックを入れてください。これにより、アイテムの構成は以下のようになります。</p>
 <img alt="../_images/step8-4.png" src="../_images/step8-4.png" />
@@ -93,75 +91,75 @@
 <p>GLビジョンシミュレータアイテムの詳細は <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/vision-simulation.html">視覚センサのシミュレーション</a> で解説していますので、そちらも参考にしてください。</p>
 </section>
 <section id="step8-ref4">
-<span id="id9"></span><h2><a class="toc-backref" href="#id18">コントローラのソースコード</a><a class="headerlink" href="#step8-ref4" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h2><a class="toc-backref" href="#id18" role="doc-backlink">コントローラのソースコード</a><a class="headerlink" href="#step8-ref4" title="Link to this heading">¶</a></h2>
 <p>GLビジョンシミュレータアイテムの導入によりカメラ画像をシミュレートできるようになりましたが、それを確認するにはカメラデバイスから画像を取得するためのコントローラが必要です。ここではそのためのコントローラとして、取得した画像をファイルに出力するというコントローラを作成します。以下にそのソースコードを示します。</p>
 <div class="literal-block-wrapper docutils container" id="id13">
-<span id="controller-example5"></span><div class="code-block-caption"><span class="caption-text">CameraController.cpp</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SimpleController&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Camera&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Joystick&gt;</span><span class="cp"></span>
+<span id="controller-example5"></span><div class="code-block-caption"><span class="caption-text">CameraController.cpp</span><a class="headerlink" href="#id13" title="Link to this code">¶</a></div>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SimpleController&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Camera&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Joystick&gt;</span>
 
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">cnoid</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">cnoid</span><span class="p">;</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">CameraController</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SimpleController</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">Camera</span><span class="o">*</span><span class="w"> </span><span class="n">camera</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">Joystick</span><span class="w"> </span><span class="n">joystick</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">prevButtonState</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">*</span><span class="w"> </span><span class="n">os</span><span class="p">;</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CameraController</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SimpleController</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Camera</span><span class="o">*</span><span class="w"> </span><span class="n">camera</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Joystick</span><span class="w"> </span><span class="n">joystick</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">prevButtonState</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">*</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
 
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="n">SimpleControllerIO</span><span class="o">*</span><span class="w"> </span><span class="n">io</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">findDevice</span><span class="o">&lt;</span><span class="n">Camera</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Camera&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">enableInput</span><span class="p">(</span><span class="n">camera</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">prevButtonState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">io</span><span class="o">-&gt;</span><span class="n">os</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="n">SimpleControllerIO</span><span class="o">*</span><span class="w"> </span><span class="n">io</span><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">findDevice</span><span class="o">&lt;</span><span class="n">Camera</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Camera&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">enableInput</span><span class="p">(</span><span class="n">camera</span><span class="p">);</span>
+<span class="w">        </span><span class="n">prevButtonState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">io</span><span class="o">-&gt;</span><span class="n">os</span><span class="p">();</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">control</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">joystick</span><span class="p">.</span><span class="n">readCurrentState</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">control</span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">joystick</span><span class="p">.</span><span class="n">readCurrentState</span><span class="p">();</span>
 
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">currentState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">currentState</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">prevButtonState</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">Image</span><span class="o">&amp;</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="o">-&gt;</span><span class="n">constImage</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">image</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;.png&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">                </span><span class="n">camera</span><span class="o">-&gt;</span><span class="n">constImage</span><span class="p">().</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">(</span><span class="o">*</span><span class="n">os</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The image of &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">camera</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">()</span><span class="w"></span>
-<span class="w">                      </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; has been saved to </span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">filename</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">.&quot;</span><span class="w"></span>
-<span class="w">                      </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">prevButtonState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentState</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">currentState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="n">getButtonState</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">currentState</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">prevButtonState</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">Image</span><span class="o">&amp;</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="o">-&gt;</span><span class="n">constImage</span><span class="p">();</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">image</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;.png&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="n">camera</span><span class="o">-&gt;</span><span class="n">constImage</span><span class="p">().</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span>
+<span class="w">                </span><span class="p">(</span><span class="o">*</span><span class="n">os</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The image of &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">camera</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">()</span>
+<span class="w">                      </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; has been saved to </span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">filename</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">.&quot;</span>
+<span class="w">                      </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">prevButtonState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentState</span><span class="p">;</span>
 
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
 
-<span class="n">CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY</span><span class="p">(</span><span class="n">CameraController</span><span class="p">)</span><span class="w"></span>
+<span class="n">CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY</span><span class="p">(</span><span class="n">CameraController</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>これまでと同様に、上記ソースコードを “CameraController.cpp” というファイル名でプロジェクトディレクトリに保存します。</p>
 <p>CMakeLists.txt に</p>
 <div class="literal-block-wrapper docutils container" id="id14">
-<div class="code-block-caption"><span class="caption-text">CMakeLists.txt</span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">choreonoid_add_simple_controller(CrawlerTutorial_CameraController CameraController.cpp)</span><span class="w"></span>
+<div class="code-block-caption"><span class="caption-text">CMakeLists.txt</span><a class="headerlink" href="#id14" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">choreonoid_add_simple_controller(CrawlerTutorial_CameraController CameraController.cpp)</span>
 </pre></div>
 </div>
 </div>
 <p>を追加して、コンパイルを行って下さい。</p>
 </section>
 <section id="step8-ref5">
-<span id="id10"></span><h2><a class="toc-backref" href="#id19">コントローラの導入</a><a class="headerlink" href="#step8-ref5" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2><a class="toc-backref" href="#id19" role="doc-backlink">コントローラの導入</a><a class="headerlink" href="#step8-ref5" title="Link to this heading">¶</a></h2>
 <p>これまでと同様に、作成したコントローラをシンプルコントローラアイテムを用いてプロジェクトに導入し、TurretControllerの子アイテムとして配置します。これにより、アイテムツリービューは以下のようになります。</p>
 <img alt="../_images/step8-5.png" src="../_images/step8-5.png" />
 </section>
 <section id="step8-ref6">
-<span id="id11"></span><h2><a class="toc-backref" href="#id20">カメラ画像の取得と表示</a><a class="headerlink" href="#step8-ref6" title="Permalink to this headline">¶</a></h2>
+<span id="id11"></span><h2><a class="toc-backref" href="#id20" role="doc-backlink">カメラ画像の取得と表示</a><a class="headerlink" href="#step8-ref6" title="Link to this heading">¶</a></h2>
 <p>ではシミュレーションを実行しましょう。</p>
 <p>Cameraコントローラの機能として、ゲームパッドもしくは仮想ジョイスティックビューのBボタン（プレイステーション用ゲームパッドの場合は○ボタン）を押すと、現在のカメラ画像がファイルに保存されます。この際メッセージビュー上に</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">image</span> <span class="n">of</span> <span class="n">Camera</span> <span class="n">has</span> <span class="n">been</span> <span class="n">saved</span> <span class="n">to</span> <span class="s2">&quot;Camera.png&quot;</span><span class="o">.</span>
@@ -176,7 +174,7 @@
 <p>eogには、読み込んだ画像ファイルが更新されるとそれに伴って表示も更新する機能があるようです。これにより、eogを表示したままにしておけば、新たな画像を取得する度に、取得した画像が更新されているのを確認できます。</p>
 </section>
 <section id="step8-ref7">
-<span id="id12"></span><h2><a class="toc-backref" href="#id21">実装内容の解説</a><a class="headerlink" href="#step8-ref7" title="Permalink to this headline">¶</a></h2>
+<span id="id12"></span><h2><a class="toc-backref" href="#id21" role="doc-backlink">実装内容の解説</a><a class="headerlink" href="#step8-ref7" title="Link to this heading">¶</a></h2>
 <p>ステップ5のライトと同様に、initialize関数の</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">camera</span> <span class="o">=</span> <span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">findDevice</span><span class="o">&lt;</span><span class="n">Camera</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;Camera&quot;</span><span class="p">);</span>
 </pre></div>
@@ -232,6 +230,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Crawlerチュートリアル</a><ul class="current">
@@ -282,7 +281,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -305,8 +304,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

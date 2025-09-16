@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>マテリアルの設定（本大会）***New（2025/07/29追加）*** &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=601dbdee" />
+    <script src="../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="競技環境の構築（プレ大会）" href="wrs2024pre.html" />
@@ -42,11 +40,11 @@
           <div class="body" role="main">
             
   <section id="new-2025-07-29">
-<h1>マテリアルの設定（本大会）***New（2025/07/29追加）***<a class="headerlink" href="#new-2025-07-29" title="Permalink to this headline">¶</a></h1>
+<h1>マテリアルの設定（本大会）***New（2025/07/29追加）***<a class="headerlink" href="#new-2025-07-29" title="Link to this heading">¶</a></h1>
 <p>ここでは、自作のロボットでAGXクローラを使用するときのマテリアルの設定について説明します。
 <strong>このマテリアルの設定は、自作のロボットで競技環境内の階段やスロープを登るために必須ですので、必ず確認してください。</strong></p>
 <section id="yaml">
-<h2>YAMLファイルの編集<a class="headerlink" href="#yaml" title="Permalink to this headline">¶</a></h2>
+<h2>YAMLファイルの編集<a class="headerlink" href="#yaml" title="Link to this heading">¶</a></h2>
 <p>まず、マテリアルの設定が記述されているYAMLファイルを編集します。
 ここでは、WRS2025/share/defaultに格納されているmaterials.yamlを編集します。</p>
 <p>任意のテキストエディタでそのYAMLファイルを開き、以下に示す272行目と273行目を書き換えてください。</p>
@@ -67,7 +65,7 @@
 <p>YAMLファイルを保存したら、この手順は終了です。</p>
 </section>
 <section id="id1">
-<h2>マテリアルの指定<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>マテリアルの指定<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>YAMLファイルの編集が完了したら、続けてAGXクローラのパラメータを編集します。
 まず、AGXVehicleContinuousTrackDeviceのマテリアルを指定します。以下は、AGXVehicleContinuousTrackDeviceの記述例です。:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span>
@@ -176,6 +174,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internship/index.html">Crawlerチュートリアル</a></li>
@@ -219,7 +218,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -242,8 +241,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

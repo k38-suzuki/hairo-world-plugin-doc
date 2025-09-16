@@ -8,3 +8,4 @@ HAIROWorldPlugin Operation Manual (in English)
    install/index
    extension/index
    update/index
+   note/index

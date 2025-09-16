@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ジョイスティック状態の記録 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=601dbdee" />
+    <script src="../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="シミュレーションの操作" href="joystick.html" />
@@ -42,10 +40,10 @@
           <div class="body" role="main">
             
   <section id="id1">
-<h1>ジョイスティック状態の記録<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>ジョイスティック状態の記録<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <p>ここでは、ジョイスティック状態の記録の仕方を説明します。この機能は、接続されているジョイスティック（/dev/input/js0のみ対応）のスティックとボタンの状態を記録するものです。ジョイスティックが接続されていない場合は、「仮想ジョイスティック」の状態を記録できます。</p>
 <section id="id2">
-<h2>ジョイスティック状態の記録の設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>ジョイスティック状態の記録の設定<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>ジョイスティック状態の記録を行うジョイスティックロガーを生成します。
 ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「ジョイスティックロガー」を選択して「JoystickLogger」生成してください。生成したJoystickLoggerは、AISTシミュレータアイテムの小アイテムとして配置します。</p>
 <p>次に、以下の手順でJoystickLoggerの設定を変更してください。</p>
@@ -54,12 +52,12 @@
 <li><p>プロパティビュー上で「ジョイスティック状態の記録」の設定を「true」に変更する。</p></li>
 </ol>
 <p>JoystickLoggerの設定の詳細は以下のとおりです。</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 10%" />
-<col style="width: 7%" />
-<col style="width: 65%" />
+<col style="width: 17.4%" />
+<col style="width: 10.4%" />
+<col style="width: 7.0%" />
+<col style="width: 65.2%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>パラメータ</p></th>
@@ -78,11 +76,11 @@
 </table>
 </section>
 <section id="id3">
-<h2>シミュレーションの実行<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>シミュレーションの実行<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると、ジョイスティック状態を記録したアイテム「Joystick States」がジョイスティックロガーの小アイテムとして自動生成されます。</p>
 </section>
 <section id="id4">
-<h2>ジョイスティック状態のファイル出力<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>ジョイスティック状態のファイル出力<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <p>以下の手順で記録したジョイスティック状態をファイル出力します。</p>
 <ol class="arabic simple">
 <li><p>シミュレーション実行後に自動生成されたアイテム「Joystick States」を選択する。</p></li>
@@ -93,7 +91,7 @@
 （例えば、スティック（Axis）が8入力、ボタン(Button)が13入力のジョイスティックを使用している場合は、Axis-0, Axis-1, …, Axis-7, Button-0, Button-1, …, Button-12の順番で記録されます。）</p>
 </section>
 <section id="id5">
-<h2>ジョイスティック状態のグラフ表示<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>ジョイスティック状態のグラフ表示<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
 <p>以下の手順で記録したジョイスティック状態をグラフ表示できます。</p>
 <ol class="arabic simple">
 <li><p>「メニュー」-「表示」-「ビューの表示」から「Multi Value Seq」を選択する。</p></li>
@@ -138,6 +136,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internship/index.html">Crawlerチュートリアル</a></li>
@@ -176,7 +175,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -199,8 +198,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

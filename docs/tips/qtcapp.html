@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ネットワークエミュレータ(Qtcapp)の使用方法について &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=601dbdee" />
+    <script src="../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="URサンプルについて" href="ur.html" />
@@ -42,15 +40,15 @@
           <div class="body" role="main">
             
   <section id="qtcapp">
-<h1>ネットワークエミュレータ(Qtcapp)の使用方法について<a class="headerlink" href="#qtcapp" title="Permalink to this headline">¶</a></h1>
+<h1>ネットワークエミュレータ(Qtcapp)の使用方法について<a class="headerlink" href="#qtcapp" title="Link to this heading">¶</a></h1>
 <section id="id1">
-<h2>Qtcappとは<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>Qtcappとは<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>　Qtcappは、<a class="reference external" href="https://github.com/k38-suzuki/hairo-world-plugin">HAIROWorldPlugin</a>　が提供するネットワーク通信障害を模擬するための機能を１つのアプリケーションとして動作するように改良したネットワークエミュレーションツールです。Qtcappを使用することで、遅延・帯域減少・パケットロス等が発生している通信環境を擬似的に構築することができ、ネットワーク通信を行うシステムの通信試験等に利用できます。</p>
 </section>
 <section id="id2">
-<h2>ソースコードからのビルドとインストール<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>ソースコードからのビルドとインストール<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <section id="id3">
-<h3>ソースコードの取得<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>ソースコードの取得<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <p>Qtcappはgitリポジトリとして管理されており、githubの以下のアドレスにて公開されています。</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/k38-suzuki/qtcapp">https://github.com/k38-suzuki/qtcapp</a></p></li>
@@ -66,7 +64,7 @@
 <p>などとすることにより、その時点での最新のソースコードにアップデートできます。</p>
 </section>
 <section id="id4">
-<h3>依存パッケージのインストール<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>依存パッケージのインストール<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <p>Ubuntuの場合、”qtcapp/misc/script” 以下にある “install-requisites-ubuntu-x.x.sh” というスクリプトを用いることにより、以上のソフトウェアのほとんどを簡単にインストールすることができます。x.xはUbuntuのバージョンに対応します。例えば Ubuntu 20.04 であれば</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">misc</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">requisites</span><span class="o">-</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">20.04</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
@@ -82,7 +80,7 @@
 <p>&lt;username&gt;は、使用しているユーザ名です。これは、Qtcapp内で利用しているルート権限を要するコマンド(modprobe, ip等)をパスワードなしで実行するための設定です。これにより、”Start”ボタン押下時にパスワードの入力が求められないようにしています。</p>
 </section>
 <section id="cmake">
-<h3>CMake によるビルド設定<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h3>
+<h3>CMake によるビルド設定<a class="headerlink" href="#cmake" title="Link to this heading">¶</a></h3>
 <p>まず、cmakeコマンドを使ってMakefileを更新します。Qtcappのビルドディレクトリ上で</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">..</span> <span class="o">-</span><span class="n">DUSE_CATKIN_MAKE</span><span class="o">=</span><span class="n">OFF</span>
 </pre></div>
@@ -90,7 +88,7 @@
 <p>を実行すると、必要なライブラリをチェックしMakefileを更新します。(cmakeコマンドのあとのピリオドに注意してください。）”-DUSE_CATKIN_MAKE=OFF”は、qtcappを単体でビルドするためのビルドオプションです。</p>
 </section>
 <section id="id5">
-<h3>ビルド<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3>ビルド<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
 <p>CMakeの実行に成功すると、ビルドのためのMakefile一式がビルドディレクトリ内に生成されます。ビルドディレクトリで</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
 </pre></div>
@@ -103,7 +101,7 @@
 <p>とすると、最大で8つのビルドプロセスが同時に実行されることになります。通常は論理コア数と同じプロセス数を指定することで、CPU能力を最大限に活かした並列ビルドとなります。</p>
 </section>
 <section id="id6">
-<h3>インストール<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3>インストール<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
 <p>QtcappをUbuntuで使用する場合は、ビルドディレクトリ内に生成される実行ファイルをそのまま実行することが可能です。ビルドに成功すれば、ビルドディレクトリ内の”bin”というディレクトリの下に “qtcapp_node” という実行ファイルが生成されていますので、これを実行してください。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="o">/</span><span class="n">qtcapp_node</span>
 </pre></div>
@@ -129,7 +127,7 @@
 </section>
 </section>
 <section id="id7">
-<h2>起動方法<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<h2>起動方法<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
 <p>Linux等のOSで一般的な、端末からのコマンド入力による操作でQtcappを起動する場合は、Qtcappの実行ファイルである “qtcapp_node” というコマンドを入力します。</p>
 <p>このコマンドは、インストール先の “bin” ディレクトリに入っています。そこにパスが通っていれば、単に</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qtcapp_node</span>
@@ -146,15 +144,15 @@
 <p>画面の位置やサイズの変更、最小化、最大化といった基本操作は、OSのウィンドウシステムの流儀に従って操作できるようになっています。</p>
 </section>
 <section id="id8">
-<h2>操作方法<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<h2>操作方法<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
 <p>ここではQtcappの操作方法について解説します。</p>
 <p>Qtcappでは以下のパラメータを設定できます。</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 63%" />
+<col style="width: 16.8%" />
+<col style="width: 10.1%" />
+<col style="width: 10.1%" />
+<col style="width: 63.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>パラメータ</p></th>
@@ -225,15 +223,15 @@
 </dd>
 </dl>
 <section id="id9">
-<h3>設定の反映と解除<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h3>設定の反映と解除<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
 <p>設定を入力し、“Start”ボタンを押すと、設定が反映されます。“Stop”ボタンを押すと、設定が解除されます。</p>
 </section>
 </section>
 <section id="id10">
-<h2>設定の読み込みと保存<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<h2>設定の読み込みと保存<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
 <p>ここでは、設定したパラメータの読み込みと保存の仕方を説明します。</p>
 <section id="id11">
-<h3>設定の読み込み<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<h3>設定の読み込み<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
 <p>以下の手順で設定を読み込みます。</p>
 <ol class="arabic simple">
 <li><p>「Open」ボタン（フォルダのアイコン）を押す。</p></li>
@@ -242,7 +240,7 @@
 </ol>
 </section>
 <section id="id12">
-<h3>設定の保存<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<h3>設定の保存<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
 <p>以下の手順で設定を保存します。</p>
 <ol class="arabic simple" start="2">
 <li><p>「Save」ボタン（ストレージのアイコン）を押す。</p></li>
@@ -252,14 +250,14 @@
 </section>
 </section>
 <section id="id13">
-<h2>終了方法<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<h2>終了方法<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h2>
 <p>Qtcappを終了させたいときは、メインウィンドウのクローズボタンを押して終了させます。端末からQtcappを起動した場合は、端末上で “Ctrl + C” を入力して終了させることもできます。</p>
 </section>
 <section id="ros">
-<h2>ROSとの連携<a class="headerlink" href="#ros" title="Permalink to this headline">¶</a></h2>
+<h2>ROSとの連携<a class="headerlink" href="#ros" title="Link to this heading">¶</a></h2>
 <p>QtcappはROSと連携することが可能です。ここではQtcappをROSパッケージとしてビルドする方法について解説します。</p>
 <section id="catkin">
-<h3>Catkinワークスペースの作成<a class="headerlink" href="#catkin" title="Permalink to this headline">¶</a></h3>
+<h3>Catkinワークスペースの作成<a class="headerlink" href="#catkin" title="Link to this heading">¶</a></h3>
 <p>Catkinワークスペースを作成します。ワークスペースは通常これはホームディレクトリ上に作成します。ワークスペースの名前は通常 “catkin_ws” とします。この名前は変更しても結構ですが、その場合は以下の説明の “catkin_ws” をその名前に置き換えるようにしてください。</p>
 <p>まず空のワークスペースを作成します。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">catkin_ws</span>
@@ -270,7 +268,7 @@
 </div>
 </section>
 <section id="id14">
-<h3>パッケージソースの追加<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<h3>パッケージソースの追加<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
 <p>作成したワークスペースの “src” ディレクトリ内に、Qtcappのソースコードリポジトリをクローンします。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span>
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">k38</span><span class="o">-</span><span class="n">suzuki</span><span class="o">/</span><span class="n">qtcapp</span><span class="o">.</span><span class="n">git</span>
@@ -278,14 +276,14 @@
 </div>
 </section>
 <section id="id15">
-<h3>ビルド<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<h3>ビルド<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
 <p>ワークスペースのトップディレクトリ(例：catkin_ws以下)で、以下のコマンドでビルドします。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catkin_make</span>
 </pre></div>
 </div>
 </section>
 <section id="id16">
-<h3>ワークスペースセットアップスクリプトの取り込み<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<h3>ワークスペースセットアップスクリプトの取り込み<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
 <p>ビルドをすると、 ワークスペースのdevelディレクトリに “setup.bash” というファイルが生成されます。このスクリプトに記述されている設定は、ワークスペース内のパッケージを実行したりする際に必要となりますので、デフォルトで実行されるようにしておきます。通常はホームディレクトリの .bashrc ファイルに</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>source $HOME/catkin_ws/devel/setup.bash
 </pre></div>
@@ -295,7 +293,7 @@
 <p>初回ビルド時はまだこの設定が取り込まれていませんので、端末を起動し直すか、上記のコマンドをコマンドラインから直接入力して、設定を反映させるようにしてください。</p>
 </section>
 <section id="ros-qtcapp-node">
-<h3>ROSノード(qtcapp_node)の起動<a class="headerlink" href="#ros-qtcapp-node" title="Permalink to this headline">¶</a></h3>
+<h3>ROSノード(qtcapp_node)の起動<a class="headerlink" href="#ros-qtcapp-node" title="Link to this heading">¶</a></h3>
 <p>端末を開いて以下を入力し、QtcappのROSノード(qtcapp_node)を起動します。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosrun</span> <span class="n">qtcapp</span> <span class="n">qtcapp_node</span>
 </pre></div>
@@ -341,6 +339,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internship/index.html">Crawlerチュートリアル</a></li>
@@ -379,7 +378,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -402,8 +401,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

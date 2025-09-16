@@ -30,6 +30,7 @@ HAIROWorldPluginマニュアル
    paper/index
    tips/index
    update/index
+   note/index
    en/index
    wrs/index
    internship/index

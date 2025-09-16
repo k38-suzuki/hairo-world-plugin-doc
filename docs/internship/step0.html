@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ステップ0: Crawlerモデルの作成 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=601dbdee" />
+    <script src="../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="ステップ1: シミュレーションプロジェクトの作成" href="step1.html" />
@@ -42,9 +40,9 @@
           <div class="body" role="main">
             
   <section id="crawler">
-<h1>ステップ0: Crawlerモデルの作成<a class="headerlink" href="#crawler" title="Permalink to this headline">¶</a></h1>
+<h1>ステップ0: Crawlerモデルの作成<a class="headerlink" href="#crawler" title="Link to this heading">¶</a></h1>
 <p>本ページではChoreonoidの標準モデルファイル形式である「Bodyファイル」の記述方法について、チュートリアル形式で解説を行います。このチュートリアルでは、遠隔操作ロボット”Crawler”のモデルを作成します。</p>
-<div class="contents local topic" id="contents">
+<nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#tutorial-1" id="id62">Crawlerモデル</a></p></li>
 <li><p><a class="reference internal" href="#tutorial-2" id="id63">モデルの基本構造</a></p></li>
@@ -97,36 +95,36 @@
 </ul>
 </li>
 </ul>
-</div>
+</nav>
 <section id="tutorial-1">
-<span id="id1"></span><h2><a class="toc-backref" href="#id62">Crawlerモデル</a><a class="headerlink" href="#tutorial-1" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2><a class="toc-backref" href="#id62" role="doc-backlink">Crawlerモデル</a><a class="headerlink" href="#tutorial-1" title="Link to this heading">¶</a></h2>
 <p>対象とするモデルは以下に示す “Crawler” モデルとなります。</p>
 <a class="reference internal image-reference" href="../_images/create_crawler-1.png"><img alt="../_images/create_crawler-1.png" src="../_images/create_crawler-1.png" style="width: 299.0px; height: 196.0px;" /></a>
 <p>これはカメラ台座を動かす２軸の回転関節と、サブクローラを動かす２軸の回転関節、移動用の２つのクローラと２つのサブクローラで構成されるモデルで、カメラとライトをデバイスとして搭載しています。</p>
 <p>本マニュアルでは、このモデルを題材にシミュレーションを行う方法をまとめた <a class="reference internal" href="index.html"><span class="doc">Crawlerチュートリアル</span></a> も用意しています。</p>
 </section>
 <section id="tutorial-2">
-<span id="id2"></span><h2><a class="toc-backref" href="#id63">モデルの基本構造</a><a class="headerlink" href="#tutorial-2" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2><a class="toc-backref" href="#id63" role="doc-backlink">モデルの基本構造</a><a class="headerlink" href="#tutorial-2" title="Link to this heading">¶</a></h2>
 <p>Crawlerモデルは下図に示す9つの部位で構成されています。</p>
 <a class="reference internal image-reference" href="../_images/create_crawler-2.png"><img alt="../_images/create_crawler-2.png" src="../_images/create_crawler-2.png" style="width: 515.5px; height: 362.5px;" /></a>
 <p>ベースとなる部分が車体です。車体の上部にはカメラ台座が備わります。この部分はカメラのヨー軸回転を行う部分と、ピッチ軸回転を行う２つの部分からなります。車体の左右の側面にはそれぞれ移動用のクローラ機構が取り付けられます。</p>
 <p>これら9つの部分が「リンク」としてモデリングされます。車体の部分はモデルの中心となる部分であり、これを「ルートリンク」としてモデリングします。ルートリンクは各モデルに対して必ずひとつだけ定義する必要があります。カメラ台座の2リンクとサブクローラを動かすジョイント2リンクについてはそれぞれ回転関節としてモデリングします。また、クローラ部分は <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/pseudo-continuous-track.html">無限軌道の簡易シミュレーション</a> に対応するリンクとしてモデリングします。</p>
 <p>これらのリンクの間の階層構造（親子関係）は以下のようになります。</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">車体（ルート）</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">+ カメラ台座ヨー軸部（回転関節）</span><span class="w"></span>
-<span class="w">           </span><span class="l l-Scalar l-Scalar-Plain">+ カメラ台座ピッチ軸部（回転関節）</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">+ 左クローラ</span><span class="w"></span>
-<span class="w">           </span><span class="l l-Scalar l-Scalar-Plain">+ 左サブクローラジョイント（回転関節）</span><span class="w"></span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">+ 前左クローラ</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">+ 右クローラ</span><span class="w"></span>
-<span class="w">           </span><span class="l l-Scalar l-Scalar-Plain">+ 右サブクローラジョイント（回転関節）</span><span class="w"></span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">+ 前右クローラ</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">車体（ルート）</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">+ カメラ台座ヨー軸部（回転関節）</span>
+<span class="w">           </span><span class="l l-Scalar l-Scalar-Plain">+ カメラ台座ピッチ軸部（回転関節）</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">+ 左クローラ</span>
+<span class="w">           </span><span class="l l-Scalar l-Scalar-Plain">+ 左サブクローラジョイント（回転関節）</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">+ 前左クローラ</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">+ 右クローラ</span>
+<span class="w">           </span><span class="l l-Scalar l-Scalar-Plain">+ 右サブクローラジョイント（回転関節）</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">+ 前右クローラ</span>
 </pre></div>
 </div>
 <p>なお、本チュートリアルでは各リンクの形状をモデルファイル本体にテキストで記述します。これにより、CADやモデリングツール等で作成した形状データを用いずに、テキストファイルだけでモデリングを完結しています。これに対して、CADやモデリングツール等で作成した形状データを用いることも可能です。これについては <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/modelfile/tank-blender.html">外部メッシュファイルの利用方法</a> をご参照ください。</p>
 </section>
 <section id="tutorial-3">
-<span id="id5"></span><h2><a class="toc-backref" href="#id64">モデルファイルの用意</a><a class="headerlink" href="#tutorial-3" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2><a class="toc-backref" href="#id64" role="doc-backlink">モデルファイルの用意</a><a class="headerlink" href="#tutorial-3" title="Link to this heading">¶</a></h2>
 <p>Body形式のモデルファイルはテキストファイルとして作成します。ファイルの拡張子は通常 “.body” とします。</p>
 <p>モデルファイルの作成を開始するにあたって、まずはテキストエディタを用いて空のテキストを作成し、拡張子 “.body” をつけた適当なファイル名で保存しておきましょう今回は “crawler.body” というファイル名で保存することにします。このファイルはHAIROWorldPluginの”sample/tutorial/Crawler”ディレクトリに完成品が格納されています。今回はそのファイルの内容を解説しながら、完成に至るまでの作成手順の例を示すということになります。</p>
 <p>なお、以下の記述をまとめたものは <a class="reference internal" href="crawler.html"><span class="doc">Crawlerモデルファイル全記述内容</span></a> で参照することができます。</p>
@@ -136,7 +134,7 @@
 </div>
 </section>
 <section id="yaml">
-<span id="tutorial-4"></span><h2><a class="toc-backref" href="#id65">YAMLについて</a><a class="headerlink" href="#yaml" title="Permalink to this headline">¶</a></h2>
+<span id="tutorial-4"></span><h2><a class="toc-backref" href="#id65" role="doc-backlink">YAMLについて</a><a class="headerlink" href="#yaml" title="Link to this heading">¶</a></h2>
 <p>Bodyファイルは記述方式のベースとしてYAMLを採用しています。YAMLの実際の記述方法は以下の解説を読めば概ね理解できると思いますが、より詳細な情報については <a class="reference external" href="http://www.yaml.org/spec/1.2/spec.html">YAMLの仕様書</a> や各種解説記事を参照してください。</p>
 <p>解説記事については、以下が分かりやすくて良いかと思います。</p>
 <ul class="simple">
@@ -144,14 +142,14 @@
 </ul>
 </section>
 <section id="tutorial-5">
-<span id="id8"></span><h2><a class="toc-backref" href="#id66">ヘッダの記述</a><a class="headerlink" href="#tutorial-5" title="Permalink to this headline">¶</a></h2>
+<span id="id8"></span><h2><a class="toc-backref" href="#id66" role="doc-backlink">ヘッダの記述</a><a class="headerlink" href="#tutorial-5" title="Link to this heading">¶</a></h2>
 <p>まずモデルファイルのヘッダとして、YAMLのマッピングを用いて以下のように記述します。</p>
 <div class="literal-block-wrapper docutils container" id="id49">
-<span id="crawler-example1"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id49" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChoreonoidBody</span><span class="w"></span>
-<span class="nt">formatVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w"></span>
-<span class="nt">angleUnit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degree</span><span class="w"></span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Crawler</span><span class="w"></span>
+<span id="crawler-example1"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id49" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChoreonoidBody</span>
+<span class="nt">formatVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="nt">angleUnit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degree</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Crawler</span>
 </pre></div>
 </div>
 </div>
@@ -160,27 +158,27 @@
 <p>モデルの名前は “name” に記述します。ここでは “Crawler” という名前にしています。</p>
 </section>
 <section id="tutorial-6">
-<span id="id9"></span><h2><a class="toc-backref" href="#id67">リンクの記述</a><a class="headerlink" href="#tutorial-6" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h2><a class="toc-backref" href="#id67" role="doc-backlink">リンクの記述</a><a class="headerlink" href="#tutorial-6" title="Link to this heading">¶</a></h2>
 <p>モデルが有するリンクの情報は、”links:” に以下のように記述します。</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">links</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">リンク1（ルートリンク）の記述</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">リンク2の記述</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">リンク3の記述</span><span class="w"></span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">links</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">リンク1（ルートリンク）の記述</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">リンク2の記述</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">リンク3の記述</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </pre></div>
 </div>
 <p>このようにYAMLのリストとして任意個のリンクを記述することができます。各リンクの記述部分を「Linkノード」と呼びます。最初に記述するLinkノードは、モデルのルートリンクとみなされます。</p>
 </section>
 <section id="link">
-<span id="tutorial-7"></span><h2><a class="toc-backref" href="#id68">Linkノード</a><a class="headerlink" href="#link" title="Permalink to this headline">¶</a></h2>
+<span id="tutorial-7"></span><h2><a class="toc-backref" href="#id68" role="doc-backlink">Linkノード</a><a class="headerlink" href="#link" title="Link to this heading">¶</a></h2>
 <p>LinkノードはYAMLのマッピング形式で記述します。マッピングの要素として、以下のようなパラメータが利用可能です。</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>キー</p></th>
@@ -228,43 +226,43 @@
 </table>
 </section>
 <section id="tutorial-8">
-<span id="id10"></span><h2><a class="toc-backref" href="#id69">車体リンクの記述</a><a class="headerlink" href="#tutorial-8" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2><a class="toc-backref" href="#id69" role="doc-backlink">車体リンクの記述</a><a class="headerlink" href="#tutorial-8" title="Link to this heading">¶</a></h2>
 <p>ではまず本モデルの車体部分に対応するルートリンクを記述しましょう。対応するLinkノードをlinks以下に次のように記述してください。</p>
 <div class="literal-block-wrapper docutils container" id="id50">
-<span id="crawler-example2"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id50" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">links</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span><span class="w"></span>
-<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">free</span><span class="w"></span>
-<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.0</span><span class="w"></span>
-<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.5</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Box</span><span class="w"></span>
-<span class="w">          </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;BodyAppearance</span><span class="w"></span>
-<span class="w">          </span><span class="nt">material</span><span class="p">:</span><span class="w"></span>
-<span class="w">            </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">            </span><span class="nt">specularColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">            </span><span class="nt">shininess</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span><span class="w"></span>
+<span id="crawler-example2"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id50" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">links</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">free</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.0</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.5</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Box</span>
+<span class="w">          </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;BodyAppearance</span>
+<span class="w">          </span><span class="nt">material</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">            </span><span class="nt">specularColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">            </span><span class="nt">shininess</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span>
 </pre></div>
 </div>
 </div>
 <p>YAMLでは各行のインデントがデータの構造も規定することになりますので、上記の記述でインデントが揃っているところはそのまま揃えて記述するように注意してください。</p>
 <p>リンクの定義では、そのリンクを特定するための名前をまず設定します。 ここでは、</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
 </pre></div>
 </div>
 <p>という記述により、”CHASSIS” という名前に設定しています。</p>
 </section>
 <section id="tutorial-9">
-<span id="id11"></span><h2><a class="toc-backref" href="#id70">編集中のモデルの確認</a><a class="headerlink" href="#tutorial-9" title="Permalink to this headline">¶</a></h2>
+<span id="id11"></span><h2><a class="toc-backref" href="#id70" role="doc-backlink">編集中のモデルの確認</a><a class="headerlink" href="#tutorial-9" title="Link to this heading">¶</a></h2>
 <p>まだルートリンクしか記述していませんが、この時点でもモデルとしては成立しています。そこで、編集中のファイルをChoreonoid上で読み込んで表示させ、正しく記述ができているか確認してみましょう。メインメニューの「ファイル」-「読み込み」-「ボディ」を選択し、表示されるダイアログで対象のファイルを選択します。その際、ダイアログ上で「アイテムツリービューのチェックを入れる」を有効にしておくか、読み込み後にアイテムのチェックボックスをクリックすると、シーンビュー上に以下のように表示されるかと思います。</p>
 <a class="reference internal image-reference" href="../_images/create_crawler-3.png"><img alt="../_images/create_crawler-3.png" src="../_images/create_crawler-3.png" style="width: 299.0px; height: 196.0px;" /></a>
 <p>アイテム読み込み時にエラーが出たり、読み込めてもうまく表示できなかったりした場合は、これまでの記述内容を確認してください。</p>
@@ -276,68 +274,68 @@
 <p>再読み込みを行うと、更新されたファイルがその場で読み込み直されて、（読み込みエラーがなければ）現在のアイテムがそれに置き換わります。更新したファイルに形状等の変化があれば、シーンビュー上の表示も即座にこれを反映します。この機能を使えば、テキストファイルで直接モデルファイルを編集しながら、比較的効率的にモデルファイルの編集を進めていくことが可能です。この「再読み込み」操作は本チュートリアルを進める上で何度も行うことになりますので、覚えておいてください。</p>
 </section>
 <section id="tutorial-10">
-<span id="id12"></span><h2><a class="toc-backref" href="#id71">ルートリンク特有の記述</a><a class="headerlink" href="#tutorial-10" title="Permalink to this headline">¶</a></h2>
+<span id="id12"></span><h2><a class="toc-backref" href="#id71" role="doc-backlink">ルートリンク特有の記述</a><a class="headerlink" href="#tutorial-10" title="Link to this heading">¶</a></h2>
 <p>CHASSISリンクでは、</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>という記述により、モデル読み込み時の初期位置を設定しています。（正確に言うとワールド座標系におけるルートリンク原点の位置となります。）</p>
 <p>translationは通常親リンクからの相対位置を表すパラメータなのですが、ルートリンクに関しては親リンクがありません。その代わりに、モデル読み込み時におけるワールド座標原点からの相対位置とみなすわけです。なお、初期姿勢についても、rotation を用いることで設定可能です。また、初期位置を気にしないのであれば、これらのパラメータを設定する必要はありません。</p>
 <p>ここではZ座標値を 0.1 とすることで、ルートリンクの初期位置をZ軸方向に0.1[m]上げた位置としています。これにより、ルートリンクの原点を車体の中心部にとりつつも、それを読み込んだ場合にクローラの下面がちょうどZ=0の面に一致するようにしています。環境モデルではここを床面にとることが多いため、それに合わせやすいよう上記の設定をしています。</p>
 <p>次に、</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">free</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">free</span>
 </pre></div>
 </div>
 <p>という記述により、このモデルが空間中を自由に動けるモデルであることを設定しています。</p>
 <p>jointTypeは通常親子リンク間を接続する関節のタイプを指定するパラメータですが、ルートリンクの場合は意味が少し異なり、リンクが環境に固定されるか否かを指定します。ここに”fixed”を指定するとリンクが固定されますので、ベース部分が床に固定されているマニピュレータ等に対してはそのように設定してください。一方、今回のモデルのように特定の箇所に固定さない場合は、ここに”free”を指定します。</p>
 </section>
 <section id="tutorial-11">
-<span id="id13"></span><h2><a class="toc-backref" href="#id72">剛体パラメータの記述</a><a class="headerlink" href="#tutorial-11" title="Permalink to this headline">¶</a></h2>
+<span id="id13"></span><h2><a class="toc-backref" href="#id72" role="doc-backlink">剛体パラメータの記述</a><a class="headerlink" href="#tutorial-11" title="Link to this heading">¶</a></h2>
 <p>各リンクは通常剛体としてモデリングされます。この情報を記述する <a class="reference internal" href="#tutorial-7"><span class="std std-ref">Linkノード</span></a> として、centerOfMass, mass, inertia があります。CHASSISリンクではこれらに関して以下のように記述しています。:</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.0</span><span class="w"></span>
-<span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">  </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.5</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.0</span>
+<span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">  </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.5</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>centerOfMass には、リンクのローカル座標における重心位置を記述します。CHASSISリンクのローカル座標原点は車体中央部に設定しており、重心もそこにに一致させています。</p>
 <p>mass には質量を、inertiaには慣性テンソルの行列要素を指定します。</p>
 <p>ここでは慣性テンソルに適当な値を設定していますが、適切な計算やCADツールなどを用いて、妥当な値を設定するようにしてください。</p>
 <p>慣性テンソルは対称行列なので、上三角部分の6要素のみを記述してもOKです。この場合、上記の値は:</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">  </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">       </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">            </span><span class="nv">0.5</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">  </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">       </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">            </span><span class="nv">0.5</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>と書けます。</p>
 <p>なお、剛体のパラメータは”RigidBody”ノードを用いて独立して記述することも可能です。これについては後ほど説明します。</p>
 </section>
 <section id="tutorial-12">
-<span id="id14"></span><h2><a class="toc-backref" href="#id73">車体形状の記述</a><a class="headerlink" href="#tutorial-12" title="Permalink to this headline">¶</a></h2>
+<span id="id14"></span><h2><a class="toc-backref" href="#id73" role="doc-backlink">車体形状の記述</a><a class="headerlink" href="#tutorial-12" title="Link to this heading">¶</a></h2>
 <p>リンクの形状は、Linkノードの “elements” 以下に記述します。CHASSISリンクに関しては以下のように記述されています。:</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">Shape</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Box</span><span class="w"></span>
-<span class="w">      </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;BodyAppearance</span><span class="w"></span>
-<span class="w">      </span><span class="nt">material</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">        </span><span class="nt">specularColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">        </span><span class="nt">shininess</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Shape</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Box</span>
+<span class="w">      </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;BodyAppearance</span>
+<span class="w">      </span><span class="nt">material</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">specularColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">shininess</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span>
 </pre></div>
 </div>
 <p>この部分は「Shapeノード」となります。先ほどモデルファイルを読み込んだ際にシーンビューに表示された形状は、ここで記述されています。</p>
 <p>Shapeノードでは、geometryで幾何形状を記述し、appearanceで表面の見た目を記述します。</p>
 <p>今回はgeometryのtypeに”Box”を指定し、箱型（直方体）の幾何形状を表現するBoxノードを記述しています。Boxノードでは size パラメータとして x, y, z軸方向の長さをリストとして記述します。この他にも球(Sphere)、シリンダ(Cylinder)、円柱(Cone)といった形状ノードを利用することが可能です。</p>
 <p>appearancについては物体表面の材質を記述するmaterialを記述しています。materialでは以下のパラメータを設定可能です。</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>キー</p></th>
@@ -376,9 +374,9 @@
 </div>
 </section>
 <section id="tutorial-13">
-<span id="id15"></span><h2><a class="toc-backref" href="#id74">アンカーの設定</a><a class="headerlink" href="#tutorial-13" title="Permalink to this headline">¶</a></h2>
+<span id="id15"></span><h2><a class="toc-backref" href="#id74" role="doc-backlink">アンカーの設定</a><a class="headerlink" href="#tutorial-13" title="Link to this heading">¶</a></h2>
 <p>上記のコードでは、</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;BodyAppearance</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;BodyAppearance</span>
 </pre></div>
 </div>
 <p>というように、appearanceの直後に “&amp;BodyAppearance” という記述を付与しています。</p>
@@ -386,43 +384,43 @@
 <p>ここでappearanceに設定した材質のパラメータについては、同じ内容を <a class="reference internal" href="#tutorial-22"><span class="std std-ref">カメラ台座ピッチ軸土台部形状の記述</span></a> でも適用しますので、そこで再利用できるようにアンカーをつけています。 実際の利用方法は <a class="reference internal" href="#tutorial-16"><span class="std std-ref">エイリアスの利用</span></a> で述べます。</p>
 </section>
 <section id="elements">
-<span id="tutorial-14"></span><h2><a class="toc-backref" href="#id75">elementsの記述</a><a class="headerlink" href="#elements" title="Permalink to this headline">¶</a></h2>
+<span id="tutorial-14"></span><h2><a class="toc-backref" href="#id75" role="doc-backlink">elementsの記述</a><a class="headerlink" href="#elements" title="Link to this heading">¶</a></h2>
 <p>モデルファイルにおいては、ある構成要素の情報をまとめたものを「ノード」と呼びます。その例としてこれまでLinkノードやShapeノードを紹介してきました。</p>
 <p>ノードの中には、その子ノードとして下位のノードを含むことが可能なものもあります。これにより、ノードは階層的に記述されます。これを行う一般的な方法として、 elements というキーがあります。</p>
 <p>elementsでは、基本的にはYAMLのリスト表現を用いて以下のように子ノードを記述します。</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ノードタイプ名</span><span class="w"></span>
-<span class="w">    </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span><span class="w"></span>
-<span class="w">    </span><span class="nt">key2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value2</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ノードタイプ名</span><span class="w"></span>
-<span class="w">    </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span><span class="w"></span>
-<span class="w">    </span><span class="nt">key2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value2</span><span class="w"></span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ノードタイプ名</span>
+<span class="w">    </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span>
+<span class="w">    </span><span class="nt">key2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value2</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ノードタイプ名</span>
+<span class="w">    </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span>
+<span class="w">    </span><span class="nt">key2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value2</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </pre></div>
 </div>
 <p>下位のノードがさらにelementsを含むことが可能な場合、以下のように階層を深くしていくことも可能です。</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ノードタイプ名</span><span class="w"></span>
-<span class="w">    </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span><span class="w"></span>
-<span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ノードタイプ名</span><span class="w"></span>
-<span class="w">        </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span><span class="w"></span>
-<span class="w">        </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ノードタイプ名</span>
+<span class="w">    </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ノードタイプ名</span>
+<span class="w">        </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span>
+<span class="w">        </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </pre></div>
 </div>
 <p>このように、elementsを用いることで、多様なタイプのノードを複数組み合わせた構造を記述することも可能となります。</p>
 <p>なお、あるタイプのノードがelements以下にひとつしか含まれない場合は、以下のような簡略化記法も使用可能です。</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">ノードタイプ名</span><span class="p">:</span><span class="w"></span>
-<span class="w">     </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span><span class="w"></span>
-<span class="w">     </span><span class="nt">key2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value2</span><span class="w"></span>
-<span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ノードタイプ名</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span>
+<span class="w">     </span><span class="nt">key2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value2</span>
+<span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </pre></div>
 </div>
 <p>先のものと大きな違いはありませんが、こちらの方がリスト表現を使わない分少しだけシンプルな記述になっています。</p>
@@ -433,31 +431,31 @@
 </div>
 </section>
 <section id="tutorial-15">
-<span id="id16"></span><h2><a class="toc-backref" href="#id76">カメラ台座ヨー軸部リンクの記述</a><a class="headerlink" href="#tutorial-15" title="Permalink to this headline">¶</a></h2>
+<span id="id16"></span><h2><a class="toc-backref" href="#id76" role="doc-backlink">カメラ台座ヨー軸部リンクの記述</a><a class="headerlink" href="#tutorial-15" title="Link to this heading">¶</a></h2>
 <p>次はカメラ台座ヨー軸部のリンクを記述しましょう。これまでの記述に以下を加えて下さい。</p>
 <div class="literal-block-wrapper docutils container" id="id51">
-<span id="crawler-example3"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id51" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TURRET_Y</span><span class="w"></span>
-<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span><span class="w"></span>
-<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Z</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unlimited</span><span class="w"></span>
-<span class="w">    </span><span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
-<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.025</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.0</span><span class="w"></span>
-<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Box</span><span class="w"></span>
-<span class="w">          </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span><span class="w"></span>
+<span id="crawler-example3"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id51" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TURRET_Y</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span>
+<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Z</span>
+<span class="w">    </span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unlimited</span>
+<span class="w">    </span><span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span>
+<span class="w">    </span><span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.025</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.0</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Box</span>
+<span class="w">          </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span>
 </pre></div>
 </div>
 </div>
@@ -469,23 +467,23 @@
 <p>なお、ここでリンクの名前に “TURRET” を用いているのは、Choreonoid公式の <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/modelfile/modelfile-newformat.html">Bodyチュートリアル</a> の名残であり、特に意味はありません。</p>
 </section>
 <section id="tutorial-16">
-<span id="id17"></span><h2><a class="toc-backref" href="#id77">エイリアスの利用</a><a class="headerlink" href="#tutorial-16" title="Permalink to this headline">¶</a></h2>
+<span id="id17"></span><h2><a class="toc-backref" href="#id77" role="doc-backlink">エイリアスの利用</a><a class="headerlink" href="#tutorial-16" title="Link to this heading">¶</a></h2>
 <p>上記の形状記述において、appearanceについてはCHASSISリンクと同じでよいので、 <a class="reference internal" href="#tutorial-12"><span class="std std-ref">車体形状の記述</span></a> で設定した内容を再利用することにします。CHASSISリンクのappearanceには”BodyAppearance”という名前で <a class="reference internal" href="#tutorial-13"><span class="std std-ref">アンカーの設定</span></a> を行いました。ここでその内容を</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span>
 </pre></div>
 </div>
 <p>という記述によってYAMLのエイリアスとして呼び出しています。このようにアンカーでつけた名前に “*” をつけることで、エイリアスとして参照することが可能です。</p>
 </section>
 <section id="tutorial-17">
-<span id="id18"></span><h2><a class="toc-backref" href="#id78">リンク相対位置の記述</a><a class="headerlink" href="#tutorial-17" title="Permalink to this headline">¶</a></h2>
+<span id="id18"></span><h2><a class="toc-backref" href="#id78" role="doc-backlink">リンク相対位置の記述</a><a class="headerlink" href="#tutorial-17" title="Link to this heading">¶</a></h2>
 <p>TURRET_Yリンクは、CHASSISリンクの小リンクとしてモデリングします。</p>
 <p>これを行うために、まず</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
 </pre></div>
 </div>
 <p>によってこのリンクの親リンクがCHASSISであることを明示します。</p>
 <p>つぎに、このリンクの親リンクからの相対位置（オフセット）を指定します。これを行うのがtranslationパラメータで、本リンクでは</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>としています。これによって、CHASSISリンクの原点から後方へ5[cm]、上方へ8[cm]移動した位置に本リンクの原点を設定しています。この位置は親リンクの座標系に基づいています。</p>
@@ -495,36 +493,36 @@
 <p>このようにワイヤフレームにすると、車体の中にカメラ台座ヨー軸部が埋まっているのが確認できます。</p>
 <p>これで分かるように、リンクの位置を適切に配置するためには、先程のようにtranslationの記述が必要となるわけです。この値もいろいろと変えてどうなるか試してみてください。</p>
 <p>なお、相対姿勢（座標系の向き）についても、rotationパラメータを用いて指定することが可能です。 rotation は</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">x</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">y</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">z</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">θ</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">x</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">y</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">z</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">θ</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>の形式で記述します。これは姿勢（回転）を回転軸とその軸まわりの回転角度で指定するというもので、 x, y, z に回転軸の単位ベクトルを指定し、θに回転角度を指定します。</p>
 <p>このパラメータの実際の使用例は後ほど紹介します。</p>
 </section>
 <section id="tutorial-18">
-<span id="id20"></span><h2><a class="toc-backref" href="#id79">関節の記述</a><a class="headerlink" href="#tutorial-18" title="Permalink to this headline">¶</a></h2>
+<span id="id20"></span><h2><a class="toc-backref" href="#id79" role="doc-backlink">関節の記述</a><a class="headerlink" href="#tutorial-18" title="Link to this heading">¶</a></h2>
 <p>親子関係のある２つのリンクは通常関節によって接続されます。TURRET_Yリンクについても、親リンクCHASSISに対してヨー軸の関節で接続され、CHASSISに対するヨー軸向きを変えられるようになっています。これに関する情報は、TURRET_Yリンクの以下のパラメータによって記述されています。</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span><span class="w"></span>
-<span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Z</span><span class="w"></span>
-<span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unlimited</span><span class="w"></span>
-<span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span><span class="w"></span>
-<span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span>
+<span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Z</span>
+<span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unlimited</span>
+<span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span>
+<span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 </pre></div>
 </div>
 <p>ここではまずjointTypeにrevoluteを指定しています。これにより、親リンクとの間に回転関節が設定されることになります。（これは1自由度の回転関節であり、ヒンジとも呼ばれます。）</p>
 <p>jointAxisには関節軸を指定します。ヒンジ関節の場合はその回転軸をここに指定します。指定の仕方は、X、Y、Zの文字で行う場合と、３次元ベクトルとして指定する方法があります。いずれの場合も、軸方向はリンクのローカル座標系で記述します。ここでは “-Z” を指定することで、Z軸のマイナス方向を回転軸としています。関節軸を3次元ベクトルで指定する場合は、</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-1</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>となります。この書き方だと、X、Y、Z軸以外にも任意の向きを軸に設定可能です。</p>
 <p>Z軸は本モデルも含めて通常鉛直上向きに設定されるため、本関節はヨー軸回転を行う関節となります。向きはZ軸マイナス方向としているため、関節角度のプラス側が右方向への回転、マイナス側が左方向への回転となります。関節の位置はこのリンクの原点に設定されます。親リンクからみたこの位置は、先ほどtranslationで設定した位置になります。</p>
 <p>jointTypeとしては他に直動関節に対応する”prismatic”も指定可能です。この場合jointAxisには直動方向を指定します。</p>
 <p>関節可動範囲は jointRange を用いて設定します。ここではunlimitedを指定し、可動範囲の制限をなしとしています。可動範囲を設定したい場合は、</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-180</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">180</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-180</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">180</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>といったように、下限と上限の値を並べて記述します。この例のように下限と上限の絶対値が同じ場合は、その絶対値で</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">180</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">180</span>
 </pre></div>
 </div>
 <p>と書くこともできます。</p>
@@ -532,7 +530,7 @@
 <p>このモデルはカメラ台座のヨー軸、ピッチ軸の２つの関節を持ちますので、関節IDとしてそれぞれ0と1を割り振ることにします。</p>
 </section>
 <section id="tutorial-19">
-<span id="id21"></span><h2><a class="toc-backref" href="#id80">関節動作の確認</a><a class="headerlink" href="#tutorial-19" title="Permalink to this headline">¶</a></h2>
+<span id="id21"></span><h2><a class="toc-backref" href="#id80" role="doc-backlink">関節動作の確認</a><a class="headerlink" href="#tutorial-19" title="Link to this heading">¶</a></h2>
 <p>関節が正しくモデリングできているかを確認する場合、ChoreonoidのGUI上で実際にモデルの関節を動かしてみることが有効です。 <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/index.html">ロボット／環境モデルの基本</a> - <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/pose-editing.html">位置・姿勢の変更</a> で紹介した機能を用いてこれを試してみましょう。</p>
 <p>まず、 <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/pose-editing.html#pose-editing-joint-slider-view">関節スライダビュー</a> を用いて関節を動かしてみましょう。作成中のモデルをアイテムツリービュー上で選択すると、関節スライダビューの表示はに以下のようになっているかと思います。</p>
 <a class="reference internal image-reference" href="../_images/create_crawler-6.png"><img alt="../_images/create_crawler-6.png" src="../_images/create_crawler-6.png" style="width: 225.0px; height: 79.5px;" /></a>
@@ -544,41 +542,41 @@
 <p><a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/pose-editing.html#sceneview-forward-kinematics">シーンビュー上での関節角の変更</a> も可能です。シーンビューを編集モードに切り替えて、TURRET_Yの部分をマウスでドラッグしてください。するとマウスの動きを追従するように関節を回転できるかと思います。うまく行かない場合は、上記リンクページをみて設定等を確認してください。</p>
 </section>
 <section id="tutorial-20">
-<span id="id26"></span><h2><a class="toc-backref" href="#id81">カメラ台座ピッチ軸部の記述</a><a class="headerlink" href="#tutorial-20" title="Permalink to this headline">¶</a></h2>
+<span id="id26"></span><h2><a class="toc-backref" href="#id81" role="doc-backlink">カメラ台座ピッチ軸部の記述</a><a class="headerlink" href="#tutorial-20" title="Link to this heading">¶</a></h2>
 <p>次にカメラ台座ピッチ軸部を記述していきましょう。まず以下をlinks以下に追加してください。</p>
 <div class="literal-block-wrapper docutils container" id="id52">
-<span id="crawler-example4"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id52" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TURRET_P</span><span class="w"></span>
-<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TURRET_Y</span><span class="w"></span>
-<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Y</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">45</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
-<span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Turret</span><span class="w"></span>
-<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RigidBody</span><span class="w"></span>
-<span class="w">        </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">        </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span><span class="w"></span>
-<span class="w">        </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">          </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">          </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">          </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">        </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">Shape</span><span class="p">:</span><span class="w"></span>
-<span class="w">            </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cylinder</span><span class="w"></span>
-<span class="w">              </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span><span class="w"></span>
-<span class="w">              </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span><span class="w"></span>
-<span class="w">            </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span><span class="w"></span>
+<span id="crawler-example4"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id52" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TURRET_P</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TURRET_Y</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span>
+<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Y</span>
+<span class="w">    </span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">45</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span>
+<span class="w">    </span><span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span>
+<span class="w">        </span><span class="c1"># Turret</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RigidBody</span>
+<span class="w">        </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
+<span class="w">        </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">          </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">          </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">          </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">Shape</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cylinder</span>
+<span class="w">              </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w">              </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w">            </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span>
 </pre></div>
 </div>
 </div>
 <p>nameに指定したように、このリンクの名前は “TURRET_P” としています。</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="c1"># Turret</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="c1"># Turret</span>
 </pre></div>
 </div>
 <p>という記述はコメントです。#のあとの行末までのテキストはコメントとなります。</p>
@@ -587,7 +585,7 @@
 <p>カメラ台座ピッチ軸部分が追加されました。</p>
 </section>
 <section id="rigidbody">
-<span id="tutorial-21"></span><h2><a class="toc-backref" href="#id82">RigidBodyノード</a><a class="headerlink" href="#rigidbody" title="Permalink to this headline">¶</a></h2>
+<span id="tutorial-21"></span><h2><a class="toc-backref" href="#id82" role="doc-backlink">RigidBodyノード</a><a class="headerlink" href="#rigidbody" title="Link to this heading">¶</a></h2>
 <p>上記の記述において、 <a class="reference internal" href="#tutorial-11"><span class="std std-ref">剛体パラメータの記述</span></a> はLinkノードで行わずに、別途 RigidBody というノードを用いて行っています。</p>
 <p>RigidBodyノードは剛体パラメータの記述に特化されたノードであり、centerOfMass, mass, inertia の3つのパラメータを記述することが出来ます。これらはLinkノードで用いていたものと同じ意味を持ちます。このノードをLinkノードのelements以下に記述することでも、剛体パラメータを設定できます。逆に、RigidBodyに代わる簡略的な記法として、Linkノードにも直接剛体パラメータを記述できるようになっていると考えることもできます。</p>
 <p>剛体パラメータの記述にあえてRigidBodyノードを用いる利点としては、以下が挙げられます。</p>
@@ -602,29 +600,29 @@
 <p>なお、RigidBodyも <a class="reference internal" href="#tutorial-14"><span class="std std-ref">elementsの記述</span></a> に対応したノードであり、これを用いることで他のノードを含むことも可能です。ここでは以下で説明する形状部分をelementsの中に記述しています。このようにすることで、剛体の物理パラメータと形状をRigidBodyノードのもとにまとめることができ、モデルの構造がより分かりやすくなるかと思います。</p>
 </section>
 <section id="tutorial-22">
-<span id="id27"></span><h2><a class="toc-backref" href="#id83">カメラ台座ピッチ軸土台部形状の記述</a><a class="headerlink" href="#tutorial-22" title="Permalink to this headline">¶</a></h2>
+<span id="id27"></span><h2><a class="toc-backref" href="#id83" role="doc-backlink">カメラ台座ピッチ軸土台部形状の記述</a><a class="headerlink" href="#tutorial-22" title="Link to this heading">¶</a></h2>
 <p>カメラ台座ピッチ軸土台部の形状は、以下のように記述しています。</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">Shape</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cylinder</span><span class="w"></span>
-<span class="w">    </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span><span class="w"></span>
-<span class="w">    </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span><span class="w"></span>
-<span class="w">  </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">Shape</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cylinder</span>
+<span class="w">    </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w">    </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w">  </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span>
 </pre></div>
 </div>
 <p>ここではgeometryにCylinderノードを用いることで、シリンダ形状を表現しています。Cylinderノードではパラメータとしてシリンダの高さ(height)と半径(radius)を指定します。シリンダの位置と姿勢は、原点を中心とするXZ平面上の設定半径の円をY軸正負の両方向に高さ分押し出した形状に対応しています。ここではこの姿勢を変更せずにそのまま使っています。</p>
 <p>appearanceについては、先ほどと同様にBodyAppearanceをエイリアスとして参照し、これまでと同じ設定としています。</p>
 </section>
 <section id="tutorial-26">
-<span id="id28"></span><h2><a class="toc-backref" href="#id84">カメラ台座ピッチ軸関節の記述</a><a class="headerlink" href="#tutorial-26" title="Permalink to this headline">¶</a></h2>
+<span id="id28"></span><h2><a class="toc-backref" href="#id84" role="doc-backlink">カメラ台座ピッチ軸関節の記述</a><a class="headerlink" href="#tutorial-26" title="Link to this heading">¶</a></h2>
 <p>カメラ台座ピッチ軸関節の記述についても確認しましょう。TURRET_Pリンクでは、以下の部分で関節を記述しています。</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TURRET_Y</span><span class="w"></span>
-<span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span><span class="w"></span>
-<span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Y</span><span class="w"></span>
-<span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">45</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span><span class="w"></span>
-<span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TURRET_Y</span>
+<span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span>
+<span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Y</span>
+<span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">45</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span>
+<span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 </pre></div>
 </div>
 <p>親リンクはTURRET_Yです。関節はこのリンクとの間に設置されます。また、translation によって、親リンクからのオフセットをZ軸方向に4cmとしています。</p>
@@ -638,24 +636,24 @@
 <p>また、ヨー軸についてはこれまでと同じですが、カメラ台座のヨー軸向きも連動して変化することが確認できます。これはTURRET_PリンクがTURRET_Yリンクの子リンクとなっているためです。</p>
 </section>
 <section id="tutorial-27">
-<span id="id29"></span><h2><a class="toc-backref" href="#id85">デバイスの記述</a><a class="headerlink" href="#tutorial-27" title="Permalink to this headline">¶</a></h2>
+<span id="id29"></span><h2><a class="toc-backref" href="#id85" role="doc-backlink">デバイスの記述</a><a class="headerlink" href="#tutorial-27" title="Link to this heading">¶</a></h2>
 <p>Choreonoidで定義されるロボットモデルにおいて、ロボットに搭載されるセンサ等の機器は「デバイス」と呼ばれます。本Tankモデルではスポットライトとカメラの２つのデバイスを搭載することとします。以下ではこれらのデバイスの記述方法について解説します。</p>
 <section id="modelfile-tank-spotlight">
-<span id="id30"></span><h3><a class="toc-backref" href="#id86">スポットライトの記述</a><a class="headerlink" href="#modelfile-tank-spotlight" title="Permalink to this headline">¶</a></h3>
+<span id="id30"></span><h3><a class="toc-backref" href="#id86" role="doc-backlink">スポットライトの記述</a><a class="headerlink" href="#modelfile-tank-spotlight" title="Link to this heading">¶</a></h3>
 <p>まず、暗闇の中で活動するロボットのシミュレーションをできるように、ライト（光源）のデバイスを搭載することにしましょう。ライトについてはいくつかの種類がありますが、ここではロボットに搭載するライトとして一般的な、スポットライトを用いることとします。</p>
 <p>デバイスはいずれかのリンクに搭載されることになりますので、リンクのelements以下にその定義を記述します。ライトの方向を変えられるように、ライトはカメラ台座ピッチ軸部に搭載することにしましょう。これにより、カメラ台座ヨー軸、ピッチ軸の動きと連動してライトの向きも変わることになります。</p>
 <p>これを実現するため、TURRET_Pリンクのelementsに以下の記述を追加してください。</p>
 <div class="literal-block-wrapper docutils container" id="id53">
-<span id="crawler-example5"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id53" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpotLight</span><span class="w"></span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Light</span><span class="w"></span>
-<span class="w">        </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.08</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">        </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">        </span><span class="nt">beamWidth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">36</span><span class="w"></span>
-<span class="w">        </span><span class="nt">cutOffAngle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span><span class="w"></span>
-<span class="w">        </span><span class="nt">cutOffExponent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w"></span>
-<span class="w">        </span><span class="nt">attenuation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.01</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span id="crawler-example5"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id53" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="p p-Indicator">-</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpotLight</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Light</span>
+<span class="w">        </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.08</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">beamWidth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">36</span>
+<span class="w">        </span><span class="nt">cutOffAngle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+<span class="w">        </span><span class="nt">cutOffExponent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<span class="w">        </span><span class="nt">attenuation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.01</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 </div>
@@ -668,23 +666,23 @@
 </ul>
 </section>
 <section id="id32">
-<h3><a class="toc-backref" href="#id87">ライト形状の記述</a><a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id87" role="doc-backlink">ライト形状の記述</a><a class="headerlink" href="#id32" title="Link to this heading">¶</a></h3>
 <p>ライトに対応する形状を記述しましょう。SpotLightノードの最後にelementsとして以下を追記してください。</p>
 <div class="literal-block-wrapper docutils container" id="id54">
-<span id="crawler-example6"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id54" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">Shape</span><span class="p">:</span><span class="w"></span>
-<span class="w">            </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">            </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">            </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cone</span><span class="w"></span>
-<span class="w">              </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.04</span><span class="w"></span>
-<span class="w">              </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.025</span><span class="w"></span>
-<span class="w">            </span><span class="nt">appearance</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="nt">material</span><span class="p">:</span><span class="w"></span>
-<span class="w">                </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.4</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">                </span><span class="nt">ambientIntensity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span><span class="w"></span>
-<span class="w">                </span><span class="nt">emissiveColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span id="crawler-example6"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id54" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">Shape</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">            </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">            </span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cone</span>
+<span class="w">              </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.04</span>
+<span class="w">              </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.025</span>
+<span class="w">            </span><span class="nt">appearance</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">material</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.4</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">                </span><span class="nt">ambientIntensity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span>
+<span class="w">                </span><span class="nt">emissiveColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 </div>
@@ -696,33 +694,33 @@
 <p>ただし、デバイスを搭載するにあたって、対応する形状は必ずしもなくても構いません。また、対応する形状があるとしても、必ずしもデバイスノードのelements以下に記述しなければいけないわけではありません。今回の例ではモデリングを分かりやすくするためにそうしましたが、デバイスは基本的に形状とは関係なく機能します。</p>
 </section>
 <section id="id34">
-<h3><a class="toc-backref" href="#id88">カメラの記述</a><a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id88" role="doc-backlink">カメラの記述</a><a class="headerlink" href="#id34" title="Link to this heading">¶</a></h3>
 <p>カメラのデバイスも追加しましょう。SpotLightノードと同様に、以下をTURRET_Pリンクのelements以下に追加します。</p>
 <div class="literal-block-wrapper docutils container" id="id55">
-<span id="crawler-example7"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id55" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Camera</span><span class="w"></span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Camera</span><span class="w"></span>
-<span class="w">        </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">        </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">],</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">COLOR</span><span class="w"></span>
-<span class="w">        </span><span class="nt">fieldOfView</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">62</span><span class="w"></span>
-<span class="w">        </span><span class="nt">nearClipDistance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span><span class="w"></span>
-<span class="w">        </span><span class="nt">width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">640</span><span class="w"></span>
-<span class="w">        </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">480</span><span class="w"></span>
-<span class="w">        </span><span class="nt">frameRate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span><span class="w"></span>
-<span class="w">        </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">Shape</span><span class="p">:</span><span class="w"></span>
-<span class="w">            </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">            </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cylinder</span><span class="w"></span>
-<span class="w">              </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span><span class="w"></span>
-<span class="w">              </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span><span class="w"></span>
-<span class="w">            </span><span class="nt">appearance</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="nt">material</span><span class="p">:</span><span class="w"></span>
-<span class="w">                </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.8</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">                </span><span class="nt">specularColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">                </span><span class="nt">shininess</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span><span class="w"></span>
+<span id="crawler-example7"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id55" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="p p-Indicator">-</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Camera</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Camera</span>
+<span class="w">        </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">],</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">COLOR</span>
+<span class="w">        </span><span class="nt">fieldOfView</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">62</span>
+<span class="w">        </span><span class="nt">nearClipDistance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">        </span><span class="nt">width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">640</span>
+<span class="w">        </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">480</span>
+<span class="w">        </span><span class="nt">frameRate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="w">        </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">Shape</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">            </span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cylinder</span>
+<span class="w">              </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">              </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">            </span><span class="nt">appearance</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">material</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.8</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">                </span><span class="nt">specularColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">                </span><span class="nt">shininess</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span>
 </pre></div>
 </div>
 </div>
@@ -737,15 +735,15 @@
 <p>また、画像のサイズ（解像度）をwidthとheightで指定します。ここでは横320 x 縦240の解像度としています。さらに、画像取得のフレームレートをframeRateに設定します。</p>
 </section>
 <section id="id35">
-<h3><a class="toc-backref" href="#id89">カメラ位置姿勢の記述</a><a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id89" role="doc-backlink">カメラ位置姿勢の記述</a><a class="headerlink" href="#id35" title="Link to this heading">¶</a></h3>
 <p>カメラの位置については</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>の記述により、ライトのやや下側に設定しています。</p>
 <p>カメラの姿勢は、デフォルトではY軸正方向がカメラの上方向に対応し、Z軸負方向がカメラの正面（視線）方向となります。これとは異なる向きにカメラを向けたい場合は、 <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/modelfile/modelfile-newformat.html#modelfile-yaml-transform-node">Transformノード</a> もしくは <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/modelfile/modelfile-newformat.html#modelfile-yaml-transform-parameters">Transformパラメータ</a> のrotationを用いて、カメラの姿勢を変更する必要があります。</p>
 <p>今回のモデルでは、Z軸が鉛直上向きにとられていますので、デフォルトの向きだとカメラが下を向いてしまいます。そこで上位のTransformノードで</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">],</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">],</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>と記述することにより、カメラの向きを望みのものに設定しています。</p>
@@ -754,53 +752,53 @@
 <p>この２つの回転をひとつの回転表現にまとめることも可能ですが、そのようにまとめた値は直観的に把握したり算出したりすることが困難です。これに対して上記のような複数の回転を組み合わせることで、このようなテキストによる記述も容易となります。</p>
 </section>
 <section id="id38">
-<h3><a class="toc-backref" href="#id90">カメラの形状</a><a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id90" role="doc-backlink">カメラの形状</a><a class="headerlink" href="#id38" title="Link to this heading">¶</a></h3>
 <p>ここではカメラのレンズを想定したものとして、シリンダ形状を付与しています。これにより、モデルの表示は以下のようになります。</p>
 <a class="reference internal image-reference" href="../_images/create_crawler-16.png"><img alt="../_images/create_crawler-16.png" src="../_images/create_crawler-16.png" style="width: 299.0px; height: 196.0px;" /></a>
 <p>なお、カメラの定義にて</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">nearClipDistance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">nearClipDistance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
 </pre></div>
 </div>
 <p>という記述をしています。これはカメラ画像内に収める外界の範囲をカメラ中心点より少し前方にずらすための記述です。今回カメラの形状を付与していることにより、そのままではその形状によって前方の視界が遮られることになってしまいます。この記述を入れることで、カメラ形状の外側をカメラ画像に映すことが可能となります。</p>
 </section>
 </section>
 <section id="tutorial-28">
-<span id="id39"></span><h2><a class="toc-backref" href="#id91">クローラの記述</a><a class="headerlink" href="#tutorial-28" title="Permalink to this headline">¶</a></h2>
+<span id="id39"></span><h2><a class="toc-backref" href="#id91" role="doc-backlink">クローラの記述</a><a class="headerlink" href="#tutorial-28" title="Link to this heading">¶</a></h2>
 <p>次にクローラの部分を記述します。</p>
 <section id="id40">
-<h3><a class="toc-backref" href="#id92">左クローラの記述</a><a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id92" role="doc-backlink">左クローラの記述</a><a class="headerlink" href="#id40" title="Link to this heading">¶</a></h3>
 <p>まずは左側のクローラから記述しましょう。 <a class="reference internal" href="#tutorial-6"><span class="std std-ref">リンクの記述</span></a> で述べたlinksの階層（インデント）に戻って、以下の記述を追加してください。</p>
 <div class="literal-block-wrapper docutils container" id="id56">
-<span id="crawler-example8"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id56" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_L</span><span class="w"></span>
-<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span><span class="w"></span>
-<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pseudo_continuous_track</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span><span class="w"></span>
-<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w"></span>
-<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;TRACK</span><span class="w"></span>
-<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extrusion</span><span class="w"></span>
-<span class="w">          </span><span class="nt">crossSection</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">            </span><span class="nv">-0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.08</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">             </span><span class="nv">0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.08</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">             </span><span class="nv">0.34</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.00</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">             </span><span class="nv">0.22</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.08</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">            </span><span class="nv">-0.22</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.08</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">            </span><span class="nv">-0.34</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.00</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">            </span><span class="nv">-0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.08</span><span class="w"></span>
-<span class="w">            </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">          </span><span class="nt">spine</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">material</span><span class="p">:</span><span class="w"></span>
-<span class="w">            </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span id="crawler-example8"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id56" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_L</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pseudo_continuous_track</span>
+<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;TRACK</span>
+<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extrusion</span>
+<span class="w">          </span><span class="nt">crossSection</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">            </span><span class="nv">-0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.08</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="nv">0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.08</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="nv">0.34</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.00</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="nv">0.22</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.08</span><span class="p p-Indicator">,</span>
+<span class="w">            </span><span class="nv">-0.22</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.08</span><span class="p p-Indicator">,</span>
+<span class="w">            </span><span class="nv">-0.34</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.00</span><span class="p p-Indicator">,</span>
+<span class="w">            </span><span class="nv">-0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.08</span>
+<span class="w">            </span><span class="p p-Indicator">]</span>
+<span class="w">          </span><span class="nt">spine</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">material</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 </div>
@@ -808,7 +806,7 @@
 <a class="reference internal image-reference" href="../_images/create_crawler-17.png"><img alt="../_images/create_crawler-17.png" src="../_images/create_crawler-17.png" style="width: 299.0px; height: 196.0px;" /></a>
 <p>クローラは車体に接続されるものなので、本リンクでは親リンクを再度CHASSISと指定しています。</p>
 <p>また、親リンクからの相対位置として、</p>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">]</span><span class="w"></span>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>を記述することで、本リンクの位置を車体の左側に設定しています。</p>
@@ -819,24 +817,24 @@
 <p>ここで記述した形状にも <a class="reference internal" href="#tutorial-13"><span class="std std-ref">アンカーの設定</span></a> を行います。ここでは “TRACK” というアンカーをつけて、右側のクローラの形状としても使い回すことにします。</p>
 </section>
 <section id="id42">
-<h3><a class="toc-backref" href="#id93">右クローラの記述</a><a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id93" role="doc-backlink">右クローラの記述</a><a class="headerlink" href="#id42" title="Link to this heading">¶</a></h3>
 <p>右側のクローラも記述しましょう。先ほど同様にlinksの階層に以下を追加してください。</p>
 <div class="literal-block-wrapper docutils container" id="id57">
-<span id="crawler-example9"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id57" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_R</span><span class="w"></span>
-<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span><span class="w"></span>
-<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pseudo_continuous_track</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span><span class="w"></span>
-<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w"></span>
-<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nv">*TRACK</span><span class="w"></span>
+<span id="crawler-example9"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id57" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_R</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pseudo_continuous_track</span>
+<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nv">*TRACK</span>
 </pre></div>
 </div>
 </div>
@@ -845,35 +843,35 @@
 </section>
 </section>
 <section id="tutorial-29">
-<span id="id43"></span><h2><a class="toc-backref" href="#id94">ヒンジの記述</a><a class="headerlink" href="#tutorial-29" title="Permalink to this headline">¶</a></h2>
+<span id="id43"></span><h2><a class="toc-backref" href="#id94" role="doc-backlink">ヒンジの記述</a><a class="headerlink" href="#tutorial-29" title="Link to this heading">¶</a></h2>
 <p>次にヒンジの部分を記述します。</p>
 <section id="id44">
-<h3><a class="toc-backref" href="#id95">左ヒンジの記述</a><a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id95" role="doc-backlink">左ヒンジの記述</a><a class="headerlink" href="#id44" title="Link to this heading">¶</a></h3>
 <p>次に左側のサブクローラを動かすためのヒンジを記述しましょう。 以下の記述を追加してください。</p>
 <div class="literal-block-wrapper docutils container" id="id58">
-<span id="crawler-example10"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id58" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HINGE_L</span><span class="w"></span>
-<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_L</span><span class="w"></span>
-<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.055</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Y</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w"></span>
-<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span><span class="w"></span>
-<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;HINGE</span><span class="w"></span>
-<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cylinder</span><span class="w"></span>
-<span class="w">          </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span><span class="w"></span>
-<span class="w">          </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span><span class="w"></span>
-<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span><span class="w"></span>
+<span id="crawler-example10"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id58" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HINGE_L</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_L</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.055</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span>
+<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Y</span>
+<span class="w">    </span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span>
+<span class="w">    </span><span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;HINGE</span>
+<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cylinder</span>
+<span class="w">          </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
+<span class="w">          </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span>
+<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span>
 </pre></div>
 </div>
 </div>
@@ -881,27 +879,27 @@
 <p>ここで記述した形状にも <a class="reference internal" href="#tutorial-13"><span class="std std-ref">アンカーの設定</span></a> を行います。ここでは “HINGE” というアンカーをつけて、右側のヒンジの形状としても使い回すことにします。</p>
 </section>
 <section id="id45">
-<h3><a class="toc-backref" href="#id96">右ヒンジの記述</a><a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id96" role="doc-backlink">右ヒンジの記述</a><a class="headerlink" href="#id45" title="Link to this heading">¶</a></h3>
 <p>右側のヒンジも記述しましょう。先ほど同様にlinksの階層に以下を追加してください。</p>
 <div class="literal-block-wrapper docutils container" id="id59">
-<span id="crawler-example11"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id59" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HINGE_R</span><span class="w"></span>
-<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_R</span><span class="w"></span>
-<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.055</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Y</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w"></span>
-<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span><span class="w"></span>
-<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nv">*HINGE</span><span class="w"></span>
+<span id="crawler-example11"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id59" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HINGE_R</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_R</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.22</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.055</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span>
+<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Y</span>
+<span class="w">    </span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">maxJointVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span>
+<span class="w">    </span><span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nv">*HINGE</span>
 </pre></div>
 </div>
 </div>
@@ -910,40 +908,40 @@
 </section>
 </section>
 <section id="tutorial-30">
-<span id="id46"></span><h2><a class="toc-backref" href="#id97">サブクローラの記述</a><a class="headerlink" href="#tutorial-30" title="Permalink to this headline">¶</a></h2>
+<span id="id46"></span><h2><a class="toc-backref" href="#id97" role="doc-backlink">サブクローラの記述</a><a class="headerlink" href="#tutorial-30" title="Link to this heading">¶</a></h2>
 <p>最後にサブクローラの部分を記述します。</p>
 <section id="id47">
-<h3><a class="toc-backref" href="#id98">前左クローラの記述</a><a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id98" role="doc-backlink">前左クローラの記述</a><a class="headerlink" href="#id47" title="Link to this heading">¶</a></h3>
 <p>次に左側のサブクローラを記述しましょう。 以下の記述を追加してください。</p>
 <div class="literal-block-wrapper docutils container" id="id60">
-<span id="crawler-example12"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id60" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_FL</span><span class="w"></span>
-<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HINGE_L</span><span class="w"></span>
-<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pseudo_continuous_track</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span><span class="w"></span>
-<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span><span class="w"></span>
-<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;SUBTRACK</span><span class="w"></span>
-<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extrusion</span><span class="w"></span>
-<span class="w">          </span><span class="nt">crossSection</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">            </span><span class="nv">-0.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.07</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">             </span><span class="nv">0.17</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.00</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">            </span><span class="nv">-0.11</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.07</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">            </span><span class="nv">-0.17</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.00</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">            </span><span class="nv">-0.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.07</span><span class="w"></span>
-<span class="w">            </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">          </span><span class="nt">spine</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.025</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.025</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">material</span><span class="p">:</span><span class="w"></span>
-<span class="w">            </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span id="crawler-example12"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id60" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_FL</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HINGE_L</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pseudo_continuous_track</span>
+<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;SUBTRACK</span>
+<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extrusion</span>
+<span class="w">          </span><span class="nt">crossSection</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">            </span><span class="nv">-0.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.07</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="nv">0.17</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.00</span><span class="p p-Indicator">,</span>
+<span class="w">            </span><span class="nv">-0.11</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.07</span><span class="p p-Indicator">,</span>
+<span class="w">            </span><span class="nv">-0.17</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.00</span><span class="p p-Indicator">,</span>
+<span class="w">            </span><span class="nv">-0.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.07</span>
+<span class="w">            </span><span class="p p-Indicator">]</span>
+<span class="w">          </span><span class="nt">spine</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.025</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.025</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">material</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 </div>
@@ -952,24 +950,24 @@
 <p>ここで記述した形状にも <a class="reference internal" href="#tutorial-13"><span class="std std-ref">アンカーの設定</span></a> を行います。ここでは “SUBTRACK” というアンカーをつけて、右側のサブクローラの形状としても使い回すことにします。</p>
 </section>
 <section id="id48">
-<h3><a class="toc-backref" href="#id99">前右クローラの記述</a><a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id99" role="doc-backlink">前右クローラの記述</a><a class="headerlink" href="#id48" title="Link to this heading">¶</a></h3>
 <p>右側のヒンジも記述しましょう。先ほど同様にlinksの階層に以下を追加してください。</p>
 <div class="literal-block-wrapper docutils container" id="id61">
-<span id="crawler-example13"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id61" title="Permalink to this code">¶</a></div>
-<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_FR</span><span class="w"></span>
-<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HINGE_R</span><span class="w"></span>
-<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pseudo_continuous_track</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span><span class="w"></span>
-<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span><span class="w"></span>
-<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"></span>
-<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">elements</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nv">*SUBTRACK</span><span class="w"></span>
+<span id="crawler-example13"></span><div class="code-block-caption"><span class="caption-text">crawler.body</span><a class="headerlink" href="#id61" title="Link to this code">¶</a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TRACK_FR</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HINGE_R</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pseudo_continuous_track</span>
+<span class="w">    </span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">Shape</span><span class="p">:</span><span class="w"> </span><span class="nv">*SUBTRACK</span>
 </pre></div>
 </div>
 </div>
@@ -1008,6 +1006,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Crawlerチュートリアル</a><ul class="current">
@@ -1058,7 +1057,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -1081,8 +1080,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

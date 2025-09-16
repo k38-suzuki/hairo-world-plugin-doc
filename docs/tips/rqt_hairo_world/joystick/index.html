@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Joy Publisher &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/nature.css" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nature.css?v=601dbdee" />
+    <script src="../../../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
   </head><body>
@@ -33,11 +31,11 @@
           <div class="body" role="main">
             
   <section id="joy-publisher">
-<h1>Joy Publisher<a class="headerlink" href="#joy-publisher" title="Permalink to this headline">¶</a></h1>
+<h1>Joy Publisher<a class="headerlink" href="#joy-publisher" title="Link to this heading">¶</a></h1>
 <p>ここでは、Joy Publisherの使い方を説明します。Joy Publisherは、PCに接続されているゲームパッドの各軸、各ボタンの状態をROSのsensor_mgs/Joyに格納して、トピックをパブリッシュするrqtの拡張機能です。</p>
 <img alt="../../../_images/joystick.png" src="../../../_images/joystick.png" />
 <section id="id1">
-<h2>Joy Publisherの起動<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>Joy Publisherの起動<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>Joy Publisherを起動する手順は次のとおりです。</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -46,7 +44,7 @@
 </div></blockquote>
 </section>
 <section id="id2">
-<h2>トピックのパブリッシュ<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>トピックのパブリッシュ<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>トピックをパブリッシュする手順は次のとおりです。</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -55,15 +53,15 @@
 </div></blockquote>
 </section>
 <section id="id3">
-<h2>Joy Publisherの設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>Joy Publisherの設定<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <p>Joy Publisherでは、以下の設定をすることができます。</p>
 <img alt="../../../_images/joystick_config.png" src="../../../_images/joystick_config.png" />
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 63%" />
+<col style="width: 16.8%" />
+<col style="width: 10.1%" />
+<col style="width: 10.1%" />
+<col style="width: 63.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>パラメータ</p></th>
@@ -97,15 +95,15 @@
 </table>
 </section>
 <section id="id4">
-<h2>キーの設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>キーの設定<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <p>Joy Publisherでは、以下の設定を変更することができます。</p>
 <img alt="../../../_images/joystick_setup.png" src="../../../_images/joystick_setup.png" />
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 63%" />
+<col style="width: 16.8%" />
+<col style="width: 10.1%" />
+<col style="width: 10.1%" />
+<col style="width: 63.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>パラメータ</p></th>
@@ -139,7 +137,7 @@
 </table>
 </section>
 <section id="id5">
-<h2>仮想ジョイスティックの利用<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>仮想ジョイスティックの利用<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
 <p>PCにゲームパッドが接続されていない場合、以下の仮想ジョイスティックを利用してゲームパッドの各軸、各ボタンの入力をすることができます。仮想ジョイスティックは、画面上のボタンをマウスを使ってクリックするか、画面上のボタンに表示されているアルファベットまたは記号のキーをキーボードから入力することで使用します。なお、キーボードから入力するときは、仮想ジョイスティックの画面をアクティブにしてください。</p>
 <img alt="../../../_images/virtual_joystick.png" src="../../../_images/virtual_joystick.png" />
 </section>
@@ -173,6 +171,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../paper/index.html">関連論文</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">補足事項</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../note/index.html">パッチノート</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../wrs/index.html">講習会特設ページ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../internship/index.html">Crawlerチュートリアル</a></li>
@@ -211,7 +210,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -227,8 +226,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    &#169; Copyright 2020, suzuki.kenta38.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>
