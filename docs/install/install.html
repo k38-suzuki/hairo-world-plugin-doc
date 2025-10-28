@@ -43,25 +43,22 @@
 <h1>ソースコードからのビルドとインストール<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <section id="id2">
 <h2>ソースコードの取得<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>HAIROWorldPluginは、JAEAのソフトウェア管理ポリシーの変更に伴い、GitHubでの公開を取止め、申込制となりました。
+お手数おかけしますが、以下の利用申込書の提出をお願いします。</p>
+<p><a class="reference download internal" download="" href="../_downloads/b77087bcea08816dec2fc9f98adbbe66/%E5%88%A9%E7%94%A8%E7%94%B3%E8%BE%BC%E6%9B%B8__HAIROWorldPlugin%28%E3%83%A4%E3%83%9E%E3%83%88%E5%A4%A7%E5%AD%A6%20%E4%BD%90%E3%80%85%E6%9C%A8%E3%82%B5%E3%83%88%E3%82%B7%29.pdf"><code class="xref download docutils literal notranslate"><span class="pre">利用申込書をダウンロード</span></code></a></p>
+<p>利用申込書の作成にあたっては、以下の事項をご留意ください。</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Form形式のPDFでグレー枠内に記載しそのまま（印刷せずに）提出してください。</p></li>
+<li><p>署名(申込書と誓約書それぞれ1か所)はacrobatの自己電子署名(Self-Sign Digital ID)でお願いします。署名欄をクリックすると署名が開始されますのでSelf-Sign Digital IDを選び →Save to file→名前やメールアドレスなど必要情報を入力で作成し署名することができます。Self-Sign Degital IDのやり方が、よくわからない方は手書き署名の画像データを貼り付けて頂いてもOKです。</p></li>
+<li><p>申込書ファイル名は添付のように組織名と氏名を入れてください。</p></li>
+<li><p>suzuki.kenta38[a]jaea.go.jp宛に送信ください。※[a]は＠に置き換きえてください</p></li>
+</ol>
+</div></blockquote>
+<p>利用申込書の受理後、JAEA担当者よりダウンロード案内をメールで発信いたします。
+取得したソースコードは、解凍してからChoreonoidのソースディレクトリ直下にあるextディレクトリに入れてください。</p>
 <section id="id3">
-<h3>開発版<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
-<p>HAIROWorldPluginはgitリポジトリとして管理されており、githubの以下のアドレスにて公開されています。</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/k38-suzuki/hairo-world-plugin">https://github.com/k38-suzuki/hairo-world-plugin</a></p></li>
-</ul>
-<p>Choreonoidのソースディレクトリ直下にあるextディレクトリに移動して、
-以下のコマンドでHAIROWorldPluginを取得します。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">k38</span><span class="o">-</span><span class="n">suzuki</span><span class="o">/</span><span class="n">hairo</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">plugin</span><span class="o">.</span><span class="n">git</span>
-</pre></div>
-</div>
-<p>これによってリポジトリを格納した “hairo-world-plugin” というディレクトリが生成されます。このディレクトリ内で</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">pull</span>
-</pre></div>
-</div>
-<p>などとすることにより、その時点での最新のソースコードにアップデートできます。</p>
-</section>
-<section id="id4">
-<h3>依存パッケージのインストール<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<h3>依存パッケージのインストール<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <p>Ubuntuの場合、”hairo-world-plugin/misc/script” 以下にある “install-requisites-ubuntu-x.x.sh” というスクリプトを用いることにより、以上のソフトウェアのほとんどを簡単にインストールすることができます。x.xはUbuntuのバージョンに対応します。例えば Ubuntu 18.04 であれば</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">misc</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">requisites</span><span class="o">-</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">18.04</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
@@ -100,8 +97,8 @@
 <h2>Choreonoidのビルドとインストール<a class="headerlink" href="#choreonoid" title="Link to this heading">¶</a></h2>
 <p>CMakeによりMakefileの生成が成功すれば、makeコマンドでChoreonoidをビルドします。Choreonoidのビルドとインストールについては <a class="reference external" href="https://choreonoid.org/ja/manuals/latest/install/build-ubuntu.html">Choreonoidのビルド</a> 以降を参照してください。</p>
 </section>
-<section id="id6">
-<h2>簡易インストール<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<section id="id5">
+<h2>簡易インストール<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
 <p>スクリプトを使用して、ChoreonoidとHAIROWorldPluginのビルドを一括して行うこともできます。なお、この方法では、Choreonoidのビルドまで行います。Choreonoidのインストールが必要な場合は、別途実行してください。また、スクリプトはUbuntu 20.04 LTS向けのものです。他のOS、ディストリビューション、バージョンでご使用の際は、ご自身の環境に合わせて適宜修正してください。</p>
 <p>まず、<a class="reference download internal" download="" href="../_downloads/90319250c771f9d7c60800f32c9aa9dd/install-choreonoid.sh"><code class="xref download docutils literal notranslate"><span class="pre">こちら</span></code></a> からスクリプトを任意のディレクトリにダウンロードします。</p>
 <p>次に、スクリプトを保存したディレクトリ上で端末を開き、</p>
