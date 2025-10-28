@@ -2,6 +2,11 @@
 更新履歴
 ========
 
+* 2025/10/28
+
+ * :doc:`../install/install` を更新
+ * :doc:`../en/install/install` を更新
+
 * 2025/07/29
 
  * :doc:`../wrsutil/wrs2025mat` を更新

@@ -5,28 +5,21 @@ Building and Installing from Source (Ubuntu Linux)
 Obtaining the source code
 -------------------------
 
-Development version
-~~~~~~~~~~~~~~~~~~~
+To access the HAIROWorldPlugin, the software is no longer available on GitHub due to a change in JAEA's software management policy and is now accessible by application only. We apologize for the inconvenience and request that you submit the following Application Form and GDPR for Use.
 
-HAIROWorldPlugin is managed as a git repository. You can find it at the following GitHub address.
 
-- https://github.com/k38-suzuki/hairo-world-plugin
+:download:`Download the Application Form <./Application_Form_HAIROWorldPlugin_Yamato Univ_Satoshi Sasaki.pdf>`
 
-You need to run git commands to use this repository. In Ubuntu, you can install git using the following command. ::
+:download:`Download the GDPR <./GDPR_HAIROWorldPlugin_Yamato Univ_Satoshi Sasaki.pdf>`
 
- sudo apt-get install git
+Please keep the following points in mind when preparing the Application Form and the GDPR:
 
-You can check out the HAIROWorldPlugin repository by executing the following command in the "ext" directory on the Choreonoid source directory. ::
+ 1. Please complete the form-fillable PDF by entering information in the grey fields and submit it electronically (do not print it).
+ 2. The signatures (one each on the Application Form and the Pledge) should be made using an Acrobat Self-Sign Digital ID. Clicking on the signature field will initiate the signing process; select "Self-Sign Digital ID" → "Save to file" → enter the required information such as your name and email address to create and apply the signature. If you are unfamiliar with the process for creating a Self-Sign Digital ID, you may paste an image of your handwritten signature instead.
+ 3. The file name of the Application Form should include your organization name and full name as shown in the attachment (example: Application_Form_HAIROWorldPlugin_Yamato Univ_Satoshi Sasaki.pdf).
+ 4. Please submit the Application Form and GDPR to suzuki.kenta38[a]jaea.go.jp. (Please replace [a] with @.)
 
- git clone https://github.com/k38-suzuki/hairo-world-plugin.git
-
-This creates a “hairo-world-plugin” directory that holds the repository. In this directory, you can use commands such as ::
-
- git pull
-
-to update to the source code to the latest available version.
-
-For details on how to use git, see the git manual and explanatory articles.
+Upon receipt of your Application Form, a JAEA representative will send you a download link via email. Once you have obtained the source code, please unzip it and place the contents into the ext directory located directly under the Choreonoid source directory.
 
 Installing dependent packages
 -----------------------------
