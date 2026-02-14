@@ -6,4 +6,5 @@ MotionCaptureプラグイン
    :maxdepth: 2
 
    motion
-
+   collision
+   logger

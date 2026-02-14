@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>JoystickStartプラグイン &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
+    <title>干渉の記録・表示 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=601dbdee" />
     <script src="../_static/documentation_options.js?v=7026087e"></script>
@@ -13,8 +13,8 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ジョイスティック状態の表示" href="status.html" />
-    <link rel="prev" title="プロジェクトの履歴表示・読み込み" href="../bookmark/history.html" /> 
+    <link rel="next" title="ジョイスティック状態の記録" href="logger.html" />
+    <link rel="prev" title="マーカ軌道の記録と表示" href="motion.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -23,13 +23,14 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="status.html" title="ジョイスティック状態の表示"
+          <a href="logger.html" title="ジョイスティック状態の記録"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../bookmark/history.html" title="プロジェクトの履歴表示・読み込み"
+          <a href="motion.html" title="マーカ軌道の記録と表示"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">JoystickStartプラグイン</a></li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">MotionCaptureプラグイン</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">干渉の記録・表示</a></li> 
       </ul>
     </div>  
 
@@ -38,22 +39,37 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="joystickstart">
-<h1>JoystickStartプラグイン<a class="headerlink" href="#joystickstart" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="status.html">ジョイスティック状態の表示</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="status.html#id2">入力状態の表示</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="joystick.html">シミュレーションの操作</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html#id2">機能の有効化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html#id3">シミュレーションの開始・停止・一時停止・再開</a></li>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html#id4">プロジェクトの読み込み</a></li>
-</ul>
-</li>
-</ul>
-</div>
+  <section id="id1">
+<h1>干渉の記録・表示<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>モーションキャプチャアイテムは、パッシブマーカの記録と同時に干渉の有無も記録します。ここでは、モーションキャプチャを使った干渉の記録の仕方を説明します。</p>
+<section id="id2">
+<h2>モーションキャプチャアイテムの作成と設定<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>シミュレーションの実行主体となるモーションキャプチャアイテムを生成します。既に対象とするボディの子アイテムとしてモーションキャプチャアイテムを配置している場合はこの手順は不要です。
+メインメニューの「ファイル」-「新規」-「モーションキャプチャ」を選択して生成してください。生成したモーションキャプチャアイテムは、対象とするボディの子アイテムとして配置します。</p>
+</section>
+<section id="id3">
+<h2>シミュレーションの実行<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションを開始すると”Motion”以下に干渉の有無を記録する子アイテム「CollisionSeq-&lt;date&gt;」がアイテムツリービューに登録されます。
+ここで&lt;date&gt;は日時のサフィックスです。</p>
+</section>
+<section id="id4">
+<h2>干渉のファイル出力<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<p>以下の手順で記録した干渉をファイル出力します。</p>
+<ol class="arabic simple">
+<li><p>シミュレーション実行後に自動生成されたアイテム「Collision-&lt;date&gt;」を選択する。</p></li>
+<li><p>「メニュー」-「ファイル」から「選択したアイテムのエクスポート」を選択する。</p></li>
+<li><p>表示されるダイアログにファイル名を入力し、「保存」ボタンを押す。</p></li>
+</ol>
+</section>
+<section id="id5">
+<h2>干渉のグラフ表示<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<p>以下の手順で記録した干渉をグラフ表示できます。</p>
+<ol class="arabic simple">
+<li><p>「メニュー」-「表示」-「ビューの表示」から「Multi Value Seq」を選択する。</p></li>
+<li><p>グラフ表示を行うアイテム「Collision-&lt;date&gt;」を選択する。</p></li>
+<li><p>Multi Value Seqビューの左側に表示されている数字（jointId）を選択する。</p></li>
+</ol>
+</section>
 </section>
 
 
@@ -70,16 +86,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MotionCaptureプラグイン</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="motion.html">マーカ軌道の記録と表示</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">干渉の記録・表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">ジョイスティック状態の記録</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyEditプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../file/index.html">FileExplorerプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">JoystickStartプラグイン</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="status.html">ジョイスティック状態の表示</a></li>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">JoystickStartプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>
@@ -138,13 +155,14 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="status.html" title="ジョイスティック状態の表示"
+          <a href="logger.html" title="ジョイスティック状態の記録"
              >next</a> |</li>
         <li class="right" >
-          <a href="../bookmark/history.html" title="プロジェクトの履歴表示・読み込み"
+          <a href="motion.html" title="マーカ軌道の記録と表示"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">JoystickStartプラグイン</a></li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >MotionCaptureプラグイン</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">干渉の記録・表示</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
