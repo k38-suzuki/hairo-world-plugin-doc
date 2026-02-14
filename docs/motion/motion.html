@@ -13,7 +13,7 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="CollisionSeqプラグイン" href="../collision/index.html" />
+    <link rel="next" title="PHITSプラグイン" href="../phits/index.html" />
     <link rel="prev" title="MotionCaptureプラグイン" href="index.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -23,7 +23,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../collision/index.html" title="CollisionSeqプラグイン"
+          <a href="../phits/index.html" title="PHITSプラグイン"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="MotionCaptureプラグイン"
@@ -41,11 +41,11 @@
             
   <section id="id1">
 <h1>ロボットの移動経路の記録・表示<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
-<p>ここでは、モーションキャプチャを使ったロボットの移動経路の記録・表示の仕方を説明します。</p>
+<p>ここでは、モーションキャプチャを使ったロボットの移動経路の記録・表示の仕方と干渉の記録の仕方を説明します。</p>
 <section id="id2">
 <h2>モーションキャプチャアイテムの作成と設定<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
-<p>シミュレーションの実行主体となるモーションキャプチャアイテムを生成します。</p>
-<p>ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「モーションキャプチャ」を選択して生成してください。生成したモーションキャプチャは、AISTシミュレータアイテムの子アイテムとして配置します。</p>
+<p>シミュレーションの実行主体となるモーションキャプチャアイテムを生成します。
+メインメニューの「ファイル」-「新規」-「モーションキャプチャ」を選択して生成してください。生成したモーションキャプチャアイテムは、対象とするボディの子アイテムとして配置します。</p>
 </section>
 <section id="id3">
 <h2>パッシブマーカの設定<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
@@ -101,8 +101,26 @@
 </section>
 <section id="id4">
 <h2>シミュレーションの実行<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
-<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに終了するとシーンビュー内にパッシブマーカの移動経路が表示されます。また、移動経路はポイントセットアイテムとして記録され、モーションキャプチャアイテムの子アイテムとしてアイテムツリービューに登録されます。ポイントセットアイテムのチェックボタンを押すことで、移動経路の表示・非表示を切り替えることができます。記録した移動経路は、ホームディレクトリのcapture以下にパッシブマーカ毎に格納されています。</p>
+<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに終了するとシーンビュー内にパッシブマーカの移動経路が表示されます。また、移動経路はポイントセットアイテムとして記録され、モーションキャプチャアイテムの子アイテムとしてアイテムツリービューに登録されます。ポイントセットアイテムのチェックボタンを押すことで、移動経路の表示・非表示を切り替えることができます。記録した移動経路は、ホームディレクトリの“ダウンロード”以下にパッシブマーカ毎に格納されています。</p>
 <img alt="../_images/motion_1.png" src="../_images/motion_1.png" />
+</section>
+<section id="id5">
+<h2>干渉のファイル出力<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<p>以下の手順で記録した干渉をファイル出力します。</p>
+<ol class="arabic simple">
+<li><p>シミュレーション実行後に自動生成されたアイテム「Collision-&lt;date&gt;」を選択する。&lt;date&gt;は日時のサフィックスです。</p></li>
+<li><p>「メニュー」-「ファイル」から「選択したアイテムのエクスポート」を選択する。</p></li>
+<li><p>表示されるダイアログにファイル名を入力し、「保存」ボタンを押す。</p></li>
+</ol>
+</section>
+<section id="id6">
+<h2>干渉のグラフ表示<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<p>以下の手順で記録した干渉をグラフ表示できます。</p>
+<ol class="arabic simple">
+<li><p>「メニュー」-「表示」-「ビューの表示」から「Multi Value Seq」を選択する。</p></li>
+<li><p>グラフ表示を行うアイテム「Collision-&lt;date&gt;」を選択する。</p></li>
+<li><p>Multi Value Seqビューの左側に表示されている数字（jointId）を選択する。</p></li>
+</ol>
 </section>
 </section>
 
@@ -124,7 +142,6 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">ロボットの移動経路の記録・表示</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../collision/index.html">CollisionSeqプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyEditプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../file/index.html">FileExplorerプラグイン</a></li>
@@ -188,7 +205,7 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../collision/index.html" title="CollisionSeqプラグイン"
+          <a href="../phits/index.html" title="PHITSプラグイン"
              >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="MotionCaptureプラグイン"
