@@ -17,9 +17,8 @@ HAIROWorldPluginマニュアル
    netem/index
    vfx/index
    motion/index
-   collision/index
-   phits/index   
-   body/index   
+   phits/index
+   body/index
    file/index
    bookmark/index
    joystick/index
