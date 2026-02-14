@@ -13,8 +13,8 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="シミュレーションの操作" href="joystick.html" />
-    <link rel="prev" title="ジョイスティック状態の表示" href="status.html" /> 
+    <link rel="next" title="PHITSプラグイン" href="../phits/index.html" />
+    <link rel="prev" title="干渉の記録・表示" href="collision.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -23,13 +23,13 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="joystick.html" title="シミュレーションの操作"
+          <a href="../phits/index.html" title="PHITSプラグイン"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="status.html" title="ジョイスティック状態の表示"
+          <a href="collision.html" title="干渉の記録・表示"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">JoystickStartプラグイン</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">MotionCaptureプラグイン</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">ジョイスティック状態の記録</a></li> 
       </ul>
     </div>  
@@ -41,17 +41,17 @@
             
   <section id="id1">
 <h1>ジョイスティック状態の記録<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
-<p>ここでは、ジョイスティック状態の記録の仕方を説明します。この機能は、接続されているジョイスティック（/dev/input/js0のみ対応）のスティックとボタンの状態を記録するものです。ジョイスティックが接続されていない場合は、「仮想ジョイスティック」の状態を記録できます。</p>
+<p>モーションキャプチャアイテムは、パッシブマーカの記録と同時にジョイスティック状態も記録します。ここでは、ジョイスティック状態の記録の仕方を説明します。</p>
 <section id="id2">
 <h2>ジョイスティック状態の記録の設定<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
-<p>ジョイスティック状態の記録を行うジョイスティックロガーを生成します。
-ここでは、Choreonoidの標準のシミュレータアイテムである「AISTシミュレータ」を用います。メインメニューの「ファイル」-「新規」-「ジョイスティックロガー」を選択して「JoystickLogger」生成してください。生成したJoystickLoggerは、AISTシミュレータアイテムの小アイテムとして配置します。</p>
-<p>次に、以下の手順でJoystickLoggerの設定を変更してください。</p>
+<p>シミュレーションの実行主体となるモーションキャプチャアイテムを生成します。既に対象とするボディの子アイテムとしてモーションキャプチャアイテムを配置している場合はこの手順は不要です。
+メインメニューの「ファイル」-「新規」-「モーションキャプチャ」を選択して生成してください。生成したモーションキャプチャアイテムは、対象とするボディの子アイテムとして配置します。</p>
+<p>次に、以下の手順でモーションキャプチャアイテムの設定を変更してください。</p>
 <ol class="arabic simple">
-<li><p>アイテムツリービュー上で「JoystickLogger」を選択する。</p></li>
-<li><p>プロパティビュー上で「ジョイスティック状態の記録」の設定を「true」に変更する。</p></li>
+<li><p>アイテムツリービュー上で「MotionCapture」を選択する。</p></li>
+<li><p>プロパティビュー上の「デバイス」で任意のジョイスティックのデバイス名を指定する。</p></li>
 </ol>
-<p>JoystickLoggerの設定の詳細は以下のとおりです。</p>
+<p>モーションキャプチャアイテムの設定の詳細は以下のとおりです。</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 17.4%" />
@@ -67,23 +67,24 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>ジョイスティック状態の記録</p></td>
-<td><p>false</p></td>
+<tr class="row-even"><td><p>デバイス</p></td>
+<td><p>/dev/input/js0</p></td>
 <td><p>-</p></td>
-<td><p>trueの場合にジョイスティック状態を記録します。</p></td>
+<td><p>任意のジョイスティックのデバイス名を指定する。</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="id3">
 <h2>シミュレーションの実行<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
-<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功すると、ジョイスティック状態を記録したアイテム「Joystick States」がジョイスティックロガーの小アイテムとして自動生成されます。</p>
+<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションを開始すると”Motion”以下にジョイスティック状態を記録する子アイテム「JoystickSeq-&lt;date&gt;」がアイテムツリービューに登録されます。
+ここで&lt;date&gt;は日時のサフィックスです。</p>
 </section>
 <section id="id4">
 <h2>ジョイスティック状態のファイル出力<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <p>以下の手順で記録したジョイスティック状態をファイル出力します。</p>
 <ol class="arabic simple">
-<li><p>シミュレーション実行後に自動生成されたアイテム「Joystick States」を選択する。</p></li>
+<li><p>シミュレーション実行後に自動生成されたアイテム「JoystickSeq-&lt;date&gt;」を選択する。</p></li>
 <li><p>「メニュー」-「ファイル」から「選択したアイテムのエクスポート」を選択する。</p></li>
 <li><p>表示されるダイアログにファイル名を入力し、「保存」ボタンを押す。</p></li>
 </ol>
@@ -95,7 +96,7 @@
 <p>以下の手順で記録したジョイスティック状態をグラフ表示できます。</p>
 <ol class="arabic simple">
 <li><p>「メニュー」-「表示」-「ビューの表示」から「Multi Value Seq」を選択する。</p></li>
-<li><p>グラフ表示を行うアイテム「Joystick States」を選択する。</p></li>
+<li><p>グラフ表示を行うアイテム「JoystickSeq-&lt;date&gt;」を選択する。</p></li>
 <li><p>Multi Value Seqビューの左側に表示されている数字を選択する。</p></li>
 </ol>
 <p>Multi Value Seqビューの左側に表示されている数字は、ジョイスティックの各スティック・ボタンに対応しており、全スティック-全ボタンの順番で割り当てられています。
@@ -117,17 +118,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MotionCaptureプラグイン</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="motion.html">マーカ軌道の記録と表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision.html">干渉の記録・表示</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ジョイスティック状態の記録</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyEditプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../file/index.html">FileExplorerプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">JoystickStartプラグイン</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="status.html">ジョイスティック状態の表示</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ジョイスティック状態の記録</a></li>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">JoystickStartプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>
@@ -186,13 +187,13 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="joystick.html" title="シミュレーションの操作"
+          <a href="../phits/index.html" title="PHITSプラグイン"
              >next</a> |</li>
         <li class="right" >
-          <a href="status.html" title="ジョイスティック状態の表示"
+          <a href="collision.html" title="干渉の記録・表示"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >JoystickStartプラグイン</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >MotionCaptureプラグイン</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">ジョイスティック状態の記録</a></li> 
       </ul>
     </div>

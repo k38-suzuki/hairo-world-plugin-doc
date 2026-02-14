@@ -6,5 +6,4 @@ JoystickStartプラグイン
    :maxdepth: 2
 
    status
-   logger
    joystick
