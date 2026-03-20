@@ -6,7 +6,7 @@
 HAIROWorldPluginマニュアル
 ==========================
 
-　このサイトでは、日本原子力研究開発機構が開発したChoreonoidの拡張機能「HAIROWorldPlugin」の使い方を説明します。HAIROWorldPluginは、Choreonoid開発版上で動作することを確認しており、今後もChoreonoidの最新のバージョンに対応していく予定です。 **（2024/12時点では、choreonoid-2.2に対応しています。）** 対応OSはUbuntu18.04 LTS、Ubuntu20.04 LTSとUbuntu22.04 LTSです。他のOS、ディストリビューション、バージョン、アーキテクチャについては、公式にはサポートしておりません。Ubuntuベースの他のディストリビューションでは、ビルドをうまく通せば動作する可能性もありますが、保証はできません。また、VMWare・VirtualBox等の仮想マシンでの使用についても動作を保証できませんので、予めご了承ください。
+　このサイトでは、日本原子力研究開発機構が開発したChoreonoidの拡張機能「HAIROWorldPlugin」の使い方を説明します。HAIROWorldPluginは、Choreonoid開発版上で動作することを確認しており、今後もChoreonoidの最新のバージョンに対応していく予定です。 **（2026/03時点では、choreonoid-2.4に対応しています。）** 対応OSはUbuntu22.04 LTSとUbuntu24.04 LTSです。他のOS、ディストリビューション、バージョン、アーキテクチャについては、公式にはサポートしておりません。Ubuntuベースの他のディストリビューションでは、ビルドをうまく通せば動作する可能性もありますが、保証はできません。また、VMWare・VirtualBox等の仮想マシンでの使用についても動作を保証できませんので、予めご了承ください。
 
 .. toctree::
    :maxdepth: 2
@@ -19,7 +19,6 @@ HAIROWorldPluginマニュアル
    motion/index
    phits/index
    body/index
-   file/index
    bookmark/index
    joystick/index
    ompl/index

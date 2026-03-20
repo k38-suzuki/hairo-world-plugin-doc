@@ -11,7 +11,6 @@ Extensions
    motion
    collision
    joystick
-   explorer
    bookmark
    generator
    inertia

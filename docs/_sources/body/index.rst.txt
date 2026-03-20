@@ -1,6 +1,6 @@
 
-BodyEditプラグイン
-==================
+BodyCreatorプラグイン
+=====================
 
 .. toctree::
    :maxdepth: 2

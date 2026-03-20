@@ -48,11 +48,11 @@
 <div class="line">ネットワークエミュレータは、Choreonoidのワールド内のロボットをOpenRTM・ROS等を用いてイーサネット経由で操縦する場合に使用できます。</div>
 </div>
 </div>
-<section id="bodynetem">
-<h2>BodyNetEmアイテムの作成と設定<a class="headerlink" href="#bodynetem" title="Link to this heading">¶</a></h2>
-<p>まずBodyNetEmアイテムを作成します。シミュレーション中に通信を行うボディをアイテムツリービューで選択して、続けてメインメニューの「ファイル」-「新規」-「BodyNetEm」を選択して生成してください。
-生成したBodyNetEmアイテムが選択したボディの子アイテムとして配置されます。シミュレーション中に通信を行うボディが複数ある場合には、ボディ毎にBodyNetEmアイテムを1つずつ子アイテムとして配置します。</p>
-<p>次にBodyNetEmアイテムのパラメータを設定します。BodyNetEmアイテムのパラメータは以下の通りです。</p>
+<section id="netem">
+<h2>ボディNetEmコントローラアイテムの作成と設定<a class="headerlink" href="#netem" title="Link to this heading">¶</a></h2>
+<p>まずボディNetEmコントローラアイテムを作成します。シミュレーション中に通信を行うボディをアイテムツリービューで選択して、続けてメインメニューの「ファイル」-「新規」-「ボディNetEmコントローラ」を選択して生成してください。
+生成したボディNetEmコントローラアイテムが選択したボディの子アイテムとして配置されます。シミュレーション中に通信を行うボディが複数ある場合には、ボディ毎にボディNetEmコントローラアイテムを1つずつ子アイテムとして配置します。</p>
+<p>次にボディNetEmコントローラアイテムのパラメータを設定します。ボディNetEmコントローラアイテムのパラメータは以下の通りです。</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 16.8%" />
@@ -81,11 +81,11 @@
 <tr class="row-even"><td><p>送信先IPアドレス</p></td>
 <td><p>-</p></td>
 <td><p>-</p></td>
-<td><p>パケットの送信先のIPアドレスを指定します。BodyNetEmアイテムを配置したボディが通信を行う任意の送信先のIPアドレスを入力してください。また、IPアドレスの後ろにはプレフィックス帳を必ず付与してください。具体的には、xxx.xxx.xxx.xxx/32のように指定します。ここでは/32として指定したIPアドレスのみを送信先に指定しています。</p></td>
+<td><p>パケットの送信先のIPアドレスを指定します。ボディNetEmコントローラアイテムを配置したボディが通信を行う任意の送信先のIPアドレスを入力してください。また、IPアドレスの後ろにはプレフィックス帳を必ず付与してください。具体的には、xxx.xxx.xxx.xxx/32のように指定します。ここでは/32として指定したIPアドレスのみを送信先に指定しています。</p></td>
 </tr>
 </tbody>
 </table>
-<p>以上でBodyNetEmアイテムの設定は完了です。</p>
+<p>以上でボディNetEmコントローラアイテムの設定は完了です。</p>
 </section>
 <section id="id2">
 <h2>マルチコライダアイテムの作成と設定<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
@@ -210,10 +210,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyEditプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../file/index.html">FileExplorerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">JoystickStartプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>

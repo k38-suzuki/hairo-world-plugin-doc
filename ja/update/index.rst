@@ -177,10 +177,6 @@
 
  * :doc:`../bookmark/bookmark` を更新
 
-* 2021/08/04
-
- * :doc:`../collision/collision` を更新
-
 * 2021/07/26
 
  * 各ページの画面例を更新
@@ -192,13 +188,7 @@
 
 * 2021/05/27
 
- * :doc:`../collision/collision` を更新
  * :doc:`../joystick/status` を更新
- * :doc:`../joystick/logger` を更新
-
-* 2021/05/26
-
- * :doc:`../joystick/logger` を追加
 
 * 2021/05/21
 
@@ -212,7 +202,6 @@
  * :doc:`../body/inertia` を追加
  * :doc:`../joystick/status` を追加
  * :doc:`../body/pipe` を追加
- * :doc:`../collision/collision` を追加
 
 * 2021/03/16
 
