@@ -1,6 +1,6 @@
 
-JoystickStartプラグイン
-=======================
+VirtualJoystickプラグイン
+=========================
 
 .. toctree::
    :maxdepth: 2

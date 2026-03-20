@@ -41,15 +41,15 @@
             
   <section id="id1">
 <h1>マーカ軌道の記録と表示<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
-<p>この機能は”パッシブマーカ”デバイスの位置と姿勢を時系列データとして記録・表示するものです。ここでは、モーションキャプチャアイテムを使ったパッシブマーカ軌道の記録と表示の仕方を説明します。</p>
+<p>この機能は”パッシブマーカ”デバイスの位置と姿勢を時系列データとして記録・表示するものです。ここでは、モーションキャプチャコントローラアイテムを使ったパッシブマーカ軌道の記録と表示の仕方を説明します。</p>
 <section id="id2">
-<h2>モーションキャプチャアイテムの作成と設定<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
-<p>シミュレーションの実行主体となるモーションキャプチャアイテムを生成します。
-メインメニューの「ファイル」-「新規」-「モーションキャプチャ」を選択して生成してください。生成したモーションキャプチャアイテムは、対象とするボディの子アイテムとして配置します。</p>
+<h2>モーションキャプチャコントローラアイテムの作成と設定<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>シミュレーションの実行主体となるモーションキャプチャコントローラアイテムを生成します。
+メインメニューの「ファイル」-「新規」-「モーションキャプチャコントローラ」を選択して生成してください。生成したモーションキャプチャコントローラアイテムは、対象とするボディの子アイテムとして配置します。</p>
 </section>
 <section id="id3">
 <h2>パッシブマーカの設定<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
-<p>モーションキャプチャアイテムは、ボディに設定したパッシブマーカの位置と姿勢を記録します。パッシブマーカは、カメラやライト等と同様に、任意のリンクのelements以下に記述します。以下は、パッシブマーカの記述例です。</p>
+<p>モーションキャプチャコントローラアイテムは、ボディに設定したパッシブマーカの位置と姿勢を記録します。パッシブマーカは、カメラやライト等と同様に、任意のリンクのelements以下に記述します。以下は、パッシブマーカの記述例です。</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PassiveMarker</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RedMarker</span>
@@ -101,7 +101,7 @@
 </section>
 <section id="id4">
 <h2>シミュレーションの実行<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
-<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションが終了するとシーンビュー内にパッシブマーカの軌道が表示されます。また、パッシブマーカの軌道はポイントセットアイテムとして記録され、モーションキャプチャアイテムの子アイテムとしてアイテムツリービューに登録されます。ポイントセットアイテムのチェックボタンを押すことで、パッシブマーカの軌道の表示・非表示を切り替えることができます。</p>
+<p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションが終了するとシーンビュー内にパッシブマーカの軌道が表示されます。また、パッシブマーカの軌道はポイントセットアイテムとして記録され、モーションキャプチャコントローラアイテムの子アイテムとしてアイテムツリービューに登録されます。ポイントセットアイテムのチェックボタンを押すことで、パッシブマーカの軌道の表示・非表示を切り替えることができます。</p>
 <img alt="../_images/motion_1.png" src="../_images/motion_1.png" />
 </section>
 </section>
@@ -127,10 +127,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyEditプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../file/index.html">FileExplorerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">JoystickStartプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>
