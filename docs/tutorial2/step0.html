@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 0: Creating a drone model &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
+
+  
+  
+        <script src="../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=1a6bc256"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=4dbe4bdc"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Step 1: Creating a simulation project" href="step1.html" />
+    <link rel="prev" title="Drone tutorial" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            hairo-world-plugin-doc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Crawlerチュートリアル</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Drone tutorial</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Step 0: Creating a drone model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#drone-model">Drone model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-model-structure">Basic Model Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preparing-the-model-file">Preparing the Model File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#about-yaml">About YAML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-header">Writing the Header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-links">Writing Links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#link-node">Link Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-chassis-link">Writing the Chassis Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#root-link-specific-description">Root Link-Specific Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-rigid-body-parameters">Writing Rigid Body Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-chassis-shape">Writing the Chassis Shape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checking-the-model-being-edited">Checking the Model Being Edited</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-anchors">Setting Anchors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-elements">Writing elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-aliases">Using Aliases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-devices">Writing Devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-camera">Writing the Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-camera-position-and-orientation">Writing Camera Position and Orientation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#camera-shape">Camera Shape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-imu">Writing the IMU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-batterydevice">Writing the BatteryDevice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-rotor-link">Writing the Rotor Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-link-relative-position">Writing Link Relative Position</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-joint">Writing the Joint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checking-joint-operation">Checking Joint Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rigidbody-node">RigidBody Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transform-node">Transform Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transform-parameters">Transform Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-front-right-rotor">Writing the Front Right Rotor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-front-left-rotor">Writing the Front Left Rotor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-rear-left-rotor">Writing the Rear Left Rotor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-rear-right-rotor">Writing the Rear Right Rotor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html">Step 1: Creating a simulation project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html">Step 2: Implementing a controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html">Step 3: Controlling the drone with a gamepad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html">Step 4: Simulating and polling camera images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drone.html">Full description of the drone model file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hairo-world-plugin-doc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Drone tutorial</a></li>
+      <li class="breadcrumb-item active">Step 0: Creating a drone model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorial2/step0.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="step-0-creating-a-drone-model">
+<h1>Step 0: Creating a drone model<a class="headerlink" href="#step-0-creating-a-drone-model" title="Link to this heading"></a></h1>
+<p>This page contains a tutorial describing how to format Body files, the standard model file used on Choreonoid.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#drone-model" id="id26">Drone model</a></p></li>
+<li><p><a class="reference internal" href="#basic-model-structure" id="id27">Basic Model Structure</a></p></li>
+<li><p><a class="reference internal" href="#preparing-the-model-file" id="id28">Preparing the Model File</a></p></li>
+<li><p><a class="reference internal" href="#about-yaml" id="id29">About YAML</a></p></li>
+<li><p><a class="reference internal" href="#writing-the-header" id="id30">Writing the Header</a></p></li>
+<li><p><a class="reference internal" href="#writing-links" id="id31">Writing Links</a></p></li>
+<li><p><a class="reference internal" href="#link-node" id="id32">Link Node</a></p></li>
+<li><p><a class="reference internal" href="#writing-the-chassis-link" id="id33">Writing the Chassis Link</a></p></li>
+<li><p><a class="reference internal" href="#root-link-specific-description" id="id34">Root Link-Specific Description</a></p></li>
+<li><p><a class="reference internal" href="#writing-rigid-body-parameters" id="id35">Writing Rigid Body Parameters</a></p></li>
+<li><p><a class="reference internal" href="#writing-the-chassis-shape" id="id36">Writing the Chassis Shape</a></p></li>
+<li><p><a class="reference internal" href="#checking-the-model-being-edited" id="id37">Checking the Model Being Edited</a></p></li>
+<li><p><a class="reference internal" href="#setting-anchors" id="id38">Setting Anchors</a></p></li>
+<li><p><a class="reference internal" href="#writing-elements" id="id39">Writing elements</a></p></li>
+<li><p><a class="reference internal" href="#using-aliases" id="id40">Using Aliases</a></p></li>
+<li><p><a class="reference internal" href="#writing-devices" id="id41">Writing Devices</a></p></li>
+<li><p><a class="reference internal" href="#writing-the-camera" id="id42">Writing the Camera</a></p></li>
+<li><p><a class="reference internal" href="#writing-camera-position-and-orientation" id="id43">Writing Camera Position and Orientation</a></p></li>
+<li><p><a class="reference internal" href="#camera-shape" id="id44">Camera Shape</a></p></li>
+<li><p><a class="reference internal" href="#writing-the-imu" id="id45">Writing the IMU</a></p></li>
+<li><p><a class="reference internal" href="#writing-the-batterydevice" id="id46">Writing the BatteryDevice</a></p></li>
+<li><p><a class="reference internal" href="#writing-the-rotor-link" id="id47">Writing the Rotor Link</a></p></li>
+<li><p><a class="reference internal" href="#writing-link-relative-position" id="id48">Writing Link Relative Position</a></p></li>
+<li><p><a class="reference internal" href="#writing-the-joint" id="id49">Writing the Joint</a></p></li>
+<li><p><a class="reference internal" href="#checking-joint-operation" id="id50">Checking Joint Operation</a></p></li>
+<li><p><a class="reference internal" href="#rigidbody-node" id="id51">RigidBody Node</a></p></li>
+<li><p><a class="reference internal" href="#transform-node" id="id52">Transform Node</a></p></li>
+<li><p><a class="reference internal" href="#transform-parameters" id="id53">Transform Parameters</a></p></li>
+<li><p><a class="reference internal" href="#writing-the-front-right-rotor" id="id54">Writing the Front Right Rotor</a></p></li>
+<li><p><a class="reference internal" href="#writing-the-front-left-rotor" id="id55">Writing the Front Left Rotor</a></p></li>
+<li><p><a class="reference internal" href="#writing-the-rear-left-rotor" id="id56">Writing the Rear Left Rotor</a></p></li>
+<li><p><a class="reference internal" href="#writing-the-rear-right-rotor" id="id57">Writing the Rear Right Rotor</a></p></li>
+</ul>
+</nav>
+<section id="drone-model">
+<span id="bodyfile-tutorial-drone-model"></span><h2><a class="toc-backref" href="#id26" role="doc-backlink">Drone model</a><a class="headerlink" href="#drone-model" title="Link to this heading"></a></h2>
+<p>The model we will be working with is the &quot;Drone&quot; model shown below.</p>
+<a class="reference internal image-reference" href="../_images/step0-1.png"><img alt="../_images/step0-1.png" src="../_images/step0-1.png" style="width: 320px;" /></a>
+<p>This is a model composed of four rotor links, and four virtual rotors, with a camera, a IMU and battery mounted as devices.
+Drone is a simplified small toy drone, and has the same basic structure.</p>
+</section>
+<section id="basic-model-structure">
+<h2><a class="toc-backref" href="#id27" role="doc-backlink">Basic Model Structure</a><a class="headerlink" href="#basic-model-structure" title="Link to this heading"></a></h2>
+<p>The Drone consists of five parts as shown in the figure below.</p>
+<a class="reference internal image-reference" href="../_images/step0-2.png"><img alt="../_images/step0-2.png" src="../_images/step0-2.png" style="width: 320px;" /></a>
+<p>The base part is the chassis. The upper part of the chassis is equipped with rotors. This part consists of four components: a base for the rotor links that is applied thrusts and and anti-torques by using the virtual rotors.
+These five parts are modeled as &quot;links.&quot; The chassis part is the central part of the model and is modeled as the &quot;root link.&quot; Each model must have exactly one root link defined. The four rotor links are each modeled as fixed joints.
+This is to simplify the simulation and achieve real-time performance. Consequently, while actual drones generate thrust by rotating propellers, our simulator does not require a mechanism for propeller rotation.
+The hierarchical structure (parent-child relationships) between these links is as follows:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Chassis (root)</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">+ Front Right Rotor (Fixed joint)</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">+ Front Left Rotor (Fixed joint)</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">+ Rear Left Rotor (Fixed joint)</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">+ Rear Right Rotor (Fixed joint)</span>
+</pre></div>
+</div>
+<p>In this tutorial, we will describe the shape of each link as text directly in the model file.
+This allows us to complete the modeling with just text files, without using shape data created with CAD or modeling tools. However, it is also possible to use shape data created with CAD or modeling tools.
+Please refer to <a class="reference external" href="https://choreonoid.org/en/manuals/latest/handling-models/modelfile/tank-blender.html">Using external mesh files</a> for more information on this.</p>
+</section>
+<section id="preparing-the-model-file">
+<h2><a class="toc-backref" href="#id28" role="doc-backlink">Preparing the Model File</a><a class="headerlink" href="#preparing-the-model-file" title="Link to this heading"></a></h2>
+<p>Body format model files are created as text files. The file extension is usually &quot;.body&quot;.
+To start creating a model file, first create an empty text file using a text editor and save it with an appropriate filename with the &quot;.body&quot; extension. In this case, we'll save it as &quot;drone.body&quot;.
+This tutorial will explain the contents of that file while showing an example of the creation process leading to completion.
+The complete description can be found in <a class="reference internal" href="drone.html"><span class="doc">Full description of the drone model file</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>When creating model files using Ubuntu's standard text editor &quot;gnome-text-editor,&quot; selecting &quot;YAML&quot; in the settings dialog displayed from the main menu's &quot;View&quot; - &quot;Highlight Mode&quot; will provide syntax highlighting suitable for YAML format, making it easier to edit.</p>
+</div>
+</section>
+<section id="about-yaml">
+<h2><a class="toc-backref" href="#id29" role="doc-backlink">About YAML</a><a class="headerlink" href="#about-yaml" title="Link to this heading"></a></h2>
+<p>Body files use YAML as the base description format.
+While you can generally understand how to write YAML by reading the explanation below, for more detailed information, please refer to the <a class="reference external" href="http://www.yaml.org/spec/1.2/spec.html">YAML specification</a> and various tutorial articles.</p>
+</section>
+<section id="writing-the-header">
+<h2><a class="toc-backref" href="#id30" role="doc-backlink">Writing the Header</a><a class="headerlink" href="#writing-the-header" title="Link to this heading"></a></h2>
+<p>First, write the following as the model file header using YAML mapping:
+<strong>Append the following to &quot;drone.body.&quot;</strong></p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Header</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChoreonoidBody</span>
+<span class="nt">formatVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="nt">angleUnit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degree</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Drone</span>
+</pre></div>
+</div>
+</div>
+<p>The first line allows this file to be recognized as a Choreonoid model file.</p>
+<p>format_version is used to distinguish between different versions of the description format.
+Currently, version 2.0 is the latest. In this section, we will use Version 1.0 to explain the description method; however, it is perfectly acceptable to use Version 2.0 instead.</p>
+<p>The model name is written in &quot;name&quot;. Here we set it as &quot;Drone&quot;.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Keys used in Body files are basically named in &quot;snake case&quot; format. This means writing all key strings in lowercase and connecting multiple words with underscores (_). The &quot;format_version&quot; above is also in this format. However, in older versions of Choreonoid, all keys were named in &quot;lower camel case.&quot; This capitalizes the first letter of each word boundary, resulting in descriptions like &quot;formatVersion&quot;. Previously defined lower camel case keys can still be read for compatibility, but please use the new format going forward. Note that some keys are still only defined in lower camel case.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>When the description format version is 1.0, you can also specify the unit for angles described in the Body file. Specifically, if you specify &quot;degree&quot; for &quot;angleUnit&quot;, it uses degrees, and if you specify &quot;radian&quot;, it uses radians. However, this can cause confusion, so version 2.0 always uses degrees for description.</p>
+</div>
+</section>
+<section id="writing-links">
+<span id="modelfile-yaml-links"></span><h2><a class="toc-backref" href="#id31" role="doc-backlink">Writing Links</a><a class="headerlink" href="#writing-links" title="Link to this heading"></a></h2>
+<p>Information about the links that the model has is written in &quot;links:&quot; as follows:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">links</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Description of link 1 (root link)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Description of link 2</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Description of link 3</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+<p>This way, you can describe any number of links as a YAML list. The description part of each link is called a &quot;Link node.&quot; The first Link node described is considered the model's root link.</p>
+</section>
+<section id="link-node">
+<span id="modelfile-yaml-link-node"></span><h2><a class="toc-backref" href="#id32" role="doc-backlink">Link Node</a><a class="headerlink" href="#link-node" title="Link to this heading"></a></h2>
+<p>Link nodes are written in YAML mapping format. The following parameters are available as mapping elements.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>name</p></td>
+<td><p>Link name</p></td>
+</tr>
+<tr class="row-odd"><td><p>parent</p></td>
+<td><p>Parent link. Specified by the parent link's name (string written in name). Not used for root link</p></td>
+</tr>
+<tr class="row-even"><td><p>translation</p></td>
+<td><p>Relative position of this link's local frame from parent link. For root link, used as default position when loading model</p></td>
+</tr>
+<tr class="row-odd"><td><p>rotation</p></td>
+<td><p>Relative orientation of this link's local frame from parent link. Orientation is expressed with 4 numbers corresponding to rotation axis and rotation angle (Axis-Angle format). For root link, used as default orientation when loading model</p></td>
+</tr>
+<tr class="row-even"><td><p>jointType</p></td>
+<td><p>Joint type. Specify one of <strong>fixed</strong> (fixed), <strong>free</strong> (unfixed root link), <strong>revolute</strong> (rotational joint), <strong>prismatic</strong> (linear joint), <strong>pseudo_continuous_track</strong> (simple continuous track)</p></td>
+</tr>
+<tr class="row-odd"><td><p>jointAxis</p></td>
+<td><p>Joint axis. Specify the direction of the joint axis as a list of 3 elements of a 3D vector. The value should be a unit vector. If the joint axis matches any of X, Y, Z in the link's local coordinates, it can also be specified by the corresponding axis character (one of X, Y, Z).</p></td>
+</tr>
+<tr class="row-even"><td><p>jointRange</p></td>
+<td><p>Joint range of motion. List the minimum and maximum values as two values. By writing the value as unlimited, you can remove range restrictions. If the absolute values of minimum and maximum are the same with negative and positive signs respectively, you can write just the absolute value (as a scalar value)</p></td>
+</tr>
+<tr class="row-odd"><td><p>jointId</p></td>
+<td><p>Joint ID value. Specify an integer value of 0 or greater. Any value that doesn't duplicate within the model can be specified. If the link is not a joint (root link or jointType is fixed) or if access by ID value is not needed, it doesn't need to be specified</p></td>
+</tr>
+<tr class="row-even"><td><p>centerOfMass</p></td>
+<td><p>Center of mass position. Specified in link local coordinates</p></td>
+</tr>
+<tr class="row-odd"><td><p>mass</p></td>
+<td><p>Mass [kg]</p></td>
+</tr>
+<tr class="row-even"><td><p>inertia</p></td>
+<td><p>Moment of inertia. List 9 elements of the inertia tensor matrix. Due to the symmetry of the inertia tensor, you may list only the 6 elements of the upper triangular part.</p></td>
+</tr>
+<tr class="row-odd"><td><p>elements</p></td>
+<td><p>Describe child nodes that constitute the link's components</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="writing-the-chassis-link">
+<h2><a class="toc-backref" href="#id33" role="doc-backlink">Writing the Chassis Link</a><a class="headerlink" href="#writing-the-chassis-link" title="Link to this heading"></a></h2>
+<p>Let's first write the root link corresponding to the chassis part of this model. Write the corresponding Link node under links as follows:
+<strong>Append the following to &quot;drone.body.&quot;</strong></p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Chassis Link</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">links</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.03</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">free</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.093</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">1.43e-05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.76e-05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4.22e-05</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</div>
+<p>Since indentation on each line also defines the data structure in YAML, be careful to maintain proper indentation alignment in the above description.
+In the link definition, first set a name to identify the link. Here, we have:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Name of Chassis Link</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
+</pre></div>
+</div>
+</div>
+<p>which sets the name to &quot;CHASSIS&quot;.</p>
+</section>
+<section id="root-link-specific-description">
+<h2><a class="toc-backref" href="#id34" role="doc-backlink">Root Link-Specific Description</a><a class="headerlink" href="#root-link-specific-description" title="Link to this heading"></a></h2>
+<p>In the CHASSIS link, we have:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Translation of Chassis Link</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.03</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</div>
+<p>which sets the initial position when loading the model. (To be precise, this is the position of the root link origin in the world coordinate system.)
+translation is normally a parameter that represents the relative position from the parent link, but the root link has no parent link.
+Instead, it is considered as the relative position from the world coordinate origin when loading the model. Note that the initial orientation can also be set using rotation.
+If you don't care about the initial position, you don't need to set these parameters.
+Here, by setting the Z coordinate value to 0.03, we set the initial position of the root link to be raised 0.03[m] in the Z-axis direction.
+This allows the bottom surface of the crawlers to coincide exactly with the Z=0 plane when loaded, while keeping the root link origin at the center of the chassis.
+Since environmental models often use this as the floor surface, the above setting makes it easy to align with that.</p>
+<p>Next, with:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Joint Type of Chassis Link</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">free</span>
+</pre></div>
+</div>
+</div>
+<p>we set that this model is a model that can move freely in space.
+jointType is normally a parameter that specifies the type of joint connecting parent and child links, but for the root link the meaning is slightly different - it specifies whether the link is fixed to the environment or not.
+If you specify &quot;fixed&quot; here, the link becomes fixed, so set it that way for manipulators whose base is fixed to the floor. On the other hand, for models like this one that are not fixed to a specific location, specify &quot;free&quot; here.</p>
+</section>
+<section id="writing-rigid-body-parameters">
+<span id="modelfile-yaml-rigidbody-parameters"></span><h2><a class="toc-backref" href="#id35" role="doc-backlink">Writing Rigid Body Parameters</a><a class="headerlink" href="#writing-rigid-body-parameters" title="Link to this heading"></a></h2>
+<p>Each link is usually modeled as a rigid body. The <a class="reference internal" href="#modelfile-yaml-link-node"><span class="std std-ref">Link Node</span></a> for describing this information includes centerOfMass, mass, and inertia. For the CHASSIS link, these are written as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Rigid Body Parameters of Chassis Link</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.093</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">1.43e-05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.76e-05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4.22e-05</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</div>
+<p>centerOfMass describes the center of mass position in the link's local coordinates. The local coordinate origin of the CHASSIS link is set at the center of the chassis, and the center of mass is also set to coincide with it.
+mass specifies the mass, and inertia specifies the matrix elements of the inertia tensor.
+Here we have set appropriate values for the inertia tensor.
+In practice, please set appropriate values using proper calculations or CAD tools.
+Since the inertia tensor is a symmetric matrix, it's OK to write only the 6 elements of the upper triangular part. In this case, the above values can be written as:</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Inertia of Chassis Link</span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">1.43e-05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.76e-05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4.22e-05</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</div>
+<p>Note that rigid body parameters can also be written independently using a &quot;RigidBody&quot; node. This will be explained later.</p>
+</section>
+<section id="writing-the-chassis-shape">
+<span id="modelfile-yaml-chassis-shape"></span><h2><a class="toc-backref" href="#id36" role="doc-backlink">Writing the Chassis Shape</a><a class="headerlink" href="#writing-the-chassis-shape" title="Link to this heading"></a></h2>
+<p>The shape of the link is written under &quot;elements&quot; in the Link node. For the CHASSIS link, it is written as follows:
+<strong>Append the following to &quot;drone.body.&quot;</strong></p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">Shape of Chassis Link</span><a class="headerlink" href="#id9" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shape</span>
+<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">Box</span><span class="p p-Indicator">,</span><span class="nt"> size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.065</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.035</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.025</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> material</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.8</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shape</span>
+<span class="w">        </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">42</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">Box</span><span class="p p-Indicator">,</span><span class="nt"> size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.12</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.01</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;BodyAppearance</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> material</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shape</span>
+<span class="w">        </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-42</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">Box</span><span class="p p-Indicator">,</span><span class="nt"> size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.12</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.01</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span>
+<span class="w">      </span><span class="p p-Indicator">-</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shape</span>
+<span class="w">        </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">Box</span><span class="p p-Indicator">,</span><span class="nt"> size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.17</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.175</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.02</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> material</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="w"> </span><span class="p p-Indicator">],</span><span class="nt"> transparency</span><span class="p">:</span><span class="w"> </span><span class="nv">0.5</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+<p>This part is a &quot;Shape node&quot;. The shape displayed in the scene view when you loaded the model file earlier is described here.
+In the Shape node, geometry describes the geometric shape and appearance describes the surface appearance.
+This time we specified &quot;Box&quot; for the geometry type to describe a Box node that represents a box-shaped (cuboid) geometric shape.
+In the Box node, the lengths in the x, y, and z axis directions are written as a list for the size parameter. Other shape nodes such as sphere (Sphere), cylinder (Cylinder), and cone (Cone) can also be used.
+For appearance, we describe material which describes the surface material. The following parameters can be set in material:</p>
+<table class="docutils align-default" id="id10">
+<caption><span class="caption-text">:widths: 20, 80
+  :header-rows: 1</span><a class="headerlink" href="#id10" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>Key</p></td>
+<td><p>Content</p></td>
+</tr>
+<tr class="row-even"><td><p>ambient</p></td>
+<td><p>Specifies the scalar value of the reflection coefficient for ambient light. The value range is 0.0 to 1.0. Default is 0.2.</p></td>
+</tr>
+<tr class="row-odd"><td><p>diffuse</p></td>
+<td><p>Describes the RGB values of the diffuse reflection coefficient. RGB values are a list of three components for red, green, and blue, with each component value ranging from 0.0 to 1.0.</p></td>
+</tr>
+<tr class="row-even"><td><p>emissive</p></td>
+<td><p>Specifies the RGB values of the emissive color. Default is disabled (all components are 0).</p></td>
+</tr>
+<tr class="row-odd"><td><p>specular</p></td>
+<td><p>Describes the RGB values of the specular reflection coefficient. Default is disabled (all components are 0).</p></td>
+</tr>
+<tr class="row-even"><td><p>specular_exponent</p></td>
+<td><p>A parameter that controls the sharpness of specular reflection. Larger values make highlights smaller and sharper, creating an appearance like metal or polished surfaces. Set a value of 0 or greater. Default is 25. Values around 100 start to look metallic.</p></td>
+</tr>
+<tr class="row-odd"><td><p>shininess</p></td>
+<td><p>An old parameter that controls the sharpness of specular reflection. This is specified in the range 0 to 1. Do not use this parameter in the future.</p></td>
+</tr>
+<tr class="row-even"><td><p>transparency</p></td>
+<td><p>Specifies transparency. The value is a scalar from 0.0 to 1.0, where 0.0 is completely opaque and 1.0 is completely transparent. Default is 0.0.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Here we set the three parameters diffuse, specular, and specular_exponent to represent a green material with somewhat metallic luster.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>For such shape descriptions, although the syntax and key names differ somewhat, the structure, shape types, and parameters largely follow those defined in <a class="reference external" href="http://tecfa.unige.ch/guides/vrml/vrml97/spec/">VRML97</a> (such as <a class="reference external" href="http://tecfa.unige.ch/guides/vrml/vrml97/spec/part1/nodesRef.html#Shape">Shape</a>, <a class="reference external" href="http://tecfa.unige.ch/guides/vrml/vrml97/spec/part1/nodesRef.html#Box">Box</a>, <a class="reference external" href="http://tecfa.unige.ch/guides/vrml/vrml97/spec/part1/nodesRef.html#Sphere">Sphere</a>, <a class="reference external" href="http://tecfa.unige.ch/guides/vrml/vrml97/spec/part1/nodesRef.html#Cylinder">Cylinder</a>, <a class="reference external" href="http://tecfa.unige.ch/guides/vrml/vrml97/spec/part1/nodesRef.html#Cone">Cone</a>, <a class="reference external" href="http://tecfa.unige.ch/guides/vrml/vrml97/spec/part1/nodesRef.html#Appearance">Appearance</a>, <a class="reference external" href="http://tecfa.unige.ch/guides/vrml/vrml97/spec/part1/nodesRef.html#Material">Material</a>, etc.). Since VRML97 was the format used as the base for OpenHRP format model files, those with experience using it should find it easy to understand.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>As mentioned at the beginning, in this tutorial we describe the shape of each link as text directly in the model file using the above description method. It is also possible to use shape data files created separately with modeling tools or CAD tools. This is explained in other documents.</p>
+</div>
+</section>
+<section id="checking-the-model-being-edited">
+<h2><a class="toc-backref" href="#id37" role="doc-backlink">Checking the Model Being Edited</a><a class="headerlink" href="#checking-the-model-being-edited" title="Link to this heading"></a></h2>
+<p>Although we have only written the root link, this already constitutes a valid model. Let's load the file being edited in Choreonoid to display it and check if it's written correctly.
+Select &quot;File&quot; - &quot;Load&quot; - &quot;Body&quot; from the main menu and select the target file in the dialog that appears.
+If you enable &quot;Check in item tree view&quot; on the dialog or click the item's checkbox after loading, it should be displayed in the scene view as follows.</p>
+<a class="reference internal image-reference" href="../_images/step0-3.png"><img alt="../_images/step0-3.png" src="../_images/step0-3.png" style="width: 320px;" /></a>
+<p>If an error occurs when loading the item or if it doesn't display properly after loading, please check the content written so far.
+When reloading a model file after modification, if the previous file is already loaded as a body item, you can easily reload it using the item's &quot;reload function&quot;. This can be done by either of the following operations:</p>
+<ul class="simple">
+<li><p>Select the target item in the item tree view and press <strong>&quot;Ctrl + R&quot;</strong>.</p></li>
+<li><p>Right-click the target item in the item tree view and select &quot;Reload&quot; from the menu that appears.</p></li>
+</ul>
+<p>When you reload, the updated file is reloaded immediately, and (if there are no loading errors) the current item is replaced with it. If there are changes to the shape or other aspects in the updated file, the display in the scene view immediately reflects this. Using this function, you can edit model files relatively efficiently while directly editing text files. You will perform this &quot;reload&quot; operation many times as you progress through this tutorial, so please remember it.</p>
+</section>
+<section id="setting-anchors">
+<span id="modelfile-yaml-anchor"></span><h2><a class="toc-backref" href="#id38" role="doc-backlink">Setting Anchors</a><a class="headerlink" href="#setting-anchors" title="Link to this heading"></a></h2>
+<p>In the above code, we have:</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">Anchor of Chassis Link Appearance</span><a class="headerlink" href="#id11" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;BodyAppearance</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> material</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+<p>where &quot;&amp;BodyAppearance&quot; is added immediately after appearance.
+This corresponds to YAML's &quot;anchor&quot; feature, which allows you to name a specific part of YAML and reference it later.
+This makes it possible to omit repetitive descriptions by setting an anchor on the first description and referencing it for the rest. The part that references an anchor is called an &quot;alias&quot; in YAML.
+Since we will apply the same material parameters set for appearance in <a class="reference internal" href="#modelfile-yaml-chassis-shape"><span class="std std-ref">Writing the Chassis Shape</span></a>, we set an anchor here so it can be reused there.
+The actual usage is described in <a class="reference internal" href="#modelfile-yaml-alias"><span class="std std-ref">Using Aliases</span></a>.</p>
+</section>
+<section id="writing-elements">
+<span id="modelfile-yaml-elements"></span><h2><a class="toc-backref" href="#id39" role="doc-backlink">Writing elements</a><a class="headerlink" href="#writing-elements" title="Link to this heading"></a></h2>
+<p>In model files, a collection of information about a component is called a &quot;node&quot;. We have introduced Link nodes and Shape nodes as examples so far.
+Some nodes can contain subordinate nodes as their child nodes. This allows nodes to be described hierarchically. A general method for doing this is the elements key.
+In elements, child nodes are basically written using YAML's list notation as follows:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Node type name</span>
+<span class="w">    </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span>
+<span class="w">    </span><span class="nt">key2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value2</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Node type name</span>
+<span class="w">    </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span>
+<span class="w">    </span><span class="nt">key2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value2</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+<p>If subordinate nodes can also contain elements, you can deepen the hierarchy as follows:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Node type name</span>
+<span class="w">    </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Node type name</span>
+<span class="w">        </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span>
+<span class="w">        </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+<p>In this way, using elements makes it possible to describe structures that combine multiple types of nodes.
+Note that if only one node of a certain type is included under elements, the following simplified notation can also be used:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Node type name</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">key1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span>
+<span class="w">     </span><span class="nt">key2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value2</span>
+<span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+<p>There's not much difference from the previous one, but this notation is slightly simpler as it doesn't use list notation.
+Link nodes can contain various elements such as shapes and sensors using this elements. Other nodes that can use elements include Transform and RigidBody nodes.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>When a model has multiple links, the relationships between links are generally hierarchical. While it might be considered to describe this using elements of Link nodes, this format of model files does not use such description. This is because such description would deepen the text hierarchy in the model file as the link hierarchy deepens, making it difficult to check and edit as text. The link hierarchy is described using the &quot;parent&quot; key of Link nodes.</p>
+</div>
+</section>
+<section id="using-aliases">
+<span id="modelfile-yaml-alias"></span><h2><a class="toc-backref" href="#id40" role="doc-backlink">Using Aliases</a><a class="headerlink" href="#using-aliases" title="Link to this heading"></a></h2>
+<p>In the shape description above, since the appearance can be the same as the CHASSIS link, we will reuse the content set in <a class="reference internal" href="#modelfile-yaml-chassis-shape"><span class="std std-ref">Writing the Chassis Shape</span></a>.
+We set an <a class="reference internal" href="#modelfile-yaml-anchor"><span class="std std-ref">Setting Anchors</span></a> with the name &quot;BodyAppearance&quot; for the appearance of the CHASSIS link. Here we call that content with:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span>
+</pre></div>
+</div>
+<p>as a YAML alias. By adding &quot;*&quot; to the name set with an anchor, you can reference it as an alias.</p>
+</section>
+<section id="writing-devices">
+<h2><a class="toc-backref" href="#id41" role="doc-backlink">Writing Devices</a><a class="headerlink" href="#writing-devices" title="Link to this heading"></a></h2>
+<p>In robot models defined in Choreonoid, equipment such as sensors mounted on robots are called &quot;devices&quot;.
+This Drone model will be equipped with 3 devices: a camera, IMU and battery. Below we explain how to write these devices.</p>
+</section>
+<section id="writing-the-camera">
+<h2><a class="toc-backref" href="#id42" role="doc-backlink">Writing the Camera</a><a class="headerlink" href="#writing-the-camera" title="Link to this heading"></a></h2>
+<p>The Camera node defines a vision sensor.</p>
+<table class="docutils align-default" id="id12">
+<caption><span class="caption-text">Camera Node Fields
+  :widths: 30,100
+  :header-rows: 1
+  :align: left</span><a class="headerlink" href="#id12" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>Key</p></td>
+<td><p>Content</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>Camera</p></td>
+</tr>
+<tr class="row-odd"><td><p>format</p></td>
+<td><div class="line-block">
+<div class="line">Specify the type of information to be acquired from the sensor</div>
+<div class="line-block">
+<div class="line">・<strong>COLOR</strong> : Acquire color information</div>
+<div class="line">・<strong>DEPTH</strong> : Acquire depth information</div>
+<div class="line">・<strong>COLOR_DEPTH</strong> : Acquire color and depth information</div>
+<div class="line">・<strong>POINT_CLOUD</strong> : Acquire 3D point cloud</div>
+<div class="line">・<strong>COLOR_POINT_CLOUD</strong> : Acquire color information and 3D point cloud</div>
+</div>
+<div class="line">Note: Internally, when format is COLOR, it is treated as Camera, and when format is other than COLOR, it is treated as RangeCamera.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>lens_type</p></td>
+<td><div class="line-block">
+<div class="line">Specify the type of lens (only valid when format is COLOR)</div>
+<div class="line-block">
+<div class="line">・<strong>NORMAL</strong> : Normal lens (default)</div>
+<div class="line">・<strong>FISHEYE</strong> : Fisheye lens</div>
+<div class="line">・<strong>DUAL_FISHEYE</strong> : Omnidirectional camera</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>on</p></td>
+<td><p>Specify camera ON/OFF with true/false</p></td>
+</tr>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>Image width</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+<td><p>Image height (automatically determined from width value when lens_type=&quot;FISHEYE&quot;,&quot;DUAL_FISHEYE&quot;)</p></td>
+</tr>
+<tr class="row-even"><td><p>field_of_view</p></td>
+<td><p>Camera field of view angle (cannot be specified when lensType=&quot;DUAL_FISHEYE&quot;)</p></td>
+</tr>
+<tr class="row-odd"><td><p>near_clip_distance</p></td>
+<td><p>Distance from viewpoint to near clipping plane</p></td>
+</tr>
+<tr class="row-even"><td><p>far_clip_distance</p></td>
+<td><p>Distance from viewpoint to far clipping plane</p></td>
+</tr>
+<tr class="row-odd"><td><p>frame_rate</p></td>
+<td><p>How many images per second the camera outputs</p></td>
+</tr>
+<tr class="row-even"><td><p>optical_frame</p></td>
+<td><div class="line-block">
+<div class="line">Specify the camera coordinate system</div>
+<div class="line-block">
+<div class="line">・<strong>gl</strong> : OpenGL coordinate system (default)</div>
+<div class="line">・<strong>cv</strong> : OpenCV coordinate system</div>
+<div class="line">・<strong>robotics</strong> : Robotics coordinate system</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In the default &quot;gl&quot; coordinate system, the negative Z-axis direction is the camera lens front direction, and the Y-axis is the camera upward direction.
+In the &quot;robotics&quot; coordinate system, the lens orientation matches the coordinate system commonly used in robotics with the forward X-axis and upward Z-axis, making it easier to handle when you want to point the lens forward.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>that the gl coordinate system is used in Choreonoid's internal implementation. When optical_frame is other than gl, coordinate transformation to the gl coordinate system is performed internally.</p>
+</div>
+<p>Let's also add a camera device. Add the following under the elements of the CHASSIS link:
+<strong>Append the following to &quot;drone.body.&quot;</strong></p>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">Camera</span><a class="headerlink" href="#id13" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="p p-Indicator">-</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Camera</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Camera</span>
+<span class="w">        </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.0325</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">],</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">COLOR</span>
+<span class="w">        </span><span class="nt">fieldOfView</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">62</span>
+<span class="w">        </span><span class="nt">nearClipDistance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.06</span>
+<span class="w">        </span><span class="nt">width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">640</span>
+<span class="w">        </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">480</span>
+<span class="w">        </span><span class="nt">frameRate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="w">        </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span>
+<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shape</span>
+<span class="w">            </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">            </span><span class="nt">geometry</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">Cylinder</span><span class="p p-Indicator">,</span><span class="nt"> height</span><span class="p">:</span><span class="w"> </span><span class="nv">0.005</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.005</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">            </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> material</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+<p>Cameras are written using Camera nodes.
+In this node, specify the format of images to acquire with format. You can specify one of the following three:</p>
+<ul class="simple">
+<li><p>COLOR</p></li>
+<li><p>DEPTH</p></li>
+<li><p>COLOR_DEPTH</p></li>
+</ul>
+<p>If you specify COLOR, it becomes a normal color image. For DEPTH, you get a depth image. For COLOR_DEPTH, you can acquire both types of images simultaneously. This is intended for simulating RGBD cameras like Kinect.
+Also, specify the image size (resolution) with width and height. Here we set a resolution of 320x240. Furthermore, set the image acquisition frame rate with frame_rate.</p>
+</section>
+<section id="writing-camera-position-and-orientation">
+<h2><a class="toc-backref" href="#id43" role="doc-backlink">Writing Camera Position and Orientation</a><a class="headerlink" href="#writing-camera-position-and-orientation" title="Link to this heading"></a></h2>
+<p>The camera position is set slightly below the light with:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.0325</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>For camera orientation, by default the positive Y-axis corresponds to the camera's up direction and the negative Z-axis corresponds to the camera's front (viewing) direction.
+If you want to point the camera in a different direction, you need to change the camera's orientation using rotation of <a class="reference internal" href="#modelfile-yaml-transform-node"><span class="std std-ref">Transform Node</span></a> or <a class="reference internal" href="#modelfile-yaml-transform-parameters"><span class="std std-ref">Transform Parameters</span></a>.
+In this model, since the Z-axis is taken as vertically upward, the camera would face downward with the default orientation. So we set the desired camera orientation by writing:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">],</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-90</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>in the upper Transform node.
+The method of specifying orientation with rotation was explained in <a class="reference internal" href="#modelfile-yaml-offset-position"><span class="std std-ref">Writing Link Relative Position</span></a> as a pair of rotation axis and rotation angle. Here we have two such pairs.
+Actually, rotation can be written by listing multiple orientation expressions like this. In this case, the orientation values (rotation commands) are applied in order from right to left.
+(It's the same as applying matrix multiplication in this order, considering each element as a rotation matrix.)
+Here we first rotate -90 degrees around the Y-axis with [ 0, 1, 0, -90 ]. This makes the camera face forward.
+However, in this state the camera's up direction is still the model's left direction, resulting in an image as if the camera were lying on its side.
+So we further rotate 90 degrees around the X-axis with [ 1, 0, 0, 90 ] to stand the camera up and obtain the desired image.
+While it's possible to combine these two rotations into a single rotation expression, such combined values are difficult to intuitively understand or calculate.
+In contrast, by combining multiple rotations as above, such textual description becomes easier.</p>
+</section>
+<section id="camera-shape">
+<h2><a class="toc-backref" href="#id44" role="doc-backlink">Camera Shape</a><a class="headerlink" href="#camera-shape" title="Link to this heading"></a></h2>
+<p>Here we add a cylinder shape representing the camera lens. This makes the model display look like this:</p>
+<a class="reference internal image-reference" href="../_images/step0-4.png"><img alt="../_images/step0-4.png" src="../_images/step0-4.png" style="width: 320px;" /></a>
+<p>Note that in the camera definition we have:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">nearClipDistance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.06</span>
+</pre></div>
+</div>
+<p>This shifts the range of the external world captured in the camera image slightly forward from the camera center point.
+Since we've added a camera shape, without this the forward view would be blocked by that shape. By including this description, it becomes possible to capture the area outside the camera shape in the camera image.</p>
+</section>
+<section id="writing-the-imu">
+<h2><a class="toc-backref" href="#id45" role="doc-backlink">Writing the IMU</a><a class="headerlink" href="#writing-the-imu" title="Link to this heading"></a></h2>
+<p>The Imu node defines an IMU (Inertial Measurement Unit) that integrates a 3-axis acceleration sensor and a 3-axis angular velocity sensor.
+In this tutorial, the IMU is used to calculate the attitude of a drone while it is in flight.</p>
+<table class="docutils align-default" id="id14">
+<caption><span class="caption-text">Imu Node Fields
+  :widths: 15,85
+  :header-rows: 1
+  :align: left</span><a class="headerlink" href="#id14" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>Key</p></td>
+<td><p>Content</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>Imu</p></td>
+</tr>
+<tr class="row-odd"><td><p>max_acceleration</p></td>
+<td><p>Maximum measurable acceleration. Specify as a list of 3 elements of a 3D vector.</p></td>
+</tr>
+<tr class="row-even"><td><p>max_angular_velocity</p></td>
+<td><p>Maximum measurable angular velocity. Specify as a list of 3 elements of a 3D vector.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Let's also add a IMU device. Add the following under the elements of the CHASSIS link:
+<strong>Append the following to &quot;drone.body.&quot;</strong></p>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">IMU Sensor</span><a class="headerlink" href="#id15" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="p p-Indicator">-</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IMU</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Imu</span>
+<span class="w">        </span><span class="nt">maxAcceleration</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1000.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1000.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1000.0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">maxAngularVelocity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="writing-the-batterydevice">
+<h2><a class="toc-backref" href="#id46" role="doc-backlink">Writing the BatteryDevice</a><a class="headerlink" href="#writing-the-batterydevice" title="Link to this heading"></a></h2>
+<p>BatteryDevice is an original device developed by JAEA to simulate battery consumption. Its energy level decreases as the simulation progresses.
+By integrating this device with the aforementioned Rotor device, you can simulate scenarios where a drone loses thrust and shuts down once the battery is depleted.</p>
+<table class="docutils align-left" id="id16">
+<caption><span class="caption-text">BatteryDevice Node Fields</span><a class="headerlink" href="#id16" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>BatteryDevice</p></td>
+</tr>
+<tr class="row-odd"><td><p>maxCapacity</p></td>
+<td><p>The maximum capacity of the battery (mAh).</p></td>
+</tr>
+<tr class="row-even"><td><p>current</p></td>
+<td><p>The current consumption of the device (mA).</p></td>
+</tr>
+</tbody>
+</table>
+<p>Let's also add a BatteryDevice. Add the following under the elements of the CHASSIS link:
+<strong>Append the following to &quot;drone.body.&quot;</strong></p>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">Battery Device</span><a class="headerlink" href="#id17" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="p p-Indicator">-</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BatteryDevice</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FlightBattery</span>
+<span class="w">        </span><span class="nt">maxCapacity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1100</span>
+<span class="w">        </span><span class="nt">current</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5077</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="writing-the-rotor-link">
+<h2><a class="toc-backref" href="#id47" role="doc-backlink">Writing the Rotor Link</a><a class="headerlink" href="#writing-the-rotor-link" title="Link to this heading"></a></h2>
+<p>Next, attach the links used for mounting the rotors to the CHASSIS link.
+<strong>Append the following to &quot;drone.body.&quot;</strong></p>
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-text">Front Right Rotor Link</span><a class="headerlink" href="#id18" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ROTOR_FR</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.04</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.045</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.015</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fixed</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0005</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">1.92e-07</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.92e-07</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.52e-07</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nl">&amp;rotor_shape1</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shape</span>
+<span class="w">        </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-90</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">Cylinder</span><span class="p p-Indicator">,</span><span class="nt"> height</span><span class="p">:</span><span class="w"> </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0375</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> material</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="w"> </span><span class="p p-Indicator">],</span><span class="nt"> transparency</span><span class="p">:</span><span class="w"> </span><span class="nv">0.8</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="writing-link-relative-position">
+<span id="modelfile-yaml-offset-position"></span><h2><a class="toc-backref" href="#id48" role="doc-backlink">Writing Link Relative Position</a><a class="headerlink" href="#writing-link-relative-position" title="Link to this heading"></a></h2>
+<p>The Rotor link is modeled as a child link of the CHASSIS link.
+To do this, first with:</p>
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-text">Parent of Front Right Rotor Link</span><a class="headerlink" href="#id19" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
+</pre></div>
+</div>
+</div>
+<p>we explicitly state that this link's parent link is CHASSIS.
+Next, we specify the relative position (offset) of this link from the parent link. This is done with the translation parameter, which for this link is:</p>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-text">Translation of Front Right Rotor Link</span><a class="headerlink" href="#id20" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.04</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.045</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.015</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</div>
+<p>This sets this link's origin at a position 4[cm] forward, -4.5[cm] right, and 1.5[cm] upward from the CHASSIS link origin. This position is based on the parent link's coordinate system.
+To confirm the effect of relative position, let's try removing the translation description. Delete the translation line above or comment it out by adding # at the beginning of the line, then reload the model.
+You should find that the rotor part that was visible earlier has disappeared. This is because the rotor part is also placed at the center of the chassis and is buried inside it.
+So, turn ON <a class="reference external" href="https://choreonoid.org/en/manuals/latest/basics/sceneview.html#basics-sceneview-wireframe">Wire Frame Display</a> in the scene view. You should see something like this:</p>
+<a class="reference internal image-reference" href="../_images/step0-5.png"><img alt="../_images/step0-5.png" src="../_images/step0-5.png" style="width: 320px;" /></a>
+<p>With wireframe display, you can confirm that the rotor part is buried inside the chassis.
+As you can see, to properly position links, you need the translation description as before. Try changing this value to see what happens.
+Note that relative orientation (coordinate system direction) can also be specified using the rotation parameter. rotation is written in the form:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">x</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">y</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">z</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">θ</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>This specifies orientation (rotation) with a rotation axis and rotation angle around that axis, where x, y, z specify the unit vector of the rotation axis and θ specifies the rotation angle. When format_version is 2.0, θ is always written in degrees. (Other parameters that specify angles are basically the same.)</p>
+<p>An actual example of using this parameter will be introduced later.</p>
+</section>
+<section id="writing-the-joint">
+<h2><a class="toc-backref" href="#id49" role="doc-backlink">Writing the Joint</a><a class="headerlink" href="#writing-the-joint" title="Link to this heading"></a></h2>
+<p>This tutorial does not use translational and rotational joints. However, for your reference, we will also cover how to describe them.
+Information about this is described by the following parameters of link:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revolute</span>
+<span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Z</span>
+<span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unlimited</span>
+<span class="nt">jointId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+<p>Here we first specify revolute for jointType. This sets a rotational joint between this link and the parent link. (This is a 1-degree-of-freedom rotational joint, also called a hinge.)
+jointAxis specifies the joint axis. For a hinge joint, specify its rotation axis here. You can specify this using the letters X, Y, Z, or as a 3D vector.
+In either case, the axis direction is described in the link's local coordinate system. Here we specify &quot;-Z&quot; to set the negative Z-axis direction as the rotation axis.
+When specifying the joint axis as a 3D vector, it would be:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointAxis</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-1</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>With this notation, you can set any orientation as the axis, not just X, Y, or Z axes.
+Since the Z-axis is usually set vertically upward, including in this model, this joint performs yaw axis rotation.
+Since the direction is negative Z-axis, positive joint angles correspond to rightward rotation and negative angles to leftward rotation. The joint position is set at this link's origin.
+From the parent link's perspective, this position is the one set earlier with translation.
+Other jointType options include &quot;prismatic&quot; for linear joints. In this case, jointAxis specifies the linear motion direction.</p>
+<p>The joint range of motion is set using jointRange. Here we specify unlimited to have no range restrictions. If you want to set a range, write:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-180</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">180</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>listing the lower and upper limit values. For rotational joints, angle values are also written in degrees.
+Here we specify a range from -180° to +180°. If the absolute values of the lower and upper limits are the same, you can also write just the absolute value as:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jointRange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">180</span>
+</pre></div>
+</div>
+<p>jointId sets the ID value (integer 0 or greater) assigned to this joint. ID values can be referenced on Choreonoid's interface and used to specify which joint to operate.
+Robot control programs can also use this value to identify joints. This value is not automatically assigned; appropriate values must be explicitly assigned when creating the model.
+It's not necessary to assign ID values to all joints. However, since this value is sometimes used as an index when storing joint angles in arrays, it's preferable to assign consecutive values starting from 0 without gaps.</p>
+</section>
+<section id="checking-joint-operation">
+<h2><a class="toc-backref" href="#id50" role="doc-backlink">Checking Joint Operation</a><a class="headerlink" href="#checking-joint-operation" title="Link to this heading"></a></h2>
+<p>To check if the joint is modeled correctly, it's effective to actually move the model's joint on Choreonoid's GUI. Let's try this using the functions introduced in <a class="reference external" href="https://choreonoid.org/en/manuals/latest/handling-models/index.html">Basics of Robot/Environment Models</a>.
+First, let's move the joint using <a class="reference external" href="https://choreonoid.org/en/manuals/latest/handling-models/pose-editing.html">Changing the Position and Posture</a>.
+When you select the model being created in the item tree view, the joint displacement view should look like this:</p>
+<a class="reference internal image-reference" href="../_images/step0-6.png"><img alt="../_images/step0-6.png" src="../_images/step0-6.png" style="width: 320px;" /></a>
+<p>This display shows that a joint with joint ID 0 has been defined. Try operating the slider here.
+You should be able to confirm that the box corresponding to the joint rotates around the yaw axis in the scene view. For example, the model poses when the joint angle is -30°, 0°, and +30° are as follows:</p>
+<a class="reference internal image-reference" href="../_images/step0-7.png"><img alt="../_images/step0-7.png" src="../_images/step0-7.png" style="width: 320px;" /></a>
+<p>For the joint, the joint range is unlimited, so the joint slider can move in the range from -360° to +360°. If range restrictions are applied, the slider can be operated within that range.
+<a class="reference external" href="https://choreonoid.org/en/manuals/latest/handling-models/pose-editing.html#sceneview-forward-kinematics">Changing a Joint Angle in the Scene View</a> is also possible.
+Switch the scene view to edit mode and drag the joint part with the mouse. You should be able to rotate the joint to follow the mouse movement. If it doesn't work well, check the settings on the linked page above.</p>
+</section>
+<section id="rigidbody-node">
+<h2><a class="toc-backref" href="#id51" role="doc-backlink">RigidBody Node</a><a class="headerlink" href="#rigidbody-node" title="Link to this heading"></a></h2>
+<p>In the above description, <a class="reference internal" href="#modelfile-yaml-rigidbody-parameters"><span class="std std-ref">Writing Rigid Body Parameters</span></a> are not written in the Link node but separately using a node called RigidBody.
+The RigidBody node is specialized for describing rigid body parameters and can describe the three parameters centerOfMass, mass, and inertia. These have the same meaning as when used in Link nodes.
+By writing this node under elements of a Link node, you can also set rigid body parameters. Conversely, you can think of the ability to write rigid body parameters directly in Link nodes as a simplified notation replacing RigidBody.
+The advantages of deliberately using RigidBody nodes to describe rigid body parameters include:</p>
+<ol class="arabic simple">
+<li><p>Enables sharing of rigid body parameters</p></li>
+<li><p>Can be written in any coordinate system</p></li>
+<li><p>Can be written as a combination of multiple rigid bodies</p></li>
+</ol>
+<p>First, since rigid body parameters can be written as independent nodes, applying <a class="reference internal" href="#modelfile-yaml-anchor"><span class="std std-ref">Setting Anchors</span></a> and <a class="reference internal" href="#modelfile-yaml-alias"><span class="std std-ref">Using Aliases</span></a> to them enables sharing the same rigid body parameters.
+This is convenient when modeling mechanisms that use many identical parts.
+Also, when nodes are independent, <a class="reference internal" href="#modelfile-yaml-transform-node"><span class="std std-ref">Transform Node</span></a> can be applied individually, making it possible to describe each rigid body's parameters in any coordinate system.
+Furthermore, since there's no limit to the number of RigidBody nodes used in each link's description, it's possible to describe the link's overall rigid body parameters as a combination of multiple rigid bodies.
+In this case, rigid body parameters reflecting all RigidBody nodes contained in the link are set as the link's rigid body parameters.
+Combining this with advantages 1 and 2 enables efficient and maintainable modeling even for complex shapes composed of multiple parts.
+Note that RigidBody is also a node that supports <a class="reference internal" href="#modelfile-yaml-elements"><span class="std std-ref">Writing elements</span></a>, so it can contain other nodes using this. Here we describe the shape part explained below inside elements.
+This allows the rigid body's physical parameters and shape to be grouped together under the RigidBody node, making the model structure clearer.</p>
+</section>
+<section id="transform-node">
+<span id="modelfile-yaml-transform-node"></span><h2><a class="toc-backref" href="#id52" role="doc-backlink">Transform Node</a><a class="headerlink" href="#transform-node" title="Link to this heading"></a></h2>
+<p>The Transform node is used to transform the coordinate system of content written under its elements.
+This has the same effect as the translation and rotation parameters of Link nodes described in <a class="reference internal" href="#modelfile-yaml-offset-position"><span class="std std-ref">Writing Link Relative Position</span></a>.
+However, it differs in that it targets nodes written under elements of Link nodes and that multiple Transform nodes can be combined.
+An example of a Transform node is shown below.</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Transform</span>
+<span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="nt">elements</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>To see this effect, let's disable the Transform node. You could remove the entire Transform node, but you can reproduce the same result by commenting out the translation and rotation parts as follows:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Transform</span>
+<span class="c1">#translation: [ 0.2, 0, 0 ]</span>
+<span class="c1">#rotation: [ 0, 0, 1, 90 ]</span>
+<span class="nt">elements</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>In this example, we first rotate 90 degrees around the Z-axis so the joint direction matches the model's front-back direction (X-axis). Then with:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>we move the joint forward 20cm to position it.</p>
+<p>Note that the Transform's elements also include the RigidBody node. This means the coordinate transformation above is applied not only to the shape but also to the rigid body parameters described in the RigidBody node.
+In other words, you can describe the rigid body parameters in the cylinder's local coordinates, which reduces the effort required to calculate the center of mass position and inertia tensor.</p>
+</section>
+<section id="transform-parameters">
+<span id="modelfile-yaml-transform-parameters"></span><h2><a class="toc-backref" href="#id53" role="doc-backlink">Transform Parameters</a><a class="headerlink" href="#transform-parameters" title="Link to this heading"></a></h2>
+<p>Instead of using Transform nodes, there's also a method to write translation and rotation parameters directly in the target node. These parameters are called &quot;Transform parameters&quot;.
+For example, since RigidBody nodes also support Transform parameters, the joint can also be written as follows:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p p-Indicator">-</span>
+<span class="w">      </span><span class="nt">type: RigidBody</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">      </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">        </span><span class="nv">0.01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">        </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">        </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">    </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">       </span><span class="nt">Shape</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cylinder</span>
+<span class="w">            </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+<span class="w">            </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">          </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="nv">*BodyAppearance</span>
+</pre></div>
+</div>
+<p>We've simply moved the Transform's translation and rotation directly to RigidBody. This makes the description simpler.
+Internally, the same processing as inserting a Transform node is performed, so consider this a simplified notation method.
+Transform parameters are also available for Shape nodes and device-related nodes explained later.</p>
+</section>
+<section id="writing-the-front-right-rotor">
+<h2><a class="toc-backref" href="#id54" role="doc-backlink">Writing the Front Right Rotor</a><a class="headerlink" href="#writing-the-front-right-rotor" title="Link to this heading"></a></h2>
+<p>The CFD simulator provides a rotor that serves as the power source for a UAV. This rotor allows for the application of thrust and torque to the UAV.
+The default direction of the thrust generated by the rotor is the <strong>positive Z-axis</strong> of the local coordinate system of the link it is attached to.
+Rotors are defined under the elements field of any link within a Body item, similar to cameras or lights.</p>
+<table class="docutils align-default" id="id21">
+<caption><span class="caption-text">Rotor Node Fields
+ :widths: 20, 15, 10, 55
+ :header-rows: 1
+ :align: left</span><a class="headerlink" href="#id21" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>Key</p></td>
+<td><p>Default</p></td>
+<td><p>Unit</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>Rotor</p></td>
+<td><p>-</p></td>
+<td><p>Specifies the device type.</p></td>
+</tr>
+<tr class="row-odd"><td><p>name</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>Specifies the name of the rotor.</p></td>
+</tr>
+<tr class="row-even"><td><p>thrustOffset</p></td>
+<td><p>0.0</p></td>
+<td><p>N</p></td>
+<td><p>Specifies the offset for the rotor's thrust.</p></td>
+</tr>
+<tr class="row-odd"><td><p>torqueOffset</p></td>
+<td><p>0.0</p></td>
+<td><p>N·m</p></td>
+<td><p>Specifies the offset for the rotor's torque.</p></td>
+</tr>
+<tr class="row-even"><td><p>symbol</p></td>
+<td><p>true</p></td>
+<td><p>-</p></td>
+<td><p>Specifies whether to show/hide the symbol indicating the rotor's direction.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Let's also add a virtual rotor device. Add the following under the elements of the CHASSIS link:
+<strong>Append the following to &quot;drone.body.&quot;</strong></p>
+<div class="literal-block-wrapper docutils container" id="id22">
+<div class="code-block-caption"><span class="caption-text">Front Right Rotor Link</span><a class="headerlink" href="#id22" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nl">&amp;rotor_device</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">Rotor</span><span class="p p-Indicator">,</span><span class="nt"> name</span><span class="p">:</span><span class="w"> </span><span class="nv">Rotor_FR</span><span class="p p-Indicator">,</span><span class="nt"> symbol</span><span class="p">:</span><span class="w"> </span><span class="nv">false</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+<p>This description is equivalent to the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nl">&amp;rotor_device</span>
+<span class="w">     </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rotor</span>
+<span class="w">     </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rotor_FR</span>
+<span class="w">     </span><span class="nt">symbol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+</section>
+<section id="writing-the-front-left-rotor">
+<h2><a class="toc-backref" href="#id55" role="doc-backlink">Writing the Front Left Rotor</a><a class="headerlink" href="#writing-the-front-left-rotor" title="Link to this heading"></a></h2>
+<p>Following the example of Front Right Rotor, let's write Front Left Rotor.
+<strong>Append the following to &quot;drone.body.&quot;</strong></p>
+<div class="literal-block-wrapper docutils container" id="id23">
+<div class="code-block-caption"><span class="caption-text">Front Left Rotor Link</span><a class="headerlink" href="#id23" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ROTOR_FL</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.04</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.045</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.015</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fixed</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0005</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">1.92e-07</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.92e-07</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.52e-07</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> &lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nv">*rotor_shape1</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> &lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nv">*rotor_device</span><span class="p p-Indicator">,</span><span class="nt"> name</span><span class="p">:</span><span class="w"> </span><span class="nv">Rotor_FL</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="writing-the-rear-left-rotor">
+<h2><a class="toc-backref" href="#id56" role="doc-backlink">Writing the Rear Left Rotor</a><a class="headerlink" href="#writing-the-rear-left-rotor" title="Link to this heading"></a></h2>
+<p>Let's write Rear Left Rotor.
+<strong>Append the following to &quot;drone.body.&quot;</strong></p>
+<div class="literal-block-wrapper docutils container" id="id24">
+<div class="code-block-caption"><span class="caption-text">Rear Left Rotor Link</span><a class="headerlink" href="#id24" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ROTOR_RL</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-0.04</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.045</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.015</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fixed</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0005</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">1.92e-07</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.92e-07</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.52e-07</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nl">&amp;rotor_shape2</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shape</span>
+<span class="w">        </span><span class="nt">rotation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-90</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">geometry</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">Cylinder</span><span class="p p-Indicator">,</span><span class="nt"> height</span><span class="p">:</span><span class="w"> </span><span class="nv">0.02</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0375</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="nt">appearance</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> material</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> diffuseColor</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="w"> </span><span class="p p-Indicator">],</span><span class="nt"> transparency</span><span class="p">:</span><span class="w"> </span><span class="nv">0.8</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> &lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nv">*rotor_device</span><span class="p p-Indicator">,</span><span class="nt"> name</span><span class="p">:</span><span class="w"> </span><span class="nv">Rotor_RL</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="writing-the-rear-right-rotor">
+<h2><a class="toc-backref" href="#id57" role="doc-backlink">Writing the Rear Right Rotor</a><a class="headerlink" href="#writing-the-rear-right-rotor" title="Link to this heading"></a></h2>
+<p>Let's write Rear Right Rotor.
+<strong>Append the following to &quot;drone.body.&quot;</strong></p>
+<div class="literal-block-wrapper docutils container" id="id25">
+<div class="code-block-caption"><span class="caption-text">Rear Right Rotor Link</span><a class="headerlink" href="#id25" title="Link to this code"></a></div>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p p-Indicator">-</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ROTOR_RR</span>
+<span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHASSIS</span>
+<span class="w">    </span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">-0.04</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.045</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.015</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">jointType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fixed</span>
+<span class="w">    </span><span class="nt">centerOfMass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0005</span>
+<span class="w">    </span><span class="nt">inertia</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">1.92e-07</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.92e-07</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.52e-07</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> &lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nv">*rotor_shape2</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> &lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nv">*rotor_device</span><span class="p p-Indicator">,</span><span class="nt"> name</span><span class="p">:</span><span class="w"> </span><span class="nv">Rotor_RR</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+<p><strong>If you reload the model and see a model displayed like below, it's complete!</strong></p>
+<a class="reference internal image-reference" href="../_images/step0-8.png"><img alt="../_images/step0-8.png" src="../_images/step0-8.png" style="width: 320px;" /></a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Drone tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="step1.html" class="btn btn-neutral float-right" title="Step 1: Creating a simulation project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, suzuki.kenta38.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

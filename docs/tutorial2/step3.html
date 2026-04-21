@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 3: Controlling the drone with a gamepad &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
+
+  
+  
+        <script src="../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=1a6bc256"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=4dbe4bdc"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Step 4: Simulating and polling camera images" href="step4.html" />
+    <link rel="prev" title="Step 2: Implementing a controller" href="step2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            hairo-world-plugin-doc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Crawlerチュートリアル</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Drone tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="step0.html">Step 0: Creating a drone model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html">Step 1: Creating a simulation project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html">Step 2: Implementing a controller</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Step 3: Controlling the drone with a gamepad</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gamepad-setup">Gamepad setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-joystick-view-setup">Virtual joystick view setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#controller-source-code">Controller source code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#controller-compilation">Controller compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#swapping-controllers">Swapping controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drone-operation">Drone operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-this-implementation-works">How this implementation works</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html">Step 4: Simulating and polling camera images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drone.html">Full description of the drone model file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hairo-world-plugin-doc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Drone tutorial</a></li>
+      <li class="breadcrumb-item active">Step 3: Controlling the drone with a gamepad</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorial2/step3.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="step-3-controlling-the-drone-with-a-gamepad">
+<h1>Step 3: Controlling the drone with a gamepad<a class="headerlink" href="#step-3-controlling-the-drone-with-a-gamepad" title="Link to this heading"></a></h1>
+<p>In Step 2, we created a controller to perform the minimum control required to stabilize the model, and we learned how to implement and import that controller.
+In Step 3, we attempt to create a slightly more complex controller.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#gamepad-setup" id="id3">Gamepad setup</a></p></li>
+<li><p><a class="reference internal" href="#virtual-joystick-view-setup" id="id4">Virtual joystick view setup</a></p></li>
+<li><p><a class="reference internal" href="#controller-source-code" id="id5">Controller source code</a></p></li>
+<li><p><a class="reference internal" href="#controller-compilation" id="id6">Controller compilation</a></p></li>
+<li><p><a class="reference internal" href="#swapping-controllers" id="id7">Swapping controllers</a></p></li>
+<li><p><a class="reference internal" href="#drone-operation" id="id8">Drone operation</a></p></li>
+<li><p><a class="reference internal" href="#how-this-implementation-works" id="id9">How this implementation works</a></p></li>
+</ul>
+</nav>
+<section id="gamepad-setup">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Gamepad setup</a><a class="headerlink" href="#gamepad-setup" title="Link to this heading"></a></h2>
+<p>The controller we will be creating in this step is used to control the Drone model using a gamepad (joystick). To do so, begin by obtaining a gamepad and connecting it to your computer.
+Note that <strong>you can still perform this even without an actual gamepad</strong>. In this case, you can alternatively use the Virtual Joystick View.
+You can proceed to the next section on <a class="reference internal" href="#drone-tutorial-virtual-joystick-view"><span class="std std-ref">Virtual joystick view setup</span></a>. The below explanation presumes use of an actual gamepad.
+This tutorial also presumes a gamepad with a layout like that seen below.</p>
+<a class="reference internal image-reference" href="../_images/step3-1.jpg"><img alt="../_images/step3-1.jpg" src="../_images/step3-1.jpg" style="width: 320px;" /></a>
+<p>This product is the <a class="reference external" href="https://gaming.logicool.co.jp/ja-jp/shop/p/f310-gamepad">Logicool F310</a>; other similar gamepads include the PlayStation 3 and 4 gamepads (DualShock 3 and 4) and the Xbox gamepad.
+If using other gamepads, the axes and placement of buttons may not correspond and fail to operate properly. In that case, you will need to change the axes and button IDs indicated in the source code in order to remap the controller.
+A convenient tool to determine whether the gamepad is detected by the OS and whether the axes and button mappings are correct is the “jstest” command.
+If the gamepad does not function properly, check it using this command. On Ubuntu, execute the below from the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">joystick</span>
+</pre></div>
+</div>
+<p>to install the package. Use, e.g.,:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jstest</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="nb">input</span><span class="o">/</span><span class="n">js0</span>
+</pre></div>
+</div>
+<p>to execute it.
+The command argument indicates the device file for the gamepad. “js0” here corresponds to the first gamepad connected and assigned an ID of 0. Ordinarily, this would be the one used. If you want to use two or more gamepads, you would use devices js1 and js2. However, note that this requires changing the source code.
+Connecting the gamepad and executing the command above will return information like the below to the console.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Driver version is 2.1.0.
+Joystick (Logitech Gamepad F310) has 8 axes (X, Y, Z, Rx, Ry, Rz, Hat0X, Hat0Y)
+and 11 buttons (BtnX, BtnY, BtnTL, BtnTR, BtnTR2, BtnSelect, BtnThumbL, BtnThumbR, ?, ?, ?).
+Testing ... (interrupt to exit)
+Axes:  0:     0  1:     0  2:-32767  3:     0  4:     0  5:-32767  6:     0  7:     0 Buttons:  0:off  1:off  2:off  3:off  4:off  5:off  6:off  7:off  8:off  9:off 10:off
+</pre></div>
+</div>
+<p>Manipulating the gamepad axes and buttons will change the output. This lets you confirm the connection status and the mapping of the axes and buttons. If you do not get this output or if the gamepad does not produce different output when manipulated, it might not be connected properly. Check your connection method and the gamepad status and try again.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>The Joystick class used below to handle input from joysticks contains functionality to calibrate the common position of axes and buttons (ID values) for each type of gamepad.This allows the same program to be used by the above gamepad. However, the ID values used within the program may not necessarily correspond to those output by jstest, so use caution.</p>
+</div>
+</section>
+<section id="virtual-joystick-view-setup">
+<span id="drone-tutorial-virtual-joystick-view"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Virtual joystick view setup</a><a class="headerlink" href="#virtual-joystick-view-setup" title="Link to this heading"></a></h2>
+<p>If you do not have a gamepad, you can use the Virtual Joystick View.
+This is accessed by selecting View, Display Views, and Virtual Joystick from the Main Menu. The external appearance is as below.</p>
+<a class="reference internal image-reference" href="../_images/step3-2.png"><img alt="../_images/step3-2.png" src="../_images/step3-2.png" style="width: 320px;" /></a>
+<p>This appears in the same area as the Message View usually situated on the bottom of the main window.
+This causes messages to be hidden, <a class="reference external" href="https://choreonoid.org/en/manuals/latest/basics/mainwindow.html#basics-modify-view-layout">so you should change the view layout</a> in order to be able to use both the Message View and Virtual Joystick View at the same time.
+You could reconfigure the layout as below.</p>
+<a class="reference internal image-reference" href="../_images/step3-3.png"><img alt="../_images/step3-3.png" src="../_images/step3-3.png" style="width: 320px;" /></a>
+<p>Once a gamepad is connected, its input takes precedence. If using the Virtual Joystick View, ensure that there is no gamepad connected at that time.
+This completes the setup process.</p>
+</section>
+<section id="controller-source-code">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Controller source code</a><a class="headerlink" href="#controller-source-code" title="Link to this heading"></a></h2>
+<p>The source code for the controller we will be creating is below.
+This code takes DroneController1, which we worked on in Step 2, and adds functionality to control the thrusts and anti-torques of the rotor devices via a gamepad.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<span id="controller-example3"></span><div class="code-block-caption"><span class="caption-text">DroneController2.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/EigenUtil&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Format&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Rotor&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SimpleController&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SimplePilot&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">cnoid</span><span class="p">;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">MAX_TILT_ANGLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">80.0</span><span class="p">;</span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">delta</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.1</span><span class="w"> </span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">pgain</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">0.08</span><span class="p">,</span><span class="w"> </span><span class="mf">0.003</span><span class="p">,</span><span class="w"> </span><span class="mf">0.003</span><span class="p">,</span><span class="w"> </span><span class="mf">0.00002</span><span class="w"> </span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dgain</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">0.02</span><span class="p">,</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w"> </span><span class="mf">0.00001</span><span class="w"> </span><span class="p">};</span>
+
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DroneController2</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SimpleController</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">SimplePilot</span><span class="w"> </span><span class="n">pilot</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DeviceList</span><span class="o">&lt;</span><span class="n">Rotor</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rotors</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector4</span><span class="w"> </span><span class="n">zref</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector4</span><span class="w"> </span><span class="n">dzref</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector2</span><span class="w"> </span><span class="n">dxref</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">*</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="n">SimpleControllerIO</span><span class="o">*</span><span class="w"> </span><span class="n">io</span><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Body</span><span class="o">*</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">();</span>
+<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">io</span><span class="o">-&gt;</span><span class="n">os</span><span class="p">();</span>
+<span class="w">        </span><span class="n">rotors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">body</span><span class="o">-&gt;</span><span class="n">devices</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">pilot</span><span class="p">.</span><span class="n">setStickMode</span><span class="p">(</span><span class="n">SimplePilot</span><span class="o">::</span><span class="n">MODE2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pilot</span><span class="p">.</span><span class="n">setMaxTiltAngle</span><span class="p">(</span><span class="n">radian</span><span class="p">(</span><span class="n">MAX_TILT_ANGLE</span><span class="p">));</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">pilot</span><span class="p">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">io</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">pilot</span><span class="p">.</span><span class="n">findImu</span><span class="p">(</span><span class="s">&quot;Imu&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">pilot</span><span class="p">.</span><span class="n">findBatteryDevice</span><span class="p">(</span><span class="s">&quot;FlightBattery&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">rotor</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">rotors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">io</span><span class="o">-&gt;</span><span class="n">enableInput</span><span class="p">(</span><span class="n">rotor</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">zref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pilot</span><span class="p">.</span><span class="n">zrpy</span><span class="p">();</span>
+<span class="w">        </span><span class="n">dzref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector4</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+<span class="w">        </span><span class="n">dxref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">control</span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">pilot</span><span class="p">.</span><span class="n">readCurrentState</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">controlID</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">SimplePilot</span><span class="o">::</span><span class="n">THROTTLE</span><span class="p">,</span><span class="w"> </span><span class="n">SimplePilot</span><span class="o">::</span><span class="n">AILERON</span><span class="p">,</span><span class="w"> </span><span class="n">SimplePilot</span><span class="o">::</span><span class="n">ELEVATOR</span><span class="p">,</span><span class="w"> </span><span class="n">SimplePilot</span><span class="o">::</span><span class="n">RUDDER</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">pos</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pilot</span><span class="p">.</span><span class="n">getPosition</span><span class="p">(</span><span class="n">controlID</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">Vector4</span><span class="w"> </span><span class="n">fz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector4</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Vector4</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pilot</span><span class="p">.</span><span class="n">zrpy</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Vector4</span><span class="w"> </span><span class="n">dz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pilot</span><span class="p">.</span><span class="n">dzrpy</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Vector4</span><span class="w"> </span><span class="n">ddz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pilot</span><span class="p">.</span><span class="n">ddzrpy</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">Vector2</span><span class="w"> </span><span class="n">dx_local</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pilot</span><span class="p">.</span><span class="n">dxy_local</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Vector2</span><span class="w"> </span><span class="n">ddx_local</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pilot</span><span class="p">.</span><span class="n">ddxy_local</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">gc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pilot</span><span class="p">.</span><span class="n">gravityCompensation</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">dzref</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">delta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">                </span><span class="n">fz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">dzref</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dz</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pgain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ddz</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dgain</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="n">dxref</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">delta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">                </span><span class="n">zref</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">dxref</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dx_local</span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ddx_local</span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">j</span><span class="p">]);</span>
+<span class="w">                </span><span class="n">zref</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">zref</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">                </span><span class="n">fz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">zref</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pgain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dz</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dgain</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">pilot</span><span class="p">.</span><span class="n">arm</span><span class="p">(</span><span class="n">SimplePilot</span><span class="o">::</span><span class="n">L_STICK_INWARD</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SimplePilot</span><span class="o">::</span><span class="n">isReady</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">(</span><span class="o">*</span><span class="n">os</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Ready for takeoff.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">ATD</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">thr</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">pilot</span><span class="p">.</span><span class="n">on</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">thr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">            </span><span class="n">thr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">            </span><span class="n">thr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">            </span><span class="n">thr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fz</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">rotors</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Rotor</span><span class="o">*</span><span class="w"> </span><span class="n">rotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotors</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="n">rotor</span><span class="o">-&gt;</span><span class="n">thrust</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="n">rotor</span><span class="o">-&gt;</span><span class="n">torque</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ATD</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">thr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="n">rotor</span><span class="o">-&gt;</span><span class="n">notifyStateChange</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="n">CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY</span><span class="p">(</span><span class="n">DroneController2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="controller-compilation">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Controller compilation</a><a class="headerlink" href="#controller-compilation" title="Link to this heading"></a></h2>
+<p>Enter and save the source code above and recompile.
+The process is the same as described in Step 2. Save the source code to a file named DroneController2.cpp in the project directory and add the below code to CMakeLists.txt.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">add_cnoid_simple_controller</span><span class="p">(</span><span class="n">DroneTutorial_DroneController2</span> <span class="n">DroneController2</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">DroneTutorial_DroneController2</span> <span class="n">CnoidCFDPlugin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, when you compile Choreonoid, the controller will also be compiled, and a file called DroneTutorial_DroneController2so will be generated in the controller directory.</p>
+</section>
+<section id="swapping-controllers">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Swapping controllers</a><a class="headerlink" href="#swapping-controllers" title="Link to this heading"></a></h2>
+<p>Now, let’s try using this controller as a controller for the Drone model.
+You should still have the project you created in Step 2. All you have to do is change the controller settings.
+Carry out the <a class="reference internal" href="step2.html#simulation-drone-tutorial-set-controller"><span class="std std-ref">Setting the controller body</span></a> described in Step 2 and ensure that you overwrite the DroneTutorial_DroneController2.so file we created previously.
+This completes the controller setup. Now, save this project as step3.cnoid.</p>
+</section>
+<section id="drone-operation">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Drone operation</a><a class="headerlink" href="#drone-operation" title="Link to this heading"></a></h2>
+<p>Now, let’s run the simulation.</p>
+<p>The gamepad should now be working to control the Drone model. Try moving it around. If you are using an F310, the right analog stick should let you move the Drone model.
+Try moving its axis. For other gamepads, you can experiment to see which axes correspond, etc. If things do not function as intended, try changing the axis settings in your source code. This will be explained in the next section.
+If using the Virtual Joystick View, you can manipulate the view using the keyboard. The buttons onscreen correspond to the directional pad and analog stick axes of a gamepad, as well as the buttons. The correspondence is explained in the image below.</p>
+<a class="reference internal image-reference" href="../_images/step3-4.png"><img alt="../_images/step3-4.png" src="../_images/step3-4.png" style="width: 320px;" /></a>
+<p>If you look at the F310 in the context of this image, you will see how the main axes of the analog sticks and buttons on the F310 correspond. Use the J and L buttons on the keyboard to control the yaw rotation of the gun turret and the I and K keys to control the pitch rotation.
+One note is that the Virtual Joystick View will not work <strong>unless the keyboard is in focus</strong>. Therefore, you must click the mouse in the view or otherwise regain focus. If you change the viewpoint of the Scene View while manipulating a model, the focus will shift to that new view.
+You must click the Virtual Joystick View again to regain focus.
+Were you able to move the Drone model as intended? As you can see, you can achieve a range of functionality to manipulate the model depending on how you configure your gamepad. Taking input from external devices allows you to add more functionality to your controllers.</p>
+</section>
+<section id="how-this-implementation-works">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">How this implementation works</a><a class="headerlink" href="#how-this-implementation-works" title="Link to this heading"></a></h2>
+<p>Now editing...</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="step2.html" class="btn btn-neutral float-left" title="Step 2: Implementing a controller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="step4.html" class="btn btn-neutral float-right" title="Step 4: Simulating and polling camera images" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, suzuki.kenta38.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

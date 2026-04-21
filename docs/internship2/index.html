@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drone tutorial &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
+
+  
+  
+        <script src="../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=1a6bc256"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=4dbe4bdc"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Step 0: Creating a drone model" href="step0.html" />
+    <link rel="prev" title="Crawlerモデルファイル全記述内容" href="../internship/crawler.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            hairo-world-plugin-doc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internship/index.html">Crawlerチュートリアル</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Drone tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="step0.html">Step 0: Creating a drone model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html">Step 1: Creating a simulation project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html">Step 2: Implementing a controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html">Step 3: Controlling the drone with a gamepad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html">Step 4: Simulating and polling camera images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drone.html">Full description of the drone model file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hairo-world-plugin-doc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Drone tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/internship2/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="drone-tutorial">
+<h1>Drone tutorial<a class="headerlink" href="#drone-tutorial" title="Link to this heading"></a></h1>
+<p>In this tutorial, we will implement a simulation to operate the remote-controlled robot model &quot;Drone&quot; using a gamepad (joystick). The tutorial consists of nine stages, from Step 0 to Step 4.
+By following these steps in order, you can specifically learn how to realize a basic simulation.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>The content of this tutorial is based on the <a class="reference external" href="https://choreonoid.org/en/manuals/latest/simulation/tank-tutorial/index.html">Tank Tutorial</a> from the official Choreonoid documentation, with the Tank model replaced by the Drone model.</p>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="step0.html">Step 0: Creating a drone model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="step1.html">Step 1: Creating a simulation project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="step1.html#launching-choreonoid">Launching Choreonoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html#importing-the-drone-model">Importing the Drone model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html#importing-the-ground-model">Importing the ground model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html#creating-a-simulator-item">Creating a simulator item</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html#setting-properties">Setting properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html#creating-a-multi-collider-item">Creating a multi-collider item</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html#setting-properties-of-the-multi-collider-item">Setting properties of the multi-collider item</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html#creating-a-sub-simulator-item">Creating a sub-simulator item</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html#saving-a-project">Saving a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html#launching-a-simulation">Launching a simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html#stopping-a-simulation">Stopping a simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="step2.html">Step 2: Implementing a controller</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="step2.html#controller-format">Controller format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html#implementing-the-dronecontroller1-controller">Implementing the “DroneController1” controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html#creating-a-project-directory">Creating a project directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html#building-the-controller">Building the controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html#cmakelists-txt-notation">CMakeLists.txt notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html#controller-compilation">Controller compilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html#controller-item-creation">Controller item creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html#setting-the-controller-body">Setting the controller body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html#launching-a-simulation">Launching a simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html#how-this-implementation-works">How this implementation works</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="step2.html#the-simplecontroller-class">The SimpleController Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step2.html#implementing-the-initialize-function">Implementing the initialize function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step2.html#implementing-the-control-function">Implementing the control function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step2.html#factory-function-definitions">Factory function definitions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="step3.html">Step 3: Controlling the drone with a gamepad</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="step3.html#gamepad-setup">Gamepad setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html#virtual-joystick-view-setup">Virtual joystick view setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html#controller-source-code">Controller source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html#controller-compilation">Controller compilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html#swapping-controllers">Swapping controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html#drone-operation">Drone operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html#how-this-implementation-works">How this implementation works</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="step4.html">Step 4: Simulating and polling camera images</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="step4.html#camera-devices">Camera devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html#changing-cameras-in-the-scene-view">Changing cameras in the Scene View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html#simulating-camera-images">Simulating camera images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html#controller-source-code">Controller source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html#deploying-the-controller">Deploying the controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html#polling-and-displaying-camera-images">Polling and displaying camera images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html#how-this-implementation-works">How this implementation works</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="drone.html">Full description of the drone model file</a></li>
+</ul>
+</div>
+<p>In this tutorial, we assume the environment is Ubuntu Linux. Therefore, please proceed with the steps on Ubuntu Linux as a general rule. While the source code itself is compatible with other operating systems,
+the compilation methods will differ slightly, just as they do with the main Choreonoid application.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../internship/crawler.html" class="btn btn-neutral float-left" title="Crawlerモデルファイル全記述内容" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="step0.html" class="btn btn-neutral float-right" title="Step 0: Creating a drone model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, suzuki.kenta38.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

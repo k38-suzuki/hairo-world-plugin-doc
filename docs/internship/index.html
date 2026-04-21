@@ -1,48 +1,112 @@
 <!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<html lang="en" data-content_root="../">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crawlerチュートリアル &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
 
-    <title>Crawlerチュートリアル &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=601dbdee" />
-    <script src="../_static/documentation_options.js?v=7026087e"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  
+  
+        <script src="../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=1a6bc256"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=4dbe4bdc"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
     <link rel="next" title="ステップ0: Crawlerモデルの作成" href="step0.html" />
-    <link rel="prev" title="ステップ３：カメラ画像のシミュレーション" href="../wrs/step3.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="step0.html" title="ステップ0: Crawlerモデルの作成"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="../wrs/step3.html" title="ステップ３：カメラ画像のシミュレーション"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Crawlerチュートリアル</a></li> 
-      </ul>
-    </div>  
+    <link rel="prev" title="Patch note" href="../en/note/index.html" /> 
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            hairo-world-plugin-doc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Crawlerチュートリアル</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="step0.html">ステップ0: Crawlerモデルの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1.html">ステップ1: シミュレーションプロジェクトの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html">ステップ2: コントローラの作成と導入</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html">ステップ3: ゲームパッドによるカメラ台座の制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html">ステップ4: ゲームパッドによるヒンジの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step5.html">ステップ5: クローラの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step6.html">ステップ6: サブクローラの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step7.html">ステップ7: ライトの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step8.html">ステップ8: カメラ画像のシミュレーションと取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crawler.html">Crawlerモデルファイル全記述内容</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internship2/index.html">Drone tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hairo-world-plugin-doc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Crawlerチュートリアル</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/internship/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="crawler">
-<h1>Crawlerチュートリアル<a class="headerlink" href="#crawler" title="Link to this heading">¶</a></h1>
-<p>本チュートリアルでは、遠隔操作ロボット “Crawler” モデルをゲームパッド（ジョイスティック）で操作するシミュレーションを実現します。チュートリアルはステップ0からステップ8の9段階で構成されており、これらを順番に実行していくことで、基本的なシミュレーションの実現方法を具体的に学ぶことができます。</p>
+<h1>Crawlerチュートリアル<a class="headerlink" href="#crawler" title="Link to this heading"></a></h1>
+<p>本チュートリアルでは、遠隔操作ロボット &quot;Crawler&quot; モデルをゲームパッド（ジョイスティック）で操作するシミュレーションを実現します。チュートリアルはステップ0からステップ8の9段階で構成されており、これらを順番に実行していくことで、基本的なシミュレーションの実現方法を具体的に学ぶことができます。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注釈</p>
 <p>このチュートリアルの内容は、Choreonoid公式の <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/tank-tutorial/index.html">Tankチュートリアル</a> のTankモデルをCrawlerモデルに置き換えたものです。</p>
 </div>
 <div class="toctree-wrapper compound">
@@ -73,25 +137,25 @@
 <li class="toctree-l2"><a class="reference internal" href="step0.html#tutorial-26">カメラ台座ピッチ軸関節の記述</a></li>
 <li class="toctree-l2"><a class="reference internal" href="step0.html#tutorial-27">デバイスの記述</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="step0.html#modelfile-tank-spotlight">スポットライトの記述</a></li>
-<li class="toctree-l3"><a class="reference internal" href="step0.html#id32">ライト形状の記述</a></li>
-<li class="toctree-l3"><a class="reference internal" href="step0.html#id34">カメラの記述</a></li>
-<li class="toctree-l3"><a class="reference internal" href="step0.html#id35">カメラ位置姿勢の記述</a></li>
-<li class="toctree-l3"><a class="reference internal" href="step0.html#id38">カメラの形状</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step0.html#id33">ライト形状の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step0.html#id35">カメラの記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step0.html#id36">カメラ位置姿勢の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step0.html#id39">カメラの形状</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="step0.html#tutorial-28">クローラの記述</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="step0.html#id40">左クローラの記述</a></li>
-<li class="toctree-l3"><a class="reference internal" href="step0.html#id42">右クローラの記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step0.html#id41">左クローラの記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step0.html#id43">右クローラの記述</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="step0.html#tutorial-29">ヒンジの記述</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="step0.html#id44">左ヒンジの記述</a></li>
-<li class="toctree-l3"><a class="reference internal" href="step0.html#id45">右ヒンジの記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step0.html#id45">左ヒンジの記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step0.html#id46">右ヒンジの記述</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="step0.html#tutorial-30">サブクローラの記述</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="step0.html#id47">前左クローラの記述</a></li>
-<li class="toctree-l3"><a class="reference internal" href="step0.html#id48">前右クローラの記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step0.html#id48">前左クローラの記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step0.html#id49">前右クローラの記述</a></li>
 </ul>
 </li>
 </ul>
@@ -110,7 +174,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="step2.html">ステップ2: コントローラの作成と導入</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="step2.html#step2-ref1">コントローラの形式について</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step2.html#turretcontroller1">コントローラ “TurretController1” の実装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html#turretcontroller1">コントローラ &quot;TurretController1&quot; の実装</a></li>
 <li class="toctree-l2"><a class="reference internal" href="step2.html#step2-ref3">コントローラのビルド方法</a></li>
 <li class="toctree-l2"><a class="reference internal" href="step2.html#step2-ref4">プロジェクトディレクトリの作成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="step2.html#cmakelists-txt">CMakeLists.txtの記述</a></li>
@@ -183,112 +247,40 @@
 </div>
 <p>本チュートリアルはUbuntu Linux上での実行を想定して記述していますので、基本的にはUbuntu Linux上で進めるようにして下さい。ソースコード自体は他のOS上でも有効ですが、Choreonoid本体の場合と同様に、コンパイル方法が若干異なってきます。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>本チュートリアルで作成するプロジェクトやソースコードのファイルは、HAIROWorldPluginの “sample/tutorial/Crawler” 以下に格納されています。</p>
+<p class="admonition-title">注釈</p>
+<p>本チュートリアルで作成するプロジェクトやソースコードのファイルは、HAIROWorldPluginの &quot;sample/tutorial/Crawler&quot; 以下に格納されています。</p>
 </div>
 </section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../en/note/index.html" class="btn btn-neutral float-left" title="Patch note" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="step0.html" class="btn btn-neutral float-right" title="ステップ0: Crawlerモデルの作成" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, suzuki.kenta38.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h3><a href="../index.html">Table Of Contents</a></h3>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Crawlerチュートリアル</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="step0.html">ステップ0: Crawlerモデルの作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step1.html">ステップ1: シミュレーションプロジェクトの作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step2.html">ステップ2: コントローラの作成と導入</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step3.html">ステップ3: ゲームパッドによるカメラ台座の制御</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step4.html">ステップ4: ゲームパッドによるヒンジの制御</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step5.html">ステップ5: クローラの制御</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step6.html">ステップ6: サブクローラの制御</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step7.html">ステップ7: ライトの制御</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step8.html">ステップ8: カメラ画像のシミュレーションと取得</a></li>
-<li class="toctree-l2"><a class="reference internal" href="crawler.html">Crawlerモデルファイル全記述内容</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
-</ul>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-<div id="searchbox" style="display: none" role="search">
-  <h3>search</h3>
-    <form action="http://www.google.com/search" method=get>
-      <input type="hidden" name="hl" value="en">
-      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
-      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
-      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-<div id="searchbox" style="display: none" role="search">
-  <h3>search</h3>
-    <form action="http://www.google.com/search" method=get>
-      <input type="hidden" name="hl" value="ja">
-      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
-      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
-      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="step0.html" title="ステップ0: Crawlerモデルの作成"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="../wrs/step3.html" title="ステップ３：カメラ画像のシミュレーション"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Crawlerチュートリアル</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
-    </div>
-  </body>
+</body>
 </html>

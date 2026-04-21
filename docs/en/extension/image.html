@@ -1,60 +1,138 @@
 <!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<html lang="en" data-content_root="../../">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VisualEffectPlugin &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=86f27845" />
 
-    <title>VisualEffectPlugin &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../_static/nature.css?v=601dbdee" />
-    <script src="../../_static/documentation_options.js?v=7026087e"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
+  
+  
+        <script src="../../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=1a6bc256"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/translations.js?v=4dbe4bdc"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
     <link rel="next" title="MotionCapturePlugin" href="motion.html" />
     <link rel="prev" title="NetEmPlugin" href="netem.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="motion.html" title="MotionCapturePlugin"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="netem.html" title="NetEmPlugin"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >HAIROWorldPlugin Operation Manual (in English)</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Extensions</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">VisualEffectPlugin</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            hairo-world-plugin-doc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vfx/index.html">VFXプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../body/index.html">BodyCreatorプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../joystick/index.html">VirtualJoystickプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lift/index.html">LiftSampleプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ros2/index.html">ROS2との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tips/index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../note/index.html">パッチノート</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">HAIROWorldPlugin Operation Manual (in English)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Extensions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="cfd.html">CFDPlugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netem.html">NetEmPlugin</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">VisualEffectPlugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generating-an-image-view">Generating an Image View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generating-an-image-view-bar">Generating an Image View Bar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-a-multi-collider-item">Configuring a Multi-Collider Item</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-and-configuring-a-vfx-vision-simulator">Creating and Configuring a VFX Vision Simulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-the-simulation">Running the Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="motion.html">MotionCapturePlugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collision.html">CollisionSeqPlugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="joystick.html">JoystickStatusPlugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bookmark.html">BookmarkPlugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generator.html">BodyGeneratorPlugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inertia.html">InertiaCalculatorPlugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ikplanner.html">IKPlannerPlugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="phits.html">PHITSPlugin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../update/index.html">Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../note/index.html">Patch note</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Crawlerチュートリアル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial2/index.html">Drone tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../wrsutil/index.html">WRSUtilプラグイン</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">hairo-world-plugin-doc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Extensions</a></li>
+      <li class="breadcrumb-item active">VisualEffectPlugin</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/en/extension/image.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="visualeffectplugin">
-<h1>VisualEffectPlugin<a class="headerlink" href="#visualeffectplugin" title="Link to this heading">¶</a></h1>
+<h1>VisualEffectPlugin<a class="headerlink" href="#visualeffectplugin" title="Link to this heading"></a></h1>
 <p>This section explains how to simulate camera images using the VFX Vision Simulator.</p>
 <section id="generating-an-image-view">
-<h2>Generating an Image View<a class="headerlink" href="#generating-an-image-view" title="Link to this heading">¶</a></h2>
-<p>Camera images with visual effects applied by the VFX Vision Simulator are displayed in the “Image View.”
-To generate an Image View, select “View” - “Show View” - “Image” from the main menu.</p>
+<h2>Generating an Image View<a class="headerlink" href="#generating-an-image-view" title="Link to this heading"></a></h2>
+<p>Camera images with visual effects applied by the VFX Vision Simulator are displayed in the &quot;Image View.&quot;
+To generate an Image View, select &quot;View&quot; - &quot;Show View&quot; - &quot;Image&quot; from the main menu.</p>
 </section>
 <section id="generating-an-image-view-bar">
-<h2>Generating an Image View Bar<a class="headerlink" href="#generating-an-image-view-bar" title="Link to this heading">¶</a></h2>
-<p>The Image View Bar is used to select the camera to simulate. Generate an Image View Bar by selecting “View” - “Show Toolbar” - “Image View Bar” from the main menu.</p>
+<h2>Generating an Image View Bar<a class="headerlink" href="#generating-an-image-view-bar" title="Link to this heading"></a></h2>
+<p>The Image View Bar is used to select the camera to simulate. Generate an Image View Bar by selecting &quot;View&quot; - &quot;Show Toolbar&quot; - &quot;Image View Bar&quot; from the main menu.</p>
 </section>
 <section id="configuring-a-multi-collider-item">
-<h2>Configuring a Multi-Collider Item<a class="headerlink" href="#configuring-a-multi-collider-item" title="Link to this heading">¶</a></h2>
-<p>A Multi-Collider item defines the area where visual effects are applied to camera images. To generate one, select “File” - “New” - “Multi-Collider” from the main menu. The generated Multi-Collider item should be placed as a child item of a World item or a Body item. If placed as a child of a World item, visual effects will be applied to the camera image when a link with a camera configured enters the area specified by that Multi-Collider item. If placed as a child of a Body item, the Multi-Collider item will move in synchronization with the body’s movement, and visual effects will always be applied to the camera image.</p>
+<h2>Configuring a Multi-Collider Item<a class="headerlink" href="#configuring-a-multi-collider-item" title="Link to this heading"></a></h2>
+<p>A Multi-Collider item defines the area where visual effects are applied to camera images. To generate one, select &quot;File&quot; - &quot;New&quot; - &quot;Multi-Collider&quot; from the main menu. The generated Multi-Collider item should be placed as a child item of a World item or a Body item. If placed as a child of a World item, visual effects will be applied to the camera image when a link with a camera configured enters the area specified by that Multi-Collider item. If placed as a child of a Body item, the Multi-Collider item will move in synchronization with the body's movement, and visual effects will always be applied to the camera image.</p>
 <p>Visual effects can be configured by changing the properties of the Multi-Collider item. To change properties, select the desired Multi-Collider item in the Item Tree View and modify the parameters in the Property View. Below are the Multi-Collider properties for defining the area where visual effects are applied to camera images and for setting the visual effects to be applied to camera images.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -190,12 +268,12 @@ To generate an Image View, select “View” - “Show View” - “Image” fro
 </table>
 </section>
 <section id="creating-and-configuring-a-vfx-vision-simulator">
-<h2>Creating and Configuring a VFX Vision Simulator<a class="headerlink" href="#creating-and-configuring-a-vfx-vision-simulator" title="Link to this heading">¶</a></h2>
-<p>The VFX Vision Simulator is an item used to apply visual effects to camera images. The VFX Vision Simulator inherits from Choreonoid’s GL Vision Simulator and performs both camera image generation and visual effect application. Here, we’ll use Choreonoid’s standard simulator item, “AIST Simulator.” Select “File” - “New” - “VFX Vision Simulator” from the main menu to generate it. The VFX Vision Simulator should be placed as a child item of the AIST Simulator item. Next, select “File” - “New” - “Sensor Visualization” from the main menu to generate a Sensor Visualizer. The generated Sensor Visualizer should be placed as a child item of any Body item. When a Sensor Visualizer is set as a child item of a Body item, a CameraImageVisualizerItem is automatically generated for each camera configured on the body. The cameras checked in this automatically generated item’s checkbox will be registered in the combo box of the Image View Bar.</p>
-<p>Regarding visual effects applied by the VFX Vision Simulator, the VFX Vision Simulator can apply “Hue (H), Saturation (S), Brightness (V),” “Red (R), Green (G), Blue (B),” “Distortion,” “Magnification,” “Gaussian Noise,” “Salt-and-Pepper Noise (White Noise, Black Noise),” and “Mosaic” as shown in the Multi-Collider properties above. However, if all these visual effects are applied to a camera image, the computational load for image processing may increase, and the simulation might not run in real time.</p>
+<h2>Creating and Configuring a VFX Vision Simulator<a class="headerlink" href="#creating-and-configuring-a-vfx-vision-simulator" title="Link to this heading"></a></h2>
+<p>The VFX Vision Simulator is an item used to apply visual effects to camera images. The VFX Vision Simulator inherits from Choreonoid's GL Vision Simulator and performs both camera image generation and visual effect application. Here, we'll use Choreonoid's standard simulator item, &quot;AIST Simulator.&quot; Select &quot;File&quot; - &quot;New&quot; - &quot;VFX Vision Simulator&quot; from the main menu to generate it. The VFX Vision Simulator should be placed as a child item of the AIST Simulator item. Next, select &quot;File&quot; - &quot;New&quot; - &quot;Sensor Visualization&quot; from the main menu to generate a Sensor Visualizer. The generated Sensor Visualizer should be placed as a child item of any Body item. When a Sensor Visualizer is set as a child item of a Body item, a CameraImageVisualizerItem is automatically generated for each camera configured on the body. The cameras checked in this automatically generated item's checkbox will be registered in the combo box of the Image View Bar.</p>
+<p>Regarding visual effects applied by the VFX Vision Simulator, the VFX Vision Simulator can apply &quot;Hue (H), Saturation (S), Brightness (V),&quot; &quot;Red (R), Green (G), Blue (B),&quot; &quot;Distortion,&quot; &quot;Magnification,&quot; &quot;Gaussian Noise,&quot; &quot;Salt-and-Pepper Noise (White Noise, Black Noise),&quot; and &quot;Mosaic&quot; as shown in the Multi-Collider properties above. However, if all these visual effects are applied to a camera image, the computational load for image processing may increase, and the simulation might not run in real time.</p>
 </section>
 <section id="running-the-simulation">
-<h2>Running the Simulation<a class="headerlink" href="#running-the-simulation" title="Link to this heading">¶</a></h2>
+<h2>Running the Simulation<a class="headerlink" href="#running-the-simulation" title="Link to this heading"></a></h2>
 <p>Run the simulation as usual from the simulation bar. Select any Image View and then choose a camera from the combo box in the Image View Bar to display the camera image.
 Below is an example of a camera image with distortion set to -0.3 and magnification set to 1.7.</p>
 <img alt="../../_images/image_4.png" src="../../_images/image_4.png" />
@@ -203,102 +281,34 @@ Below is an example of a camera image with distortion set to -0.3 and magnificat
 </section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="netem.html" class="btn btn-neutral float-left" title="NetEmPlugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="motion.html" class="btn btn-neutral float-right" title="MotionCapturePlugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, suzuki.kenta38.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h3><a href="../../index.html">Table Of Contents</a></h3>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">HAIROWorldPlugin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">インストール</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cfd/index.html">CFDプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../netem/index.html">NetEmプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../vfx/index.html">VFXプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../motion/index.html">MotionCaptureプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../phits/index.html">PHITSプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../body/index.html">BodyCreatorプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../bookmark/index.html">Bookmarkプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../joystick/index.html">VirtualJoystickプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ompl/index.html">IKPlannerプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lift/index.html">LiftSampleプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ros/index.html">ROSとの連携</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ros2/index.html">ROS2との連携</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../paper/index.html">関連論文</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tips/index.html">補足事項</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../update/index.html">更新履歴</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../note/index.html">パッチノート</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">HAIROWorldPlugin Operation Manual (in English)</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../install/index.html">Installation</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Extensions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../update/index.html">Updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../note/index.html">Patch note</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../wrs/index.html">講習会特設ページ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../internship/index.html">Crawlerチュートリアル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../wrsutil/index.html">WRSUtilプラグイン</a></li>
-</ul>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-<div id="searchbox" style="display: none" role="search">
-  <h3>search</h3>
-    <form action="http://www.google.com/search" method=get>
-      <input type="hidden" name="hl" value="en">
-      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
-      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
-      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-<div id="searchbox" style="display: none" role="search">
-  <h3>search</h3>
-    <form action="http://www.google.com/search" method=get>
-      <input type="hidden" name="hl" value="ja">
-      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
-      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
-      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="motion.html" title="MotionCapturePlugin"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="netem.html" title="NetEmPlugin"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >HAIROWorldPlugin Operation Manual (in English)</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" >Extensions</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">VisualEffectPlugin</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
-    </div>
-  </body>
+</body>
 </html>

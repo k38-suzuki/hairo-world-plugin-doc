@@ -1,0 +1,7 @@
+add_cnoid_simple_controller(DroneTutorial_DroneController1 DroneController1.cpp)
+target_link_libraries(DroneTutorial_DroneController1 CnoidCFDPlugin)
+
+add_cnoid_simple_controller(DroneTutorial_DroneController2 DroneController2.cpp)
+target_link_libraries(DroneTutorial_DroneController2 CnoidCFDPlugin)
+
+add_cnoid_simple_controller(DroneTutorial_CameraController CameraController.cpp)

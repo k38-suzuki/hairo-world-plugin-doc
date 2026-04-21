@@ -1,55 +1,115 @@
 <!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<html lang="en" data-content_root="../">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>通信障害効果の設定 &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
 
-    <title>通信障害効果の設定 &#8212; hairo-world-plugin-doc 0.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=601dbdee" />
-    <script src="../_static/documentation_options.js?v=7026087e"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  
+  
+        <script src="../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=1a6bc256"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=4dbe4bdc"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
     <link rel="next" title="VFXプラグイン" href="../vfx/index.html" />
     <link rel="prev" title="NetEmプラグイン" href="index.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../vfx/index.html" title="VFXプラグイン"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="NetEmプラグイン"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">NetEmプラグイン</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">通信障害効果の設定</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            hairo-world-plugin-doc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">NetEmプラグイン</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">通信障害効果の設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#netem">ボディNetEmコントローラアイテムの作成と設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">マルチコライダアイテムの作成と設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">シミュレーションの実行</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Crawlerチュートリアル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial2/index.html">Drone tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hairo-world-plugin-doc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">NetEmプラグイン</a></li>
+      <li class="breadcrumb-item active">通信障害効果の設定</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/netem/netem.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="id1">
-<h1>通信障害効果の設定<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<h1>通信障害効果の設定<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <p>ここでは、ネットワークエミュレータを使った通信障害効果の設定の仕方を説明します。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注釈</p>
 <div class="line-block">
 <div class="line">ネットワークエミュレータは、Choreonoidのワールド内のロボットをOpenRTM・ROS等を用いてイーサネット経由で操縦する場合に使用できます。</div>
 </div>
 </div>
 <section id="netem">
-<h2>ボディNetEmコントローラアイテムの作成と設定<a class="headerlink" href="#netem" title="Link to this heading">¶</a></h2>
+<h2>ボディNetEmコントローラアイテムの作成と設定<a class="headerlink" href="#netem" title="Link to this heading"></a></h2>
 <p>まずボディNetEmコントローラアイテムを作成します。シミュレーション中に通信を行うボディをアイテムツリービューで選択して、続けてメインメニューの「ファイル」-「新規」-「ボディNetEmコントローラ」を選択して生成してください。
 生成したボディNetEmコントローラアイテムが選択したボディの子アイテムとして配置されます。シミュレーション中に通信を行うボディが複数ある場合には、ボディ毎にボディNetEmコントローラアイテムを1つずつ子アイテムとして配置します。</p>
 <p>次にボディNetEmコントローラアイテムのパラメータを設定します。ボディNetEmコントローラアイテムのパラメータは以下の通りです。</p>
@@ -88,10 +148,10 @@
 <p>以上でボディNetEmコントローラアイテムの設定は完了です。</p>
 </section>
 <section id="id2">
-<h2>マルチコライダアイテムの作成と設定<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<h2>マルチコライダアイテムの作成と設定<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>マルチコライダアイテムは、Choreonoidのワールド内の通信障害を適用する領域を定義するためのアイテムです。メインメニューの「ファイル」-「新規」-「マルチコライダ」を選択して、タイプ「通信障害」を指定して生成してください。生成したマルチコライダアイテムは、ワールドアイテムの子アイテムとして配置します。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">注釈</p>
 <div class="line-block">
 <div class="line">複数のマルチコライダアイテムを使用する場合、各アイテムの対象範囲が重複する場合があります。重複が発生した場合は、アイテムツリービューに登録されているより下位のマルチコライダアイテムの設定が適用されます。</div>
 </div>
@@ -186,104 +246,40 @@
 </table>
 </section>
 <section id="id3">
-<h2>シミュレーションの実行<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<h2>シミュレーションの実行<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>シミュレーションバーから通常通りシミュレーションを実行してください。シミュレーションに成功するとマルチコライダアイテムの設定に基づいた通信障害の効果が設定されます。効果の適用状況はpingコマンドを使用して確認できます。</p>
 </section>
 </section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="NetEmプラグイン" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../vfx/index.html" class="btn btn-neutral float-right" title="VFXプラグイン" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, suzuki.kenta38.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h3><a href="../index.html">Table Of Contents</a></h3>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">NetEmプラグイン</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">通信障害効果の設定</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ros/index.html">ROSとの連携</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wrs/index.html">講習会特設ページ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internship/index.html">Crawlerチュートリアル</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
-</ul>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-<div id="searchbox" style="display: none" role="search">
-  <h3>search</h3>
-    <form action="http://www.google.com/search" method=get>
-      <input type="hidden" name="hl" value="en">
-      <input type="hidden" name="sitesearch" value="http://choreonoid.org/en/manuals/latest">
-      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
-      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-<div id="searchbox" style="display: none" role="search">
-  <h3>search</h3>
-    <form action="http://www.google.com/search" method=get>
-      <input type="hidden" name="hl" value="ja">
-      <input type="hidden" name="sitesearch" value="http://choreonoid.org/ja/manuals/latest">
-      <input type="text" name="q" style="WIDTH: 150px; HEIGHT: 20px"/>
-      <input type="submit" name="btnG" value="Go" style="WIDTH: 50px; HEIGHT: 20px"/>
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../vfx/index.html" title="VFXプラグイン"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="NetEmプラグイン"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">hairo-world-plugin-doc 0.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >NetEmプラグイン</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">通信障害効果の設定</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2020, suzuki.kenta38.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
-    </div>
-  </body>
+</body>
 </html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 1: Creating a simulation project &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
+
+  
+  
+        <script src="../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=1a6bc256"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=4dbe4bdc"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Step 2: Implementing a controller" href="step2.html" />
+    <link rel="prev" title="Step 0: Creating a drone model" href="step0.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            hairo-world-plugin-doc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internship/index.html">Crawlerチュートリアル</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Drone tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="step0.html">Step 0: Creating a drone model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Step 1: Creating a simulation project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#launching-choreonoid">Launching Choreonoid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importing-the-drone-model">Importing the Drone model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importing-the-ground-model">Importing the ground model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-simulator-item">Creating a simulator item</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-properties">Setting properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-multi-collider-item">Creating a multi-collider item</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-properties-of-the-multi-collider-item">Setting properties of the multi-collider item</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-sub-simulator-item">Creating a sub-simulator item</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#saving-a-project">Saving a project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launching-a-simulation">Launching a simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stopping-a-simulation">Stopping a simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="step2.html">Step 2: Implementing a controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3.html">Step 3: Controlling the drone with a gamepad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4.html">Step 4: Simulating and polling camera images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drone.html">Full description of the drone model file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hairo-world-plugin-doc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Drone tutorial</a></li>
+      <li class="breadcrumb-item active">Step 1: Creating a simulation project</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/internship2/step1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="step-1-creating-a-simulation-project">
+<h1>Step 1: Creating a simulation project<a class="headerlink" href="#step-1-creating-a-simulation-project" title="Link to this heading"></a></h1>
+<p>Begin by importing the model we intended to run a simulation with into Choreonoid and creating a project.
+For details on this method, see the section on <a class="reference external" href="https://choreonoid.org/en/manuals/latest/simulation/simulation-project.html">Creation of Simulation Project</a>.
+In this section, we describe in detail the basic workflow.</p>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#launching-choreonoid" id="id3">Launching Choreonoid</a></p></li>
+<li><p><a class="reference internal" href="#importing-the-drone-model" id="id4">Importing the Drone model</a></p></li>
+<li><p><a class="reference internal" href="#importing-the-ground-model" id="id5">Importing the ground model</a></p></li>
+<li><p><a class="reference internal" href="#creating-a-simulator-item" id="id6">Creating a simulator item</a></p></li>
+<li><p><a class="reference internal" href="#setting-properties" id="id7">Setting properties</a></p></li>
+<li><p><a class="reference internal" href="#creating-a-multi-collider-item" id="id8">Creating a multi-collider item</a></p></li>
+<li><p><a class="reference internal" href="#setting-properties-of-the-multi-collider-item" id="id9">Setting properties of the multi-collider item</a></p></li>
+<li><p><a class="reference internal" href="#creating-a-sub-simulator-item" id="id10">Creating a sub-simulator item</a></p></li>
+<li><p><a class="reference internal" href="#saving-a-project" id="id11">Saving a project</a></p></li>
+<li><p><a class="reference internal" href="#launching-a-simulation" id="id12">Launching a simulation</a></p></li>
+<li><p><a class="reference internal" href="#stopping-a-simulation" id="id13">Stopping a simulation</a></p></li>
+</ul>
+</nav>
+<section id="launching-choreonoid">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Launching Choreonoid</a><a class="headerlink" href="#launching-choreonoid" title="Link to this heading"></a></h2>
+<p>Begin by launching Choreonoid.</p>
+<p>You can launch Choreonoid however you wish. For the purposes of this tutorial, we launch it from the command line.
+For brevity’s sake, we directly execute the executable files generated in the Choreonoid build directory at build time. In this case, you do not need to install by invoking “make install.”
+For example, if you built your files immediately within the source directory, the source directory is itself the build directory. You would launch Choreonoid the following way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="p">[</span><span class="n">source</span> <span class="n">directory</span><span class="p">]</span>
+<span class="nb">bin</span><span class="o">/</span><span class="n">choreonoid</span>
+</pre></div>
+</div>
+<p>In this case, the model files accompanying Choreonoid and the controller files and other assets we will newly create in this tutorial reference those within the Choreonoid source directory.
+This ensures that everything stays cleanly in one directory.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Naturally, you can also use files installed to /usr/local or another directory through the make install command. You are free to use those as necessary. In this case, execute “make install” when creating the controller; note that this installs against the controller file stored in the installation path.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>For basic Linux usage, see the section on <a class="reference external" href="https://choreonoid.org/en/manuals/latest/tips/howto-use-commands.html">About the basic usage of Linux</a>.</p>
+</div>
+<p>Once Choreonoid launches, first create a world item. From the Main Menu, select File &gt; New &gt; World. You will see the Generate New World Item dialog appear.
+Click Generate. A new item named “World” will appear in the <a class="reference external" href="https://choreonoid.org/en/manuals/latest/basics/mainwindow.html#basics-mainwindow-itemtreeview">Item Tree View</a> as shown below.</p>
+<a class="reference internal image-reference" href="../_images/step1-13.png"><img alt="../_images/step1-13.png" src="../_images/step1-13.png" style="width: 293.6px; height: 420.0px;" /></a>
+<p>The World item is intended to represent a single virtual world and must be generated if you intend to run a simulation</p>
+</section>
+<section id="importing-the-drone-model">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Importing the Drone model</a><a class="headerlink" href="#importing-the-drone-model" title="Link to this heading"></a></h2>
+<p>First we import the Drone model to be used for this simulation. As the name suggests, the Drone model resembles a drone.
+It is also equipped with a camera.
+First click on the World item we just created in the Item Tree View to select it. Doing so will ensure that subsequently imported items are sub-items of the World item.
+From the Main Menu, select File, Import, then Body. This will generate a file selection dialog where you can select the model file.
+Now, place a checkmark in the box on the lower lefthand side of the dialog window that says, “Place a Check on the Item Tree View.”
+If the model file is correctly imported, the Item Tree View should appear as below.</p>
+<a class="reference internal image-reference" href="../_images/step1-21.png"><img alt="../_images/step1-21.png" src="../_images/step1-21.png" style="width: 294.40000000000003px; height: 417.6px;" /></a>
+<p>In Choreonoid, robots and environmental models are referred to as <a class="reference external" href="https://choreonoid.org/en/manuals/latest/handling-models/bodymodel.html">Body Model</a>. They are managed in the Item Tree View as Body Items.
+The Body Item for the Drone model we have just imported is displayed as Drone on the Item Tree View.
+The Drone item is displayed one tick to the right of the World item. This is critical to note, as it indicates that the Drone item is a sub-item of the World item.
+This positional relationship enables the Drone model to be recognized as belonging to the World item, a virtual space. If the World item is selected upon import of the Drone model, it should be positioned as above.
+If it is not, you can Move the item (drag the Drone model and drop it on top of the World item) to arrange it properly.
+Also confirm that there is a checkmark on the left of the Drone item. If you enabled “Place a Check on the Item Tree View” in the earlier dialog, you should see a check on the above image.
+If there is no check, you can manually add a checkmark now.
+Once the Drone item is checked, the model appears in the Scene View.</p>
+<a class="reference internal image-reference" href="../_images/step1-31.png"><img alt="../_images/step1-31.png" src="../_images/step1-31.png" style="width: 1122.4px; height: 824.0px;" /></a>
+<p>By <a class="reference external" href="https://choreonoid.org/en/manuals/latest/basics/sceneview.html#basics-sceneview-viewpoint">Changing the Viewpoint</a> in the Scene View, you will make it easier to view the Drone model as you work. You can use the mouse wheel on the Scene View to move the perspective in and out and zoom the model in bigger.
+The above image shows what the screen will look like after having done that.
+If you want to create a more advanced model, see the section on <a class="reference external" href="https://choreonoid.org/en/manuals/latest/handling-models/modelfile/tank-blender.html">Using external mesh files</a>.</p>
+</section>
+<section id="importing-the-ground-model">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Importing the ground model</a><a class="headerlink" href="#importing-the-ground-model" title="Link to this heading"></a></h2>
+<p>We have loaded the Drone model, but gravity causes the Drone to sink when running a simulation. First, import the ground model to serve as an environment to support the Drone.
+As discussed previously, select the World item and, from the main menu, click File &gt; Import &gt; Body.
+Then import the floor.body file found within the /share/model/misc/ subdirectory within the Choreonoid install path. This will cause the Item Tree View to be as follows.</p>
+<a class="reference internal image-reference" href="../_images/step1-41.png"><img alt="../_images/step1-41.png" src="../_images/step1-41.png" style="width: 294.40000000000003px; height: 417.6px;" /></a>
+<p>As with the drone item,</p>
+<ul class="simple">
+<li><p>check whether this is a sub-item of the World Item</p></li>
+<li><p>and whether the Floor item has a check next to it.</p></li>
+</ul>
+<p>If there is a check, the Scene View should also display a floor model (in blue) as below.</p>
+<a class="reference internal image-reference" href="../_images/step1-51.png"><img alt="../_images/step1-51.png" src="../_images/step1-51.png" style="width: 1122.4px; height: 824.0px;" /></a>
+<p>This completes the basic configuration of the model.
+While we are using the default values (at time of import) for each model (position/orientation), if you want to change the defaults, see the section on <a class="reference external" href="https://choreonoid.org/en/manuals/latest/simulation/simulation-project.html#simulation-setting-initial-status">Configuration of Initial Status</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>You are not required to display the floor model on the Scene View. The Floor model we are using is a simple flat surface with Z=0. Provided you have the default floor grid display on, that may be enough for you. In that case, you can remove the check on the Floor item to turn its display off. If the model item is a sub-item of the World item, the simulation deems it to exist, irrespective of whether it is physically displayed.</p>
+</div>
+</section>
+<section id="creating-a-simulator-item">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Creating a simulator item</a><a class="headerlink" href="#creating-a-simulator-item" title="Link to this heading"></a></h2>
+<p>To run a simulation, you must first create a <a class="reference external" href="https://choreonoid.org/en/manuals/latest/simulation/concept.html#simulation-simulator-item">simulator Item</a>.
+We’ll be using a standard simulator item, the AIST simulator. From the main menu, select File, New, then AIST Simulator to generate the item.
+Position the simulator item, as with model items, as a sub-item of the World item. This lets you explicitly define the world in which the simulator item’s simulation will take place.
+Therefore, when generating the above item, you should also ensure that the World item is selected.
+If the item you created properly appears in the Item Tree View as below, you have followed these steps correctly.</p>
+<a class="reference internal image-reference" href="../_images/step1-61.png"><img alt="../_images/step1-61.png" src="../_images/step1-61.png" style="width: 294.40000000000003px; height: 417.6px;" /></a>
+</section>
+<section id="setting-properties">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Setting properties</a><a class="headerlink" href="#setting-properties" title="Link to this heading"></a></h2>
+<p>Next, we set the item properties in order to properly run the simulation.
+Begin by configuring the Drone item’s properties. Selecting the Drone item will cause the item properties list displayed on the Item Property View to look like below.</p>
+<a class="reference internal image-reference" href="../_images/step1-71.png"><img alt="../_images/step1-71.png" src="../_images/step1-71.png" style="width: 293.6px; height: 420.0px;" /></a>
+<p>The corresponding body item property for simulations in this case is self-collision detection.
+By default, this is set to false. Even if model links collide, they will not halt there and slip past each other.
+By double-clicking on the point where the self-collision detection property reads “false,” you can toggle the combo box between true and false. Here, select true.
+To run a simulation, you must adjust the simulation item’s properties accordingly.
+The default settings are fine for now, but you will notice that this allows for <a class="reference external" href="https://choreonoid.org/en/manuals/latest/simulation/simulation-project.html#simulation-time-step">Configuration of Time Resolution</a>,
+<a class="reference external" href="https://choreonoid.org/en/manuals/latest/simulation/execution-and-playback.html#simulation-time-range">Configuration of Time Range</a>,
+<a class="reference external" href="https://choreonoid.org/en/manuals/latest/simulation/execution-and-playback.html#simulation-realtime-sync">Synchronization with Real Time</a>,
+<a class="reference external" href="https://choreonoid.org/en/manuals/latest/simulation/execution-and-playback.html#simulation-result-recording">Recording of Simulation Result</a>,
+<a class="reference external" href="https://choreonoid.org/en/manuals/latest/simulation/execution-and-playback.html#simulation-device-state-recording">Recording of Device States</a>, among other options.</p>
+</section>
+<section id="creating-a-multi-collider-item">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Creating a multi-collider item</a><a class="headerlink" href="#creating-a-multi-collider-item" title="Link to this heading"></a></h2>
+<p>The <strong>MultiCollider Item</strong> is used to define virtual regions in the Choreonoid world that contain elements such as water or air.
+To create one, select File &gt; New &gt; MultiCollider from the main menu, and specify the type as <strong>CFD</strong>.
+The generated MultiCollider item should be placed as a child of the World item. You can also define more detailed regions within the world by creating multiple MultiCollider items.</p>
+<a class="reference internal image-reference" href="../_images/step1-7-2.png"><img alt="../_images/step1-7-2.png" src="../_images/step1-7-2.png" style="width: 294.40000000000003px; height: 417.6px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>When using multiple MultiCollider items, their target areas may overlap. In such cases, the settings of the MultiCollider item positioned lower in the Item Tree View will take precedence and be applied.</p>
+</div>
+<p>The visibility of these fluid items can be toggled using the checkboxes in the Item Tree View. Additionally, any MultiCollider items that are hidden (unchecked) will be excluded from the simulation.</p>
+</section>
+<section id="setting-properties-of-the-multi-collider-item">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Setting properties of the multi-collider item</a><a class="headerlink" href="#setting-properties-of-the-multi-collider-item" title="Link to this heading"></a></h2>
+<p>The parameters for the MultiCollider item are as follows:</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">MultiCollider Parameters</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 45.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Unit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Density</p></td>
+<td><p>0.0</p></td>
+<td><p>kg/m³</p></td>
+<td><p>Specifies the density of the fluid.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Viscosity</p></td>
+<td><p>0.0</p></td>
+<td><p>Pa·s</p></td>
+<td><p>Specifies the viscosity of the fluid.</p></td>
+</tr>
+<tr class="row-even"><td><p>Steady Flow</p></td>
+<td><p>0, 0, 0</p></td>
+<td><p>N, N, N</p></td>
+<td><p>Specifies the external force applied to objects within the region.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Shape</p></td>
+<td><p>Box</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>Specifies the shape of the region (Box/Cylinder/Sphere).</p></td>
+</tr>
+<tr class="row-even"><td><p>Size</p></td>
+<td><p>1.0, 1.0, 1.0</p></td>
+<td><p>m, m, m</p></td>
+<td><p>Specifies the XYZ dimensions of the region (only if Shape is Box).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Radius</p></td>
+<td><p>1.0</p></td>
+<td><p>m</p></td>
+<td><p>Specifies the radius of the region (only if Shape is Cylinder or Sphere).</p></td>
+</tr>
+<tr class="row-even"><td><p>Height</p></td>
+<td><p>1.0</p></td>
+<td><p>m</p></td>
+<td><p>Specifies the height of the region (only if Shape is Cylinder).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Position</p></td>
+<td><p>0, 0, 0</p></td>
+<td><p>m, m, m</p></td>
+<td><p>Specifies the XYZ coordinates of the region's position.</p></td>
+</tr>
+<tr class="row-even"><td><p>RPY</p></td>
+<td><p>0, 0, 0</p></td>
+<td><p>deg, deg, deg</p></td>
+<td><p>Specifies the orientation of the region using Roll, Pitch, and Yaw.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Diffuse Color</p></td>
+<td><p>0, 0, 0</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>Specifies the diffuse color of the region in RGB.</p></td>
+</tr>
+<tr class="row-even"><td><p>Transparency</p></td>
+<td><p>0</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>Specifies the transparency level of the region.</p></td>
+</tr>
+</tbody>
+</table>
+<p>In this tutorial, we will use a box-shaped area as an example. Let's also make the area slightly larger, at 100m x 100m x 100m.
+Change the <strong>&quot;size&quot; property of the MultiCollider to 100 100 100</strong>.</p>
+<a class="reference internal image-reference" href="../_images/step1-7-3.png"><img alt="../_images/step1-7-3.png" src="../_images/step1-7-3.png" style="width: 294.40000000000003px; height: 417.6px;" /></a>
+</section>
+<section id="creating-a-sub-simulator-item">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Creating a sub-simulator item</a><a class="headerlink" href="#creating-a-sub-simulator-item" title="Link to this heading"></a></h2>
+<p>Next, you must add a CFD Simulator Item to your project.
+The CFD simulator is a sub-simulator to calculate flying drone behaviors.</p>
+<a class="reference internal image-reference" href="../_images/step1-7-4.png"><img alt="../_images/step1-7-4.png" src="../_images/step1-7-4.png" style="width: 294.40000000000003px; height: 417.6px;" /></a>
+</section>
+<section id="saving-a-project">
+<span id="drone-tutorial-step1-save-project"></span><h2><a class="toc-backref" href="#id11" role="doc-backlink">Saving a project</a><a class="headerlink" href="#saving-a-project" title="Link to this heading"></a></h2>
+<p>The steps thus far will have allowed you to create a base for the simulation project. At this point, you should consider <a class="reference external" href="https://choreonoid.org/en/manuals/latest/basics/item.html#basics-project-save">saving your project</a>.
+From the Main Menu, select File &gt; Save Project As, and on the dialog that appears, select a directory and set a filename, then save. We have used step1.cnoid as the filename.
+Each time you complete a step in this tutorial, we recommend saving a new filename.
+Each time you change the project settings, it would also be good to remember to overwrite the file. This can conveniently be done using the Save Project button seen below.</p>
+<a class="reference internal image-reference" href="../_images/step1-81.png"><img alt="../_images/step1-81.png" src="../_images/step1-81.png" style="width: 47.2px; height: 30.400000000000002px;" /></a>
+</section>
+<section id="launching-a-simulation">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Launching a simulation</a><a class="headerlink" href="#launching-a-simulation" title="Link to this heading"></a></h2>
+<p>For the time being, let’s try running the current simulation.
+Click the Begin Simulation button shown on the Simulation Bar below to start the simulation.</p>
+<a class="reference internal image-reference" href="../_images/step1-91.png"><img alt="../_images/step1-91.png" src="../_images/step1-91.png" style="width: 47.2px; height: 30.400000000000002px;" /></a>
+<p>This causes the Drone model to fall downwards, as shown in the figure below, and then stop after striking the floor.</p>
+<p>This is because there is no <a class="reference external" href="https://choreonoid.org/en/manuals/latest/simulation/concept.html#simulation-controller">Controller</a> to control the Drone model.
+In this way, if there is no controller, there is no way to maintain the orientation of the model.
+As discussed in the section on <a class="reference external" href="https://choreonoid.org/en/manuals/latest/simulation/howto-use-controller.html#controller-no-controller-case">Case without Controller</a> in the <a class="reference external" href="https://choreonoid.org/en/manuals/latest/simulation/howto-use-controller.html">Introduction of Controller</a> chapter,
+for humanoid robots, the effect is so pronounced that the robot fails forward.
+You will inevitably need a controller to control the way in which the robot moves. In the next step, we will be creating one.</p>
+</section>
+<section id="stopping-a-simulation">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Stopping a simulation</a><a class="headerlink" href="#stopping-a-simulation" title="Link to this heading"></a></h2>
+<p>Before proceeding to the next step, make sure you halt the simulation. Click the Simulation Halt Button shown below to end it.</p>
+<a class="reference internal image-reference" href="../_images/step1-111.png"><img alt="../_images/step1-111.png" src="../_images/step1-111.png" style="width: 47.2px; height: 30.400000000000002px;" /></a>
+<p>Going forward, after a simulation, remember to end the routine and then build the next project.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="step0.html" class="btn btn-neutral float-left" title="Step 0: Creating a drone model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="step2.html" class="btn btn-neutral float-right" title="Step 2: Implementing a controller" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, suzuki.kenta38.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
