@@ -71,7 +71,7 @@ Controller source code
 The source code for the controller we will be creating is below.
 This code takes DroneController1, which we worked on in Step 2, and adds functionality to control the thrusts and anti-torques of the rotor devices via a gamepad.
 
-.. _controller-example3:
+.. _controller-example3-1:
 
 .. literalinclude:: ./src/drone/DroneController2.cpp
    :language: C++
@@ -115,4 +115,69 @@ Were you able to move the Drone model as intended? As you can see, you can achie
 How this implementation works
 -----------------------------
 
-Now editing...
+Including Headers
+~~~~~~~~~~~~~~~~~
+
+* **#include <cnoid/EigenUtil>** : Provides utility functions for Eigen-based linear algebra, such as angle conversions.
+* **#include <cnoid/SimplePilot>** : An interface to handle joystick/gamepad inputs and common drone flight logic.
+* **#include <cnoid/Format>** : Used for formatted string output.
+
+Constants and Namespace
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The following constants are defined within an anonymous namespace for flight tuning:
+
+* **MAX_TILT_ANGLE**: Sets the safety limit for the drone's tilt to 80 degrees.
+* **delta**: Scaling factors for user inputs (Throttle, Aileron, Elevator, Rudder).
+* **pgain / dgain**: Proportional and Derivative gains for the PD control loop to ensure stability.
+
+Class Member Variable Declarations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* **SimplePilot pilot**: Manages flight states (Arm/Disarm) and interprets joystick signals.
+* **DeviceList<Rotor> rotors**: A list that automatically stores all ``Rotor`` devices found in the model.
+* **Vector4 zref / dzref**: Reference values for position/orientation and their velocities.
+* **Vector2 dxref**: Reference velocity for horizontal movement.
+* **std::ostream* os**: Pointer to the Choreonoid message view for logging.
+
+Implementing the initialize function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* **rotors = body->devices();**: Automatically discovers and lists all rotor devices in the body model.
+* **pilot.setStickMode(SimplePilot::MODE2);**: Configures the controller to "Mode 2" (typical drone stick layout).
+* **pilot.initialize(io)**: Sets up the pilot interface, checking for necessary sensors like **Imu** (Inertial Measurement Unit) and **FlightBattery**.
+* **zref = pilot.zrpy();**: Initializes the reference orientation (altitude and RPY angles) to the current state.
+
+Implementing the control function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The control loop handles pilot commands and calculates the stabilization forces.
+
+1. **Input Processing**:
+    * **pilot.readCurrentState()**: Updates sensor data and joystick positions.
+    * **pilot.getPosition()**: Retrieves stick positions. A deadzone of **0.2** is applied to ignore minor stick drifts.
+
+2. **State Acquisition**:
+    * Retrieves current altitude/orientation (``z``), velocity (``dz``), and acceleration (``ddz``) from the ``SimplePilot`` interface.
+    * ``pilot.gravityCompensation(4)``: Calculates the base thrust needed to hover, distributed across 4 rotors.
+
+3. **PD Control Loop**:
+    * **Altitude/Yaw (i=0, 3)**: Calculates force (``fz``) based on the difference between target velocity (from stick input) and current velocity.
+    * **Roll/Pitch (i=1, 2)**: Translates stick input into horizontal velocity references, then calculates the necessary tilt angles to achieve that movement.
+
+4. **Arming and Safety**:
+    * **pilot.arm(...)**: Checks for a specific stick gesture (Left stick inward) to "arm" the motors for takeoff.
+    * **pilot.on()**: Only applies thrust if the drone is in an armed/active state.
+
+5. **Thrust Mixing and Output**:
+    * The control forces (``fz``) are mixed into the four rotors to execute Roll, Pitch, Yaw, and Throttle movements.
+    * **rotor->notifyStateChange()**: Updates the physics engine with the final thrust and torque values for each rotor.
+
+Factory function definitions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The controller uses the standard Choreonoid macro to export the factory function: ::
+
+ CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(DroneController2)
+
+This allows the simulator to dynamically load the ``DroneController2`` class from the shared library.

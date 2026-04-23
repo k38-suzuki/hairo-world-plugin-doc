@@ -73,7 +73,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#controller-compilation">Controller compilation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#swapping-controllers">Swapping controllers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#drone-operation">Drone operation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#how-this-implementation-works">How this implementation works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-this-implementation-works">How this implementation works</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#including-headers">Including Headers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#constants-and-namespace">Constants and Namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-member-variable-declarations">Class Member Variable Declarations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementing-the-initialize-function">Implementing the initialize function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementing-the-control-function">Implementing the control function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#factory-function-definitions">Factory function definitions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="step4.html">Step 4: Simulating and polling camera images</a></li>
@@ -120,7 +128,16 @@ In Step 3, we attempt to create a slightly more complex controller.</p>
 <li><p><a class="reference internal" href="#controller-compilation" id="id6">Controller compilation</a></p></li>
 <li><p><a class="reference internal" href="#swapping-controllers" id="id7">Swapping controllers</a></p></li>
 <li><p><a class="reference internal" href="#drone-operation" id="id8">Drone operation</a></p></li>
-<li><p><a class="reference internal" href="#how-this-implementation-works" id="id9">How this implementation works</a></p></li>
+<li><p><a class="reference internal" href="#how-this-implementation-works" id="id9">How this implementation works</a></p>
+<ul>
+<li><p><a class="reference internal" href="#including-headers" id="id10">Including Headers</a></p></li>
+<li><p><a class="reference internal" href="#constants-and-namespace" id="id11">Constants and Namespace</a></p></li>
+<li><p><a class="reference internal" href="#class-member-variable-declarations" id="id12">Class Member Variable Declarations</a></p></li>
+<li><p><a class="reference internal" href="#implementing-the-initialize-function" id="id13">Implementing the initialize function</a></p></li>
+<li><p><a class="reference internal" href="#implementing-the-control-function" id="id14">Implementing the control function</a></p></li>
+<li><p><a class="reference internal" href="#factory-function-definitions" id="id15">Factory function definitions</a></p></li>
+</ul>
+</li>
 </ul>
 </nav>
 <section id="gamepad-setup">
@@ -174,7 +191,7 @@ This completes the setup process.</p>
 <p>The source code for the controller we will be creating is below.
 This code takes DroneController1, which we worked on in Step 2, and adds functionality to control the thrusts and anti-torques of the rotor devices via a gamepad.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<span id="controller-example3"></span><div class="code-block-caption"><span class="caption-text">DroneController2.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<span id="controller-example3-1"></span><div class="code-block-caption"><span class="caption-text">DroneController2.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/EigenUtil&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Format&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Rotor&gt;</span>
@@ -336,7 +353,96 @@ Were you able to move the Drone model as intended? As you can see, you can achie
 </section>
 <section id="how-this-implementation-works">
 <h2><a class="toc-backref" href="#id9" role="doc-backlink">How this implementation works</a><a class="headerlink" href="#how-this-implementation-works" title="Link to this heading"></a></h2>
-<p>Now editing...</p>
+<section id="including-headers">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Including Headers</a><a class="headerlink" href="#including-headers" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>#include &lt;cnoid/EigenUtil&gt;</strong> : Provides utility functions for Eigen-based linear algebra, such as angle conversions.</p></li>
+<li><p><strong>#include &lt;cnoid/SimplePilot&gt;</strong> : An interface to handle joystick/gamepad inputs and common drone flight logic.</p></li>
+<li><p><strong>#include &lt;cnoid/Format&gt;</strong> : Used for formatted string output.</p></li>
+</ul>
+</section>
+<section id="constants-and-namespace">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Constants and Namespace</a><a class="headerlink" href="#constants-and-namespace" title="Link to this heading"></a></h3>
+<p>The following constants are defined within an anonymous namespace for flight tuning:</p>
+<ul class="simple">
+<li><p><strong>MAX_TILT_ANGLE</strong>: Sets the safety limit for the drone's tilt to 80 degrees.</p></li>
+<li><p><strong>delta</strong>: Scaling factors for user inputs (Throttle, Aileron, Elevator, Rudder).</p></li>
+<li><p><strong>pgain / dgain</strong>: Proportional and Derivative gains for the PD control loop to ensure stability.</p></li>
+</ul>
+</section>
+<section id="class-member-variable-declarations">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Class Member Variable Declarations</a><a class="headerlink" href="#class-member-variable-declarations" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>SimplePilot pilot</strong>: Manages flight states (Arm/Disarm) and interprets joystick signals.</p></li>
+<li><p><strong>DeviceList&lt;Rotor&gt; rotors</strong>: A list that automatically stores all <code class="docutils literal notranslate"><span class="pre">Rotor</span></code> devices found in the model.</p></li>
+<li><p><strong>Vector4 zref / dzref</strong>: Reference values for position/orientation and their velocities.</p></li>
+<li><p><strong>Vector2 dxref</strong>: Reference velocity for horizontal movement.</p></li>
+<li><p><strong>std::ostream* os</strong>: Pointer to the Choreonoid message view for logging.</p></li>
+</ul>
+</section>
+<section id="implementing-the-initialize-function">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Implementing the initialize function</a><a class="headerlink" href="#implementing-the-initialize-function" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>rotors = body-&gt;devices();</strong>: Automatically discovers and lists all rotor devices in the body model.</p></li>
+<li><p><strong>pilot.setStickMode(SimplePilot::MODE2);</strong>: Configures the controller to &quot;Mode 2&quot; (typical drone stick layout).</p></li>
+<li><p><strong>pilot.initialize(io)</strong>: Sets up the pilot interface, checking for necessary sensors like <strong>Imu</strong> (Inertial Measurement Unit) and <strong>FlightBattery</strong>.</p></li>
+<li><p><strong>zref = pilot.zrpy();</strong>: Initializes the reference orientation (altitude and RPY angles) to the current state.</p></li>
+</ul>
+</section>
+<section id="implementing-the-control-function">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Implementing the control function</a><a class="headerlink" href="#implementing-the-control-function" title="Link to this heading"></a></h3>
+<p>The control loop handles pilot commands and calculates the stabilization forces.</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt><strong>Input Processing</strong>:</dt><dd><ul class="simple">
+<li><p><strong>pilot.readCurrentState()</strong>: Updates sensor data and joystick positions.</p></li>
+<li><p><strong>pilot.getPosition()</strong>: Retrieves stick positions. A deadzone of <strong>0.2</strong> is applied to ignore minor stick drifts.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>State Acquisition</strong>:</dt><dd><ul class="simple">
+<li><p>Retrieves current altitude/orientation (<code class="docutils literal notranslate"><span class="pre">z</span></code>), velocity (<code class="docutils literal notranslate"><span class="pre">dz</span></code>), and acceleration (<code class="docutils literal notranslate"><span class="pre">ddz</span></code>) from the <code class="docutils literal notranslate"><span class="pre">SimplePilot</span></code> interface.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pilot.gravityCompensation(4)</span></code>: Calculates the base thrust needed to hover, distributed across 4 rotors.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>PD Control Loop</strong>:</dt><dd><ul class="simple">
+<li><p><strong>Altitude/Yaw (i=0, 3)</strong>: Calculates force (<code class="docutils literal notranslate"><span class="pre">fz</span></code>) based on the difference between target velocity (from stick input) and current velocity.</p></li>
+<li><p><strong>Roll/Pitch (i=1, 2)</strong>: Translates stick input into horizontal velocity references, then calculates the necessary tilt angles to achieve that movement.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Arming and Safety</strong>:</dt><dd><ul class="simple">
+<li><p><strong>pilot.arm(...)</strong>: Checks for a specific stick gesture (Left stick inward) to &quot;arm&quot; the motors for takeoff.</p></li>
+<li><p><strong>pilot.on()</strong>: Only applies thrust if the drone is in an armed/active state.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Thrust Mixing and Output</strong>:</dt><dd><ul class="simple">
+<li><p>The control forces (<code class="docutils literal notranslate"><span class="pre">fz</span></code>) are mixed into the four rotors to execute Roll, Pitch, Yaw, and Throttle movements.</p></li>
+<li><p><strong>rotor-&gt;notifyStateChange()</strong>: Updates the physics engine with the final thrust and torque values for each rotor.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+<section id="factory-function-definitions">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Factory function definitions</a><a class="headerlink" href="#factory-function-definitions" title="Link to this heading"></a></h3>
+<p>The controller uses the standard Choreonoid macro to export the factory function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY</span><span class="p">(</span><span class="n">DroneController2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This allows the simulator to dynamically load the <code class="docutils literal notranslate"><span class="pre">DroneController2</span></code> class from the shared library.</p>
+</section>
 </section>
 </section>
 

@@ -4,7 +4,7 @@ Step 2: Implementing a controller
 In Step 1, there was no controller,  so we couldn't fly the Drone model into the air.
 In Step 2, we will be learning how to implement controllers by creating the bare minimum controller needed to maintain the orientation of a model.
 
-.. contents::
+.. contents ::
    :local:
    :depth: 2
 
@@ -23,9 +23,9 @@ Implementing the “DroneController1” controller
 The SimpleController format implements the controller using a C++ class. Here we’ll implement a simple DroneController1, the purpose of which is to apply the thrusts and anti-torques to the rotor devices.
 The source code to the controller is seen below.
 
-.. _controller-example2:
+.. _controller-example2-1:
 
-.. literalinclude:: ./src/drone/DroneController1.cpp
+.. literalinclude :: ./src/drone/DroneController1.cpp
    :language: C++
    :caption: DroneController1.cpp
 
@@ -38,7 +38,7 @@ First, create a directory in which to save the output of the above, which you wi
 Going forward, other files in the tutorial should be saved in this directory. We refer to this as the project directory.
 The files we created in Step 1 when learning about :ref:`drone-tutorial-step1-save-project` can also be stored here to put everything in one place.
 
-.. note:: If you are unsure of what text editor to use on Ubuntu, for the time being, try using the default text editor, “gedit.” From the Dash, type “gedit” and click the text editor icon that appears. You can also enter “gedit” directly on the command line.
+.. note :: If you are unsure of what text editor to use on Ubuntu, for the time being, try using the default text editor, “gedit.” From the Dash, type “gedit” and click the text editor icon that appears. You can also enter “gedit” directly on the command line.
 
 Building the controller
 -----------------------
@@ -66,7 +66,7 @@ CMakeLists.txt notation
 -----------------------
 
 Next, create CMakeLists.txt, a text file, in the project directory and notate the controller compile settings therein.
-That being said, the details for this example are quite simple. All you have to do is add the single line below.::
+That being said, the details for this example are quite simple. All you have to do is add the single line below. ::
 
  add_cnoid_simple_controller(DroneTutorial_DroneController1 DroneController1.cpp)
  target_link_libraries(DroneTutorial_DroneController1 CnoidCFDPlugin)
@@ -79,29 +79,29 @@ Controller compilation
 ----------------------
 
 You can now compile it. We are using the same build method as when we built Choreonoid proper. All you need to do is build Choreonoid again.
-There is a new CMakeLists.txt file now, so reissue CMake to ensure it detects it properly. For the device in Step 1, the current directory should be the Choreonoid source directory. If this is not the case, use::
+There is a new CMakeLists.txt file now, so reissue CMake to ensure it detects it properly. For the device in Step 1, the current directory should be the Choreonoid source directory. If this is not the case, use ::
 
  cd [path to Choreonoid source directory]
 
 to navigate to the source directory.
-If you are using the source directory as-is as a build directory, run::
+If you are using the source directory as-is as a build directory, run ::
 
  cmake .
 
 to run CMake again in the current working directory.
 If your build and source directories are separate, navigate to the build directory and pass the source directory as a parameter to cmake.
-For example, if you have created a build directory called “build” directly below the source directory, you would do the following::
+For example, if you have created a build directory called “build” directly below the source directory, you would do the following ::
 
  cd build
  cmake ..
 
-Next, go to the build directory and issue this command::
+Next, go to the build directory and issue this command ::
 
  make
 
 (For details on compiling, please refer to the Choreonoid build section of the Building and Installing from Source (Ubuntu Linux) documentation.)
 If the A and B conditions described in the section on Building the controller are met, the above CMakeLists.txt will be output, and its content is executed.
-If the compile process succeeds, you will find a file named::
+If the compile process succeeds, you will find a file named ::
 
  DroneTutorial_DroneController1.so
 
@@ -117,7 +117,7 @@ First begin by generating the SimpleController item. From the Main Menu, select 
 The item can take any name. It is best to ensure consistency with the controller by naming it something like DroneController1.
 The resulting item will be positioned, as seen below, as a sub-item of the Drone item, which is what we intend to control with it.
 
-.. image:: images/step2-1.png
+.. image :: images/step2-1.png
    :width: 320px
 
 This positioning indicates that the control target of the controller is the Drone. Achieving this can be done by first selecting the Drone item and then generating the controller item, or by dragging into position after generation.
@@ -132,7 +132,7 @@ This is done by way of the controller module property that the SimpleController 
 The item’s properties list will appear on the Item Properties View. From there, look for the Controller Module property. Double-clicking on the property value field (by default, it will be empty) lets you input the name of the module file.
 Using the file input dialog that appears is a fast and convenient way to do so. When giving input to the controller module, as shown in the figure below, there is an icon at the right which is used to enter a value.
 
-.. image:: images/step2-2.png
+.. image :: images/step2-2.png
    :width: 320px
 
 Clicking this icon will display a file selection dialog. Ordinarily, this dialog points to the default directory used to store the SimpleController. You should find the DroneTutorial_DroneController1.so that we just created. Select it.
@@ -152,16 +152,16 @@ How this implementation works
 The SimpleController Class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The SimpleController is designed to inherit the SimpleController class defined in Choreonoid. Begin by writing::
+The SimpleController is designed to inherit the SimpleController class defined in Choreonoid. Begin by writing ::
 
  #include <cnoid/SimpleController>
 
 to include the header defined for this class. The header files provided by Choreonoid are stored in the “cnoid” subdirectory of the source directory, and you can specify this as a path from the cnoid directory. A file extension is not required.
-All of the classes defined in Choreonoid belong to the “cnoid” namespace. Here, we use::
+All of the classes defined in Choreonoid belong to the “cnoid” namespace. Here, we use ::
 
  using namespace cnoid;
 
-to abbreviate the namespace. The controller class is defined by using::
+to abbreviate the namespace. The controller class is defined by using ::
 
  class DroneController1 : public SimpleController
  {
@@ -174,22 +174,66 @@ The SimpleController class defines several functions as virtual functions; overr
 * **virtual bool initialize(SimpleControllerIO* io)**
 * **virtual bool control()**
 
+Including Headers
+~~~~~~~~~~~~~~~~~
+
+* **#include <cnoid/Rotor>**
+    Includes the header for controlling the Rotor devices that generate thrust for the drone.
+* **#include <cnoid/SimpleController>**
+    Includes the base class header required to create a "SimpleController" in Choreonoid.
+
+Class Member Variable Declarations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* **Body* ioBody;**
+    Declares a pointer to access the robot's body information, such as total mass and link structure.
+* **Rotor* rotor[4];**
+    An array of pointers used to store and manipulate the four rotor devices.
+
 Implementing the initialize function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now editing...
+* **ioBody = io->body();**
+    Retrieves the drone's body object being controlled and stores it in the variable.
+* **rotor[0] = io->body()->findDevice<Rotor>("Rotor_FR");**
+    Locates the device named "Rotor_FR" (Front Right) in the model and assigns it to the array.
+* **rotor[1] = io->body()->findDevice<Rotor>("Rotor_FL");**
+    Locates the device named "Rotor_FL" (Front Left) in the model and assigns it to the array.
+* **rotor[2] = io->body()->findDevice<Rotor>("Rotor_RL");**
+    Locates the device named "Rotor_RL" (Rear Left) in the model and assigns it to the array.
+* **rotor[3] = io->body()->findDevice<Rotor>("Rotor_RR");**
+    Locates the device named "Rotor_RR" (Rear Right) in the model and assigns it to the array.
+* **io->enableInput(rotor[i]);**
+    Enables the controller to read the current state (such as RPM) of each rotor from the simulator.
 
 Implementing the control function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now editing...
+* **static const double G = 9.80665;**
+    Defines the constant for gravitational acceleration.
+* **double mass = ioBody->mass();**
+    Retrieves the total mass (kg) of the drone's body.
+* **double gravity = mass * G;**
+    Calculates the total gravitational force (Newtons) acting on the drone.
+* **static const double ATD[] = { -1.0, 1.0, -1.0, 1.0 };**
+    Defines the Anti-Torque Direction coefficients to counteract the rotational force caused by the propellers.
+* **double thr[4] = { 0.0 };**
+    Prepares an array to store the calculated thrust values for each rotor.
+* **thr[0] = gravity / 4.0; to thr[3] = gravity / 4.0;**
+    Distributes the total gravitational force equally across the four rotors (the basic condition for hovering).
+* **rotor[i]->thrust() = thr[i];**
+    Sets the calculated thrust as the output value for the actual rotor device.
+* **rotor[i]->torque() = ATD[i] * thr[i];**
+    Simulates the "reaction torque" (the force trying to rotate the body) based on the thrust produced.
+* **rotor[i]->notifyStateChange();**
+    Sends the updated thrust and torque values to the simulator's physics engine.
 
 Factory function definitions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Once you define the SimpleController class, you must define the factory function, used to generate the object, per the prescribed method.
 This is needed so that the SimpleController item will read in the shared controller libraries at runtime and generate the controller object from there.
-This is achieved by using a macro::
+This is achieved by using a macro ::
 
  CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(DroneController1)
 

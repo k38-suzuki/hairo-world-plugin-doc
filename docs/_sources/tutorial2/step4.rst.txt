@@ -102,7 +102,7 @@ We have learned how to simulate camera images by incorporating the GL Vision Sim
 To check the output, you need a controller to poll images from the camera device.
 Here we create a controller designed to export images polled from the devices as files to the local system. The source code follows:
 
-.. _controller-example4:
+.. _controller-example4-1:
 
 .. literalinclude:: ./src/drone/CameraController.cpp
    :language: C++

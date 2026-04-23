@@ -77,6 +77,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#launching-a-simulation">Launching a simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-this-implementation-works">How this implementation works</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#the-simplecontroller-class">The SimpleController Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#including-headers">Including Headers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-member-variable-declarations">Class Member Variable Declarations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#implementing-the-initialize-function">Implementing the initialize function</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#implementing-the-control-function">Implementing the control function</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#factory-function-definitions">Factory function definitions</a></li>
@@ -135,9 +137,11 @@ In Step 2, we will be learning how to implement controllers by creating the bare
 <li><p><a class="reference internal" href="#how-this-implementation-works" id="id12">How this implementation works</a></p>
 <ul>
 <li><p><a class="reference internal" href="#the-simplecontroller-class" id="id13">The SimpleController Class</a></p></li>
-<li><p><a class="reference internal" href="#implementing-the-initialize-function" id="id14">Implementing the initialize function</a></p></li>
-<li><p><a class="reference internal" href="#implementing-the-control-function" id="id15">Implementing the control function</a></p></li>
-<li><p><a class="reference internal" href="#factory-function-definitions" id="id16">Factory function definitions</a></p></li>
+<li><p><a class="reference internal" href="#including-headers" id="id14">Including Headers</a></p></li>
+<li><p><a class="reference internal" href="#class-member-variable-declarations" id="id15">Class Member Variable Declarations</a></p></li>
+<li><p><a class="reference internal" href="#implementing-the-initialize-function" id="id16">Implementing the initialize function</a></p></li>
+<li><p><a class="reference internal" href="#implementing-the-control-function" id="id17">Implementing the control function</a></p></li>
+<li><p><a class="reference internal" href="#factory-function-definitions" id="id18">Factory function definitions</a></p></li>
 </ul>
 </li>
 </ul>
@@ -155,7 +159,7 @@ In fact Choreonoid can be integrated with ROS by using the <a class="reference e
 <p>The SimpleController format implements the controller using a C++ class. Here we’ll implement a simple DroneController1, the purpose of which is to apply the thrusts and anti-torques to the rotor devices.
 The source code to the controller is seen below.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<span id="controller-example2"></span><div class="code-block-caption"><span class="caption-text">DroneController1.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<span id="controller-example2-1"></span><div class="code-block-caption"><span class="caption-text">DroneController1.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/Rotor&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cnoid/SimpleController&gt;</span>
 
@@ -246,7 +250,7 @@ Unless you have reason to do so, we suggest using method A. In this case:</p>
 <section id="cmakelists-txt-notation">
 <h2><a class="toc-backref" href="#id7" role="doc-backlink">CMakeLists.txt notation</a><a class="headerlink" href="#cmakelists-txt-notation" title="Link to this heading"></a></h2>
 <p>Next, create CMakeLists.txt, a text file, in the project directory and notate the controller compile settings therein.
-That being said, the details for this example are quite simple. All you have to do is add the single line below.:</p>
+That being said, the details for this example are quite simple. All you have to do is add the single line below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">add_cnoid_simple_controller</span><span class="p">(</span><span class="n">DroneTutorial_DroneController1</span> <span class="n">DroneController1</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
 <span class="n">target_link_libraries</span><span class="p">(</span><span class="n">DroneTutorial_DroneController1</span> <span class="n">CnoidCFDPlugin</span><span class="p">)</span>
 </pre></div>
@@ -258,29 +262,29 @@ We have prepended the prefix “DroneTutorial” to the controller name. This is
 <section id="controller-compilation">
 <h2><a class="toc-backref" href="#id8" role="doc-backlink">Controller compilation</a><a class="headerlink" href="#controller-compilation" title="Link to this heading"></a></h2>
 <p>You can now compile it. We are using the same build method as when we built Choreonoid proper. All you need to do is build Choreonoid again.
-There is a new CMakeLists.txt file now, so reissue CMake to ensure it detects it properly. For the device in Step 1, the current directory should be the Choreonoid source directory. If this is not the case, use:</p>
+There is a new CMakeLists.txt file now, so reissue CMake to ensure it detects it properly. For the device in Step 1, the current directory should be the Choreonoid source directory. If this is not the case, use</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="p">[</span><span class="n">path</span> <span class="n">to</span> <span class="n">Choreonoid</span> <span class="n">source</span> <span class="n">directory</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>to navigate to the source directory.
-If you are using the source directory as-is as a build directory, run:</p>
+If you are using the source directory as-is as a build directory, run</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">.</span>
 </pre></div>
 </div>
 <p>to run CMake again in the current working directory.
 If your build and source directories are separate, navigate to the build directory and pass the source directory as a parameter to cmake.
-For example, if you have created a build directory called “build” directly below the source directory, you would do the following:</p>
+For example, if you have created a build directory called “build” directly below the source directory, you would do the following</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">build</span>
 <span class="n">cmake</span> <span class="o">..</span>
 </pre></div>
 </div>
-<p>Next, go to the build directory and issue this command:</p>
+<p>Next, go to the build directory and issue this command</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
 </pre></div>
 </div>
 <p>(For details on compiling, please refer to the Choreonoid build section of the Building and Installing from Source (Ubuntu Linux) documentation.)
 If the A and B conditions described in the section on Building the controller are met, the above CMakeLists.txt will be output, and its content is executed.
-If the compile process succeeds, you will find a file named:</p>
+If the compile process succeeds, you will find a file named</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DroneTutorial_DroneController1</span><span class="o">.</span><span class="n">so</span>
 </pre></div>
 </div>
@@ -318,16 +322,16 @@ If you have trouble, look at the Message View for logs. If there are issues with
 <h2><a class="toc-backref" href="#id12" role="doc-backlink">How this implementation works</a><a class="headerlink" href="#how-this-implementation-works" title="Link to this heading"></a></h2>
 <section id="the-simplecontroller-class">
 <h3><a class="toc-backref" href="#id13" role="doc-backlink">The SimpleController Class</a><a class="headerlink" href="#the-simplecontroller-class" title="Link to this heading"></a></h3>
-<p>The SimpleController is designed to inherit the SimpleController class defined in Choreonoid. Begin by writing:</p>
+<p>The SimpleController is designed to inherit the SimpleController class defined in Choreonoid. Begin by writing</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;cnoid/SimpleController&gt;</span>
 </pre></div>
 </div>
 <p>to include the header defined for this class. The header files provided by Choreonoid are stored in the “cnoid” subdirectory of the source directory, and you can specify this as a path from the cnoid directory. A file extension is not required.
-All of the classes defined in Choreonoid belong to the “cnoid” namespace. Here, we use:</p>
+All of the classes defined in Choreonoid belong to the “cnoid” namespace. Here, we use</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">namespace</span> <span class="n">cnoid</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>to abbreviate the namespace. The controller class is defined by using:</p>
+<p>to abbreviate the namespace. The controller class is defined by using</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DroneController1</span> <span class="p">:</span> <span class="n">public</span> <span class="n">SimpleController</span>
 <span class="p">{</span>
     <span class="o">...</span>
@@ -341,19 +345,126 @@ The SimpleController class defines several functions as virtual functions; overr
 <li><p><strong>virtual bool control()</strong></p></li>
 </ul>
 </section>
+<section id="including-headers">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Including Headers</a><a class="headerlink" href="#including-headers" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>#include &lt;cnoid/Rotor&gt;</strong></dt><dd><p>Includes the header for controlling the Rotor devices that generate thrust for the drone.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>#include &lt;cnoid/SimpleController&gt;</strong></dt><dd><p>Includes the base class header required to create a &quot;SimpleController&quot; in Choreonoid.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="class-member-variable-declarations">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Class Member Variable Declarations</a><a class="headerlink" href="#class-member-variable-declarations" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Body* ioBody;</strong></dt><dd><p>Declares a pointer to access the robot's body information, such as total mass and link structure.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Rotor* rotor[4];</strong></dt><dd><p>An array of pointers used to store and manipulate the four rotor devices.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
 <section id="implementing-the-initialize-function">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Implementing the initialize function</a><a class="headerlink" href="#implementing-the-initialize-function" title="Link to this heading"></a></h3>
-<p>Now editing...</p>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Implementing the initialize function</a><a class="headerlink" href="#implementing-the-initialize-function" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>ioBody = io-&gt;body();</strong></dt><dd><p>Retrieves the drone's body object being controlled and stores it in the variable.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>rotor[0] = io-&gt;body()-&gt;findDevice&lt;Rotor&gt;(&quot;Rotor_FR&quot;);</strong></dt><dd><p>Locates the device named &quot;Rotor_FR&quot; (Front Right) in the model and assigns it to the array.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>rotor[1] = io-&gt;body()-&gt;findDevice&lt;Rotor&gt;(&quot;Rotor_FL&quot;);</strong></dt><dd><p>Locates the device named &quot;Rotor_FL&quot; (Front Left) in the model and assigns it to the array.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>rotor[2] = io-&gt;body()-&gt;findDevice&lt;Rotor&gt;(&quot;Rotor_RL&quot;);</strong></dt><dd><p>Locates the device named &quot;Rotor_RL&quot; (Rear Left) in the model and assigns it to the array.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>rotor[3] = io-&gt;body()-&gt;findDevice&lt;Rotor&gt;(&quot;Rotor_RR&quot;);</strong></dt><dd><p>Locates the device named &quot;Rotor_RR&quot; (Rear Right) in the model and assigns it to the array.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>io-&gt;enableInput(rotor[i]);</strong></dt><dd><p>Enables the controller to read the current state (such as RPM) of each rotor from the simulator.</p>
+</dd>
+</dl>
+</li>
+</ul>
 </section>
 <section id="implementing-the-control-function">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Implementing the control function</a><a class="headerlink" href="#implementing-the-control-function" title="Link to this heading"></a></h3>
-<p>Now editing...</p>
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Implementing the control function</a><a class="headerlink" href="#implementing-the-control-function" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>static const double G = 9.80665;</strong></dt><dd><p>Defines the constant for gravitational acceleration.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>double mass = ioBody-&gt;mass();</strong></dt><dd><p>Retrieves the total mass (kg) of the drone's body.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>double gravity = mass * G;</strong></dt><dd><p>Calculates the total gravitational force (Newtons) acting on the drone.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>static const double ATD[] = { -1.0, 1.0, -1.0, 1.0 };</strong></dt><dd><p>Defines the Anti-Torque Direction coefficients to counteract the rotational force caused by the propellers.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>double thr[4] = { 0.0 };</strong></dt><dd><p>Prepares an array to store the calculated thrust values for each rotor.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>thr[0] = gravity / 4.0; to thr[3] = gravity / 4.0;</strong></dt><dd><p>Distributes the total gravitational force equally across the four rotors (the basic condition for hovering).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>rotor[i]-&gt;thrust() = thr[i];</strong></dt><dd><p>Sets the calculated thrust as the output value for the actual rotor device.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>rotor[i]-&gt;torque() = ATD[i] * thr[i];</strong></dt><dd><p>Simulates the &quot;reaction torque&quot; (the force trying to rotate the body) based on the thrust produced.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>rotor[i]-&gt;notifyStateChange();</strong></dt><dd><p>Sends the updated thrust and torque values to the simulator's physics engine.</p>
+</dd>
+</dl>
+</li>
+</ul>
 </section>
 <section id="factory-function-definitions">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">Factory function definitions</a><a class="headerlink" href="#factory-function-definitions" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Factory function definitions</a><a class="headerlink" href="#factory-function-definitions" title="Link to this heading"></a></h3>
 <p>Once you define the SimpleController class, you must define the factory function, used to generate the object, per the prescribed method.
 This is needed so that the SimpleController item will read in the shared controller libraries at runtime and generate the controller object from there.
-This is achieved by using a macro:</p>
+This is achieved by using a macro</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY</span><span class="p">(</span><span class="n">DroneController1</span><span class="p">)</span>
 </pre></div>
 </div>
