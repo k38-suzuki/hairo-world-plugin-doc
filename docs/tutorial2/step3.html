@@ -74,9 +74,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#swapping-controllers">Swapping controllers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#drone-operation">Drone operation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-this-implementation-works">How this implementation works</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#including-headers">Including Headers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#constants-and-namespace">Constants and Namespace</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#class-member-variable-declarations">Class Member Variable Declarations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#including-headers">Including headers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#constants-and-namespace">Constants and namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-member-variable-declarations">Class member variable declarations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#implementing-the-initialize-function">Implementing the initialize function</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#implementing-the-control-function">Implementing the control function</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#factory-function-definitions">Factory function definitions</a></li>
@@ -130,9 +130,9 @@ In Step 3, we attempt to create a slightly more complex controller.</p>
 <li><p><a class="reference internal" href="#drone-operation" id="id8">Drone operation</a></p></li>
 <li><p><a class="reference internal" href="#how-this-implementation-works" id="id9">How this implementation works</a></p>
 <ul>
-<li><p><a class="reference internal" href="#including-headers" id="id10">Including Headers</a></p></li>
-<li><p><a class="reference internal" href="#constants-and-namespace" id="id11">Constants and Namespace</a></p></li>
-<li><p><a class="reference internal" href="#class-member-variable-declarations" id="id12">Class Member Variable Declarations</a></p></li>
+<li><p><a class="reference internal" href="#including-headers" id="id10">Including headers</a></p></li>
+<li><p><a class="reference internal" href="#constants-and-namespace" id="id11">Constants and namespace</a></p></li>
+<li><p><a class="reference internal" href="#class-member-variable-declarations" id="id12">Class member variable declarations</a></p></li>
 <li><p><a class="reference internal" href="#implementing-the-initialize-function" id="id13">Implementing the initialize function</a></p></li>
 <li><p><a class="reference internal" href="#implementing-the-control-function" id="id14">Implementing the control function</a></p></li>
 <li><p><a class="reference internal" href="#factory-function-definitions" id="id15">Factory function definitions</a></p></li>
@@ -354,7 +354,7 @@ Were you able to move the Drone model as intended? As you can see, you can achie
 <section id="how-this-implementation-works">
 <h2><a class="toc-backref" href="#id9" role="doc-backlink">How this implementation works</a><a class="headerlink" href="#how-this-implementation-works" title="Link to this heading"></a></h2>
 <section id="including-headers">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Including Headers</a><a class="headerlink" href="#including-headers" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Including headers</a><a class="headerlink" href="#including-headers" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>#include &lt;cnoid/EigenUtil&gt;</strong> : Provides utility functions for Eigen-based linear algebra, such as angle conversions.</p></li>
 <li><p><strong>#include &lt;cnoid/SimplePilot&gt;</strong> : An interface to handle joystick/gamepad inputs and common drone flight logic.</p></li>
@@ -362,7 +362,7 @@ Were you able to move the Drone model as intended? As you can see, you can achie
 </ul>
 </section>
 <section id="constants-and-namespace">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Constants and Namespace</a><a class="headerlink" href="#constants-and-namespace" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Constants and namespace</a><a class="headerlink" href="#constants-and-namespace" title="Link to this heading"></a></h3>
 <p>The following constants are defined within an anonymous namespace for flight tuning:</p>
 <ul class="simple">
 <li><p><strong>MAX_TILT_ANGLE</strong>: Sets the safety limit for the drone's tilt to 80 degrees.</p></li>
@@ -371,7 +371,7 @@ Were you able to move the Drone model as intended? As you can see, you can achie
 </ul>
 </section>
 <section id="class-member-variable-declarations">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">Class Member Variable Declarations</a><a class="headerlink" href="#class-member-variable-declarations" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Class member variable declarations</a><a class="headerlink" href="#class-member-variable-declarations" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>SimplePilot pilot</strong>: Manages flight states (Arm/Disarm) and interprets joystick signals.</p></li>
 <li><p><strong>DeviceList&lt;Rotor&gt; rotors</strong>: A list that automatically stores all <code class="docutils literal notranslate"><span class="pre">Rotor</span></code> devices found in the model.</p></li>

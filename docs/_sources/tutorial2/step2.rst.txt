@@ -174,7 +174,7 @@ The SimpleController class defines several functions as virtual functions; overr
 * **virtual bool initialize(SimpleControllerIO* io)**
 * **virtual bool control()**
 
-Including Headers
+Including headers
 ~~~~~~~~~~~~~~~~~
 
 * **#include <cnoid/Rotor>**
@@ -182,7 +182,7 @@ Including Headers
 * **#include <cnoid/SimpleController>**
     Includes the base class header required to create a "SimpleController" in Choreonoid.
 
-Class Member Variable Declarations
+Class member variable declarations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * **Body* ioBody;**

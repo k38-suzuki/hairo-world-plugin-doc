@@ -115,14 +115,14 @@ Were you able to move the Drone model as intended? As you can see, you can achie
 How this implementation works
 -----------------------------
 
-Including Headers
+Including headers
 ~~~~~~~~~~~~~~~~~
 
 * **#include <cnoid/EigenUtil>** : Provides utility functions for Eigen-based linear algebra, such as angle conversions.
 * **#include <cnoid/SimplePilot>** : An interface to handle joystick/gamepad inputs and common drone flight logic.
 * **#include <cnoid/Format>** : Used for formatted string output.
 
-Constants and Namespace
+Constants and namespace
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 The following constants are defined within an anonymous namespace for flight tuning:
@@ -131,7 +131,7 @@ The following constants are defined within an anonymous namespace for flight tun
 * **delta**: Scaling factors for user inputs (Throttle, Aileron, Elevator, Rudder).
 * **pgain / dgain**: Proportional and Derivative gains for the PD control loop to ensure stability.
 
-Class Member Variable Declarations
+Class member variable declarations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * **SimplePilot pilot**: Manages flight states (Arm/Disarm) and interprets joystick signals.
