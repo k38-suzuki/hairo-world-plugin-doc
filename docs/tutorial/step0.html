@@ -211,14 +211,14 @@
 <section id="tutorial-1">
 <span id="id2"></span><h2><a class="toc-backref" href="#id63" role="doc-backlink">Crawlerモデル</a><a class="headerlink" href="#tutorial-1" title="Link to this heading"></a></h2>
 <p>対象とするモデルは以下に示す &quot;Crawler&quot; モデルとなります。</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-1.png"><img alt="../_images/create_crawler-1.png" src="../_images/create_crawler-1.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-1.png"><img alt="../_images/create_crawler-1.png" src="../_images/create_crawler-1.png" style="width: 320px;" /></a>
 <p>これはカメラ台座を動かす２軸の回転関節と、サブクローラを動かす２軸の回転関節、移動用の２つのクローラと２つのサブクローラで構成されるモデルで、カメラとライトをデバイスとして搭載しています。</p>
 <p>本マニュアルでは、このモデルを題材にシミュレーションを行う方法をまとめた <a class="reference internal" href="index.html"><span class="doc">Crawlerチュートリアル</span></a> も用意しています。</p>
 </section>
 <section id="tutorial-2">
 <span id="id3"></span><h2><a class="toc-backref" href="#id64" role="doc-backlink">モデルの基本構造</a><a class="headerlink" href="#tutorial-2" title="Link to this heading"></a></h2>
 <p>Crawlerモデルは下図に示す9つの部位で構成されています。</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-2.png"><img alt="../_images/create_crawler-2.png" src="../_images/create_crawler-2.png" style="width: 515.5px; height: 362.5px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-2.png"><img alt="../_images/create_crawler-2.png" src="../_images/create_crawler-2.png" style="width: 320px;" /></a>
 <p>ベースとなる部分が車体です。車体の上部にはカメラ台座が備わります。この部分はカメラのヨー軸回転を行う部分と、ピッチ軸回転を行う２つの部分からなります。車体の左右の側面にはそれぞれ移動用のクローラ機構が取り付けられます。</p>
 <p>これら9つの部分が「リンク」としてモデリングされます。車体の部分はモデルの中心となる部分であり、これを「ルートリンク」としてモデリングします。ルートリンクは各モデルに対して必ずひとつだけ定義する必要があります。カメラ台座の2リンクとサブクローラを動かすジョイント2リンクについてはそれぞれ回転関節としてモデリングします。また、クローラ部分は <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/pseudo-continuous-track.html">無限軌道の簡易シミュレーション</a> に対応するリンクとしてモデリングします。</p>
 <p>これらのリンクの間の階層構造（親子関係）は以下のようになります。</p>
@@ -376,7 +376,7 @@
 <section id="tutorial-9">
 <span id="id12"></span><h2><a class="toc-backref" href="#id71" role="doc-backlink">編集中のモデルの確認</a><a class="headerlink" href="#tutorial-9" title="Link to this heading"></a></h2>
 <p>まだルートリンクしか記述していませんが、この時点でもモデルとしては成立しています。そこで、編集中のファイルをChoreonoid上で読み込んで表示させ、正しく記述ができているか確認してみましょう。メインメニューの「ファイル」-「読み込み」-「ボディ」を選択し、表示されるダイアログで対象のファイルを選択します。その際、ダイアログ上で「アイテムツリービューのチェックを入れる」を有効にしておくか、読み込み後にアイテムのチェックボックスをクリックすると、シーンビュー上に以下のように表示されるかと思います。</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-3.png"><img alt="../_images/create_crawler-3.png" src="../_images/create_crawler-3.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-3.png"><img alt="../_images/create_crawler-3.png" src="../_images/create_crawler-3.png" style="width: 320px;" /></a>
 <p>アイテム読み込み時にエラーが出たり、読み込めてもうまく表示できなかったりした場合は、これまでの記述内容を確認してください。</p>
 <p>モデルファイルの修正後にそれを再度読み込む場合、修正前のファイルが既にボディアイテムとして読み込まれているのであれば、アイテムの「再読み込み機能」を用いて簡単に読み込み直すことができます。これは以下のいずれかの操作で行います。</p>
 <ul class="simple">
@@ -572,7 +572,7 @@
 </div>
 </div>
 <p>ここまで記述してファイルを保存し、前述の再読み込みを行って下さい。するとシーンビュー上のモデルの表示が以下のようになるかと思います。</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-4.png"><img alt="../_images/create_crawler-4.png" src="../_images/create_crawler-4.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-4.png"><img alt="../_images/create_crawler-4.png" src="../_images/create_crawler-4.png" style="width: 320px;" /></a>
 <p>車体の上部に新たに追加された部分が、カメラ台座部分となります。この部分はヨー軸回転をするようになっており、そのための関節も含んでいます。</p>
 <p>nameに指定したように、本リンクの名前は &quot;TURRET_Y&quot; としています。これはカメラ台座(Turret)のYaw軸であることを表しています。また、CHASSISリンクと同様に、centerOfMass, mass, inertia の剛体パラメータも記述しています。</p>
 <p>形状についても、CHASSISリンクと同様にBoxタイプのgeometoryを用いています。これの size パラメータを調整することで、カメラ台座部分として適切なサイズの形状にしています。</p>
@@ -601,7 +601,7 @@
 <p>としています。これによって、CHASSISリンクの原点から後方へ5[cm]、上方へ8[cm]移動した位置に本リンクの原点を設定しています。この位置は親リンクの座標系に基づいています。</p>
 <p>ここで相対位置の効果を確認するため、translationの記述をなしとしてみましょう。上記のtranslationの行を削除するか、行の先頭に#をつけてコメントアウトし、モデルの再読み込みを行なってください。</p>
 <p>すると先ほど表示されていたカメラ台座の部分が見えなくなったかと思います。これは、カメラ台座の部分も車体の中心部に配置されてしまい、その中に埋まってしまったからです。そこで、シーンビューの <a class="reference external" href="https://choreonoid.org/ja/documents/latest/basics/sceneview.html#basics-sceneview-wireframe">ワイヤフレーム表示</a> をONにしてみてください。すると以下のように表示されるかと思います。</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-5.png"><img alt="../_images/create_crawler-5.png" src="../_images/create_crawler-5.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-5.png"><img alt="../_images/create_crawler-5.png" src="../_images/create_crawler-5.png" style="width: 320px;" /></a>
 <p>このようにワイヤフレームにすると、車体の中にカメラ台座ヨー軸部が埋まっているのが確認できます。</p>
 <p>これで分かるように、リンクの位置を適切に配置するためには、先程のようにtranslationの記述が必要となるわけです。この値もいろいろと変えてどうなるか試してみてください。</p>
 <p>なお、相対姿勢（座標系の向き）についても、rotationパラメータを用いて指定することが可能です。 rotation は</p>
@@ -645,7 +645,7 @@
 <span id="id22"></span><h2><a class="toc-backref" href="#id81" role="doc-backlink">関節動作の確認</a><a class="headerlink" href="#tutorial-19" title="Link to this heading"></a></h2>
 <p>関節が正しくモデリングできているかを確認する場合、ChoreonoidのGUI上で実際にモデルの関節を動かしてみることが有効です。 <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/index.html">ロボット／環境モデルの基本</a> - <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/pose-editing.html">位置・姿勢の変更</a> で紹介した機能を用いてこれを試してみましょう。</p>
 <p>まず、 <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/pose-editing.html#pose-editing-joint-slider-view">関節スライダビュー</a> を用いて関節を動かしてみましょう。作成中のモデルをアイテムツリービュー上で選択すると、関節スライダビューの表示はに以下のようになっているかと思います。</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-6.png"><img alt="../_images/create_crawler-6.png" src="../_images/create_crawler-6.png" style="width: 225.0px; height: 79.5px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-6.png"><img alt="../_images/create_crawler-6.png" src="../_images/create_crawler-6.png" style="width: 320px;" /></a>
 <p>この表示により、関節IDが0のTURRET_Yという関節が定義できていることが分かります。そして、ここのスライダを操作してみてください。するとシーンビュー上でTURRET_Yに対応する直方体がヨー軸まわりに回転することが確認できるかと思います。例えば、関節角度が-30°、0°、+30°のときのモデルの姿勢はそれぞれ以下のようになります。</p>
 <a class="reference internal image-reference" href="../_images/create_crawler-7.png"><img alt="../_images/create_crawler-7.png" src="../_images/create_crawler-7.png" style="width: 239.20000000000002px; height: 156.8px;" /></a>
 <a class="reference internal image-reference" href="../_images/create_crawler-8.png"><img alt="../_images/create_crawler-8.png" src="../_images/create_crawler-8.png" style="width: 239.20000000000002px; height: 156.8px;" /></a>
@@ -693,7 +693,7 @@
 </div>
 <p>という記述はコメントです。#のあとの行末までのテキストはコメントとなります。</p>
 <p>ここまで記述してモデルの再読み込みを行うと、モデルは以下のように表示されるかと思います。</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-10.png"><img alt="../_images/create_crawler-10.png" src="../_images/create_crawler-10.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-10.png"><img alt="../_images/create_crawler-10.png" src="../_images/create_crawler-10.png" style="width: 320px;" /></a>
 <p>カメラ台座ピッチ軸部分が追加されました。</p>
 </section>
 <section id="rigidbody">
@@ -740,7 +740,7 @@
 <p>親リンクはTURRET_Yです。関節はこのリンクとの間に設置されます。また、translation によって、親リンクからのオフセットをZ軸方向に4cmとしています。</p>
 <p>関節のタイプはTURRET_Yと同様にrevoluteを指定し、回転（ヒンジ）関節としています。ここでは回転軸をピッチ軸に対応するY軸としています。ただし軸の向きはマイナス方向としていて、関節角度マイナス方向をカメラ台座の下方向への回転、プラス方向を上方向への回転としています。また、jointRangeにより可動範囲を上側に45°、下側に10°としています。jointIdには1を設定し、TURRET_Yで設定した0とは異なる値としています。</p>
 <p>この関節の挙動も確認をしてみましょう。関節スライダビューで以下のようにTURRET_YとTURRET_Pに対応する関節２つ分のインタフェースが表示されているかと思います。</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-11.png"><img alt="../_images/create_crawler-11.png" src="../_images/create_crawler-11.png" style="width: 225.0px; height: 79.5px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-11.png"><img alt="../_images/create_crawler-11.png" src="../_images/create_crawler-11.png" style="width: 320px;" /></a>
 <p>ここのスライダを使うか、シーンビュー上のドラッグを用いて、まずピッチ軸（TURRET_P）を動かしてみて下さい。これにより、でカメラ台座の上下方向の向きを以下のように変えられるかと思います。</p>
 <a class="reference internal image-reference" href="../_images/create_crawler-12.png"><img alt="../_images/create_crawler-12.png" src="../_images/create_crawler-12.png" style="width: 146.8px; height: 113.60000000000001px;" /></a>
 <a class="reference internal image-reference" href="../_images/create_crawler-13.png"><img alt="../_images/create_crawler-13.png" src="../_images/create_crawler-13.png" style="width: 146.8px; height: 113.60000000000001px;" /></a>
@@ -801,7 +801,7 @@
 <p>ここではライトの形状としては円錐形状（Coneノード）を使用しています。これもデフォルトの座標系だと向きが合わないので、 <a class="reference external" href="https://choreonoid.org/ja/documents/latest/handling-models/modelfile/modelfile-newformat.html#modelfile-yaml-transform-parameters">Transformパラメータ</a> を利用して向きを変えています。また、光源がこの形状によって隠れてしまうことのないよう、少し後方にずらした位置としています。レンダリングにおいて影も発生させる場合にはこの点注意する必要があります。</p>
 <p>materialではemissiveColorも設定し、暗闇の中でもライトの部分が光って見えるようにしています。</p>
 <p>ここまで記述してモデルの再読み込みを行うと、ライトの形状が以下のように表示されるかと思います。</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-15.png"><img alt="../_images/create_crawler-15.png" src="../_images/create_crawler-15.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-15.png"><img alt="../_images/create_crawler-15.png" src="../_images/create_crawler-15.png" style="width: 320px;" /></a>
 <p>これにより、ライトが正しい位置と向きで設置されているかをモデルの見た目で確認することができます。</p>
 <p>ただし、デバイスを搭載するにあたって、対応する形状は必ずしもなくても構いません。また、対応する形状があるとしても、必ずしもデバイスノードのelements以下に記述しなければいけないわけではありません。今回の例ではモデリングを分かりやすくするためにそうしましたが、デバイスは基本的に形状とは関係なく機能します。</p>
 </section>
@@ -866,7 +866,7 @@
 <section id="id39">
 <h3><a class="toc-backref" href="#id91" role="doc-backlink">カメラの形状</a><a class="headerlink" href="#id39" title="Link to this heading"></a></h3>
 <p>ここではカメラのレンズを想定したものとして、シリンダ形状を付与しています。これにより、モデルの表示は以下のようになります。</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-16.png"><img alt="../_images/create_crawler-16.png" src="../_images/create_crawler-16.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-16.png"><img alt="../_images/create_crawler-16.png" src="../_images/create_crawler-16.png" style="width: 320px;" /></a>
 <p>なお、カメラの定義にて</p>
 <div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">nearClipDistance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
 </pre></div>
@@ -915,7 +915,7 @@
 </div>
 </div>
 <p>この状態でモデルの再読み込みを行うと、以下のように左側のクローラがモデルに加わるかと思います。</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-17.png"><img alt="../_images/create_crawler-17.png" src="../_images/create_crawler-17.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-17.png"><img alt="../_images/create_crawler-17.png" src="../_images/create_crawler-17.png" style="width: 320px;" /></a>
 <p>クローラは車体に接続されるものなので、本リンクでは親リンクを再度CHASSISと指定しています。</p>
 <p>また、親リンクからの相対位置として、</p>
 <div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">translation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">]</span>
@@ -951,7 +951,7 @@
 </div>
 </div>
 <p>このリンクの内容は、一部左右対称となっている以外は左クローラとほぼ同じ内容となっています。形状に関しては先ほど&quot;TRACK&quot;という名前で設定したアンカーをエイリアスとして参照しています。</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-18.png"><img alt="../_images/create_crawler-18.png" src="../_images/create_crawler-18.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-18.png"><img alt="../_images/create_crawler-18.png" src="../_images/create_crawler-18.png" style="width: 320px;" /></a>
 </section>
 </section>
 <section id="tutorial-29">
@@ -987,7 +987,7 @@
 </pre></div>
 </div>
 </div>
-<a class="reference internal image-reference" href="../_images/create_crawler-19.png"><img alt="../_images/create_crawler-19.png" src="../_images/create_crawler-19.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-19.png"><img alt="../_images/create_crawler-19.png" src="../_images/create_crawler-19.png" style="width: 320px;" /></a>
 <p>ここで記述した形状にも <a class="reference internal" href="#tutorial-13"><span class="std std-ref">アンカーの設定</span></a> を行います。ここでは &quot;HINGE&quot; というアンカーをつけて、右側のヒンジの形状としても使い回すことにします。</p>
 </section>
 <section id="id46">
@@ -1015,7 +1015,7 @@
 </pre></div>
 </div>
 </div>
-<a class="reference internal image-reference" href="../_images/create_crawler-20.png"><img alt="../_images/create_crawler-20.png" src="../_images/create_crawler-20.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-20.png"><img alt="../_images/create_crawler-20.png" src="../_images/create_crawler-20.png" style="width: 320px;" /></a>
 <p>このリンクの内容は、一部左右対称となっている以外は左ヒンジとほぼ同じ内容となっています。形状に関しては先ほど&quot;HINGE&quot;という名前で設定したアンカーをエイリアスとして参照しています。</p>
 </section>
 </section>
@@ -1057,8 +1057,8 @@
 </pre></div>
 </div>
 </div>
-<a class="reference internal image-reference" href="../_images/create_crawler-20.png"><img alt="../_images/create_crawler-20.png" src="../_images/create_crawler-20.png" style="width: 299.0px; height: 196.0px;" /></a>
-<a class="reference internal image-reference" href="../_images/create_crawler-21.png"><img alt="../_images/create_crawler-21.png" src="../_images/create_crawler-21.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-20.png"><img alt="../_images/create_crawler-20.png" src="../_images/create_crawler-20.png" style="width: 320px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-21.png"><img alt="../_images/create_crawler-21.png" src="../_images/create_crawler-21.png" style="width: 320px;" /></a>
 <p>ここで記述した形状にも <a class="reference internal" href="#tutorial-13"><span class="std std-ref">アンカーの設定</span></a> を行います。ここでは &quot;SUBTRACK&quot; というアンカーをつけて、右側のサブクローラの形状としても使い回すことにします。</p>
 </section>
 <section id="id49">
@@ -1085,7 +1085,7 @@
 </div>
 <p>このリンクの内容は、一部左右対称となっている以外は前左クローラとほぼ同じ内容となっています。形状に関しては先ほど&quot;SUBTRACK&quot;という名前で設定したアンカーをエイリアスとして参照しています。</p>
 <p>モデルの再読み込みを行って以下のようなモデルが表示されれば、これで完成です！</p>
-<a class="reference internal image-reference" href="../_images/create_crawler-22.png"><img alt="../_images/create_crawler-22.png" src="../_images/create_crawler-22.png" style="width: 299.0px; height: 196.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/create_crawler-22.png"><img alt="../_images/create_crawler-22.png" src="../_images/create_crawler-22.png" style="width: 320px;" /></a>
 </section>
 </section>
 </section>

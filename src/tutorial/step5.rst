@@ -26,7 +26,7 @@ Crawlerモデルでは、左クローラに対応するリンクが "TRACK_L"、
 
 .. _controller-example3:
 
-.. literalinclude:: ./src/TrackController1.cpp
+.. literalinclude:: ./src/crawler/TrackController1.cpp
    :language: C++
    :caption: TrackController1.cpp
 
@@ -35,7 +35,7 @@ Crawlerモデルでは、左クローラに対応するリンクが "TRACK_L"、
 
 .. cmake-example3:
 
-.. literalinclude:: ./src/CMakeLists.txt
+.. literalinclude:: ./src/crawler/CMakeLists.txt
    :language: YAML
    :caption: CMakeLists.txt
    :lines: 4

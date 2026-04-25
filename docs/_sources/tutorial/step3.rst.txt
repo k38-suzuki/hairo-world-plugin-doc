@@ -24,7 +24,7 @@
 
 .. _controller-example2:
 
-.. literalinclude:: ./src/TurretController2.cpp
+.. literalinclude:: ./src/crawler/TurretController2.cpp
    :language: C++
    :caption: TurretController2.cpp
 
@@ -39,7 +39,7 @@
 
 .. cmake-example2:
 
-.. literalinclude:: ./src/CMakeLists.txt
+.. literalinclude:: ./src/crawler/CMakeLists.txt
    :language: YAML
    :caption: CMakeLists.txt
    :lines: 2

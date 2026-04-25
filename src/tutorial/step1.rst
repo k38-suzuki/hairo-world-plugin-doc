@@ -165,10 +165,10 @@ Crawlerアイテムと同様に、
 するとCrawlerモデルのカメラ台座が以下の図のように下向きに落ちていき、車体に当たったところで止まるかと思います。
 
 .. image:: images/step1-11.png
-    :scale: 50%
+    :width: 320px
 
 .. image:: images/step1-12.png
-    :scale: 50%
+    :width: 320px
 
 これは、Crawlerモデルのカメラ台座関節を制御する `コントローラ <https://choreonoid.org/ja/documents/latest/simulation/concept.html#simulation-controller>`_ がないからです。この場合、関節はフリーの状態となっているため、ピッチ軸に関しては重力によるモーメントで回転してしまうというわけです。
 

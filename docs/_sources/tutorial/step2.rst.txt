@@ -28,7 +28,7 @@
 
 .. _controller-example1:
 
-.. literalinclude:: ./src/TurretController1.cpp
+.. literalinclude:: ./src/crawler/TurretController1.cpp
    :language: C++
    :caption: TurretController1.cpp
 
@@ -105,7 +105,7 @@ CMakeLists.txtの記述
 
 .. cmake-example1:
 
-.. literalinclude:: ./src/CMakeLists.txt
+.. literalinclude:: ./src/crawler/CMakeLists.txt
    :language: YAML
    :caption: CMakeLists.txt
    :lines: 1

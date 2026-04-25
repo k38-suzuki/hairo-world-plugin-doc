@@ -227,8 +227,8 @@
 <p>以下に示すシミュレーションバーの「シミュレーション開始ボタン」を押して、シミュレーションを開始して下さい。</p>
 <img alt="../_images/step1-10.png" src="../_images/step1-10.png" />
 <p>するとCrawlerモデルのカメラ台座が以下の図のように下向きに落ちていき、車体に当たったところで止まるかと思います。</p>
-<a class="reference internal image-reference" href="../_images/step1-11.png"><img alt="../_images/step1-11.png" src="../_images/step1-11.png" style="width: 364.5px; height: 234.5px;" /></a>
-<a class="reference internal image-reference" href="../_images/step1-12.png"><img alt="../_images/step1-12.png" src="../_images/step1-12.png" style="width: 364.5px; height: 234.5px;" /></a>
+<a class="reference internal image-reference" href="../_images/step1-11.png"><img alt="../_images/step1-11.png" src="../_images/step1-11.png" style="width: 320px;" /></a>
+<a class="reference internal image-reference" href="../_images/step1-12.png"><img alt="../_images/step1-12.png" src="../_images/step1-12.png" style="width: 320px;" /></a>
 <p>これは、Crawlerモデルのカメラ台座関節を制御する <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/concept.html#simulation-controller">コントローラ</a> がないからです。この場合、関節はフリーの状態となっているため、ピッチ軸に関しては重力によるモーメントで回転してしまうというわけです。</p>
 <p>関節がフリーの状態になっていることは、 <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/interaction.html">インタラクション機能</a> を用いて直接確認することもできます。シーンビューを編集モードにして、カメラ台座部分をマウスでドラッグして引っ張ってみて下さい。カメラ台座を引っ張ることで容易に動かせることが確認できるかと思います。</p>
 <p>このように、コントローラがなければ、モデルの姿勢を維持することもできません。 <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/howto-use-controller.html">コントローラの導入</a> の <a class="reference external" href="https://choreonoid.org/ja/documents/latest/simulation/howto-use-controller.html#controller-no-controller-case">コントローラ無しの場合</a> で紹介したように、ヒューマノイドロボットの場合にはロボットの前進が崩れ落ちてしまうほどです。</p>

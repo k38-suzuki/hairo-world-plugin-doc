@@ -22,4 +22,4 @@ Crawlerチュートリアル
 
 本チュートリアルはUbuntu Linux上での実行を想定して記述していますので、基本的にはUbuntu Linux上で進めるようにして下さい。ソースコード自体は他のOS上でも有効ですが、Choreonoid本体の場合と同様に、コンパイル方法が若干異なってきます。
 
-.. note:: 本チュートリアルで作成するプロジェクトやソースコードのファイルは、HAIROWorldPluginの "sample/tutorial/Crawler" 以下に格納されています。
+本チュートリアルで作成するプロジェクトやソースコードのファイルは、:download:`こちら <./src/crawler.zip>` からダウンロードできます。

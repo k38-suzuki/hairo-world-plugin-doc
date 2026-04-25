@@ -83,7 +83,7 @@ GLビジョンシミュレータアイテムの導入によりカメラ画像を
 
 .. _controller-example5:
 
-.. literalinclude:: ./src/CameraController.cpp
+.. literalinclude:: ./src/crawler/CameraController.cpp
    :language: C++
    :caption: CameraController.cpp
 
@@ -93,7 +93,7 @@ CMakeLists.txt に
 
 .. cmake-example3:
 
-.. literalinclude:: ./src/CMakeLists.txt
+.. literalinclude:: ./src/crawler/CMakeLists.txt
    :language: YAML
    :caption: CMakeLists.txt
    :lines: 7

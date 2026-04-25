@@ -19,3 +19,5 @@ By following these steps in order, you can specifically learn how to realize a b
 
 In this tutorial, we assume the environment is Ubuntu Linux. Therefore, please proceed with the steps on Ubuntu Linux as a general rule. While the source code itself is compatible with other operating systems,
 the compilation methods will differ slightly, just as they do with the main Choreonoid application.
+
+The project files and source code created in this tutorial are available for download :download:`here <./src/drone.zip>` .
