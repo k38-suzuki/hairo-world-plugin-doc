@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WRS 2025 Pre-Competition &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
+
+  
+  
+        <script src="../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=1a6bc256"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=4dbe4bdc"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="World Robot Summit 2025" href="../wrs2025/index.html" />
+    <link rel="prev" title="Full description of the drone model file" href="../tutorial2/drone.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            hairo-world-plugin-doc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFD Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFX Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEm Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCapture Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITS Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystick Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial2/index.html">Drone tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">WRS 2025 Pre-Competition</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#loading-the-competition-environment-basic">Loading the Competition Environment (Basic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loading-the-competition-environment-advanced">Loading the Competition Environment (Advanced)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#copying-the-robot-model">Copying the Robot Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-project">Creating a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#editing-a-yaml-file">Editing a YAML File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launching-choreonoid">Launching Choreonoid</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#loading-the-competition-environment-qualifiers-and-finals">Loading the Competition Environment (Qualifiers and Finals)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../wrs2025/index.html">World Robot Summit 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">Patch Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../japanese/index.html">日本語（作業中）</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hairo-world-plugin-doc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">WRS 2025 Pre-Competition</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/wrs2024/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="wrs-2025-pre-competition">
+<h1>WRS 2025 Pre-Competition<a class="headerlink" href="#wrs-2025-pre-competition" title="Link to this heading"></a></h1>
+<p>This section explains how to set up the competition environment for the <strong>WRS 2024 Pre-Competition</strong>.
+This feature is designed to <strong>automatically load competition environments and place robot models</strong>.
+To use this feature, the package found <a class="reference external" href="https://github.com/wrs-frei-simulation/WRS-Pre-2024">here</a> is <strong>required</strong>.</p>
+<section id="loading-the-competition-environment-basic">
+<h2>Loading the Competition Environment (Basic)<a class="headerlink" href="#loading-the-competition-environment-basic" title="Link to this heading"></a></h2>
+<p>Launch Choreonoid with the following command.</p>
+<p><strong>If you are using Choreonoid in a ROS 2 environment:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2024PRE/registration/registration.yaml --wrs-util &lt;mission_name&gt;
+</pre></div>
+</div>
+<p><strong>If you are using Choreonoid standalone (e.g., within choreonoid/build):</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./bin/choreonoid ../ext/WRS2024PRE/registration/registration.yaml --wrs-util &lt;mission_name&gt;
+</pre></div>
+</div>
+<p>The arguments that can be specified for <strong>&lt;mission_name&gt;</strong> are as follows:</p>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>M1-1</strong></p></td>
+<td><p>Loads the environment for Competition M1 (Area 1 only) and places <strong>AizuSpider</strong> for the AGX simulator.
+AizuSpider subscribes to the <strong>/joy</strong> topic of ROS 2.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>M1-2</strong></p></td>
+<td><p>Loads the environment for Competition M1 (Area 2 only) and places <strong>AizuSpider</strong> for the AGX simulator.
+AizuSpider subscribes to the <strong>/joy</strong> topic of ROS 2.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>M2</strong></p></td>
+<td><p>Loads the environment for Competition M2 (Areas 1 to 4). <strong>Robots are not placed</strong> with this argument.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>M2-A1</strong> to <strong>M2-A4</strong></p></td>
+<td><p>Loads specific areas of Competition M2. <strong>Robots are not placed</strong> with these arguments.</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</section>
+<section id="loading-the-competition-environment-advanced">
+<h2>Loading the Competition Environment (Advanced)<a class="headerlink" href="#loading-the-competition-environment-advanced" title="Link to this heading"></a></h2>
+<p>This section explains the procedure for <strong>placing your own custom robot model</strong>.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>Copying the robot model</strong></p></li>
+<li><p><strong>Creating a project</strong></p></li>
+<li><p><strong>Creating a YAML file</strong></p></li>
+<li><p><strong>Launching Choreonoid</strong></p></li>
+</ol>
+</div></blockquote>
+<section id="copying-the-robot-model">
+<h3>Copying the Robot Model<a class="headerlink" href="#copying-the-robot-model" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Create a directory (e.g., <code class="docutils literal notranslate"><span class="pre">model_&lt;team_name&gt;</span></code>) under <code class="docutils literal notranslate"><span class="pre">choreonoid/ext/WRS2024PRE/model</span></code> and copy your robot files into it.</p></li>
+<li><p><strong>Rebuild Choreonoid.</strong> If using ROS 2, you may need to add the <code class="docutils literal notranslate"><span class="pre">--cmake-clean-cache</span></code> option for new files to be recognized.</p></li>
+<li><p>Verify that the directory exists in the <code class="docutils literal notranslate"><span class="pre">install</span></code> (ROS 2) or <code class="docutils literal notranslate"><span class="pre">build/share</span></code> (Standalone) directory.</p></li>
+</ol>
+</section>
+<section id="creating-a-project">
+<h3>Creating a Project<a class="headerlink" href="#creating-a-project" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Launch Choreonoid and load your custom robot model from the <strong>installed/built share directory</strong> (not the source directory).</p></li>
+<li><p>Set up all necessary <strong>Simple Controllers</strong> and items.</p></li>
+<li><p><strong>Important:</strong> If publishing sensor data (cameras, etc.) in ROS 2, add a <strong>BodyROS2</strong> item as a child of the robot model.</p></li>
+<li><p>Create a directory (e.g., <code class="docutils literal notranslate"><span class="pre">project_&lt;team_name&gt;</span></code>) under <code class="docutils literal notranslate"><span class="pre">ext/WRS2024PRE/project</span></code> and save your project (<code class="docutils literal notranslate"><span class="pre">.cnoid</span></code>) inside.</p></li>
+<li><p><strong>Rebuild Choreonoid again</strong> to ensure the project file is deployed.</p></li>
+</ol>
+</section>
+<section id="editing-a-yaml-file">
+<h3>Editing a YAML File<a class="headerlink" href="#editing-a-yaml-file" title="Link to this heading"></a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">registration_test.yaml</span></code> as a template. Copy and rename it (e.g., <code class="docutils literal notranslate"><span class="pre">registration_&lt;team_name&gt;.yaml</span></code>).</p>
+<p>Rewrite the <strong>second line</strong> as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="o">&lt;</span><span class="n">Directory_Name</span><span class="o">&gt;/&lt;</span><span class="n">Project_Name_Without_Extension</span><span class="o">&gt;</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Example:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot_list</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">RobotList</span> <span class="p">[</span> <span class="n">project_team1</span><span class="o">/</span><span class="n">my_robot</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Key YAML Parameters:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>name</strong></p></td>
+<td><p>The identifier used for the <strong>&lt;mission_name&gt;</strong> argument.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>robot_project</strong></p></td>
+<td><p>Projects are loaded in order; the <strong>first</strong> is placed on the <strong>left</strong>, the <strong>second</strong> on the <strong>right</strong>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>start_position</strong></p></td>
+<td><p>Specifies the initial coordinates <strong>[x, y, z] in meters</strong>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>enable_ros</strong></p></td>
+<td><p>If <strong>true</strong>, automatically adds a Joy subscriber (robot 1: <code class="docutils literal notranslate"><span class="pre">/joy</span></code>, robot 2: <code class="docutils literal notranslate"><span class="pre">/joy2</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="launching-choreonoid">
+<h3>Launching Choreonoid<a class="headerlink" href="#launching-choreonoid" title="Link to this heading"></a></h3>
+<p><strong>Launch command:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid &lt;path/to/yaml&gt; --wrs-util &lt;mission_name&gt;
+</pre></div>
+</div>
+<p><strong>Note:</strong> Please pay close attention to the <strong>order of the arguments</strong>.
+If the robot's position is misaligned, adjust the <strong>start_position</strong> parameter in your YAML file.</p>
+</section>
+</section>
+<section id="loading-the-competition-environment-qualifiers-and-finals">
+<h2>Loading the Competition Environment (Qualifiers and Finals)<a class="headerlink" href="#loading-the-competition-environment-qualifiers-and-finals" title="Link to this heading"></a></h2>
+<p>To load the official qualifier/final environments, use the following specific YAML files:</p>
+<p><strong>Qualifiers (2024/10/04):</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2024PRE/registration/registration_20241004.yaml
+</pre></div>
+</div>
+<p><strong>Finals (2024/10/05):</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 run choreonoid_ros choreonoid ~/ros2_ws/src/choreonoid/ext/WRS2024PRE/registration/registration_20241005.yaml
+</pre></div>
+</div>
+<p><strong>Post-launch:</strong> Select an area from the <strong>WRSUtil bar</strong> combo box and click the <strong>&quot;Open Project&quot;</strong> button.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tutorial2/drone.html" class="btn btn-neutral float-left" title="Full description of the drone model file" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../wrs2025/index.html" class="btn btn-neutral float-right" title="World Robot Summit 2025" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, suzuki.kenta38.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

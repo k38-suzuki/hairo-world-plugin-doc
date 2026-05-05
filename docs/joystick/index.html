@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VirtualJoystickプラグイン &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
+  <title>VirtualJoystick Plugin &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
 
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="ジョイスティック状態の表示" href="status.html" />
-    <link rel="prev" title="プロジェクトの履歴表示・読み込み" href="../bookmark/history.html" /> 
+    <link rel="next" title="Drone tutorial" href="../tutorial2/index.html" />
+    <link rel="prev" title="PHITS Plugin" href="../phits/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,31 +43,32 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">VirtualJoystickプラグイン</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="status.html">ジョイスティック状態の表示</a></li>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html">シミュレーションの操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFD Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFX Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEm Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCapture Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITS Plugin</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">VirtualJoystick Plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#function-1-controlling-simulation-status">Function 1: Controlling Simulation Status</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#enabling-the-feature">Enabling the Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#start-stop-pause-and-resume">Start, Stop, Pause, and Resume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loading-a-project">Loading a Project</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Crawlerチュートリアル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-2-displaying-joystick-status">Function 2: Displaying Joystick Status</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#displaying-input-status">Displaying Input Status</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial2/index.html">Drone tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrs2024/index.html">WRS 2025 Pre-Competition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrs2025/index.html">World Robot Summit 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">Patch Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../japanese/index.html">日本語（作業中）</a></li>
 </ul>
 
         </div>
@@ -84,7 +85,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">VirtualJoystickプラグイン</li>
+      <li class="breadcrumb-item active">VirtualJoystick Plugin</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/joystick/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -94,30 +95,65 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="virtualjoystick">
-<h1>VirtualJoystickプラグイン<a class="headerlink" href="#virtualjoystick" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="status.html">ジョイスティック状態の表示</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="status.html#id2">入力状態の表示</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="joystick.html">シミュレーションの操作</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html#id2">機能の有効化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html#id3">シミュレーションの開始・停止・一時停止・再開</a></li>
-<li class="toctree-l2"><a class="reference internal" href="joystick.html#id4">プロジェクトの読み込み</a></li>
-</ul>
-</li>
-</ul>
+  <section id="virtualjoystick-plugin">
+<h1>VirtualJoystick Plugin<a class="headerlink" href="#virtualjoystick-plugin" title="Link to this heading"></a></h1>
+<section id="function-1-controlling-simulation-status">
+<h2>Function 1: Controlling Simulation Status<a class="headerlink" href="#function-1-controlling-simulation-status" title="Link to this heading"></a></h2>
+<p>This section explains how to start, stop, pause, and resume a simulation using a joystick.</p>
+<section id="enabling-the-feature">
+<h3>Enabling the Feature<a class="headerlink" href="#enabling-the-feature" title="Link to this heading"></a></h3>
+<p>Follow these steps to enable this feature:</p>
+<ol class="arabic simple">
+<li><p>Open <strong>Options</strong> &gt; <strong>Joystick</strong> from the menu.</p></li>
+<li><p>Select <strong>Start Simulation (Start Button)</strong> and <strong>Open Project (Logo Button)</strong>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<div class="line-block">
+<div class="line">This feature utilizes the <strong>Share</strong>, <strong>Options</strong>, and <strong>Logo</strong> buttons on the gamepad (based on DualShock 4).</div>
+<div class="line">If you intend to use these buttons for other purposes, please disable this feature.</div>
 </div>
+</div>
+</section>
+<section id="start-stop-pause-and-resume">
+<h3>Start, Stop, Pause, and Resume<a class="headerlink" href="#start-stop-pause-and-resume" title="Link to this heading"></a></h3>
+<p>The controls for starting, stopping, pausing, and resuming the simulation are assigned as follows:</p>
+<ul class="simple">
+<li><p><strong>Start simulation from the initial position:</strong> Press the <strong>Options</strong> button once while the simulation is stopped.</p></li>
+<li><p><strong>Start simulation from the current position:</strong> Press the <strong>Share</strong> button once while the simulation is stopped.</p></li>
+<li><p><strong>Stop:</strong> Press the <strong>Share</strong> button once during a simulation or while paused.</p></li>
+<li><p><strong>Pause:</strong> Press the <strong>Options</strong> button once during a simulation.</p></li>
+<li><p><strong>Resume simulation from the current position:</strong> Press the <strong>Options</strong> button once while paused.</p></li>
+</ul>
+<p>The state transitions for this feature are shown in the diagram below:</p>
+<img alt="../_images/joystick_0.png" src="../_images/joystick_0.png" />
+</section>
+<section id="loading-a-project">
+<h3>Loading a Project<a class="headerlink" href="#loading-a-project" title="Link to this heading"></a></h3>
+<p>Pressing the <strong>Logo</strong> button will open a dialog box for loading a project.</p>
+</section>
+</section>
+<section id="function-2-displaying-joystick-status">
+<h2>Function 2: Displaying Joystick Status<a class="headerlink" href="#function-2-displaying-joystick-status" title="Link to this heading"></a></h2>
+<p>This section explains how to display the status of the joystick. This feature shows the real-time status of the sticks and buttons for a connected joystick (only <code class="docutils literal notranslate"><span class="pre">/dev/input/js0</span></code> is supported). Additionally, when using this feature, you can input joystick commands via the keyboard, similar to the &quot;Virtual Joystick&quot; function.</p>
+<section id="displaying-input-status">
+<h3>Displaying Input Status<a class="headerlink" href="#displaying-input-status" title="Link to this heading"></a></h3>
+<p>Follow the steps below to display the view that shows the joystick status:</p>
+<ol class="arabic simple">
+<li><p>Select <strong>View</strong> &gt; <strong>Show View</strong> &gt; <strong>Virtual Joystick 2</strong> from the main menu.</p></li>
+</ol>
+<p>The image below shows the Joystick Status view:</p>
+<img alt="../_images/status_0.png" src="../_images/status_0.png" />
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../bookmark/history.html" class="btn btn-neutral float-left" title="プロジェクトの履歴表示・読み込み" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="status.html" class="btn btn-neutral float-right" title="ジョイスティック状態の表示" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../phits/index.html" class="btn btn-neutral float-left" title="PHITS Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tutorial2/index.html" class="btn btn-neutral float-right" title="Drone tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

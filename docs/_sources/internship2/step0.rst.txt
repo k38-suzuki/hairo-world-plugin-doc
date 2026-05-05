@@ -1,2 +1,0 @@
-Step 0: Creating a drone model
-==============================

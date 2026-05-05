@@ -3,10 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-HAIROWorldPluginマニュアル
-==========================
+HAIROWorldPlugin Manual
+=======================
 
-　このサイトでは、日本原子力研究開発機構が開発したChoreonoidの拡張機能「HAIROWorldPlugin」の使い方を説明します。HAIROWorldPluginは、Choreonoid開発版上で動作することを確認しており、今後もChoreonoidの最新のバージョンに対応していく予定です。 **（2026/03時点では、choreonoid-2.4に対応しています。）** 対応OSはUbuntu22.04 LTSとUbuntu24.04 LTSです。他のOS、ディストリビューション、バージョン、アーキテクチャについては、公式にはサポートしておりません。Ubuntuベースの他のディストリビューションでは、ビルドをうまく通せば動作する可能性もありますが、保証はできません。また、VMWare・VirtualBox等の仮想マシンでの使用についても動作を保証できませんので、予めご了承ください。
+This site explains how to use **HAIROWorldPlugin**, an extension for Choreonoid developed by the Japan Atomic Energy Agency (JAEA).
+
+HAIROWorldPlugin is confirmed to work with the development version of Choreonoid, and we plan to maintain compatibility with the latest versions moving forward. **(As of March 2026, it is compatible with Choreonoid-2.4.)**
+
+The supported operating systems are **Ubuntu 22.04 LTS** and **Ubuntu 24.04 LTS**. Other OSs, distributions, versions, or architectures are not officially supported. While it may function on other Ubuntu-based distributions if the build is successful, performance is not guaranteed. Furthermore, please note that operation on virtual machines such as VMware or VirtualBox is also not guaranteed.
 
 .. toctree::
    :maxdepth: 2
@@ -14,38 +18,24 @@ HAIROWorldPluginマニュアル
    about/index
    install/index
    cfd/index
-   netem/index
    vfx/index
+   netem/index
    motion/index
    phits/index
-   body/index
-   bookmark/index
    joystick/index
-   ompl/index
-   lift/index
-   ros2/index
-   paper/index
-   tips/index
-   update/index
-   note/index
-   en/index
-   tutorial/index
    tutorial2/index
-   wrsutil/index
+   wrs2024/index
+   wrs2025/index
+   references/index
+   note/index
+   japanese/index
 
-以下の画像をクリックすると紹介動画が再生されます。
+Click the image below to play the introduction video.
 
 .. image:: images/title.png
    :target: https://naraha.jaea.go.jp/information/files/2020/1211/movie/hairoworld2.mp4
 
-免責事項
-========
+Disclaimer
+==========
 
-　HAIROWorldPluginの使用に伴うトラブルやその他の損失・損害について当機構では一切の責任を負いません。予めご了承ください。
-
-.. Indices and tables
-.. ==================
-
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`
+JAEA assumes no responsibility for any trouble, loss, or damage resulting from the use of HAIROWorldPlugin. Please use it at your own risk.

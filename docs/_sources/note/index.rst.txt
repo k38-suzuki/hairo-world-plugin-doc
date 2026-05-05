@@ -1,8 +1,10 @@
+Patch Notes
+===========
 
-パッチノート
-============
+* 2026-05-05
 
-* 2025/09/16
-  
-  * フライトモードの切替え動作を修正しました。
- 
+  * Translate manual texts.
+
+* 2025-09-16
+
+  * Fixed the flight mode toggle behavior.

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>インストール &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
+  <title>Installation &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
 
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="ソースコードからのビルドとインストール" href="install.html" />
-    <link rel="prev" title="HAIROWorldPluginについて" href="../about/about.html" /> 
+    <link rel="next" title="CFD Plugin" href="../cfd/index.html" />
+    <link rel="prev" title="About" href="../about/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,30 +43,25 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">インストール</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="install.html">ソースコードからのビルドとインストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">About</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#obtaining-the-source-code">Obtaining the Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-configuration-with-cmake">Build Configuration with CMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-and-installing-choreonoid">Building and Installing Choreonoid</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Crawlerチュートリアル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFD Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFX Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEm Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCapture Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITS Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystick Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial2/index.html">Drone tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrs2024/index.html">WRS 2025 Pre-Competition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrs2025/index.html">World Robot Summit 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">Patch Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../japanese/index.html">日本語（作業中）</a></li>
 </ul>
 
         </div>
@@ -83,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">インストール</li>
+      <li class="breadcrumb-item active">Installation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/install/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -93,27 +88,52 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="id1">
-<h1>インストール<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="install.html">ソースコードからのビルドとインストール</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="install.html#id2">ソースコードの取得</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#cmake">CMake によるビルド設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#choreonoid">Choreonoidのビルドとインストール</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#id5">簡易インストール</a></li>
-</ul>
-</li>
-</ul>
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<section id="obtaining-the-source-code">
+<h2>Obtaining the Source Code<a class="headerlink" href="#obtaining-the-source-code" title="Link to this heading"></a></h2>
+<p>Due to a change in JAEA's software management policy, HAIROWorldPlugin is no longer publicly available on GitHub and is now provided upon application.
+We apologize for the inconvenience, but please submit the following Application for Use.</p>
+<p><a class="reference download internal" download="" href="../_downloads/b77087bcea08816dec2fc9f98adbbe66/%E5%88%A9%E7%94%A8%E7%94%B3%E8%BE%BC%E6%9B%B8__HAIROWorldPlugin%28%E3%83%A4%E3%83%9E%E3%83%88%E5%A4%A7%E5%AD%A6%20%E4%BD%90%E3%80%85%E6%9C%A8%E3%82%B5%E3%83%88%E3%82%B7%29.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Application</span> <span class="pre">Form</span></code></a></p>
+<p>When preparing the application, please keep the following points in mind:</p>
+<ol class="arabic simple">
+<li><p>Please fill in the gray boxes of the PDF form and submit it as is (without printing).</p></li>
+<li><p>For signatures (required in two places: the application and the pledge), please use Acrobat's <strong>Self-Signed Digital ID</strong>. By clicking the signature field, you can create a Digital ID by entering your name and email address, then save it to a file to sign. If you are unsure how to use a Digital ID, attaching an image of your handwritten signature is also acceptable.</p></li>
+<li><p>Please rename the application file to include your organization and name, as shown in the attachment example.</p></li>
+<li><p>Send the completed form to: <strong>suzuki.kenta38[a]jaea.go.jp</strong> (Please replace [a] with &#64;).</p></li>
+</ol>
+<p>After the application is accepted, a JAEA representative will send download instructions via email.
+Once obtained, extract the source code and place it in the <code class="docutils literal notranslate"><span class="pre">ext</span></code> directory directly under the Choreonoid source directory.</p>
+</section>
+<section id="build-configuration-with-cmake">
+<h2>Build Configuration with CMake<a class="headerlink" href="#build-configuration-with-cmake" title="Link to this heading"></a></h2>
+<p>First, update the Makefile using the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> command. In the Choreonoid build directory, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..
+</pre></div>
 </div>
+<p>This will check for required libraries and update the Makefile. (Note the two dots after the cmake command.)</p>
+<p>Next, enable HAIROWorldPlugin. Run the <code class="docutils literal notranslate"><span class="pre">ccmake</span></code> command in the Choreonoid build directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ccmake<span class="w"> </span>..
+</pre></div>
+</div>
+<p>Then, set <strong>BUILD_HAIRO_WORLD_PLUGIN</strong> to &quot;ON&quot;.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>As of the update on December 21, 2022, this build option has been deprecated. Consequently, HAIROWorldPlugin is now automatically built along with Choreonoid.</p>
+</div>
+</section>
+<section id="building-and-installing-choreonoid">
+<h2>Building and Installing Choreonoid<a class="headerlink" href="#building-and-installing-choreonoid" title="Link to this heading"></a></h2>
+<p>Once the Makefile is successfully generated by CMake, build Choreonoid using the <code class="docutils literal notranslate"><span class="pre">make</span></code> command. For details on building and installing Choreonoid, please refer to the <a class="reference external" href="https://choreonoid.org/en/manuals/latest/install/build-ubuntu.html">Choreonoid Build Manual</a>.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../about/about.html" class="btn btn-neutral float-left" title="HAIROWorldPluginについて" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="install.html" class="btn btn-neutral float-right" title="ソースコードからのビルドとインストール" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../about/index.html" class="btn btn-neutral float-left" title="About" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../cfd/index.html" class="btn btn-neutral float-right" title="CFD Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

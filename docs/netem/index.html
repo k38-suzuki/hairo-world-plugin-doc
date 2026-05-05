@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NetEmプラグイン &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
+  <title>NetEm Plugin &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
 
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="通信障害効果の設定" href="netem.html" />
-    <link rel="prev" title="ROV／UAVのシミュレーション" href="../cfd/cfd.html" /> 
+    <link rel="next" title="MotionCapture Plugin" href="../motion/index.html" />
+    <link rel="prev" title="VFX Plugin" href="../vfx/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,30 +43,25 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFDプラグイン</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">NetEmプラグイン</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="netem.html">通信障害効果の設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfd/index.html">CFD Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFX Plugin</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NetEm Plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-and-configuring-the-bodynetemcontroller-item">Creating and Configuring the BodyNetEmController Item</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-and-configuring-the-multicollider-item">Creating and Configuring the MultiCollider Item</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-simulation">Running the Simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Crawlerチュートリアル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCapture Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITS Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystick Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial2/index.html">Drone tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrs2024/index.html">WRS 2025 Pre-Competition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrs2025/index.html">World Robot Summit 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">Patch Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../japanese/index.html">日本語（作業中）</a></li>
 </ul>
 
         </div>
@@ -83,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">NetEmプラグイン</li>
+      <li class="breadcrumb-item active">NetEm Plugin</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/netem/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -93,26 +88,160 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="netem">
-<h1>NetEmプラグイン<a class="headerlink" href="#netem" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="netem.html">通信障害効果の設定</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="netem.html#netem">ボディNetEmコントローラアイテムの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="netem.html#id2">マルチコライダアイテムの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="netem.html#id3">シミュレーションの実行</a></li>
-</ul>
-</li>
-</ul>
+  <section id="netem-plugin">
+<h1>NetEm Plugin<a class="headerlink" href="#netem-plugin" title="Link to this heading"></a></h1>
+<p>This section explains how to configure communication interference effects using the Network Emulator.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>The Network Emulator is used when controlling a robot within the Choreonoid world via Ethernet using OpenRTM, ROS, or similar frameworks.</p>
 </div>
+<section id="creating-and-configuring-the-bodynetemcontroller-item">
+<h2>Creating and Configuring the BodyNetEmController Item<a class="headerlink" href="#creating-and-configuring-the-bodynetemcontroller-item" title="Link to this heading"></a></h2>
+<p>First, create a <strong>BodyNetEmController</strong> item. In the Item Tree view, select the body that will perform communication during the simulation, then select <strong>File</strong> &gt; <strong>New</strong> &gt; <strong>BodyNetEmController</strong> from the main menu.</p>
+<p>The generated BodyNetEmController item will be placed as a child item of the selected body. If there are multiple bodies performing communication, place one BodyNetEmController item as a child for each body.</p>
+<p>Next, configure the parameters for the BodyNetEmController item. The parameters are as follows:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16.8%" />
+<col style="width: 10.1%" />
+<col style="width: 10.1%" />
+<col style="width: 63.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Unit</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Interface</p></td>
+<td><p>lo</p></td>
+<td><p>-</p></td>
+<td><p>Specifies the wired or wireless interface used for communication.</p></td>
+</tr>
+<tr class="row-odd"><td><p>IFB Device</p></td>
+<td><p>ifb0</p></td>
+<td><p>-</p></td>
+<td><p>Specifies the virtual network device used for inbound communication. Usually, this does not need to be changed.</p></td>
+</tr>
+<tr class="row-even"><td><p>Destination IP Address</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>Specifies the destination IP address for packets. Enter the IP address of the intended communication target for the body. You must include a prefix length (e.g., <code class="docutils literal notranslate"><span class="pre">xxx.xxx.xxx.xxx/32</span></code>). Using <code class="docutils literal notranslate"><span class="pre">/32</span></code> targets only the specific IP address specified.</p></td>
+</tr>
+</tbody>
+</table>
+<p>This completes the configuration of the BodyNetEmController item.</p>
+</section>
+<section id="creating-and-configuring-the-multicollider-item">
+<h2>Creating and Configuring the MultiCollider Item<a class="headerlink" href="#creating-and-configuring-the-multicollider-item" title="Link to this heading"></a></h2>
+<p>The <strong>MultiCollider</strong> item defines the regions within the Choreonoid world where communication interference is applied. Select <strong>File</strong> &gt; <strong>New</strong> &gt; <strong>MultiCollider</strong> from the main menu and specify the type as &quot;<strong>Communication Interference</strong>&quot; to generate it. Place the generated MultiCollider item as a child of the World item.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>When using multiple MultiCollider items, their target areas may overlap. If an overlap occurs, the settings of the MultiCollider item located lower in the Item Tree view will take precedence.</p>
+</div>
+<p>The parameters for the MultiCollider item are as follows:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16.8%" />
+<col style="width: 10.1%" />
+<col style="width: 10.1%" />
+<col style="width: 63.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Unit</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Inward Delay</p></td>
+<td><p>0</p></td>
+<td><p>ms</p></td>
+<td><p>Specifies the delay time when receiving packets.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inward Latency</p></td>
+<td><p>0</p></td>
+<td><p>kbit</p></td>
+<td><p>Specifies the latency (upper limit of communication speed) when receiving packets.</p></td>
+</tr>
+<tr class="row-even"><td><p>Inward Packet Loss</p></td>
+<td><p>0</p></td>
+<td><p>%</p></td>
+<td><p>Specifies the packet loss rate when receiving packets.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Outward Delay</p></td>
+<td><p>0</p></td>
+<td><p>ms</p></td>
+<td><p>Specifies the delay time when sending packets.</p></td>
+</tr>
+<tr class="row-even"><td><p>Outward Latency</p></td>
+<td><p>0</p></td>
+<td><p>kbit</p></td>
+<td><p>Specifies the latency (upper limit of communication speed) when sending packets.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Outward Packet Loss</p></td>
+<td><p>0</p></td>
+<td><p>%</p></td>
+<td><p>Specifies the packet loss rate when sending packets.</p></td>
+</tr>
+<tr class="row-even"><td><p>Shape</p></td>
+<td><p>Box</p></td>
+<td><p>-</p></td>
+<td><p>Specifies the shape of the region (Box/Cylinder/Sphere).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Size</p></td>
+<td><p>1.0, 1.0, 1.0</p></td>
+<td><p>m, m, m</p></td>
+<td><p>Specifies the XYZ size of the region (only if Shape is Box).</p></td>
+</tr>
+<tr class="row-even"><td><p>Radius</p></td>
+<td><p>1.0</p></td>
+<td><p>m</p></td>
+<td><p>Specifies the radius of the region (only if Shape is Cylinder or Sphere).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Height</p></td>
+<td><p>1.0</p></td>
+<td><p>m</p></td>
+<td><p>Specifies the height of the region (only if Shape is Cylinder).</p></td>
+</tr>
+<tr class="row-even"><td><p>Position</p></td>
+<td><p>0, 0, 0</p></td>
+<td><p>m, m, m</p></td>
+<td><p>Specifies the XYZ coordinates of the region's position.</p></td>
+</tr>
+<tr class="row-odd"><td><p>RPY</p></td>
+<td><p>0, 0, 0</p></td>
+<td><p>deg, deg, deg</p></td>
+<td><p>Specifies the orientation of the region (Roll, Pitch, Yaw).</p></td>
+</tr>
+<tr class="row-even"><td><p>Diffuse Color</p></td>
+<td><p>0, 0, 0</p></td>
+<td><p>-, -, -</p></td>
+<td><p>Specifies the RGB diffuse color of the region.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Transparency</p></td>
+<td><p>0</p></td>
+<td><p>-</p></td>
+<td><p>Specifies the transparency of the region.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="running-the-simulation">
+<h2>Running the Simulation<a class="headerlink" href="#running-the-simulation" title="Link to this heading"></a></h2>
+<p>Run the simulation as usual from the Simulation Bar. If successful, the communication interference effects will be applied based on the MultiCollider settings. You can verify the status of these effects using the <code class="docutils literal notranslate"><span class="pre">ping</span></code> command.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../cfd/cfd.html" class="btn btn-neutral float-left" title="ROV／UAVのシミュレーション" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="netem.html" class="btn btn-neutral float-right" title="通信障害効果の設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../vfx/index.html" class="btn btn-neutral float-left" title="VFX Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../motion/index.html" class="btn btn-neutral float-right" title="MotionCapture Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

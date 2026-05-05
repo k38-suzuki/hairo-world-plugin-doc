@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CFDプラグイン &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
+  <title>CFD Plugin &mdash; hairo-world-plugin-doc 0.0 ドキュメント</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
 
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="ROV／UAVのシミュレーション" href="cfd.html" />
-    <link rel="prev" title="ソースコードからのビルドとインストール" href="../install/install.html" /> 
+    <link rel="next" title="VFX Plugin" href="../vfx/index.html" />
+    <link rel="prev" title="Installation" href="../install/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,30 +43,28 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../about/index.html">HAIROWorldPlugin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../install/index.html">インストール</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">CFDプラグイン</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cfd.html">ROV／UAVのシミュレーション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CFD Plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-and-configuring-the-cfd-simulator">Creating and Configuring the CFD Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-and-configuring-multicollider-items">Creating and Configuring MultiCollider Items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#body-item-settings">Body Item Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thruster-settings-for-rovs">Thruster Settings (for ROVs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rotor-settings-for-uavs">Rotor Settings (for UAVs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-simulation">Running the Simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEmプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFXプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCaptureプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITSプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../body/index.html">BodyCreatorプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bookmark/index.html">Bookmarkプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystickプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ompl/index.html">IKPlannerプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lift/index.html">LiftSampleプラグイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2との連携</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">関連論文</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tips/index.html">補足事項</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../update/index.html">更新履歴</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../note/index.html">パッチノート</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../en/index.html">HAIROWorldPlugin Operation Manual (in English)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Crawlerチュートリアル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vfx/index.html">VFX Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netem/index.html">NetEm Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motion/index.html">MotionCapture Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../phits/index.html">PHITS Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../joystick/index.html">VirtualJoystick Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial2/index.html">Drone tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wrsutil/index.html">WRSUtilプラグイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrs2024/index.html">WRS 2025 Pre-Competition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrs2025/index.html">World Robot Summit 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note/index.html">Patch Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../japanese/index.html">日本語（作業中）</a></li>
 </ul>
 
         </div>
@@ -83,7 +81,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">CFDプラグイン</li>
+      <li class="breadcrumb-item active">CFD Plugin</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cfd/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -93,29 +91,182 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cfd">
-<h1>CFDプラグイン<a class="headerlink" href="#cfd" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cfd.html">ROV／UAVのシミュレーション</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cfd.html#cfd">CFDシミュレータの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cfd.html#id1">マルチコライダアイテムの作成と設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cfd.html#id2">ボディアイテムの設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cfd.html#id3">スラスタの設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cfd.html#id4">ロータの設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cfd.html#id5">シミュレーションの実行</a></li>
-</ul>
-</li>
-</ul>
+  <section id="cfd-plugin">
+<h1>CFD Plugin<a class="headerlink" href="#cfd-plugin" title="Link to this heading"></a></h1>
+<p>This section explains how to simulate Remotely Operated Vehicles (ROVs) and Unmanned Aerial Vehicles (UAVs) using the <strong>CFD Simulator</strong>.</p>
+<section id="creating-and-configuring-the-cfd-simulator">
+<h2>Creating and Configuring the CFD Simulator<a class="headerlink" href="#creating-and-configuring-the-cfd-simulator" title="Link to this heading"></a></h2>
+<p>This feature uses Choreonoid's standard &quot;AIST Simulator.&quot; To set it up:
+Select <strong>File</strong> &gt; <strong>New</strong> &gt; <strong>CFD Simulator</strong> from the main menu. Place the generated CFD Simulator as a child item of the <strong>AIST Simulator</strong>.</p>
+</section>
+<section id="creating-and-configuring-multicollider-items">
+<h2>Creating and Configuring MultiCollider Items<a class="headerlink" href="#creating-and-configuring-multicollider-items" title="Link to this heading"></a></h2>
+<p>The <strong>MultiCollider</strong> item is used to virtually define regions in the Choreonoid world that contain fluids such as water or air.</p>
+<p>To create one, select <strong>File</strong> &gt; <strong>New</strong> &gt; <strong>MultiCollider</strong> and specify the type as &quot;<strong>Fluid</strong>&quot;. Place it as a child of the World item. You can define complex environments by creating multiple MultiCollider items.</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>If target areas overlap, the settings of the MultiCollider item positioned lower in the Item Tree view will take precedence.</p>
 </div>
+<p>Fluid items can be toggled on or off using the checkboxes in the Item Tree. Note that hidden MultiCollider items are excluded from the simulation.</p>
+<p>The parameters for the MultiCollider item are as follows:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16.8%" />
+<col style="width: 10.1%" />
+<col style="width: 10.1%" />
+<col style="width: 63.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Unit</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Density</p></td>
+<td><p>0.0</p></td>
+<td><p>kg/m³</p></td>
+<td><p>Specifies the fluid density.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Viscosity</p></td>
+<td><p>0.0</p></td>
+<td><p>Pa·s</p></td>
+<td><p>Specifies the fluid viscosity.</p></td>
+</tr>
+<tr class="row-even"><td><p>Steady Flow</p></td>
+<td><p>0, 0, 0</p></td>
+<td><p>N, N, N</p></td>
+<td><p>Specifies external forces applied to objects within the region.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Shape</p></td>
+<td><p>Box</p></td>
+<td><p>-</p></td>
+<td><p>Specifies the shape of the region (Box/Cylinder/Sphere).</p></td>
+</tr>
+<tr class="row-even"><td><p>Size</p></td>
+<td><p>1.0, 1.0, 1.0</p></td>
+<td><p>m</p></td>
+<td><p>Specifies the XYZ size (only for Box).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Radius</p></td>
+<td><p>1.0</p></td>
+<td><p>m</p></td>
+<td><p>Specifies the radius (only for Cylinder/Sphere).</p></td>
+</tr>
+<tr class="row-even"><td><p>Height</p></td>
+<td><p>1.0</p></td>
+<td><p>m</p></td>
+<td><p>Specifies the height (only for Cylinder).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Position / RPY</p></td>
+<td><p>0, 0, 0</p></td>
+<td><p>m / deg</p></td>
+<td><p>Specifies the location (XYZ) and orientation (Roll, Pitch, Yaw).</p></td>
+</tr>
+<tr class="row-even"><td><p>Diffuse Color / Transparency</p></td>
+<td><p>0, 0, 0 / 0</p></td>
+<td><p>-</p></td>
+<td><p>Specifies the RGB color and transparency of the region.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="body-item-settings">
+<h2>Body Item Settings<a class="headerlink" href="#body-item-settings" title="Link to this heading"></a></h2>
+<p>The CFD Simulator calculates buoyancy and drag forces acting on each link of the robot. To enable these calculations, add the following parameters to each link in the body file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
+<span class="nt">centerOfBuoyancy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="nt">cdw</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="nt">cda</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="nt">cw</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+</pre></div>
+</div>
+<p>Details for each key:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16.3%" />
+<col style="width: 13.0%" />
+<col style="width: 9.8%" />
+<col style="width: 61.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Unit</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>density</p></td>
+<td><p>0.0</p></td>
+<td><p>kg/m³</p></td>
+<td><p>Specifies the density of the link.</p></td>
+</tr>
+<tr class="row-odd"><td><p>centerOfBuoyancy</p></td>
+<td><p>0.0, 0.0, 0.0</p></td>
+<td><p>m</p></td>
+<td><p>Coordinates of the center of buoyancy.</p></td>
+</tr>
+<tr class="row-even"><td><p>cdw</p></td>
+<td><p>0.0</p></td>
+<td><p>-</p></td>
+<td><p>Drag coefficient in water.</p></td>
+</tr>
+<tr class="row-odd"><td><p>cda</p></td>
+<td><p>0.0</p></td>
+<td><p>-</p></td>
+<td><p>Drag coefficient in air.</p></td>
+</tr>
+<tr class="row-even"><td><p>cv</p></td>
+<td><p>0.0</p></td>
+<td><p>m</p></td>
+<td><p>Viscous force coefficient proportional to velocity.</p></td>
+</tr>
+<tr class="row-odd"><td><p>cw</p></td>
+<td><p>0.0</p></td>
+<td><p>-</p></td>
+<td><p>Drag coefficient proportional to angular velocity (opposes rotation).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="thruster-settings-for-rovs">
+<h2>Thruster Settings (for ROVs)<a class="headerlink" href="#thruster-settings-for-rovs" title="Link to this heading"></a></h2>
+<p>The CFD Simulator provides a <strong>Thruster</strong> device to power ROVs, applying thrust and torque. The default orientation is the +X axis of the link's local coordinate system. Define it under the <code class="docutils literal notranslate"><span class="pre">elements</span></code> of a link:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Thruster</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Thruster</span>
+<span class="w">  </span><span class="nt">forceOffset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">  </span><span class="nt">torqueOffset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w">  </span><span class="nt">symbol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</section>
+<section id="rotor-settings-for-uavs">
+<h2>Rotor Settings (for UAVs)<a class="headerlink" href="#rotor-settings-for-uavs" title="Link to this heading"></a></h2>
+<p>The <strong>Rotor</strong> device provides power for UAVs. The default orientation is the +Z axis of the link's local coordinate system. Define it under the <code class="docutils literal notranslate"><span class="pre">elements</span></code> of a link:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rotor</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rotor</span>
+<span class="w">  </span><span class="nt">forceOffset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">  </span><span class="nt">torqueOffset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w">  </span><span class="nt">symbol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</section>
+<section id="running-the-simulation">
+<h2>Running the Simulation<a class="headerlink" href="#running-the-simulation" title="Link to this heading"></a></h2>
+<p>Start the simulation from the Simulation Bar. If configured correctly, buoyancy, drag, and other fluid forces will be applied to the robot based on the MultiCollider settings.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../install/install.html" class="btn btn-neutral float-left" title="ソースコードからのビルドとインストール" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cfd.html" class="btn btn-neutral float-right" title="ROV／UAVのシミュレーション" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../install/index.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../vfx/index.html" class="btn btn-neutral float-right" title="VFX Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
